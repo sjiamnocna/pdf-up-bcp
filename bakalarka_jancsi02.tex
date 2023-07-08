@@ -1,0 +1,115 @@
+\documentclass[14pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[paper=a4paper, margin=1.5cm]{geometry}
+
+% FA icons
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{color}
+\usepackage{graphicx}
+\hypersetup{
+  colorlinks=false,% hyperlinks will be black
+  pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
+}
+
+% citace a jazyk
+\usepackage[main=czech, english]{babel}
+\usepackage{csquotes}
+\usepackage[style=iso-authoryear]{biblatex}
+\addbibresource{sources.bib}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+            {
+            \centering
+            \includegraphics[]{./PDF_tisk/UP_logo_PdF-UP_horizont_cz.pdf}
+            }
+			
+			\vspace{3cm}
+
+            {
+                \LARGE
+                \textbf{Šimon Janča}\\
+                3.\,ročník\\[8mm]
+                Obor: Informační technologie a Matematika pro vzdělávání
+            }
+
+            \vspace{4cm}
+			
+			{
+			    \textbf{\Huge Využití IT ke generování zadání písemných testů}\\[4mm]
+			    \Large
+			    Bakalářská práce
+			}
+
+            \vfill
+            
+            {
+                Vedoucí práce:
+                doc. RNDr. Petr Šaloun, Ph.D.
+                \hfill
+    			Olomouc \the\year{}
+            }
+			
+		\end{center}
+	\end{titlepage}
+	% generate table of contents
+	\tableofcontents
+	
+	\section{Úvod}
+        \subsection{Cíl práce}
+        \subsection{Příklad použití výsledné aplikace}
+        
+    \section{V současnosti používané nástroje}
+        \subsection{Informace získané z dotazníku}
+        \subsection{Existující nástroje}
+	
+    \section{Vývoj moderních aplikací}
+        \subsection{Client-Server}
+        \subsection{Kompilátor a Interpret}
+        \subsection{MVC - Model View Controller}
+        \subsection{JSON - Javascript Object Notation}
+        \subsection{API - Application Interface}
+        \subsection{AJAX - Asynchronous Javascript Request}
+        \subsection{REST - Representational state transfer}
+        \subsection{Frontend, Backend}
+        \subsection{Webová služba, webový server}
+        \subsection{Port}
+        \subsection{Zabezpečení}
+            \subsubsection{Autentikace}
+            \subsubsection{Autorizace}
+            \subsubsection{JWT - JSON Web Token}
+	
+	\section{Návrh aplikace}
+        \subsection{UCD - Use Case Diagram}
+        \subsection{ERD - Entity Relationship Diagram}
+        \subsection{Návrh struktury databáze}
+        \subsection{Výběr technologií}
+            \subsubsection{React, Vite, Typescript}
+            \subsubsection{Go}
+            \subsubsection{Gin}
+            \subsubsection{GORM}
+            \subsubsection{MySQL}
+            \subsubsection{Docker, docker-compose}
+            \subsubsection{Nginx}
+	
+	\section{Postup implementace}
+        \subsection{Backend}
+        \subsection{Frontend}
+        \subsection{Testování}
+        \subsection{Údržba}
+        
+	\section{Budoucí rozvoj aplikace}
+        \subsection{Údržba}
+            \subsubsection{Sledování chyb nahlášených uživateli}
+            \subsubsection{Sentry}
+        \subsection{Systém pro interaktivní zkoušení, zadávání}
+	
+	\section{Závěr}
+	
+	
+%\parencite{knuth1990virtual}
+
+\printbibliography
+\end{document}
