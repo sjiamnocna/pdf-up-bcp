@@ -7,6 +7,10 @@
 \usepackage{url}
 \usepackage{color}
 \usepackage{graphicx}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
 \hypersetup{
   colorlinks=false,% hyperlinks will be black
   pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
@@ -112,38 +116,212 @@
         Ve výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí.
         Výsledná podoba zadání a~možností příkladu může vypadat např.~takto:
         
-        $$ 3x + 5 &= 4 + 9 $$
-        \begin{itemize} %alfa
+        $$ 3x + 5 = 4 + 9 $$
+        \begin{itemize}
             \item $x = 2$
             \item $x = 3$
             \item $x = 4$
             \item $x = 5$
         \end{itemize}
         
-    \section{Vývoj moderních aplikací}
+    \section{Vývoj moderních webových aplikací}
+    V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~díky tomu, že~webová aplikace je~dostupná z~jakéhokoliv zařízení,
+    které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji
+    instalovat na~každém zařízení zvlášť. Vývojáři se~také nemusí starat o~kompatibilitu s~různými operačními systémy, protože webový prohlížeč
+    je~dostupný na~většině z~nich. Webová aplikace je~také snadno škálovatelná, protože se~spouští na~serveru a~uživatelé se~k~ní připojují.
+    Navíc je možné díky různým nástrojům aplikace snadno vydat z~jednoho zdrojového kódu jak webovou tak nativní (Android, IOS) aplikaci.
+
     Pokud se~chceme pustit do~vývoje webové aplikace, která bude využívat výhod moderních postupů a~technologií, je~potřeba
-    si~ujasnit pár\,--\,i~historických pojmů a~pochopit, jak~spolu souvisí.
+    si~ujasnit pár současných i~historických pojmů a~pochopit, jak~spolu souvisí.
+
         \subsection{Základní statická HTML stránka}
-        \subsection{CSS Styly}
-        \subsection{Javascript}
-        \subsection{HTML s dynamickým obsahem}
-        \subsection{Client-Server}
+        V roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk HTML. HTML je~zkratka pro~HyperText Markup Language (Hypertextový značkovací jazyk).
+        Základem je HTML stránka~--~soubor, který obsahuje textový obsah a~HTML značky, které určují, význam jednotlivých částí obsahu.
+        Navíc lze jednotlivé soubory propojit pomocí hypertextových odkazů, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
+
+        V dnešní době se~HTML stránky skládají z~HTML značek, ale i~CSS stylů, které určují jak má prohlížeč jednotlivé části stránky zobrazit.
+        K tomu se přidává i~JavaScript, který umožňuje přidat do~stránky dynamický obsah a~interaktivitu.
+
+        Jednotlivé prvky je možné také označit pomocí identifikátorů a~tříd, které se~používají pro~jejich identifikaci.
+        Zatímco tříd může mít prvek více, identifikátor může mít jen jeden. Identifikátor by měl být unikátní. V jedné HTML stránce by se měl vyskytovat jen jednou.
+        Třídy se~používají pro~skupiny prvků, které mají stejný vzhled. Prvek může mít více tříd a~kombinovat tak jejich vlastnosti.
+
         \subsection{Kompilátor a Interpret}
-        \subsection{MVC - Model View Controller}
-        \subsection{Verzovací systém GIT}
-        \subsection{Linux a příkazová řádka, WSL2}
-        \subsection{JSON - Javascript Object Notation}
-        \subsection{API - Application Interface}
-        \subsection{AJAX - Asynchronous Javascript Request}
-        \subsection{REST - Representational state transfer}
-        \subsection{Frontend, Backend}
+        Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
+
+        \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.\,překladače (kompilátoru) překládá do~binárního souboru, který obsahuje přímo instrukce,
+        které dokáže počítač (procesor) vykonávat. Při~každém spuštění se~do paměti načte binární soubor a~procesor vykonává jeho instrukce.
+
+        \textbf{Interpretovaný} jazyk naopak vykonáván programem, kterému říkáme interpret. Ten čte příkazy a~přímo je~vykonává. To~znamená,
+        že~při~každém spuštění se~příkazy překládají znovu. Interpret je program, který musí běžet, zatímco příkazy interpretuje,
+        což je taky jeden z~důvodů, proč je~interpretovaný jazyk pomalejší a náročnější na využítí zdrojů, než~kompilovaný.
+        
+        Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu.
+        
+        \subsection{Javascript}
+        Javascript je skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce,
+        jako je~kliknutí, a~tedy na~rozdíl od~statické podoby HTML stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje.
+
+        Vznikl v~roce 1995 a~jeho tvůrci jsou Brendan Eich a~společnost Netscape.
+        Javascript je~dnes nejrozšířenějším programovacím jazykem na~světě a~používá se~nejen pro~webové stránky,
+        ale i~pro~tvorbu nativních aplikací.
+
+        Díky spouštěčům Javascriptu, kterým říkáme Javascriptové enginy, je~možné spouštět Javascript na~různých platformách.
+        A tak můžeme Javascript spouštět v~prohlížeči, ale i~na~serveru, a dokonce na~mikrokontrolerech. Jeden jazyk tak zvládne pokrýt
+        většinu potřeb, které můžeme při~vývoji aplikací mít.
+
+        Javascript je interpretovaný jazyk, což znamená, že~jednotlivé příkazy se~vykonávají postupně a~při~každém spuštění programu se~překládají.
+        To přináší výhodu v~tom, že je možné příkazy vykonávat ihned, ale zároveň to znamená, že~při~každém spuštění se~musí překládat,
+        což může být pomalejší než spouštění kompilovaného binárního souboru.
+
+        Javascript dokáže příkazy zpracovávat synchronně i~asynchronně.
+        
+        Synchronní zpracování znamená, že~se~příkazy vykonávají postupně, tak jak
+        jsou zapsané.
+        
+        Asynchronní zpracování znamená, že~se~příkazy vykonávají nezávisle na~sobě. To je~užitečné např.~při~načítání dat ze~serveru,
+        které může trvat delší dobu. V~tomto případě se~synchronní příkazy vykonávají dál a~když se~data úspěšně načtou, vykoná~se příkaz, který na~ně čeká.
+
+        \subsection{Typescript}
+        Další nevýhodou Javascriptu je, že~není typově bezpečný. To znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné
+        a~funkce použity správně. To může vést k~chybám, které se~projeví až při~spuštění programu. To je~pro~větší projekty nežádoucí, proto se~používají
+        jiné jazyky, které jsou typově bezpečné a~po~kontrole se překládají (transpilují) zpět do Javascriptu. Jedním z~nich je~Typescript.
+        Kromě typové bezpečnosti přináší Typescript i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují výkon aplikace.
+
+        \subsection{DOM - Document Object Model}
+        DOM je~objektový model dokumentu, který vytváří prohlížeč na~základě HTML stránky. Jednotlivé HTML značky jsou reprezentovány objekty.
+        Před vykreslením stránky v prohlížeči, se~nejprve vytvoří DOM, který obsahuje všechny objekty (HTML prvky), které se~mají zobrazit.
+        K nim pak prohlížeč přiřadí CSS styly a~vykreslí je~na~obrazovku. K~DOMu pak přistupujeme pomocí Javascriptu
+        a~můžeme aktivně měnit obsah stránk včetně stylů.
+        
+        \subsection{HTML s dynamickým obsahem}
+        HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje.
+        Na úrovni serveru se~může generovat HTML stránka, která obsahuje dynamický obsah. V~dnešní době se~častěji používá Javascript,
+        nicméně v minulosti se~používaly i~jiné technologie, jako např.~PHP, které na~serveru vygenerovaly HTML stránku.
+
+        To samozřejmě znamenalo, že~při~každé změně obsahu bylo potřeba stránku znovu načíst. Tento problém právě adresuje Javascript.
+        Odesílá požadavky na~server a~na~základě odpovědi mění obsah celé nebo části stránky.
+
+        To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze se~načtou data ze~serveru
+        a~přidají se~do~stránky. To~je~mnohem rychlejší a~příjemnější pro~uživatele.
+        
+        \subsection{Client-Server}
+        Vývoj webových aplikací je~založen na~modelu klient-server. Klient může být webový prohlížeč, ale i~jiná, např. mobilní aplikace.
+        \textbf{Server} je~počítač, který poskytuje služby klientovi. V~případě webové aplikace je~to~server, který poskytuje HTML stránku, styly a~skripty.
+        Taky posléze poskytuje data, která se~do~ní načítají a~ovlivňují její obsah.
+
+        \textbf{Klient} je~počítač, který služby serveru využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje HTML stránku.
+        V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě.
+
         \subsection{Webová služba, webový server}
-        \subsection{Port}
+        Webová služba je~program, který běží na~serveru a~poskytuje data klientovi. Na serveru může běžet více webových služeb,
+        rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80,
+        resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP, která poběží nejčastěji na~portu~25 a další.
+        Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů.
+        
+        \subsection{MVC - Model View Controller}
+        Nejdůležitějším bodem vývoje bylo zavedení architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
+        Ten odděluje logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
+
+        Díky tomu můžeme mít jednu aplikaci, která bude mít různé zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webovou stránku, mobilní aplikaci a desktopovou aplikaci.
+
+        Taky to umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace.
+
+        \subsection{Frontend, Backend}
+        Aplikace se~díky architektuře \emph{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}.
+        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o interakci s uživatelem a~komunikuje s~\textbf{backendem},
+        zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
+
+        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}.
+        Spolupracuje s~databází a~dalšími službami, které jsou potřeba pro~správné fungování aplikace.
+        \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Python, Java, C\#, Go, Javascript\dots
+
+
+        \subsection{Verzovací systém GIT}
+        \textbf{GIT} vytvořil Linus Torvalds v~roce 2005. Je~to~distribuovaný verzovací systém, což znamená, že~každý vývojář má~lokální kopii celého projektu.
+        To mimojiné znamená, že~vývojář může pracovat i~offline a~následně své~změny nahrát na~server.
+
+        Verzovací systém je~program, který slouží ke~správě verzí zdrojových souborů.
+        Umožňuje ukládat historii změn a~vracet se~k~předchozím verzím. Taky mohou pracovat s~jednotlivými větvemi,
+        které mohou obsahovat různé změny, které lze následně sloučit do~jedné větve.
+        To~umožňuje vývojářům pracovat na~různých problémech projektu paralelně a~následně je~sloučit do~jednoho celku.
+
+        \subsection{Linux a příkazová řádka, WSL2}
+        Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Je~to~nejrozšířenější open source operační systém,
+        používaný zejména na~serverech. Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~Android.
+        
+        Velikou výhodou je otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům upravovat systém podle svých potřeb.
+        Další výhodou je~jeho bezpečnost. V~porovnání s~ostatními operačními systémy je~mnohem bezpečnější a~méně náchylný k~virům.
+
+        Nabízí mnoho grafických prostředí, takže si~uživatel může vybrat, jakým způsobem bude systém používat a je možné téměř
+        všechno nastavit tak, jak v práci potřebuje.
+
+        Navíc většina nástrojů pro vývoj webových aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky
+        vše nastavit skriptem z~příkazové řádky.
+
+        Na Windows je možné Linux využívat pomocí WSL2 (Windows Subsystem for Linux). Jedná se~o~virtuální stroj, který běží na~pozadí
+        a umožní uživateli Windows používat výhody, které nabízí Linux.
+
+        \subsection{JSON - Javascript Object Notation}
+        JSON je~formát pro~výměnu dat. Je~to~textový formát, to znamená, že je~čitelný pro~člověka i~stroj.
+        Používá se ke strukturovanému ukládání a~přenosu dat. Dnes většinou používá namísto staršího formátu XML,
+        který je podobný struktuře HTML.
+
+        Formát JSON je~podobný zápisu objektů v~Javascriptu. Obsahuje dvojice klíč-hodnota, které jsou odděleny dvojtečkou.
+        Klíčem je~řetězec a~hodnota může být číselná, řetězcová, logická hodnota, pole nebo objekt.
+
+        \subsection{API - Application Interface}
+        API je~rozhraní, které umožňuje komunikaci mezi aplikacemi. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem.
+        Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
+        Někerá API jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~API Google Maps.
+
+        \subsection{AJAX - Asynchronous Javascript Request}
+        AJAX je~technologie, která umožňuje asynchronní komunikaci mezi frontendem a~backendem.
+        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale pouze se~načtou data ze~serveru a~přidají se~do~stránky.
+
+        Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}.
+
+        AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.
+
+        \subsection{REST - Representational state transfer}
+        REST je~architektura, která definuje způsob komunikace mezi klientem a~serverem.
+        REST definuje, jaké metody se~používají pro~komunikaci, a~každé přiděluje určitý význam.
+    
+        Mezi nejčastěji používané metody patří GET, POST, PUT, DELETE a PATCH.
+
+        \textbf{GET} slouží pro~získání dat ze~serveru, \textbf{POST} pro~odeslání dat na~server.
+        \textbf{PUT} pro~úpravu dat na~serveru a \textbf{DELETE} slouží pro~smazání dat ze~serveru.
+        \textbf{PATCH} potom pro~úpravu části dat na~serveru.
+
+        Souhrnně těmto operacím říkáme CRUD operace, což je~zkratka pro~\textbf{Create}, \textbf{Read}, \textbf{Update} a \textbf{Delete}.
+
         \subsection{Zabezpečení}
+        Vystavením aplikace na~internetu vystavujeme naše API nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit.
+        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné taky zvážit,
+        jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, případně ke~službám, ke~kterým potřebujeme soukromý přístup,
+        přistupovat pomocí tzv.~SSH tunelu.
+
+        Z~hlediska zabezpečení webové aplikace pak~hovoříme o~dvou základních bodech. \textbf{Autentikace} a~\textbf{autorizace}.
+
             \subsubsection{Autentikace}
+            Autentikace je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává.
+            To~se~dělá pomocí hesla, které uživatel zná, nebo pomocí certifikátu, který uživatel má.
+
             \subsubsection{Autorizace}
+            Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
+            To~je možné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
+
             \subsubsection{JWT - JSON Web Token}
+            Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli.
+            Při autentikaci se~vygeneruje token, který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
+            Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze změnit. V případě změny dat v~tokenu se~token stává neplatným.
+            To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
+            a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
+
+            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč.
+
         \subsection{Údržba aplikace}
+            \subsubsection{SDLC - Software Development Life Cycle}
             \subsubsection{Sledování bezpečnostních trendů}
             \subsubsection{Sledování chyb nahlášených uživateli}
             \subsubsection{Sentry}
