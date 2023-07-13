@@ -60,22 +60,78 @@
 	\newpage
 	
 	\section{Úvod}
-    V~této práci si~kladu za~cíl vytvořit webovou aplikaci, kterou by~učitelé mohli používat k~tvorbě různých variant zadání písemných prací. Zároveň bych rád popsal základní prvky vývoje moderní \emph{MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií až k~její implementaci za~použití vybraných technologií. Nejde o~jediný způsob, jak aplikace vznikají, nicméně by práce měla být čitelným a~reprodukovatelným postupem vývoje a údržby aplikací.
-        \subsection{Účel a~funkcionalita aplikace}
-        Abcdef
-        \subsection{Příklad použití výsledné aplikace}
-        Mějme prvního uživatele, říkejme mu třeba Adam.
+    V~této práci si~kladu za~cíl vytvořit webovou aplikaci, kterou by~učitelé mohli používat k~tvorbě různých variant zadání písemných prací.
+    Zároveň bych rád popsal základní prvky vývoje moderní \emph{MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu
+    a~výběru technologií až k~její implementaci za~použití vybraných technologií.
+    
+    Pochopitelně nejde o~jediný způsob, jak aplikace mohou vzniknout, nicméně by~práce měla být čitelným a~reprodukovatelným postupem vývoje
+    a~údržby podobné aplikace.
         
-    \section{V současnosti používané nástroje na generování prací}
-        \subsection{Informace získané z dotazníku}
+        \subsection{V současnosti používané nástroje na generování prací}
+        % TODO: 
         \subsection{Existující nástroje}
-	
+
+        \subsection{Účel a~popis fungování aplikace}
+        Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, které může umístit do~volitelně
+        strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady může následně využít při tvorbě písemných prací,
+        kde si bude moci zvolit, kategorie ze kterých se příklady vyberou a~počet příkladů, které se~mají do~písemky vygenerovat. 
+        \subsection{Příklad použití}
+        Mějme prvního uživatele, říkejme mu~třeba Adam. Adam je~učitel a~chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
+        Adam se~zaregistruje do~aplikace a~přihlásí se~do~svého účtu. Adam učí Matematiku, takže si~vytvoří 5 příkladů z~tohoto předmětu
+        a~vloží je do kategorie Matematika.
+
+        Následně si vytvoří písemnou práci a díky tomu, že si~Adam vytvořil 5~příkladů, může si~vybrat, zda chce,
+        aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy požadovat 3 příklady s~náhodně dosazenými hodnotami.
+        Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
+        Proto aplikace umožní vytvořit si~proměnné, které budou mít přiřazenou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
+
+        Adam si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od 1 do 10, $C = 4/3*A$ a $D = C + B$.
+
+        Řešený příklad se~vygeneruje do vzorce, který posléze zapíše do~\emph{Písemkomatu}. Do proměnných $A, B$ se uloží náhodné číslo
+        z~intervalu, který~si~Adam nastavil a~pomocí zápisu proměnné - \texttt{\$A} nebo formátu umožňující
+        delší názvy\,--\,\texttt{\$\{nazevpromenne\}}\,--\,se~vloží do~příkladu na~zadané místo, resp.~do zápisu výpočtu dalších proměnných,
+        kde budou použity ve výpočtu. Tedy v~tomto případě předpokládáme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$
+        a~hodnoty proměnných $C, D$ se~dopočítají takto:
+        \begin{align*}
+            A &= 3 \\
+            B &= 5 \\
+            C &= 4/3*A = 4/3*3 = 4 \\
+            D &= C + B = 4 + 5 = 9
+        \end{align*}
+
+        Proměnné $A, B$ se při generování výsledné podoby příkladu nahradí náhodnými čísly z~určeného intervalu, proměnné $C, D$ se vyčíslí.
+        Výsledná podoba příkladu může vypadat např.~takto:
+        \begin{align*}
+            \$Ax + \$B &= \$C + \$D \\
+            3x + 5 &= 4 + 9
+        \end{align*}
+
+        Adam bude mít taky možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s možnostmi výběru.
+        V~tomto případě může taky využít proměnné, které si vytvořil dříve. V obou případech může taky zapsat vzorec,
+        ze~kterého se~vypočtou možnosti a označit správnou možnost.
+        Ve výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí.
+        Výsledná podoba zadání a~možností příkladu může vypadat např.~takto:
+        
+        $$ 3x + 5 &= 4 + 9 $$
+        \begin{itemize} %alfa
+            \item $x = 2$
+            \item $x = 3$
+            \item $x = 4$
+            \item $x = 5$
+        \end{itemize}
+        
     \section{Vývoj moderních aplikací}
+    Pokud se~chceme pustit do~vývoje webové aplikace, která bude využívat výhod moderních postupů a~technologií, je~potřeba
+    si~ujasnit pár\,--\,i~historických pojmů a~pochopit, jak~spolu souvisí.
+        \subsection{Základní statická HTML stránka}
+        \subsection{CSS Styly}
+        \subsection{Javascript}
+        \subsection{HTML s dynamickým obsahem}
+        \subsection{Client-Server}
         \subsection{Kompilátor a Interpret}
         \subsection{MVC - Model View Controller}
         \subsection{Verzovací systém GIT}
         \subsection{Linux a příkazová řádka, WSL2}
-        \subsection{Client-Server}
         \subsection{JSON - Javascript Object Notation}
         \subsection{API - Application Interface}
         \subsection{AJAX - Asynchronous Javascript Request}
