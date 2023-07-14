@@ -142,10 +142,9 @@
     které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji
     instalovat na~každém zařízení zvlášť. Vývojáři se~také nemusí starat o~kompatibilitu s~různými operačními systémy, protože webový prohlížeč
     je~dostupný na~většině z~nich. Webová aplikace je~také snadno škálovatelná, protože se~spouští na~serveru a~uživatelé se~k~ní připojují.
-    Navíc je možné díky různým nástrojům aplikace snadno vydat z~jednoho zdrojového kódu jak webovou tak nativní (Android, IOS) aplikaci.
+    Navíc je možné díky různým nástrojům aplikace snadno vydat z~jednoho zdrojového kódu jak webovou tak nativní (Android, IOS) aplikaci.\parencite{adobe:webapp}
 
-    Pokud se~chceme pustit do~vývoje webové aplikace, která bude využívat výhod moderních postupů a~technologií, je~potřeba
-    si~ujasnit pár současných i~historických pojmů a~pochopit, jak~spolu souvisí.
+    Pokud se~chceme pustit do~vývoje webové aplikace, která bude využívat výhod moderních postupů a~technologií, je~potřeba si~ujasnit pár současných i~historických pojmů a~pochopit, jak~spolu souvisí.
 
         \subsection{Základní statická HTML stránka}
         V roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk HTML. HTML je~zkratka pro~HyperText Markup Language (Hypertextový značkovací jazyk).
@@ -157,7 +156,7 @@
 
         Jednotlivé prvky je možné také označit pomocí identifikátorů a~tříd, které se~používají pro~jejich identifikaci.
         Zatímco tříd může mít prvek více, identifikátor může mít jen jeden. Identifikátor by měl být unikátní. V jedné HTML stránce by se měl vyskytovat jen jednou.
-        Třídy se~používají pro~skupiny prvků, které mají stejný vzhled. Prvek může mít více tříd a~kombinovat tak jejich vlastnosti.
+        Třídy se~používají pro~skupiny prvků, které mají stejný vzhled. Prvek může mít více tříd a~kombinovat tak jejich vlastnosti. \parencite{jpw:tridy}
 
         \subsection{Kompilátor a Interpret}
         Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
@@ -169,7 +168,7 @@
         že~při~každém spuštění se~příkazy překládají znovu. Interpret je program, který musí běžet, zatímco příkazy interpretuje,
         což je taky jeden z~důvodů, proč je~interpretovaný jazyk pomalejší a náročnější na využítí zdrojů, než~kompilovaný.
         
-        Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu.
+        Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu. \parencite{ueda:compiled}
         
         \subsection{Javascript}
         Javascript je skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce,
@@ -193,7 +192,7 @@
         jsou zapsané.
         
         Asynchronní zpracování znamená, že~se~příkazy vykonávají nezávisle na~sobě. To je~užitečné např.~při~načítání dat ze~serveru,
-        které může trvat delší dobu. V~tomto případě se~synchronní příkazy vykonávají dál a~když se~data úspěšně načtou, vykoná~se příkaz, který na~ně čeká.
+        které může trvat delší dobu. V~tomto případě se~synchronní příkazy vykonávají dál a~když se~data úspěšně načtou, vykoná~se příkaz, který na~ně čeká. \parencite{kantor_javascript}
 
         \subsection{Typescript}
         Další nevýhodou Javascriptu je, že~není typově bezpečný. To znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné
@@ -375,13 +374,13 @@
             který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
 
             Při autentikaci aplikace je důležité zkontrolovat také, že~požadavek přišel z~povolené webové adresy, geografickou polohu klientovy IP adresy
-            nebo další informace, které by~mohly odhalit nepovolený přístup.
+            nebo další informace, které by~mohly odhalit nepovolený přístup. \parencite{graham2021ethical}
 
             \subsubsection{Autorizace (Authorization)}
             Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
             To~je možné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
 
-            Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat.
+            Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat.\parencite{graham2021ethical}
 
             \subsubsection{JWT - JSON Web Token}
             Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli.
@@ -390,7 +389,7 @@
             To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
             a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
 
-            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč.
+            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč.\parencite{ieee:jwt}
 
         \subsection{Údržba aplikace}
         Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
@@ -553,5 +552,6 @@
 	
 	\section{Závěr}
 
+\newpage
 \printbibliography
 \end{document}
