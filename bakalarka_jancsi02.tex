@@ -74,7 +74,7 @@
         
         \subsection{V současnosti používané nástroje na generování prací}
         % TODO: 
-        \subsection{Existující nástroje}
+        \subsection{Co používají učitelé}
 
         \subsection{Účel a~popis fungování aplikace}
         Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, které může umístit do~volitelně
@@ -82,13 +82,13 @@
         kde si bude moci zvolit, kategorie ze kterých se příklady vyberou a~počet příkladů, které se~mají do~písemky vygenerovat. 
         \subsection{Příklad použití}
         Mějme prvního uživatele, říkejme mu~třeba Adam. Adam je~učitel a~chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
-        Adam se~zaregistruje do~aplikace a~přihlásí se~do~svého účtu. Adam učí Matematiku, takže si~vytvoří 5 příkladů z~tohoto předmětu
+        Adam se~zaregistruje do~aplikace \emph{Písemkomat} a~přihlásí se~do~svého účtu. Adam učí Matematiku, takže si~vytvoří 5 příkladů z~tohoto předmětu
         a~vloží je do kategorie Matematika.
 
         Následně si vytvoří písemnou práci a díky tomu, že si~Adam vytvořil 5~příkladů, může si~vybrat, zda chce,
         aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy požadovat 3 příklady s~náhodně dosazenými hodnotami.
         Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
-        Proto aplikace umožní vytvořit si~proměnné, které budou mít přiřazenou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
+        Proto \emph{Písemkomat} umožní vytvořit si~proměnné, které budou mít přiřazenou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
 
         Adam si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od 1 do 10, $C = 4/3*A$ a $D = C + B$.
 
@@ -124,7 +124,17 @@
             \item $x = 4$
             \item $x = 5$
         \end{itemize}
+
+        Proměnné bude možné označit tak, aby se nevyčíslovaly hodnoty a bude moci nést také jiné vlastnosti, např.~vstupní pole, čehož bude
+        možnost využít při tvorbe zadání, kde je více vstupních políček, které bude mít za úkol žák vyplnit.
+
+        Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné, podtržené místo o~velikosti určené při~zadávání proměnné.
+        Nebo v~případě možnosti výběru se~na~místě vykreslí všechny možnosti, aby~žák mohl vybrat správnou možnost kroužkováním nebo tak, jak učitel určí.
         
+        To umožní systém používat např.~pro jazykové předměty, kde se~využívá doplňování slov do~textu nebo~výběr písmene.
+
+        Všechna nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek.
+
     \section{Vývoj moderních webových aplikací}
     V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~díky tomu, že~webová aplikace je~dostupná z~jakéhokoliv zařízení,
     které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji
@@ -219,6 +229,22 @@
         rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80,
         resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP, která poběží nejčastěji na~portu~25 a další.
         Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů.
+
+        \subsection{Webový server}
+        Webový server se~stará o~odpovědi většinou na požadavky, většinou přicházející přes \emph{HTTPS}, dříve \emph{HTTP}.
+        Server dostane požadavek ve~formě URL\footnote{Uniform Resource Locator, někdy označované URI = Uniform Resource Identifier} adresy,
+        která obsahuje cestu k~souboru, který se~má vrátit.
+
+        Webový server dnes ale~neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat.
+        Může například zajistit, že~se~před odesláním soubor na~serveru zpracuje (např. pomocí PHP) a~do~něj se~vloží aktuální data.
+        Nebo může před odesláním provést kompresi dat. To~znamená, že~data se~před odesláním zmenší, čímž se~odesílají rychleji a~nezatěžují
+        tak~síť. Taky to uspoří mobilní data a~klient, který přistupuje přes mobilní síť, vám bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
+
+        Webový server je~také zodpovědný za~směrování doménových jmen ke~konkrétním datům na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových stránek.
+        Pomocí metody~\emph{Proxy~pass} můžeme také přesměrovat celý provoz domény na jiný port (např.~na~naši aplikaci).
+
+        Příkladem webového serveru může být Apache, Nginx, Lighttpd, Caddy ale taky IIS\footnote{Internetová Informační Služba/Internet Information Service}\dots
+
         
         \subsection{MVC - Model View Controller}
         Nejvýznamnějším bodem vývoje bylo zavedení architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
@@ -229,7 +255,7 @@
         Taky to umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace.
 
         \subsection{Frontend, Backend}
-        Aplikace se~díky architektuře \emph{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}.
+        Aplikace se~díky architektuře \emph{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
         \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o interakci s uživatelem a~komunikuje s~\textbf{backendem},
         zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
@@ -239,13 +265,13 @@
 
 
         \subsection{Verzovací systém GIT}
-        \textbf{GIT} vytvořil Linus Torvalds v~roce 2005. Je~to~distribuovaný verzovací systém, což znamená, že~každý vývojář má~lokální kopii celého projektu.
-        To mimojiné znamená, že~vývojář může pracovat i~offline a~následně své~změny nahrát na~server.
-
         Verzovací systém je~program, který slouží ke~správě verzí zdrojových souborů.
         Umožňuje ukládat historii změn a~vracet se~k~předchozím verzím. Taky mohou pracovat s~jednotlivými větvemi,
         které mohou obsahovat různé změny, které lze následně sloučit do~jedné větve.
         To~umožňuje vývojářům pracovat na~různých problémech projektu paralelně a~následně je~sloučit do~jednoho celku.
+
+        \textbf{GIT} vytvořil Linus Torvalds v~roce 2005. Je~to~distribuovaný verzovací systém. To znamená, že~každý vývojář má~lokální kopii celého projektu,
+        tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
 
         \subsection{Linux a příkazová řádka, WSL2}
         Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Je~to~nejrozšířenější open source operační systém,
@@ -265,16 +291,52 @@
 
         \subsection{JSON - Javascript Object Notation}
         JSON je~formát pro~výměnu dat. Je~to~textový formát, to znamená, že je~čitelný pro~člověka i~stroj.
-        Používá se ke strukturovanému ukládání a~přenosu dat. Dnes většinou používá namísto staršího formátu XML,
-        který je podobný struktuře HTML.
+        Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát XML,
+        který je~podobný struktuře HTML. Ostatně XML stále používá spousta aplikací, zejména státní správy.
 
         Formát JSON je~podobný zápisu objektů v~Javascriptu. Obsahuje dvojice klíč-hodnota, které jsou odděleny dvojtečkou.
         Klíčem je~řetězec a~hodnota může být číselná, řetězcová, logická hodnota, pole nebo objekt.
+        Práce s~formátem JSON je~pohodlnější než s~formátem XML, protože je~mnohem jednodušší a~čitelnější a vyžaduje méně kódu,
+        jak na straně serveru, tak na straně klienta a~jde~celkově o~úspornější formát.
 
         \subsection{API - Application Interface}
         API je~rozhraní, které umožňuje komunikaci mezi aplikacemi. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem.
         Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
         Někerá API jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~API Google Maps.
+
+        V~dnešní době jsou nejrozšířenější formou API \emph{REST} a~\emph{GraphQL}.
+
+        Pro komunikaci mezi interními aplikacemi se~často používá \emph{SOAP}. Různý hardware používá k~ovládání např.~\emph{UART} a~\emph{SPI}.
+        Velice oblíbený je~také výkonný přístup gRPC\footnote{Google Remote Procedure Call}, který je~založen na~protokolu HTTP/2 a~používá binární formát \emph{Protocol Buffers}.
+        RPC je~zkratka pro~\emph{Remote Procedure Call} a znamená, že pouze volá vzdálené funkce, které jsou na~serveru,
+        což je mnohdy efektivnější přístup.
+        
+        Další výhodou, že~gRPC zastává deklarativní přístup, kde definujeme služby a~jejich rozhraní a~nástroj posléze vygeneruje kód pro~jazyk, který používáme.
+
+        \subsection{REST - Representational state transfer}
+        \textbf{REST} je~architektura, která definuje způsob komunikace mezi klientem a~serverem.
+        V dnešní době je~díky své jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových služeb.
+        Jednoduchost spočívá zejména díky tomu, že každý \emph{Endpoint}\footnote{Endpoint/Koncový bod je adresa zdroje, kam posíláme požadavek}
+        má svou vlastní adresu.
+        \textbf{REST} je~bezstavový, takže každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi.
+        To~umožňuje jednoduché testování a~ladění aplikace. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit.
+        \textbf{REST} definuje, jaké HTTP metody se~používají pro~komunikaci, a~každé přiděluje určitý význam.
+    
+        Mezi nejčastěji používané metody patří GET, POST, PUT, DELETE a PATCH. Metoda je~uložena v~hlavičce HTTP požadavku.
+
+        Popis funkce přenosu dat po síti pomocí HTTP metod je~následující:
+        \begin{itemize}
+            \item \textbf{GET} slouží pro~získání dat ze~serveru,
+            \item \textbf{POST} pro~odeslání dat na~server,
+            \item \textbf{PUT} pro~úpravu dat na~serveru,
+            \item \textbf{DELETE} slouží pro~smazání dat ze~serveru,
+            \item \textbf{PATCH} potom pro~úpravu části dat na~serveru.
+        \end{itemize}
+
+        Souhrnně těmto operacím říkáme \emph{CRUD operace}, což je~zkratka pro~\textbf{Create}, \textbf{Read}, \textbf{Update} a \textbf{Delete}.
+
+        Kromě požadavků \textbf{GET} se v~těle požadavku posílají data v~textové formě, např.~formátu~JSON. 
+        V~případě požadavku \textbf{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají limitovanou velikost maximální délkou \emph{URL adresy}.
 
         \subsection{AJAX - Asynchronous Javascript Request}
         AJAX je~technologie, která umožňuje asynchronní komunikaci mezi frontendem a~backendem.
@@ -284,38 +346,37 @@
 
         AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.
 
-        \subsection{REST - Representational state transfer}
-        REST je~architektura, která definuje způsob komunikace mezi klientem a~serverem.
-        REST definuje, jaké metody se~používají pro~komunikaci, a~každé přiděluje určitý význam.
-    
-        Mezi nejčastěji používané metody patří GET, POST, PUT, DELETE a PATCH.
-
-        \textbf{GET} slouží pro~získání dat ze~serveru, \textbf{POST} pro~odeslání dat na~server.
-        \textbf{PUT} pro~úpravu dat na~serveru a \textbf{DELETE} slouží pro~smazání dat ze~serveru.
-        \textbf{PATCH} potom pro~úpravu části dat na~serveru.
-
-        Souhrnně těmto operacím říkáme CRUD operace, což je~zkratka pro~\textbf{Create}, \textbf{Read}, \textbf{Update} a \textbf{Delete}.
-
         \subsection{Zabezpečení}
-        Vystavením aplikace na~internetu vystavujeme naše API nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit.
+        Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit.
         To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné taky zvážit,
         jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, případně ke~službám, ke~kterým potřebujeme soukromý přístup,
         přistupovat pomocí tzv.~SSH tunelu.
 
         Z~hlediska zabezpečení webové aplikace pak~hovoříme o~dvou základních bodech. \textbf{Autentikace} a~\textbf{autorizace}.
 
-            \subsubsection{Autentikace}
-            Autentikace je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává.
+            \subsubsection{Autentikace (Authentication)}
+            \textbf{Autentikace} je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává.
             To~se~dělá pomocí hesla, které uživatel zná, nebo pomocí certifikátu, který uživatel má.
 
-            \subsubsection{Autorizace}
+            \textbf{Autentikací} nazýváme také proces, kdy ověřujeme, že požadavek na~server přišel z~naší aplikace a~ne z~jiného zdroje,
+            např.~od~útočníka. Na~to~existují různé metody, např.~využití \emph{JWT}.
+
+            Tzn.~do~aplikace vložíme tajný klíč, který aplikace použije k~autentikaci a po~úspěšné autentikaci aplikace se~vygeneruje textový řetězec\footnote{tzv.~Token},
+            který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
+
+            Při autentikaci aplikace je důležité zkontrolovat také, že~požadavek přišel z~povolené webové adresy, geografickou polohu klientovy IP adresy
+            nebo další informace, které by~mohly odhalit nepovolený přístup.
+
+            \subsubsection{Autorizace (Authorization)}
             Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
             To~je možné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
 
+            Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat.
+
             \subsubsection{JWT - JSON Web Token}
             Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli.
-            Při autentikaci se~vygeneruje token, který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
-            Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze změnit. V případě změny dat v~tokenu se~token stává neplatným.
+            Při autentikaci se~vygeneruje token\footnote{řetězec znaků}, který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
+            Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze změnit. V~případě změny dat v~tokenu se~token stává neplatným.
             To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
             a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
 
@@ -325,7 +386,7 @@
         Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
         Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
         
-            \subsubsection{SDLC - Software Development Life Cycle}
+            \subsubsection{SDLC - Životní cyklus vývoje software (Software Development Life Cycle)}
             SDLC je~životní cyklus vývoje softwaru. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru.
             Tyto procesy se~opakují v~kolech, které se~nazývají iterace. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
             Vývojáři se~také mohou v~každé iteraci vrátit k~předchozí části a~upravit ji~podle potřeby.
@@ -343,10 +404,11 @@
             Podobný je~i~případ požadavků na~nové funkce. Uživatel by~měl mít~možnost požádat o~novou funkci nebo zlepšení stávajících,
             aby~vývojář mohl aplikaci dále rozvíjet.
 
-            \subsection{Běhové a kompilační chyby}
+            \subsubsection{Běhové a kompilační chyby}
             Kompilace je~proces překladu zdrojového kódu do~binárního souboru, který je~přímo spustitelný na~procesoru.
-            Při kompilaci se~kontroluje správnost kódu a~případné chyby se~oznámí vývojáři. Některé chyby může překladač opravit automaticky a~podle
-            závažnosti chyby a~námi zavedených parametrů pro~překlad se~rozhodne, zda~překlad proběhne v~pořádku nebo ne.
+            Při kompilaci se~kontroluje správnost kódu, datových typů ap. Případné chyby překladač oznámí vývojáři.
+            Některé chyby může překladač opravit automaticky a~podle závažnosti chyby a~námi zavedených parametrů pro~překlad
+            překlad proběhne v~pořádku nebo se~zastaví a~je~potřeba chyby nejdříve opravit.
 
             Chyby se~ale mohou projevit až~při~běhu programu. To~jsou chyby, které např.~závisí na~datech, která se~do~programu načítají.
             Příkladem takové chyby může být špatná práce s~pamětí, která může vést k~přetečení paměti a~následnému pádu programu.
@@ -363,9 +425,19 @@
             Sentry je~nástroj, který umožňuje sledovat chyby za~běhu aplikace.
             Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace.
             Sentry umožňuje sledovat chyby v~různých jazycích, jako v~našem případě \emph{Javascript a Go}. Ale i~v~dalších.
+
+
             V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb.
             Např.~v~případě \emph{Javascriptu} umožní sledovat akce, které uživatel provedl, před tím, než došlo k~chybě. 
             Toho využiji pro~sledování chyb v~backendu i~frontendu aplikace.
+
+            Díky tomu má~vývojář k~dispozici spoustu informací, které potřebuje k~nalezení, vyvolání a~opravě chyby.
+            Sentry také umožňuje přímo vytvářet \emph{úkoly}, na kterých mohou vývojáři pracovat.
+            To~umožňuje vývojářům efektivněji rozdělovat práci na~opravách chyb, které Sentry zachytí.
+
+            Informace navíc zůstanou uloženy v~Sentry a vývojáři se~k~nim mohou kdykoliv vrátit.
+            Sentry je možno integrovat do~různých nástrojů, jako např.~Slack, který se~běžně používá ke~komunikaci v~týmech
+            a~upomínka na~chybu se~objeví přímo v~komunikačním kanálu týmu.
 	
 	\section{Návrh aplikace}
         \subsection{UCD - Use Case Diagram}
@@ -373,6 +445,7 @@
         \subsection{Návrh struktury databáze}
         \subsection{Výběr technologií}
             \subsubsection{React, Vite, Typescript}
+            \subsubsection{MathJax}
             \subsubsection{Go}
             \subsubsection{Gin}
             \subsubsection{GORM}
@@ -387,6 +460,9 @@
         \subsection{Údržba}
         
 	\section{Budoucí rozvoj aplikace}
+        \subsection{Vývoj}
+        Rád bych do~budoucna rozšířil aplikaci o~další funkce, jako např.~možnost vytvářet vlastní učební materiály.
+
         \subsection{Integrace do jiných prostředí}
         \subsection{Režim cvičení}
         \subsection{Výukové materiály a minikvízy}
