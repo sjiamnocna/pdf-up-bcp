@@ -65,6 +65,7 @@
 	
 	\section{Úvod}
     V~této práci si~kladu za~cíl vytvořit webovou aplikaci, kterou by~učitelé mohli používat k~tvorbě různých variant zadání písemných prací.
+    
     Zároveň bych rád popsal základní prvky vývoje moderní \emph{MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu
     a~výběru technologií až k~její implementaci za~použití vybraných technologií.
     
@@ -191,8 +192,8 @@
         \subsection{DOM - Document Object Model}
         DOM je~objektový model dokumentu, který vytváří prohlížeč na~základě HTML stránky. Jednotlivé HTML značky jsou reprezentovány objekty.
         Před vykreslením stránky v prohlížeči, se~nejprve vytvoří DOM, který obsahuje všechny objekty (HTML prvky), které se~mají zobrazit.
-        K nim pak prohlížeč přiřadí CSS styly a~vykreslí je~na~obrazovku. K~DOMu pak přistupujeme pomocí Javascriptu
-        a~můžeme aktivně měnit obsah stránk včetně stylů.
+        K~nim pak prohlížeč přiřadí CSS styly a~vykreslí je~na~obrazovku. K~DOMu pak můžeme přistupovat pomocí Javascriptu
+        a~můžeme aktivně měnit obsah strány, včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.
         
         \subsection{HTML s dynamickým obsahem}
         HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje.
@@ -220,7 +221,7 @@
         Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů.
         
         \subsection{MVC - Model View Controller}
-        Nejdůležitějším bodem vývoje bylo zavedení architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
+        Nejvýznamnějším bodem vývoje bylo zavedení architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
         Ten odděluje logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
 
         Díky tomu můžeme mít jednu aplikaci, která bude mít různé zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webovou stránku, mobilní aplikaci a desktopovou aplikaci.
@@ -321,10 +322,50 @@
             Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč.
 
         \subsection{Údržba aplikace}
+        Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
+        Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
+        
             \subsubsection{SDLC - Software Development Life Cycle}
-            \subsubsection{Sledování bezpečnostních trendů}
+            SDLC je~životní cyklus vývoje softwaru. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru.
+            Tyto procesy se~opakují v~kolech, které se~nazývají iterace. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
+            Vývojáři se~také mohou v~každé iteraci vrátit k~předchozí části a~upravit ji~podle potřeby.
+
+            Existuje několik modelů \texttt{SDLC}, které se~liší počtem iterací a~způsobem vývoje. Nejčastěji se~používá model \textbf{Agile},
+            který je~založen na~iteracích a~pravidelné komunikaci se~zákazníkem. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
+
+            Existují ale i~jiné modely vývoje, jako např.~\textbf{Vodopádový}, který je~založen na~jedné iteraci.
+            V~té se~vyvíjí celá aplikace a~až poté se~testuje a~nasazuje.
+            V~případě chyby je~potřeba se~vrátit na~začátek a~vyvíjet aplikaci znovu.
+
             \subsubsection{Sledování chyb nahlášených uživateli}
+            Pokud uživatel narazí na~chyby v~aplikaci, měl~by~je~mít~možnost nahlásit. Vývojář by~potom měl mít možnost tyto chyby sledovat a~opravit~je.
+
+            Podobný je~i~případ požadavků na~nové funkce. Uživatel by~měl mít~možnost požádat o~novou funkci nebo zlepšení stávajících,
+            aby~vývojář mohl aplikaci dále rozvíjet.
+
+            \subsection{Běhové a kompilační chyby}
+            Kompilace je~proces překladu zdrojového kódu do~binárního souboru, který je~přímo spustitelný na~procesoru.
+            Při kompilaci se~kontroluje správnost kódu a~případné chyby se~oznámí vývojáři. Některé chyby může překladač opravit automaticky a~podle
+            závažnosti chyby a~námi zavedených parametrů pro~překlad se~rozhodne, zda~překlad proběhne v~pořádku nebo ne.
+
+            Chyby se~ale mohou projevit až~při~běhu programu. To~jsou chyby, které např.~závisí na~datech, která se~do~programu načítají.
+            Příkladem takové chyby může být špatná práce s~pamětí, která může vést k~přetečení paměti a~následnému pádu programu.
+
+            Na běhových chybách se~docela často zakládají útoky na~aplikace. Útočník může záměrně zasílat data, která způsobí chybu v~aplikaci,
+            čímž může získat přístup k~systému nebo získat data, ke~kterým by~jinak přístup neměl.
+
+            Důležité pro opravu chyb je~uvědomit si~jejich příčinu. To~je~často složité, protože chyba se~může projevit až~po~několika krocích nebo pouze za~specifického stavu aplikace.
+
+            Proto je~nutné aplikaci testovat a~opravovat chyby, které se~vyskytnou. To~je~důležitá část vývoje aplikace. Důležité je~také sledovat
+            chyby, které se~vyskytnou uživatelům. Jeden z~nástrojů, které to~umožňují, je~Sentry.
+
             \subsubsection{Sentry}
+            Sentry je~nástroj, který umožňuje sledovat chyby za~běhu aplikace.
+            Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace.
+            Sentry umožňuje sledovat chyby v~různých jazycích, jako v~našem případě \emph{Javascript a Go}. Ale i~v~dalších.
+            V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb.
+            Např.~v~případě \emph{Javascriptu} umožní sledovat akce, které uživatel provedl, před tím, než došlo k~chybě. 
+            Toho využiji pro~sledování chyb v~backendu i~frontendu aplikace.
 	
 	\section{Návrh aplikace}
         \subsection{UCD - Use Case Diagram}
