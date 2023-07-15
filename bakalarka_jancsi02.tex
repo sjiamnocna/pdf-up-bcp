@@ -524,13 +524,15 @@
             \emph{Reverzní server} umožňuje přesměrovat požadavky na~různé servery nebo aplikace (porty), podle zadaných pravidel.
             Také je velmi rychlý ve srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů.
 
-            A~nakonec \textbf{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech,
+            A~nakonec \textbf{Alpine Linux}. Je~to~odlehčená distribuce Linuxu, která je~určena pro~nasazení v~kontejnerech,
             nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo.
 
             Tuto distribuci používám jako hlavní systém na~svém VPS\footnote{VPS - Virtual Private Server}.
             Na~serveru poběží pouze \textbf{Nginx}, který nasměruje požadavky na~správné porty,
             \textbf{Docker}, který bude spouštět kontejnery s~aplikací a~databází a \emph{Firewall} \textbf{UFW}, který zablokuje přístup ke všem portům,
             kromě těch, které jsou potřeba pro chod aplikace.
+
+            K~aplikacím na portech, ke~kterým bude potřeba přistupovat v~rámci vývoje a~údržby, se~lze~dostat pomocí tzv.~\emph{SSH Tunelu}. To~znamená, že~se~uživatel bezpečně připojí pomocí SSH připojení a~až~na~serveru přistupuje k~danému portu.
 
             Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
 	
