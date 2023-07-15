@@ -183,8 +183,7 @@
         většinu potřeb, které můžeme při~vývoji aplikací mít.
 
         Javascript je interpretovaný jazyk, což znamená, že~jednotlivé příkazy se~vykonávají postupně a~při~každém spuštění programu se~překládají.
-        To přináší výhodu v~tom, že je možné příkazy vykonávat ihned, ale zároveň to znamená, že~při~každém spuštění se~musí překládat,
-        což může být pomalejší než spouštění kompilovaného binárního souboru.
+        To přináší výhodu v~tom, že je možné příkazy vykonávat ihned, ale zároveň to znamená, že~při~každém spuštění se~musí překládat, což může být pomalejší než spouštění kompilovaného binárního souboru.
 
         Javascript dokáže příkazy zpracovávat synchronně i~asynchronně.
         
@@ -203,13 +202,13 @@
         Typescript přidává do~Javascriptu statickou kontrolu typů, což znamená, že~proměnné mají přiřazený datový typ, což
         u~Javascriptu normálně není nutné a~je~možné typy měnit za~běhu programu.
         Díky kontrole typů je~možné provést při překladu kontrolu, zda~jsou všechny proměnné a~funkce použity správně, což redukuje množství chyb.
-        Typescript se~kompiluje (transpiluje) zpět do Javascriptu a~je~možné při~vývoji v~Typescriptu použít všechny vlastnosti Javascriptu.
+        Typescript se~kompiluje (transpiluje) zpět do Javascriptu a~je~možné při~vývoji v~Typescriptu použít všechny vlastnosti Javascriptu.\parencite[Get started/TypeScript for the New Programmer]{TypeScript}
 
         \subsection{DOM - Document Object Model}
         DOM je~objektový model dokumentu, který vytváří prohlížeč na~základě HTML stránky. Jednotlivé HTML značky jsou reprezentovány objekty.
         Před vykreslením stránky v prohlížeči, se~nejprve vytvoří DOM, který obsahuje všechny objekty (HTML prvky), které se~mají zobrazit.
         K~nim pak prohlížeč přiřadí CSS styly a~vykreslí je~na~obrazovku. K~DOMu pak můžeme přistupovat pomocí Javascriptu
-        a~můžeme aktivně měnit obsah strány, včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.
+        a~můžeme aktivně měnit obsah strány, včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.\parencite[2.1.01]{kantor_javascript}
         
         \subsection{HTML s dynamickým obsahem}
         HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje.
@@ -469,15 +468,15 @@
             React je~díky využití Virtuálního DOMu velice rychlý. Virtuální DOM je~kopie DOMu, která se~používá pro~porovnání změn.
             To~umožňuje aplikaci rychleji reagovat na~změny a~měnit pouze ty části, které změnily svůj stav.
 
-            Samozřejmě, že je možné React používat i~bez~těchto nástrojů, ale tyto nástroje usnadňují vývoj a~jsou dnes již standardem.
+            Samozřejmě, že je možné React používat i~bez~těchto nástrojů, ale tyto nástroje usnadňují vývoj a~jsou dnes již standardem. \parencite{elrom2021react}
 
             \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků.
             Vite je~vyvíjen společností \emph{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který je~Reactu podobný.
             Také zrychluje spouštění aplikace a~nastavuje hot reload, což znamená, že~při~každé změně kódu se~aplikace v~prohlížeči automaticky načte znovu.
-            Vite se~také chlubí, že~dokáže spouštět aplikace rychleji než jiné nástroje.
+            Vite se~také chlubí, že~dokáže spouštět aplikace rychleji než jiné nástroje.\parencite{vitejs}
 
             \textbf{Typescript} samozřejmě použijeme i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~samozřejmě počítá a~vydává
-            kromě Reactu také balíček s~příslušnými datovými typy, pro použití v~Typescriptu.
+            kromě Reactu také balíček s~příslušnými datovými typy, pro použití v~Typescriptu. Typescript podporuje i~použití JSX šablon, které nám~umožňují vykreslování komponent bez~použití \texttt{React.createElement}\parencite[Refeerence/Handbook/JSX]{TypeScript}
             
             \textbf{MathJax} je~knihovna, která umožňuje zobrazovat matematické vzorce na~webových stránkách.
             Přijímá formáty matematiky zapsané v~\LaTeX{u} nebo MathML a~převádí je~na~formu, kterou může zobrazit prohlížeč.
