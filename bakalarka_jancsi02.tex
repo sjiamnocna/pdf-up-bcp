@@ -73,10 +73,14 @@
     a~údržby podobné aplikace.
         
         \subsection{V současnosti používané nástroje na generování prací}
-        % TODO: 
+        % TODO: popsat současné nástroje na generování prací
+        V~současnosti je~pro~účely generování písemných prací používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
+        Některé z~nich jsou~dostupné zdarma, jiné jsou~placené.
+        
         \subsection{Co používají učitelé}
+        % TODO: dotazník
 
-        \subsection{Účel a~popis fungování aplikace}
+        \subsection{Účel a~popis fungování vyvíjené aplikace}
         Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, které může umístit do~volitelně
         strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady může následně využít při tvorbě písemných prací,
         kde si bude moci zvolit, kategorie ze kterých se příklady vyberou a~počet příkladů, které se~mají do~písemky vygenerovat. 
@@ -115,6 +119,9 @@
             \$Ax + \$B &= \$C + \$D \\
             3x + 5 &= 4 + 9
         \end{align*}
+
+        Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky.
+        Učitel si~při~tvorbě písemky jen vybere, kterou variantu chce použít.
 
         Adam bude mít taky možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s možnostmi výběru.
         V~tomto případě může taky využít proměnné, které si vytvořil dříve. V obou případech může taky zapsat vzorec,
@@ -448,12 +455,14 @@
             a~upomínka na~chybu se~objeví přímo v~komunikačním kanálu týmu.
 	
 	\section{Návrh aplikace}
+        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Podle toho se~potom rozhodujeme, jaké technologie budeme používat.
+
         \subsection{UCD - Use Case Diagram}
         \subsection{ERD - Entity Relationship Diagram}
         \subsection{Návrh struktury databáze}
         \subsection{Výběr technologií}
             Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které budou dostatečně výkonné a~zároveň budou
-            přívětivé pro vývojáře, aby vývoj nebyl zbytečně časově náročný.
+            přívětivé pro vývojáře, aby vývoj nebyl zbytečně časově náročný. Je~dobré také myslet na~budoucí podporu a~rozšiřitelnost aplikace.
 
             \textbf{React} je~knihovna pro~tvorbu uživatelského rozhraní. Je~vyvíjena společností Facebook a~je~používána při~vývoji mnoha webových aplikacích.
             Je oblíbená pro svou jednoduchost a~rychlost. Je~také dobře dokumentovaná a~má~velkou komunitu, která ji~podporuje.
@@ -469,6 +478,10 @@
             To~umožňuje aplikaci rychleji reagovat na~změny a~měnit pouze ty části, které změnily svůj stav.
 
             Samozřejmě, že je možné React používat i~bez~těchto nástrojů, ale tyto nástroje usnadňují vývoj a~jsou dnes již standardem. \parencite{elrom2021react}
+            
+            \textbf{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje vytvářet HTML šablony přímo v~kódu. Jednotlivé prvky jsou tzv.~komponenty,
+            nejde tedy o~HTML prvky, ale o~komponenty, které se~vykreslují do~HTML. To~umožňuje vytvářet interaktivní komponenty, které se~dají znovu použít.
+            V~Reactu se~při~překladu JSX šablon vytvoří strom komponent, které bychom normálně vytvářeli pomocí \texttt{React.createElement}.
 
             \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků.
             Vite je~vyvíjen společností \emph{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který je~Reactu podobný.
@@ -476,15 +489,17 @@
             Vite se~také chlubí, že~dokáže spouštět aplikace rychleji než jiné nástroje.\parencite{vitejs}
 
             \textbf{Typescript} samozřejmě použijeme i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~samozřejmě počítá a~vydává
-            kromě Reactu také balíček s~příslušnými datovými typy, pro použití v~Typescriptu. Typescript podporuje i~použití JSX šablon, které nám~umožňují vykreslování komponent bez~použití \texttt{React.createElement}\parencite[Refeerence/Handbook/JSX]{TypeScript}
-            
-            \textbf{MathJax} je~knihovna, která umožňuje zobrazovat matematické vzorce na~webových stránkách.
-            Přijímá formáty matematiky zapsané v~\LaTeX{u} nebo MathML a~převádí je~na~formu, kterou může zobrazit prohlížeč.
-            Díky tomu můžeme v~aplikaci názorně zobrazit matematické vzorce, které se~vyskytují v~příkladech nebo~učebních materiálech,
-            jako bychom je psali v~\LaTeX{u}.
+            kromě Reactu také balíček s~příslušnými datovými typy, pro použití v~Typescriptu. Typescript podporuje i~použití JSX šablon. \parencite[Refeerence/Handbook/JSX]{TypeScript}
 
-            \textbf{Go} je staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní.
-            Protože je kompilovaný, je~rychlý i~při~běhu. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací.
+            \textbf{MathJax} je~knihovna, která umožňuje zobrazovat matematické vzorce na~webových stránkách.
+            Přijímá formáty matematiky zapsané ve~formátu, který používá systém \LaTeX. Ten~se poté převádí do~vizuální podoby, sestavené z~HTML prvků, kterou může prohlížeč zobrazit.
+            MathJax nabízí i~možnost zobrazení ve~formě vektorové grafiky ve~formátu SVG.
+            Díky tomu můžeme v~aplikaci názorně vykreslovat matematické vzorce, které se~vyskytnou v~příkladech nebo~učebních materiálech.
+
+            \LaTeX je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí.\parencite{Rybicka2003:latex}
+
+            \textbf{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní.
+            Protože je~kompilovaný, je~rychlý i~při~běhu. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací.
             Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů nebo i~jiných zdrojů a~používat je~v~aplikaci a~sám
             si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
 
@@ -498,31 +513,40 @@
             \textbf{Gin} je~webový framework pro~jazyk Go. Je~jednoduchý a~rychlý. Umožňuje vytvářet jednotlivé endpointy,
             které budou zpracovávat požadavky od~klienta.
 
-            Každý \emph{koncový bod} může mít svou vlastní \emph{Obslužnou rutinu} (\textbf{handler}), která zpracuje požadavek a~vrátí odpověď.
+            Základní funkce webových frameworků obecně je~tzv.~\emph{Router}, který umožňuje definovat jednotlivé \emph{koncové body} (\textbf{endpointy}) a~typy požadavků, které můžeme využít pro~komunikaci s~nimi.
+            Když~do~aplikace přijde požadavek, \emph{Router} zkontroluje, zda~existuje \emph{koncový bod}, který odpovídá požadavku a~pokud ano, předá požadavek příslušné \emph{Obslužné rutině} (\textbf{handler}u).
+
+            Každý \emph{koncový bod} může mít svou vlastní \emph{Obslužnou rutinu}, která zpracuje požadavek a~vrátí odpověď.
             Gin také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~URL adresy, které mohou mít společnou \emph{obslužnou rutinu}.
             To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \emph{koncové body} pro~přihlášené
-            uživatele můžeme předem definovat a~zabezpečit. 
+            uživatele můžeme předem definovat a~zabezpečit.
             
-            \textbf{GORM} je~ORM\footnote{ORM - Object-relational mapper} pro~jazyk Go. Umožňuje vytvářet databázové modely ze~struktur v~jazyce Go, 
-            ze kterých se~automaticky vytvoří všechny databázové tabulky. Změny v~databázových modelech se~automaticky promítnou do~databáze při~migraci modelů.
-            Přidání nových řádků stejně jako jejich úprava je~potom jednoduché.
+            \textbf{GORM} je~ORM\footnote{ORM - Object-relational mapper} pro~jazyk Go. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. 
+            Z~definovaných~struktur se~automaticky vytvoří všechny databázové tabulky a~při jejich změnách se~automaticky promítnou i~do~databáze během tzv.~migrace modelů.
+            Struktury zároveň umožňují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat. \parencite{freecodecamp:orm}
 
-            Pokud bychom potřebovali nějakou složitější operaci, samozřejmě můžeme využít i~samostatně formulované SQL dotazy.
+            Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované SQL dotazy. \parencite{gormGORM}
             
-            \textbf{MySQL} je~relační databáze, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá.
+            \textbf{MySQL} je~relační databáze, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. \parencite{databases21}
 
             \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace.
             Použití kontejnerů při vývoji je~výhodné, protože vždy, když si~projekt znovu stáhneme, máme jistotu, že~aplikace běží
             ve~stejném prostředí, jako kdekoliv jinde. To~umožňuje jednodušší vývoj a~nasazení aplikace.
 
-            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi. Navíc je~kontejner odstíněn od síťového provozu,
-            takže je~o~něco bezpečnější než klasická instalace databáze na~serveru.
+            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu,
+            čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. \parencite{docker}
 
-            Na serveru navíc lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
+            Na~serveru navíc lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
 
             \textbf{Nginx} se~definuje jako webový server s~možností reverzního proxy serveru a~load balanceru.
             \emph{Reverzní server} umožňuje přesměrovat požadavky na~různé servery nebo aplikace (porty), podle zadaných pravidel.
-            Také je velmi rychlý ve srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů.
+            Třeba podle URL adresy nebo typu požadavku.
+            
+            \emph{Load balancer} umožňuje rozdělovat zátěž mezi servery, které jsou za~ním. To~se~využívá u~větších aplikací nebo v~případě, že~aplikace běží na~více serverech.
+            To~umožňuje i~nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server nedostupný.
+            
+            \emph{Nginx} je~považován za~velmi rychlý ve~srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů.
+            Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. Vydaná  \parencite{WhatNGINX}
 
             A~nakonec \textbf{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech,
             nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo.
@@ -535,14 +559,25 @@
             Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
 	
 	\section{Postup implementace}
+        Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~vývojové i~produkční prostředí budou tvořit \emph{Docker kontejnery}, s~rozdílnými konfiguracemi.
+        Vývojová verze bude obsahovat kontejnery pro~React, Go s~databází. Navíc bude obsahovat nástroj \emph{Air}, který umožní automatický restart aplikace při~změně kódu \emph{backendu}. Taky využijeme proxy přesměrování nástroje Vite, který přesměruje požadavky na~backend na~správný kontejner.
+
+        Produkční verze, tedy ta~výsledná, bude obsahovat stejné kontejnery, ale nebude už~obsahovat nástroje pro~vývoj. Při tvorbě kontejnerů se~backend zkompiluje a~spustí se~pouze optimalizovaný binární soubor.
+        Přesměrování na~kontejnery zajistí server \emph{Nginx}, který běží v~prostředí VPS serveru a~obsluhuje i~další aplikace.
+
+        Každý kontejner bude mít vlastní adresář. Backend bude v~adresáři `goapp` a frontend v~adresáři `reactapp`. Všechny kontejnery budou mít společné úložiště adresář `data`, kde si~vytvoří podadresáře.
+
+        Konfigurace kontejnerů budou v~adresáři `docker` a~\emph{docker-compose.yml} v~kořenovém adresáři.
         \subsection{Backend}
         \subsection{Frontend}
         \subsection{Testování}
         \subsection{Údržba}
         
 	\section{Budoucí rozvoj aplikace}
-        \subsection{Vývoj}
-        Rád bych do~budoucna rozšířil aplikaci o~další funkce, jako např.~možnost vytvářet vlastní učební materiály.
+        Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace.
+        Byl bych rád, kdyby aplikaci učitelé používali a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům.
+        Postupně by~tak mohla vzniknout databáze příkladů, které by mohli využít žáci k procvičování příkladů. Pro~učitele by mohla být zajímavá tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti.
+        K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
 
         \subsection{Integrace do jiných prostředí}
         \subsection{Režim cvičení}
