@@ -1,4 +1,4 @@
-\documentclass[14pt,a4paper]{article}
+\documentclass[14pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[paper=a4paper, margin=1.5cm]{geometry}
 
@@ -114,7 +114,7 @@
         Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci nést jiné objekty, např.~pole pro~textový vstup
         nebo výběr z~možností, čehož bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít za úkol žák vyplnit.
 
-        Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
+        Výsledná podoba zadání a~vygenerovaného příkladu může vypadat např.~takto:
         \begin{align*}
             \$Ax + \$B &= \$C + \$D \\
             3x + 5 &= 4 + 9
@@ -533,8 +533,8 @@
             Použití kontejnerů při vývoji je~výhodné, protože vždy, když si~projekt znovu stáhneme, máme jistotu, že~aplikace běží
             ve~stejném prostředí, jako kdekoliv jinde. To~umožňuje jednodušší vývoj a~nasazení aplikace.
 
-            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu,
-            čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. \parencite{docker}
+            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, ke~kterému~ale zároveň zamezíme přístup pomocí \emph{Firewallu}.
+            čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. \parencite{docker:security}
 
             Na~serveru navíc lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
 
