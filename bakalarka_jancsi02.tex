@@ -7,13 +7,20 @@
 \usepackage{url}
 \usepackage{color}
 \usepackage{graphicx}
+\usepackage{minted}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 
 \hypersetup{
-  colorlinks=false,% hyperlinks will be black
-  pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Bakalářská práce - Využití IT ke generování zadání písemných testů},
+    pdfpagemode=FullScreen,
+    colorlinks=false,% hyperlinks will be black
+    pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
 }
 
 % citace a jazyk
@@ -80,78 +87,21 @@
         \subsection{Co používají učitelé}
         % TODO: dotazník
 
-        \subsection{Účel a~popis fungování vyvíjené aplikace}
-        Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, které může umístit do~volitelně
-        strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady může následně využít při tvorbě písemných prací,
-        kde si bude moci zvolit, kategorie ze kterých se příklady vyberou a~počet příkladů, které se~mají do~písemky vygenerovat. 
-        \subsection{Příklad použití}
-        Mějme prvního uživatele, říkejme mu~třeba Adam. Adam je~učitel a~chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
-        Adam se~zaregistruje do~aplikace \emph{Písemkomat} a~přihlásí se~do~svého účtu. Adam učí Matematiku, takže si~vytvoří 5 příkladů z~tohoto předmětu
-        a~vloží je do kategorie Matematika.
-
-        Následně si vytvoří písemnou práci a díky tomu, že si~Adam vytvořil 5~příkladů, může si~vybrat, zda chce,
-        aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy požadovat 3 příklady s~náhodně dosazenými hodnotami.
-        Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
-        Proto \emph{Písemkomat} umožní vytvořit si~proměnné, které budou mít přiřazenou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
-
-        Adam si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od 1 do 10, $C = 4/3*A$ a $D = C + B$.
-
-        Řešený příklad se~vygeneruje do vzorce, který posléze zapíše do~\emph{Písemkomatu}. Do proměnných $A, B$ se uloží náhodné číslo
-        z~intervalu, který~si~Adam nastavil a~pomocí zápisu proměnné - \texttt{\$A} nebo formátu umožňující
-        delší názvy\,--\,\texttt{\$\{nazevpromenne\}}\,--\,se~vloží do~příkladu na~zadané místo, resp.~do zápisu výpočtu dalších proměnných,
-        kde budou použity ve výpočtu.
-        
-        Tedy v~tomto případě předpokládáme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$
-        a~hodnoty proměnných $C, D$ se~dopočítají takto:
-        \begin{align*}
-            A &= 3 \\
-            B &= 5 \\
-            C &= 4/3*A = 4/3*3 = 4 \\
-            D &= C + B = 4 + 5 = 9
-        \end{align*}
-
-        Proměnné se při generování výsledné podoby příkladu nahradí vygenerovanými čísly nebo výrazy.
-        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci nést jiné objekty, např.~pole pro~textový vstup
-        nebo výběr z~možností, čehož bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít za úkol žák vyplnit.
-
-        Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
-        \begin{align*}
-            \$Ax + \$B &= \$C + \$D \\
-            3x + 5 &= 4 + 9
-        \end{align*}
-
-        Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky.
-        Učitel si~při~tvorbě písemky jen vybere, kterou variantu chce použít.
-
-        Adam bude mít taky možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s možnostmi výběru.
-        V~tomto případě může taky využít proměnné, které si vytvořil dříve. V obou případech může taky zapsat vzorec,
-        ze~kterého se~vypočtou možnosti a označit správnou možnost.
-        Ve výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí.
-
-        Výsledná podoba zadání a~možností příkladu může vypadat např.~takto:
-        \begin{itemize}
-            \item $3x + 5 = 4 + 9$
-            \item $x = 2$
-            \item $x = 3$
-            \item $x = 4$
-            \item $x = 5$
-        \end{itemize}
-
-        Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné, podtržené místo o~velikosti určené při~zadávání proměnné.
-        Nebo v~případě možnosti výběru se~na~místě vykreslí všechny možnosti, aby~žák mohl vybrat správnou možnost kroužkováním nebo tak, jak učitel určí.
-        
-        To umožní systém používat např.~pro jazykové předměty, kde se~využívá doplňování slov do~textu nebo~výběr písmene.
-
-        Všechna nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek.
-
     \section{Vývoj moderních webových aplikací}
     V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~díky tomu, že~webová aplikace je~dostupná z~jakéhokoliv zařízení,
     které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji
-    instalovat na~každém zařízení zvlášť. Vývojáři se~také nemusí starat o~kompatibilitu s~různými operačními systémy, protože webový prohlížeč
+    instalovat na~každém zařízení zvlášť.
+    Vývojáři se~také nemusí starat o~kompatibilitu s~různými operačními systémy, protože webový prohlížeč
     je~dostupný na~většině z~nich. Webová aplikace je~také snadno škálovatelná, protože se~spouští na~serveru a~uživatelé se~k~ní připojují.
     Navíc je možné díky různým nástrojům aplikace snadno vydat z~jednoho zdrojového kódu jak webovou tak nativní (Android, IOS) aplikaci.\parencite{adobe:webapp}
 
-    Pokud se~chceme pustit do~vývoje webové aplikace, která bude využívat výhod moderních postupů a~technologií, je~potřeba si~ujasnit pár současných i~historických pojmů a~pochopit, jak~spolu souvisí.
+    Většina dnešních projektů je~vyvíjena jako~\emph{aplikace}. Tím oddělíme logiku aplikace od~jejího zobrazení, což nám umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části.
+    Pro obě části existují připravené technologie, které nám usnadní vývoj a~umožní nám vytvořit aplikaci rychleji a~s~menším množstvím chyb.
+    Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat a~jakým způsobem budeme aplikaci vyvíjet.
+
+    V~profesionálním prostředí je~potom důležité i~to, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda na~trhu práce je~dostatek lidí, kteří dané technologie znají.
+
+    \uv{Pro frontend i backend aplikace existuje na webu obrovské množství použitelných materiálů. Ať už jsou to různé grafické prvky nebo serverové komponenty, to vše je už někde nejspíše hotové.}\parencite{itnetworkBestPractices}
 
         \subsection{Základní statická HTML stránka}
         V roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk HTML. HTML je~zkratka pro~HyperText Markup Language (Hypertextový značkovací jazyk).
@@ -271,7 +221,7 @@
 
         \subsection{Frontend, Backend}
         Aplikace se~díky architektuře \emph{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
-        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o interakci s uživatelem a~komunikuje s~\textbf{backendem},
+        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o interakci s~uživatelem a~komunikuje s~\textbf{backendem},
         zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
         \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}.
@@ -293,7 +243,7 @@
         používaný zejména na~serverech. Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~Android.
         
         Velikou výhodou je otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům upravovat systém podle svých potřeb.
-        Další výhodou je~jeho bezpečnost. V~porovnání s~ostatními operačními systémy je~mnohem bezpečnější a~méně náchylný k~virům.
+        Další výhodou je~jeho bezpečnost a~svoboda. V~porovnání s~ostatními operačními systémy je~mnohem bezpečnější a~méně náchylný k~virům.
 
         Nabízí mnoho grafických prostředí, takže si~uživatel může vybrat, jakým způsobem bude systém používat a je možné téměř
         všechno nastavit tak, jak v práci potřebuje.
@@ -457,6 +407,71 @@
 	\section{Návrh aplikace}
         Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Podle toho se~potom rozhodujeme, jaké technologie budeme používat.
 
+        \subsection{Účel a~popis fungování vyvíjené aplikace}
+        Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně
+        strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě písemných prací,
+        kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~příklady vyberou, a~počet příkladů, které se~mají do~písemky vygenerovat. 
+        \subsection{Příklad použití}
+        Mějme prvního uživatele, říkejme mu~třeba Adam. Adam je~učitel a~chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
+        Adam se~zaregistruje do~aplikace \emph{Písemkomat} a~přihlásí se~do~svého účtu. Adam učí Matematiku, takže si~vytvoří 5 příkladů z~tohoto předmětu
+        a~vloží je do kategorie Matematika.
+
+        Následně si vytvoří písemnou práci a díky tomu, že si~Adam vytvořil 5~příkladů, může si~vybrat, zda chce,
+        aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy požadovat 3 příklady s~náhodně dosazenými hodnotami.
+        Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
+        Proto \emph{Písemkomat} umožní vytvořit si~proměnné, které budou mít přiřazenou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
+
+        Adam si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od 1 do 10, $C = 4/3*A$ a $D = C + B$.
+
+        Řešený příklad se~vygeneruje do vzorce, který posléze zapíše do~\emph{Písemkomatu}. Do proměnných $A, B$ se uloží náhodné číslo
+        z~intervalu, který~si~Adam nastavil a~pomocí zápisu proměnné - \texttt{\$A} nebo formátu umožňující
+        delší názvy\,--\,\texttt{\$\{nazevpromenne\}}\,--\,se~vloží do~příkladu na~zadané místo, resp.~do zápisu výpočtu dalších proměnných,
+        kde budou použity ve výpočtu.
+        
+        Tedy v~tomto případě předpokládáme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$
+        a~hodnoty proměnných $C, D$ se~dopočítají takto:
+        \begin{align*}
+            A &= 3 \\
+            B &= 5 \\
+            C &= 4/3*A = 4/3*3 = 4 \\
+            D &= C + B = 4 + 5 = 9
+        \end{align*}
+
+        Proměnné se při generování výsledné podoby příkladu nahradí vygenerovanými čísly nebo výrazy.
+        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci nést jiné objekty, např.~pole pro~textový vstup
+        nebo výběr z~možností, čehož bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít za úkol žák vyplnit.
+
+        Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
+        \begin{align*}
+            \$Ax + \$B &= \$C + \$D \\
+            3x + 5 &= 4 + 9
+        \end{align*}
+
+        Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky.
+        Učitel si~při~tvorbě písemky jen vybere, kterou variantu chce použít.
+
+        Adam bude mít také možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s možnostmi výběru.
+        V~tomto případě může taky využít proměnné, které si vytvořil dříve. V obou případech může taky zapsat vzorec,
+        ze~kterého se~vypočtou možnosti a označit správnou možnost.
+        Ve výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí.
+
+        Výsledná podoba zadání a~možností příkladu může vypadat např.~takto:
+        \begin{itemize}
+            \item $3x + 5 = 4 + 9$
+            \item $x = 2$
+            \item $x = 3$
+            \item $x = 4$
+            \item $x = 5$
+        \end{itemize}
+
+        Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné, podtržené místo o~velikosti určené při~zadávání proměnné.
+        Nebo v~případě možnosti výběru se~na~místě vykreslí všechny možnosti, aby~žák mohl vybrat správnou možnost kroužkováním nebo tak, jak učitel určí.
+        
+        To umožní systém používat např.~pro jazykové předměty, kde se~využívá doplňování slov do~textu nebo~výběr písmene.
+
+        Všechna nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek.
+
+        \subsection{UML - Unified Modeling Language}
         \subsection{UCD - Use Case Diagram}
         \subsection{ERD - Entity Relationship Diagram}
         \subsection{Návrh struktury databáze}
@@ -472,16 +487,40 @@
 
             Jednotlivé komponenty mohou mít svůj vlastní stav, který se~může měnit. To~umožňuje vytvářet interaktivní aplikace.
             Komponenty mohou být funkcionalní nebo třídní. Funkcionální komponenty jsou jednodušší a~rychlejší na~vytvoření.
-            Třídní komponenty jsou složitější, ale umožňují využít všech výhod Reactu.
+            Třídní komponenty jsou složitější, ale umožňují využít všech výhod Reactu. Funkcionální komponenty mohou využívat tzv.~\emph{React Hooks}, k~dosažení podobné funkcionality, nicméně třídní komponenty jsou stále podporovány a~mohou být použity.
+            Navíc \emph{React Hooks} jsou stále ve~vývoji a~mohou se~změnit.
+
+            Nejnáročnější operace na~výpočetní výkon je~vykreslování webu a~změn v~něm. Tedy změny v~klasickém DOMu.
 
             React je~díky využití Virtuálního DOMu velice rychlý. Virtuální DOM je~kopie DOMu, která se~používá pro~porovnání změn.
-            To~umožňuje aplikaci rychleji reagovat na~změny a~měnit pouze ty části, které změnily svůj stav.
+            To~umožňuje aplikaci rozpoznat, kdy je potřeba DOM upravit a~kdy ne. Zamezíme tak zbytečným operacím a~zvýšíme výkon aplikace. \parencite{elrom2021react}
 
-            Samozřejmě, že je možné React používat i~bez~těchto nástrojů, ale tyto nástroje usnadňují vývoj a~jsou dnes již standardem. \parencite{elrom2021react}
+            Pro vytvoření jednoduché komponenty typu \texttt{H1} s~třídou `greeting` a~nápisem \texttt{Hello World!} v~Reactu můžeme použít např.~tento kód:
+            \begin{minted}{js}
+                function ComponentA({ name }) {
+                    return React.createElement(
+                        'h1', // typ prvku
+                        { className: 'greeting' }, // atributy
+                        'Hello World!' // obsah
+                    );
+                }
+            \end{minted}
+
+            Komponenty mohou obsahovat i~další komponenty. Tomu říkáme \emph{zanořování} nebo anglicky \emph{nesting}. To~umožňuje vytvářet složitější komponenty s~více prvky.
+            Při použití \href{https://react.dev/reference/react/createElement}{\texttt{React.createElement} (viz. dokumentace)} by~takový kód byl složitě čitelný a~i~proto máme k~dispozici \textbf{JSX}.
             
             \textbf{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje vytvářet HTML šablony přímo v~kódu. Jednotlivé prvky jsou tzv.~komponenty,
             nejde tedy o~HTML prvky, ale o~komponenty, které se~vykreslují do~HTML. To~umožňuje vytvářet interaktivní komponenty, které se~dají znovu použít.
             V~Reactu se~při~překladu JSX šablon vytvoří strom komponent, které bychom normálně vytvářeli pomocí \texttt{React.createElement}.
+
+            Použití komponent za~použití \emph{JSX} může vypadat třeba takto:
+            \begin{minted}{jsx}
+                const App = () => {
+                    return (
+                        <h1 className="greeting">Hello World!</h1>
+                    );
+                }
+            \end{minted}
 
             \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků.
             Vite je~vyvíjen společností \emph{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který je~Reactu podobný.
