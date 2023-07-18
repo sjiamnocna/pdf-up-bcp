@@ -586,11 +586,42 @@
             \item \textbf{Diagramy chování} - popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
         \end{itemize}
 
-        Pro naplánování své práce jsem si~vybral diagram~případů užití, diagram
+        Pro naplánování své práce jsem si~vybral diagram~případů užití \textsc{UCD} a diagram~vztahů mezi~entitami \textsc{ERD}.
 
         \subsection{UCD - Use Case Diagram}
+        \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele.
+        Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jakým způsobem může aktér systém používat.
+
+        To nám může pomoct při~přípravě zjistit, jaké funkce bude aplikace mít a~tím nastínit, jak budou vypadat \textsc{Endpointy} v~\textsc{API}.
+        Taky si~můžeme ověřit správnost návrhu a~zjistit, zda~jsme nějakou funkcionalitu nevynechali, protože na~diagramu jsou případné nedostatky vidět lépe.
+        
+        A hlavně nám to~umožní lépe si~představit, jak bude aplikace fungovat a~jaké funkce bude mít. \parencite{uml:usecase}
+
+        Při~modelování pomocí \textsc{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu.
+        \begin{itemize}
+            \item \textbf{Aktér} je~osoba nebo systém, který používá aplikaci. Aktérem může být např.~uživatel, nebo~jiná aplikace. K~označení se~používají ikony lidí a~textový popisek.
+            \item \textbf{Případ užití} je~akce, kterou aplikace \textsc{aktérovi} nabízí. Případ užití je~zobrazen jako elipsa, která je~připojena k~aktérovi čarou.
+            \item \textbf{Vztahy mezi~aktéry a~případy užití} znázorňují, jestli a~jakým způsobem může aktér případ užití používat. Vztahy se~značí šipkami, které vycházejí z~aktéra a~končí u~případu užití.
+            \item \textbf{Rozšíření} (extend) - je~případ užití, který přejímá vlastnosti předchozího případu užití a~rozšiřuje je~o~další možnosti. Znázorňuje se~jako šipka, která míří směrem z~případu užití a~končí u~případu užití, který rozšiřuje.
+            \item \textbf{Zahrnutí} (include)- zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
+        \end{itemize}
+
         \subsection{ERD - Entity Relationship Diagram}
+        \textsc{ERD} není ve~standardu \textsc{UML}, ale je~to~diagram, který se~často používá pro~modelování vztahů mezi entitami.
+        \textbf{Entitou} nazýváme objekt, který má~svůj význam v~rámci aplikace. Entitou může být např.~uživatel, předmět, nebo~příspěvek.
+        Entita je~hlavní jednotka, se~kterou se~v~aplikaci pracuje a~většinou má~svou~tabulku v Databázi.
+
+        Obvykle je~\textsc{ERD} spojováno s~návrhem databázových tabulek. Zejména pomáhá s~plánováním struktury tabulek a~vztahů mezi~nimi (\textsc{cizích klíčů}).
+        \parencite{vertabeloERD}
+
         \subsection{Návrh struktury databáze}
+        Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
+
+        Při~plánování budeme kromě ERD~společně s~UC diagramem plánovat konkrétní tabulky a~vztahy mezi~nimi. UC~diagram nám pomůže zjistit, jaké SQL~dotazy nejspíše budeme potřebovat, což nám umožní lepší náhled, které sloupce budeme indexovat pro~optimální dotazy.
+        Pak můžeme s~ERD zkonzultovat, jaké budeme potřebovat definovat cizí klíče.
+
+        Potom již můžeme začít vytvářet SQL dotazy k~vytvoření tabulek. Používáme k~tomu jazyk \textsc{SQL} (Structured Query Language), kterým ovládáme naši MySQL (MariaDB) databázi.
+
         \subsection{Výběr technologií}
             Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které budou dostatečně výkonné a~zároveň budou
             přívětivé pro vývojáře, aby vývoj nebyl zbytečně časově náročný. Je~dobré také myslet na~budoucí podporu a~rozšiřitelnost aplikace.
@@ -657,8 +688,9 @@
             nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo.
 
             Tuto distribuci používám jako hlavní systém na~svém VPS\footnote{VPS - Virtual Private Server}.
-            Na~serveru poběží pouze \textbf{Nginx}, který nasměruje požadavky na~správné porty,
-            \textbf{Docker}, který bude spouštět kontejnery s~aplikací a~databází a \textsc{Firewall} \textbf{UFW}, který zablokuje přístup ke všem portům,
+            Na~serveru poběží pouze \textbf{Nginx}, který nasměruje požadavky na~správné porty, a \textbf{Firewall} (\textbf{UFW}), který zablokuje přístup k~neveřejným portům.
+
+            \textbf{Docker} resp. \textbf{Docker-compose} bude spouštět kontejnery s~aplikací (Vite~i~Go) a~databází
             kromě těch, které jsou potřeba pro chod aplikace.
 
             Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
@@ -687,15 +719,28 @@
         \subsection{Údržba}
         
 	\section{Budoucí rozvoj aplikace}
+        Samozřejmě bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé a~opravovat je.
+        Bylo by dobré, kdyby aplikaci učitelé používali a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům. Postupně by~tak mohla vzniknout databáze příkladů, které by~mohli využít ostatní učitelé a~žáci k~procvičování příkladů.
         Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace.
-        Byl bych rád, kdyby aplikaci učitelé používali a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům.
-        Postupně by~tak mohla vzniknout databáze příkladů, které by mohli využít žáci k procvičování příkladů. Pro~učitele by mohla být zajímavá tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti.
-        K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
 
         \subsection{Integrace do jiných prostředí}
+        Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Kdyby byla aplikace dostupná přes API, mohla by~být integrována do~těchto prostředí a~učitelé by~mohli využívat příklady vytvořené v~aplikaci i~v~těchto prostředích.
+        
+        Mohly by~tak~vzniknout moduly pro~použití v~těchto prostředích, které by~umožňovaly vytvářet příklady a~zadávat je~žákům přímo v~Moodlu, Google Classroom nebo rychle sdílet přes MS~Teams. Zajímavá by~mohla~být i~integrace do~CMS systému Wordpress pomocí pluginu.
+
         \subsection{Režim cvičení}
+        Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady.
+        
+        K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
+
         \subsection{Výukové materiály a minikvízy}
+        Aplikace by~se~dala využít i~ke~tvorbě interaktivních výukových materiálů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy.
+        
         \subsection{Online zkoušení a výuka}
+        Předchozí rozšíření by~se~dalo využít k~online výuce, kde by~učitel měl~k~dispozici živě přenášenou \uv{tabuli}, ideálně s~živým přepisem do~formátu \textsc{Markdown}u.
+
+        \subsection{Sponzorování}
+        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli k~vývoji aplikace. To~by~umožnilo věnovat se~vývoji aplikace naplno a~rychleji rozšiřovat její funkce.
 	
 	\section{Závěr}
 
