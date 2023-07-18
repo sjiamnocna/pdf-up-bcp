@@ -42,7 +42,7 @@
 		\begin{center}
             {
             \centering
-            \includegraphics[]{./PDF_tisk/UP_logo_PdF-UP_horizont_cz.pdf}
+            \includegraphics[]{./img/UP_logo_PdF-UP_horizont_cz.pdf}
             }
 			
 			\vspace{3cm}
@@ -79,7 +79,7 @@
 	\newpage
 	
 	\section{Úvod}
-    V~této práci si~kladu za~cíl vytvořit webovou aplikaci, kterou by~učitelé mohli používat k~tvorbě různých variant zadání písemných prací.
+    Cílem této práce je~zmapovat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky. Ve~druhé části popíšu návrh a~implementaci webové aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat.
     
     Zároveň bych rád popsal základní prvky vývoje moderní \textsc{MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu
     a~výběru technologií, přes plánování pomocí diagramů, až k~její implementaci a spuštění za~použití vybraných technologií.
@@ -178,10 +178,11 @@
         \subsection{HTML s dynamickým obsahem}
         HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje.
         Na úrovni serveru se~může generovat HTML stránka, která obsahuje dynamický obsah. V~dnešní době se~častěji používá Javascript,
-        nicméně v minulosti se~používaly i~jiné technologie, jako např.~PHP, které na~serveru vygenerovaly HTML stránku.
+        nicméně v minulosti se~používaly i~jiné technologie, jako např.~\textsc{PHP (HyperText Preprocessor)}, které na~serveru vygenerovaly HTML stránku.
 
-        To samozřejmě znamenalo, že~při~každé změně obsahu bylo potřeba stránku znovu načíst. Tento problém právě adresuje Javascript.
-        Odesílá požadavky na~server a~na~základě odpovědi mění obsah celé nebo části stránky.
+        To samozřejmě znamenalo, že~při~každé změně obsahu bylo~potřeba znovu kontaktovat server a~stránku znovu načíst do~prohlížeče. Také byla veškerá komunikace omezená na~požadavek od~klienta, server pouze obsluhoval požadavky a~neměl možnost samostatně zaslat zprávu klientovi.
+        Tento problém právě adresuje Javascript. Odesílá požadavky na~server a~na~základě odpovědi mění obsah celé nebo části stránky. Díky metodám, jako je~\textsc{AJAX (Asynchronous Javascript And XML)}\parencite{ajax:mdn} je~možné komunikovat se~serverem i~bez~načítání celé stránky.
+        Server může - samozřejmě po~povolení ze~strany uživatele - zasílat zprávy na~klientské zařízení i~bez~jeho požadavku díky \textsc{Server-Sent Events}\parencite{sse:mdn} nebo udržovat spojení pomocí \textsc{WebSockets}\parencite{websocket:mdn}. Živý přenos videa nebo internetové hovory jsou~příkladem použití WebSockets.
 
         To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze se~načtou data ze~serveru
         a~přidají se~do~stránky. To~je~mnohem rychlejší a~příjemnější pro~uživatele.
@@ -264,21 +265,35 @@
         rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80,
         resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP, která poběží nejčastěji na~portu~25 a další.
         Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů.
+        K~jednotlivým serverům se~přistupuje pomocí IP adresy a~portu, na~kterém služba běží. \parencite{webserver:mdn}
+
+        \subsection{DNS - Domain Name System}
+        DNS je~zkratka pro~\textsc{Domain Name System}, někdy \textsc{Domain Name Server}. Je~to~systém, který překládá doménová jména na~IP adresy. To~umožňuje, aby~uživatelé používali lidem čitelná doménová jména namísto \textsc{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
+        Bez DNS by~se~oblíbený český vyhledávač \texttt{Seznam.cz} proměnil ve~směsici čísel \texttt{77.75.79.222}, což~by~uživatel moc neocenil. To~samé by~platilo i~pro~ostatní weby.
+
+        \textbf{DNS Resolve} je~proces překladu doménového jména na~IP adresu. Když uživatel zadá do~prohlížeče doménové jméno, prohlížeč se~připojí na~DNS server a~požádá ho o~překlad doménového jména na~IP adresu. DNS server odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
+
+        \textsc{Doménové jméno} je~složeno ze~tří částí. První část je~\textsc{subdoména}, která je~volitelná. Druhou částí je~\textsc{doména} (2.\,řádu), která je~povinná a~třetí část je~\textsc{doménová přípona} (TLD, doména nejvyššího řádu), která je~také povinná. TLD mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. \parencite{tld:mdn}
+
+        Když~zadáme do~prohlížeče doménové jméno, prohlížeč se~pokusí najít \textsc{IP~adresu} v~DNS cache, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá jej o~překlad doménového jména na~IP adresu. DNS server odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
+
+        Nejbližší DNS bývá poskytovatel internetu, který si~udržuje DNS-cache, kde~jsou uloženy DNS záznamy pro~servery, na~které již zákazníci přistupovali. Pokud~záznamy ještě nemá, požádá o~ně~postupně (v~tomto pořadí) nadřazený DNS server, správce národní domény a~kořenový DNS server.
+
+        \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textsc{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další informace, jako např.~\textsc{TXT} záznamy, které se~používají pro~ověření domény pro~e-mailové servery.\parencite{dns:mdn}
 
         \subsection{Webový server}
-        Webový server se~stará o~odpovědi většinou na požadavky, většinou přicházející přes \textsc{HTTPS}, dříve \textsc{HTTP}.
-        Server dostane požadavek ve~formě URL\footnote{Uniform Resource Locator, někdy označované URI = Uniform Resource Identifier} adresy,
-        která obsahuje cestu k~souboru, který se~má vrátit.
+        Webový server se~stará o~odpovědi na požadavky, většinou přicházející na~port 443 (\textsc{HTTPS}), dříve port 80 (\textsc{HTTP}).
 
-        Webový server dnes ale~neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat.
-        Může například zajistit, že~se~před odesláním soubor na~serveru zpracuje (např. pomocí PHP) a~do~něj se~vloží aktuální data.
-        Nebo může před odesláním provést kompresi dat. To~znamená, že~data se~před odesláním zmenší, čímž se~odesílají rychleji a~nezatěžují
-        tak~síť. Taky to uspoří mobilní data a~klient, který přistupuje přes mobilní síť, vám bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
+        Server dostane požadavek ve~formě URL (\textsc{Uniform Resource Locator}, někdy taky \textsc{Uniform Resource Identifier}), která obsahuje cestu k~požadovanému zdroji (souboru/službě).
 
-        Webový server je~také zodpovědný za~směrování doménových jmen ke~konkrétním datům na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových stránek.
-        Pomocí metody~\textsc{Proxy~pass} můžeme také přesměrovat celý provoz domény na jiný port (např.~na~naši aplikaci).
+        Webový server už~neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat.
 
-        Příkladem webového serveru může být Apache, Nginx, Lighttpd, Caddy ale taky IIS\footnote{Internetová Informační Služba/Internet Information Service}\dots
+        Může například zajistit, že~se~před odesláním soubor na~serveru zpracuje (např. pomocí PHP) a~do~něj se~vloží aktuální data, nebo před odesláním provést kompresi dat, což uspoří mobilní data a~klient, který přistupuje přes mobilní síť, vám bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
+
+        Webový server je~také zodpovědný za~směrování doménových jmen ke~konkrétním datům na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách.
+        Pomocí metody~\textsc{Proxy~pass} můžeme také přesměrovat celý provoz domény na jiný port (např.~na~naši aplikaci). \parencite{webserver:mdn}
+
+        Příkladem webového serveru může být \textbf{Apache}, \textbf{Nginx}, \textbf{Lighttpd}, \textbf{Caddy} nebo \textbf{IIS}\dots
 
         
         \subsection{MVC - Model View Controller}
@@ -319,11 +334,11 @@
         V~dnešní době jsou nejrozšířenější formou API \textsc{REST} a~\textsc{GraphQL}.
 
         Pro komunikaci mezi interními aplikacemi se~často používá \textsc{SOAP}. Různý hardware používá k~ovládání např.~\textsc{UART} a~\textsc{SPI}.
-        Velice oblíbený je~také výkonný přístup gRPC\footnote{Google Remote Procedure Call}, který je~založen na~protokolu HTTP/2 a~používá binární formát \textsc{Protocol Buffers}.
-        RPC je~zkratka pro~\textsc{Remote Procedure Call} a znamená, že pouze volá vzdálené funkce, které jsou na~serveru,
-        což je mnohdy efektivnější přístup.
+
+        Velice oblíbená je~metoda \textsc{gRPC} (\textsc{Google Remote Procedure Call}), která je~založena na~protokolu HTTP/2 a~používá binární formát \textsc{Protocol Buffers}.
+        RPC je~zkratka pro~\textsc{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru, což je mnohdy velmi efektivní.
         
-        Další výhodou, že~gRPC zastává deklarativní přístup, kde definujeme služby a~jejich rozhraní a~nástroj posléze vygeneruje kód pro~jazyk, který používáme.
+        Další výhodou je, že~gRPC zastává deklarativní přístup, kde definujeme služby a~jejich rozhraní a gRPC vygeneruje pomocný kód pro~jazyk, který používáme.\parencite{thenewstackBuildRealWorld}
 
         \subsection{REST - Representational state transfer}
         \textbf{REST} je~architektura, která definuje způsob komunikace mezi klientem a~serverem.
@@ -370,13 +385,12 @@
             \textbf{Autentikace} je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává.
             To~se~dělá pomocí hesla, které uživatel zná, nebo pomocí certifikátu, který uživatel má.
 
-            \textbf{Autentikací} nazýváme také proces, kdy ověřujeme, že požadavek na~server přišel z~naší aplikace a~ne z~jiného zdroje,
+            \textsc{Autentikací} nazýváme také proces, kdy ověřujeme, že požadavek na~server přišel z~naší aplikace a~ne z~jiného zdroje,
             např.~od~útočníka. Na~to~existují různé metody, např.~využití \textsc{JWT}.
 
-            Tzn.~do~aplikace vložíme tajný klíč, který aplikace použije k~autentikaci a po~úspěšné autentikaci aplikace se~vygeneruje textový řetězec, tzv.~\textsc{Token},
-            který pak~při~každém požadavku na~server \textsc{klient} posílá v~hlavičce požadavku.
+            Do~aplikace vložíme tajný klíč, který aplikace použije k~autentikaci a~po~úspěšné autentikaci aplikace se~vygeneruje textový řetězec, tzv.~\textsc{Token}, který pak~při~každém požadavku na~server \textsc{klient} posílá v~hlavičce požadavku.
 
-            Při autentikaci aplikace je~důležité kontrolovat také, jestli~požadavek přišel z~povolené IP~adresy, byl vytvořen naší aplikací na~našem webu, klientovu IP adresu a~další informace, které by~mohly odhalit nepovolený přístup. Při každém požadavku je~pak potřeba ověřit, že~\textsc{token} nebyl změněn a~přichází stále z~naší aplikace. \parencite{graham2021ethical}
+            Při autentikaci aplikace je~důležité kontrolovat také jestli~požadavek přišel z~povolené IP~adresy, byl vytvořen naší aplikací na~našem webu, klientovu \textsc{IP~adresu} a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\textsc{token} nebyl změněn a~přichází stále z~naší aplikace. \parencite{graham2021ethical}
 
             \subsubsection{Autorizace (Authorization)}
             Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
@@ -543,6 +557,17 @@
         Všechna nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
 
         \subsection{UML - Unified Modeling Language}
+        Jeden ze~standardních nástrojů pro~modelování aplikace je~\textsc{UML}. \textsc{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů.
+        Základem \textsc{UML} je~\textbf{UML diagram}, který slouží k~vizualizaci návrhu aplikace. \parencite{uml:diagram}
+        
+        Specifikace definuje základní dva typy diagramů:
+        \begin{itemize}
+            \item \textbf{Strukturální diagramy} - popisují strukturu systému, tedy jeho části a~vztahy mezi nimi. Může jít např.~o~diagramy tříd, objektů, komponent, nebo~komunikace mezi~komponentami\dots
+            \item \textbf{Diagramy chování} - popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
+        \end{itemize}
+
+        Pro naplánování své práce jsem si~vybral diagramy tříd, aktivit a~případů užití.
+
         \subsection{UCD - Use Case Diagram}
         \subsection{ERD - Entity Relationship Diagram}
         \subsection{Návrh struktury databáze}
