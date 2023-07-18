@@ -6,7 +6,9 @@
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{tikz}
 \usepackage{minted}
 
 \usepackage{caption}
@@ -75,8 +77,10 @@
 	\end{titlepage}
 	% generate table of contents
 	\tableofcontents
-	
+
 	\newpage
+    \clearpage
+    \setcounter{page}{1}
 	
 	\section{Úvod}
     Cílem této práce je~zmapovat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky. Ve~druhé části popíšu návrh a~implementaci webové aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat.
@@ -96,18 +100,16 @@
         % TODO: dotazník
 
     \section{Vývoj moderních webových aplikací}
-    V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~díky tomu, že~webová aplikace je~dostupná z~jakéhokoliv zařízení,
-    které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji
-    instalovat na~každém zařízení zvlášť.
+    V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~způsobeno tím, že~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
+    
     Vývojáři se~také nemusí starat o~kompatibilitu s~různými operačními systémy, protože webový prohlížeč
-    je~dostupný na~většině z~nich. Webová aplikace je~také snadno škálovatelná, protože se~spouští na~serveru a~uživatelé se~k~ní připojují.
-    Navíc je možné díky různým nástrojům aplikace snadno vydat z~jednoho zdrojového kódu jak webovou tak nativní (Android, IOS) aplikaci.\parencite{adobe:webapp}
+    je~dostupný na~většině z~nich. Webová aplikace je~také snadno škálovatelná, protože je~uložena na~serveru a~uživatelé se~k~ní připojují.
+    
+    Navíc je možné díky různým nástrojům vydat aplikaci pro~různé platformy (Android, IOS\dots) z~jednoho zdrojového kódu.\parencite{adobe:webapp}
 
-    Většina dnešních projektů je~vyvíjena jako~\textsc{aplikace}. Tím oddělíme logiku aplikace od~jejího zobrazení, což nám umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části.
+    Většina dnešních projektů je~tedy vyvíjena jako~MVC webová \textsc{aplikace}. Tím oddělíme logiku aplikace od~jejího zobrazení, což nám umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části a~můžeme třeba pracovat s~různými technologiemi.
+    
     Pro obě části existují připravené technologie, které nám usnadní vývoj a~umožní nám vytvořit aplikaci rychleji a~s~menším množstvím chyb.
-    Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet.
-
-    V~profesionálním prostředí je~potom důležité se~zamyslet nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda na~trhu práce je~dostatek lidí, kteří dané technologie znají.
 
     \uv{Pro frontend i backend aplikace existuje na webu obrovské množství použitelných materiálů. Ať už jsou to různé grafické prvky nebo serverové komponenty, to vše je už někde nejspíše hotové.}\parencite{itnetworkBestPractices}
 
@@ -161,11 +163,10 @@
         \subsection{Typescript}
         Další nevýhodou Javascriptu je, že~není typově bezpečný. To znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné
         a~funkce použity správně. To může vést k~chybám, které se~projeví až při~spuštění programu. To je~pro~větší projekty nežádoucí, proto se~používají
-        jiné jazyky, které jsou typově bezpečné a~po~kontrole jsou přeloženy\footnote{kompilují, transpilují} zpět do Javascriptu. Jedním z~nich je~Typescript.
+        jiné jazyky, které jsou typově bezpečné a~po~kontrole jsou přeloženy (kompilovány, transpilovány) zpět do Javascriptu. Jedním z~nich je~Typescript.
         Kromě typové bezpečnosti přináší Typescript i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují výkon aplikace.
 
-        Typescript přidává do~Javascriptu statickou kontrolu typů, což znamená, že~proměnné mají přiřazený datový typ, což
-        u~Javascriptu normálně není nutné a~je~možné typy měnit za~běhu programu.
+        Typescript přidává do~Javascriptu statickou kontrolu typů, což znamená, že~proměnné mají přiřazený datový typ. V~Javascriptu to~normálně není nutné a~dokonce je~možné typy měnit za~běhu programu.
         Díky kontrole typů je~možné provést při překladu kontrolu, zda~jsou všechny proměnné a~funkce použity správně, což redukuje množství chyb.
         Typescript se~kompiluje (transpiluje) zpět do Javascriptu a~je~možné při~vývoji v~Typescriptu použít všechny vlastnosti Javascriptu.\parencite[Get started/TypeScript for the New Programmer]{TypeScript}
 
@@ -243,7 +244,6 @@
             \caption{Rozdíl použití React vs.~JSX}
         \end{figure}
 
-
         \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků.
         Vite je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~Reactu podobný.
         Také zrychluje spouštění aplikace a~nastavuje hot reload, což znamená, že~při~každé změně kódu se~aplikace v~prohlížeči automaticky načte znovu.
@@ -252,18 +252,18 @@
         \subsection{Client-Server}
         Vývoj webových aplikací je~založen na~modelu klient-server.
         
-        \textbf{Klient} může být webový prohlížeč, ale i~jiná, např. mobilní aplikace, která posílá požadavky a~data na~server.
-        
         \textbf{Server} je~počítač, který poskytuje služby klientovi. V~případě webové aplikace je~to~server, který poskytuje HTML stránku, styly a~skripty.
         Taky posléze poskytuje data, která se~do~ní načítají a~ovlivňují její obsah.
 
         \textbf{Klient} je~počítač, který služby serveru využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje HTML stránku.
         V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě. \parencite{ClientServer}
+        
+        \textbf{Klient} může být webový prohlížeč, ale i~jiná, např. mobilní aplikace, která posílá požadavky a~data na~server.
 
         \subsection{Webová služba, webový server}
         Webová služba je~program, který běží na~serveru a~poskytuje data klientovi. Na serveru může běžet více webových služeb,
         rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80,
-        resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP, která poběží nejčastěji na~portu~25 a další.
+        resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP (\textsc{Simple Mail Transfer Protocol}), která poběží nejčastěji na~portu~25 a další.
         Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů.
         K~jednotlivým serverům se~přistupuje pomocí IP adresy a~portu, na~kterém služba běží. \parencite{webserver:mdn}
 
@@ -274,10 +274,31 @@
         \textbf{DNS Resolve} je~proces překladu doménového jména na~IP adresu. Když uživatel zadá do~prohlížeče doménové jméno, prohlížeč se~připojí na~DNS server a~požádá ho o~překlad doménového jména na~IP adresu. DNS server odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
 
         \textsc{Doménové jméno} je~složeno ze~tří částí. První část je~\textsc{subdoména}, která je~volitelná. Druhou částí je~\textsc{doména} (2.\,řádu), která je~povinná a~třetí část je~\textsc{doménová přípona} (TLD, doména nejvyššího řádu), která je~také povinná. TLD mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. \parencite{tld:mdn}
+        
 
         Když~zadáme do~prohlížeče doménové jméno, prohlížeč se~pokusí najít \textsc{IP~adresu} v~DNS cache, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá jej o~překlad doménového jména na~IP adresu. DNS server odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
 
         Nejbližší DNS bývá poskytovatel internetu, který si~udržuje DNS-cache, kde~jsou uloženy DNS záznamy pro~servery, na~které již zákazníci přistupovali. Pokud~záznamy ještě nemá, požádá o~ně~postupně (v~tomto pořadí) nadřazený DNS server, správce národní domény a~kořenový DNS server.
+
+        \begin{figure}
+            \centering
+            \begin{tabular}{l l l l l}
+                \textcolor{red}{\texttt{protokol}} &
+                \textcolor{blue}{\texttt{subdoména}} &
+                \textcolor{green}{\texttt{doména}} &
+                \textcolor{orange}{\texttt{TLD}} &
+                \textcolor{purple}{\texttt{?query}}\\
+
+                \textcolor{red}{\texttt{https}}:// &
+                \textcolor{blue}{\texttt{robot}} &
+                . \textcolor{green}{\texttt{killermachine}} &
+                . \textcolor{orange}{\texttt{com}} &
+                / \textcolor{purple}{\texttt{?znicitlidstvo=false\&odpoved=42}}
+                
+            \end{tabular}
+            \label{Složení URL (URI)}
+            \caption{Složky URI}
+        \end{figure}
 
         \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textsc{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další informace, jako např.~\textsc{TXT} záznamy, které se~používají pro~ověření domény pro~e-mailové servery.\parencite{dns:mdn}
 
@@ -305,7 +326,7 @@
         Má tři složky; \textbf{Model}, který se~stará o~manipulaci s~daty, \textbf{Controller}, který říká \textbf{Modelu}, co má dělat
         a~\textbf{View}, který se~stará o~výsledné zobrazení dat.
 
-        Taky to umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace.
+        Taky to umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace. \parencite{mvc}
 
         \subsection{Frontend, Backend}
         Aplikace se~díky architektuře \textsc{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
@@ -342,16 +363,15 @@
 
         \subsection{REST - Representational state transfer}
         \textbf{REST} je~architektura, která definuje způsob komunikace mezi klientem a~serverem.
-        V dnešní době je~díky své jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových služeb.
-        Jednoduchost spočívá zejména v~tom, že~každý \textsc{Endpoint}\footnote{Endpoint/Koncový bod je~adresa zdroje, kam posíláme požadavek}
-        má svou vlastní adresu.
+        V dnešní době je~díky své jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových služeb. Jednoduchost spočívá zejména v~tom, že~každý \textsc{Endpoint} má~svou~vlastní adresu.
+        
         \textbf{REST} je~bezstavový, takže každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi.
-        To~umožňuje jednoduché testování a~ladění aplikace. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit.
-        \textbf{REST} definuje, jaké HTTP metody se~používají pro~komunikaci, a~každé přiděluje určitý význam.
-    
-        Mezi nejčastěji používané metody patří GET, POST, PUT, DELETE a PATCH. Metoda je~uložena v~hlavičce HTTP požadavku.
+        
+        To~umožňuje jednodušší testování a~ladění aplikace. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \texttt{Cookies} nebo \texttt{Session} je~možné využívat.
+        
+        \textbf{REST} definuje, jaké \textsc{HTTP metody} se~používají pro~komunikaci, a~každé přiděluje určitý význam. Mezi nejčastěji používané metody patří \textbf{GET}, \textbf{POST}, \textbf{PUT}, \textbf{DELETE} a \textbf{PATCH}. Metoda je~uložena v~hlavičce HTTP požadavku.
 
-        Popis funkce přenosu dat po síti pomocí HTTP metod je~následující:
+        Funkce jednotlivých \textsc{HTTP metod} jsou:
         \begin{itemize}
             \item \textbf{GET} slouží pro~získání dat ze~serveru,
             \item \textbf{POST} pro~odeslání dat na~server,
@@ -371,13 +391,11 @@
 
         Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}.
 
-        AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.
+        AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\parencite{ajax:mdn}
 
         \subsection{Zabezpečení}
-        Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit.
-        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné taky zvážit,
-        jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, případně ke~službám, ke~kterým potřebujeme soukromý přístup,
-        přistupovat pomocí tzv.~SSH tunelu.
+        Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
+        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~tedy nutné zvážit např. jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, a~ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~SSH tunelu. Taky je~nutné udržovat systémy aktuální.
 
         Z~hlediska zabezpečení webové aplikace pak~hovoříme o~dvou základních bodech. \textbf{Autentikace} a~\textbf{autorizace}.
 
@@ -488,55 +506,57 @@
 
         Na Windows je možné Linux využívat pomocí \textbf{WSL2 (Windows Subsystem for Linux)}. Jedná se~o~virtuální stroj, který běží na~pozadí a umožní uživateli Windows používat výhody, které nabízí Linux, např.~má~vývojové nástroje na~jednom místě, místo několika oken, které musí mít při vývoji na Windows.
 	\section{Návrh aplikace}
-        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Podle toho se~potom rozhodujeme, jaké technologie budeme používat.
+        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Potom můžeme vytvořit \textsc{UML modely}, které mohou pomoct blíže promyslet strukturu.
+
+        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet.
+    
+        V~profesionálním prostředí je~potom důležité se~zamyslet nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
 
         \subsection{Účel a~popis fungování vyvíjené aplikace}
         Aplikace \textsc{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně
         strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě písemných prací,
         kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~příklady vyberou, a~počet příkladů, které se~mají do~písemky vygenerovat. 
         \subsection{Příklad použití}
-        Mějme prvního uživatele, říkejme mu~třeba Adam. Adam je~učitel a~chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
-        Adam se~zaregistruje do~aplikace \textsc{Písemkomat} a~přihlásí se~do~svého účtu. Adam učí Matematiku, takže si~vytvoří 5 příkladů z~tohoto předmětu
-        a~vloží je do kategorie Matematika.
+        Učitel chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
+        
+        Zaregistruje~se do~aplikace \textsc{Písemkomat} a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je do kategorie Matematika.
 
-        Následně si vytvoří písemnou práci a může si~vybrat, zda chce, aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
+        Následně si~vytvoří písemnou práci a~může si~vybrat, zda chce, aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
         
         Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
-        Proto \textsc{Písemkomat} umožní vytvořit si~proměnné, které budou mít přiřazenou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
+        Proto \textsc{Písemkomat} umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
 
-        Adam si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od 1 do 10, $C = 4/3*A$ a $D = C + B$.
+        Učitel si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od~1 do~10, $C = 4/3*A$ a $D = C + B$.
 
-        Řešený příklad se~vygeneruje do vzorce, který posléze zapíše do~\textsc{Písemkomatu}. Do proměnných $A, B$ se uloží náhodné číslo
-        z~intervalu, který~si~Adam nastavil a~pomocí zápisu proměnné - \texttt{\$A} nebo formátu umožňující
-        delší názvy\,--\,\texttt{\$\{nazevpromenne\}}\,--\,se~vloží do~příkladu na~zadané místo, resp.~do zápisu výpočtu dalších proměnných,
-        kde budou použity ve výpočtu.
+        Řešený příklad se~vygeneruje do~vzorce, který potom zapíše do~\textsc{Písemkomatu}. Do~proměnných $A, B$ se~uloží náhodné číslo z~intervalu, který~si~učitel nastavil a~pomocí zápisu proměnné \texttt{\$\{A\}} se~vloží do~příkladu na~zadané místo, resp.~do zápisu výpočtu dalších proměnných, kde budou použity ve výpočtu.
         
-        Tedy v~tomto případě předpokládáme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$
-        a~hodnoty proměnných $C, D$ se~dopočítají takto:
+        Tedy předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$
+        a~hodnoty proměnných $C, D$ jsou~zadány takto:
         \begin{align*}
-            A &= 3 \\
-            B &= 5 \\
-            C &= 4/3*A = 4/3*3 = 4 \\
-            D &= C + B = 4 + 5 = 9
+            \$A &= 3 \\
+            \$B &= 5 \\
+            \$C &= 4/3*\$A = 4/3*3 = 4 \\
+            \$D &= \$C + \$B = 4 + 5 = 9
         \end{align*}
 
-        Proměnné se při generování výsledné podoby příkladu nahradí vygenerovanými čísly nebo výrazy.
-        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci nést jiné objekty, např.~pole pro~textový vstup
-        nebo výběr z~možností, čehož bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít za úkol žák vyplnit.
+        Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly nebo výrazy.
+        
+        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci nést jiné objekty, např.~pole pro~textový vstup nebo výběr z~možností. Toho bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít~za~úkol žák vyplnit.
 
         Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
         \begin{align*}
-            \$Ax + \$B &= \$C + \$D \\
-            3x + 5 &= 4 + 9
+            \text{Vyřeš v oboru N:} \quad \$Ax + \$B &= \$C + \$D \\
+            \begin{aligned}
+                a) \quad &\text{Nemá řešení v oboru N} \\
+                b) \quad &\text{x = \$A} \\
+                c) \quad &\text{x = \$B} \\
+                d) \quad &\text{x = \$\{\$A * \$B - 2\}} \\
+            \end{aligned}
         \end{align*}
 
-        Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky.
-        Učitel si~při~tvorbě písemky jen vybere, kterou variantu chce použít.
+        Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě písemky jen vybere, kterou variantu chce použít.
 
-        Adam bude mít také možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s možnostmi výběru.
-        V~tomto případě může taky využít proměnné, které si vytvořil dříve. V obou případech může taky zapsat vzorec,
-        ze~kterého se~vypočtou možnosti a označit správnou možnost.
-        Ve výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí.
+        Učitel bude mít také možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
 
         Výsledná podoba zadání a~možností příkladu může vypadat např.~takto:
         \begin{align*}
@@ -554,7 +574,7 @@
         
         To umožní systém používat např.~pro jazykové předměty, kde se~využívá doplňování slov do~textu nebo~výběr písmene.
 
-        Všechna nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
+        Některá nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
 
         \subsection{UML - Unified Modeling Language}
         Jeden ze~standardních nástrojů pro~modelování aplikace je~\textsc{UML}. \textsc{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů.
@@ -566,7 +586,7 @@
             \item \textbf{Diagramy chování} - popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
         \end{itemize}
 
-        Pro naplánování své práce jsem si~vybral diagramy tříd, aktivit a~případů užití.
+        Pro naplánování své práce jsem si~vybral diagram~případů užití, diagram
 
         \subsection{UCD - Use Case Diagram}
         \subsection{ERD - Entity Relationship Diagram}
@@ -679,7 +699,6 @@
 	
 	\section{Závěr}
 
-\newpage
-    \section{Zdroje informací}
+    \newpage
     \printbibliography
 \end{document}
