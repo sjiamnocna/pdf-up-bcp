@@ -483,13 +483,21 @@
             a~upomínka na~chybu se~objeví přímo v~komunikačním kanálu týmu.
 	
         \subsection{Verzovací systém GIT}
-        Verzovací systém je~program, který slouží ke~správě verzí zdrojových souborů.
-        Umožňuje ukládat historii změn a~vracet se~k~předchozím verzím. Taky mohou pracovat s~jednotlivými větvemi,
-        které mohou obsahovat různé změny, které lze následně sloučit do~jedné větve.
+        \textbf{GIT} vytvořil autor Linuxu \textbf{Linus Torvalds} v~roce 2005. Je~to~distribuovaný verzovací systém. To znamená, že~každý vývojář má~lokální kopii celého projektu, tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
+        
+        Základní funkcí \textsc{GITu} je~ukládání změn. Neukládáme celé soubory, ale pouze změny, které se~udály. Díky tomu je~možné spravovat i~velké projekty s~více vývojáři a~po~dokončení části práce vidět, co~který vývojář udělal a~spojit do~jednoho celku, na~kterém se~dále pracuje. Díky verzování je~také možné se~kdykoliv vrátit k~předchozí verzi projektu a~pokračovat ve~vývoji od~této verze nebo~pracovat na~několika různých verzích zároveň díky větvím.
+        
         To~umožňuje vývojářům pracovat na~různých problémech projektu paralelně a~následně je~sloučit do~jednoho celku.
 
-        \textbf{GIT} vytvořil Linus Torvalds v~roce 2005. Je~to~distribuovaný verzovací systém. To znamená, že~každý vývojář má~lokální kopii celého projektu,
-        tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
+        Výslednou práci můžeme označit pomocí tagů, které se~používají pro~označení oficiálních vydání aplikace.
+
+        Existují taky různé služby, které poskytují prostor pro~ukládání projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\textbf{GitHub}, \textbf{GitLab} nebo~\textbf{Bitbucket}.
+
+        Mimo zmíněné funkce nabízejí třeba možnost vytvářet \textsc{Issues}, které může vývojář vytvořit, pokud narazí na~chybu nebo~má~nápad na~vylepšení. Tímto způsobem může vývojáři sdělit svůj nápad nebo~chybu a~případně se~k~ním vrátit později. \textsc{Issues} je~také možné přiřadit konkrétnímu vývojáři, který se~o~danou chybu nebo~nápad postará, a~automaticky vytvořit větev, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní větve projektu. Je~taky možné jednoduše zobrazit rozdíly mezi hlavní větví a~tou, na~které vývojář pracuje.
+        
+
+        \textbf{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj. \parencite{gitscmBook}
+
 
         \subsection{Linux a příkazová řádka, WSL2}
         Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Je~to~nejrozšířenější open source operační systém,
@@ -501,10 +509,10 @@
         Nabízí mnoho grafických prostředí, takže si~uživatel může vybrat, jakým způsobem bude systém používat a je možné téměř
         všechno nastavit tak, jak v práci potřebuje.
 
-        Navíc většina nástrojů pro vývoj webových aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky
-        vše nastavit skriptem z~příkazové řádky.
+        Navíc většina nástrojů pro vývoj webových aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky vše nastavit skriptem z~příkazové řádky. Není nutné instalovat a~mít~spuštěno 5 různých nástrojových oken, vše je~na~jednom místě.
 
         Na Windows je možné Linux využívat pomocí \textbf{WSL2 (Windows Subsystem for Linux)}. Jedná se~o~virtuální stroj, který běží na~pozadí a umožní uživateli Windows používat výhody, které nabízí Linux, např.~má~vývojové nástroje na~jednom místě, místo několika oken, které musí mít při vývoji na Windows.
+
 	\section{Návrh aplikace}
         Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Potom můžeme vytvořit \textsc{UML modely}, které mohou pomoct blíže promyslet strukturu.
 
@@ -696,51 +704,62 @@
             Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
 	
 	\section{Postup implementace}
-        Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~vývojové i~produkční prostředí budou tvořit \textsc{Docker kontejnery}, s~rozdílnými konfiguracemi.
+        Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~pro lepší automatizaci budou vývojové i~produkční prostředí tvořit \textsc{Docker kontejnery}.
         Vývojová verze bude obsahovat kontejnery pro~React, Go s~databází. Navíc bude obsahovat nástroj \textsc{Air}, který umožní automatický restart aplikace při~změně kódu \textsc{backendu}. Taky využijeme proxy přesměrování nástroje Vite, který přesměruje požadavky na~backend na~správný kontejner.
 
         Produkční verze, tedy ta~výsledná, bude obsahovat stejné kontejnery, ale nebude už~obsahovat nástroje pro~vývoj. Při tvorbě kontejnerů se~backend zkompiluje a~spustí se~pouze optimalizovaný binární soubor.
         Přesměrování na~kontejnery zajistí server \textsc{Nginx}, který běží v~prostředí VPS serveru a~obsluhuje i~další aplikace.
 
-        Každý kontejner bude mít vlastní adresář. Backend bude v~adresáři `goapp` a frontend v~adresáři `reactapp`. Všechny kontejnery budou mít společné úložiště adresář `data`, kde si~vytvoří podadresáře.
+        Každý kontejner bude mít vlastní adresář. Backend bude v~adresáři `goapp` a frontend v~adresáři `reactapp`. Všechny kontejnery budou mít společné úložiště adresář `data`, kde si~vytvoří podadresáře. Data budou ukládat do~sdílených adresářů, aby~se~při~restartu kontejneru neztratila.
 
-        Konfigurace kontejnerů budou v~adresáři `docker` a~\textsc{docker-compose.yml} v~kořenovém adresáři.
+        Konfigurace a~pokyny pro~vytvoření kontejnerů budou v~adresáři `docker` a~v~souborech \textsc{docker-compose.yml} v~kořenovém adresáři. K~dispozici budou dvě verze, \textbf{vývojová} bude připravena pro~vývoj na~lokálním počítači a~optimalizovaná, tzv.~\textbf{produkční} pro~nasazení na~server.
 
-        Celý základ aplikace je~pro~další vývojáře veřejně dostupný na~mém Gitlabu: \href{https://gitlab.com/sjiamnocna/gormrest}{\textbf{sjiamnocna/gormrest}}. Tento základ mohou použít k~tvorbě nových aplikací.
+        K~tomu bude dostupný soubor \texttt{Makefile}, který umožní rychleji spouštět příkazy pro~vytvoření kontejnerů a~dalších operací.
+
+        Celý základ aplikace je~pro~další vývojáře veřejně dostupný na~mém Gitlabu: \href{https://gitlab.com/sjiamnocna/gormrest}{\textbf{sjiamnocna/gormrest}}. Tento základ mohou vývojáři použít k~tvorbě nových aplikací.
         
         \subsection{Backend}
             V aplikaci používám pro~tvorbu backendu jazyk \textbf{Go}, který bude zpracovávat požadavky od~klienta a~komunikovat s~databází.
-            Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}.
+            Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}. Ten zároveň přidává základní \textsc{endpointy} pro~autentikaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\textbf{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
-            K~databázi se~budu připojovat pomocí \href{https://github.com/cosmtrek/air}{\textbf{go-gorm/gorm}}, který mi~také bude spravovat tabulky a~modely dat pro~manipulaci s~nimi.
+            K~databázi se~budu připojovat pomocí \textsc{ORM systému} \href{https://gorm.io/}{\textbf{go-gorm/gorm}}, který bude spravovat tabulky a~modely dat pro~manipulaci s~nimi.
+
+            K~připojení do~databáze tedy budu potřebovat tzv.~\textsc{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Potřebujeme \textbf{adresu} databáze a~\textbf{port}, na~kterém běží, \textbf{název databáze}, \textbf{jméno uživatele} a~\textbf{heslo}. Ty~si~načítám z~prostředí systému, tedy \textsc{Dockeru}.
+
+            \textbf{Go} má~dvě vstupní funkce \textbf{main} a~\textbf{init}. Funkce \textbf{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \textbf{init} se~spustí jako první, ale~před funkcí \textbf{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \textbf{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
+
+            Ve chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \textbf{init}, poté hlavní část aplikace, funkce \textbf{main}. Je~to~podobné jazyku C a~dalším.
+
+            V~hlavní funkci je~potřeba spustit \textsc{HTTP server}, který bude čekat na~požadavky od~klienta. K~tomu využijeme funkci \textbf{Run} z~balíčku \textbf{gin-gonic/gin}, prostřednictvím balíčku \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, který přidá do~serveru tzv.~\textsc{middleware} pro~kontrolu \textsc{JWT} tokenu a~přidá do~každého požadavku informace o~uživateli, který požadavek poslal. \textsc{Middleware}, je~funkce, která se~spustí před zpracováním požadavku a~může měnit jeho chování. V~tomto případě kontroluje, zda~je~požadavek autentický, případně zda je~přihlášen nějaký uživatel. Tyto~informace pak~uloží do~požadavku, aby~s~nimi mohl pracovat handler. Serveru tím říkáme, aby přijímal a~obsluhoval požadavky na~zadaném portu.
+            
+            % TODO: GORM Modely
+
+            Samotné \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~každý \textsc{Endpoint} bude mít svůj vlastní soubor. V~těchto souborech budou handlery pro~každý potřebný \textsc{Endpoint}. \textsc{Handler} dostane jako parametr \textbf{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním pracovat, a~budou odpovídat spefickou \textbf{JSON} odpověďí, případně chybovou hlášku.
+
         \subsection{Frontend}
+            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}:main}, který je~napsaný k~jednodušší komunikaci frontendu s~\href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}.
         \subsection{Testování}
         \subsection{Údržba}
         
 	\section{Budoucí rozvoj aplikace}
-        Samozřejmě bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé a~opravovat je.
+        Pro rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
         Bylo by dobré, kdyby aplikaci učitelé používali a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům. Postupně by~tak mohla vzniknout databáze příkladů, které by~mohli využít ostatní učitelé a~žáci k~procvičování příkladů.
-        Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace.
-
-        \subsection{Integrace do jiných prostředí}
+        Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. V~plánu je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila důvěryhodnost uživatelů.
+        
         Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Kdyby byla aplikace dostupná přes API, mohla by~být integrována do~těchto prostředí a~učitelé by~mohli využívat příklady vytvořené v~aplikaci i~v~těchto prostředích.
         
         Mohly by~tak~vzniknout moduly pro~použití v~těchto prostředích, které by~umožňovaly vytvářet příklady a~zadávat je~žákům přímo v~Moodlu, Google Classroom nebo rychle sdílet přes MS~Teams. Zajímavá by~mohla~být i~integrace do~CMS systému Wordpress pomocí pluginu.
 
-        \subsection{Režim cvičení}
         Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady.
         
         K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
 
-        \subsection{Výukové materiály a minikvízy}
-        Aplikace by~se~dala využít i~ke~tvorbě interaktivních výukových materiálů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy.
+        Aplikace by~se~dala využít také~ke~tvorbě interaktivních výukových materiálů a~minikvízů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy.
         
-        \subsection{Online zkoušení a výuka}
-        Předchozí rozšíření by~se~dalo využít k~online výuce, kde by~učitel měl~k~dispozici živě přenášenou \uv{tabuli}, ideálně s~živým přepisem do~formátu \textsc{Markdown}u.
+        Předchozí rozšíření vybízí k~využítí k~online výuce, kde by~učitel měl~k~dispozici živě přenášenou \uv{tabuli}, ideálně s~živým přepisem do~formátu \textsc{Markdown}u a~Mathjaxu.
 
-        \subsection{Sponzorování}
-        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli k~vývoji aplikace. To~by~umožnilo věnovat se~vývoji aplikace naplno a~rychleji rozšiřovat její funkce.
+        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli k~vývoji aplikace, což~by~umožnilo věnovat se~vývoji aplikace naplno a~rychleji rozšiřovat její funkce.
 	
 	\section{Závěr}
 
