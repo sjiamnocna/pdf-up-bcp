@@ -83,21 +83,31 @@
     \setcounter{page}{1}
 	
 	\section{Úvod}
-    Cílem této práce je~zmapovat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky. Ve~druhé části popíšu návrh a~implementaci webové aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat.
+    Cílem této práce je~zmapovat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky a~definovat potřeby, které v~této souvislosti mohou nastat.
+    
+    Ve~druhé části popíšu návrh a~implementaci webové aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat.
     
     Zároveň bych rád popsal základní prvky vývoje moderní \textsc{MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu
     a~výběru technologií, přes plánování pomocí diagramů, až k~její implementaci a spuštění za~použití vybraných technologií.
     
     Pochopitelně nepůjde o~jediný způsob, jak mohou aplikace vzniknout, nicméně by~práce měla být čitelným a~reprodukovatelným postupem vývoje
     a~údržby podobné aplikace.
+
+    \section{Testová úloha, zadání příkladu}
+
+        \subsection{Uzavřené úlohy}
+
+        \subsection{Otevřené úlohy}
         
-        \subsection{V současnosti používané nástroje na generování prací}
+        \subsection{V současnosti používané nástroje na generování úloh}
         % TODO: popsat současné nástroje na generování prací
-        V~současnosti je~pro~účely generování písemných prací používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
+        V~současnosti je~pro~účely generování testových úloh používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
         Některé z~nich jsou~dostupné zdarma, jiné jsou~placené.
         
         \subsection{Co používají učitelé}
-        % TODO: dotazník
+        % TODO: dotazník/rozhovory s učiteli
+
+    \section{Testová úloha}
 
     \section{Vývoj moderních webových aplikací}
     V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~způsobeno tím, že~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
@@ -293,7 +303,7 @@
                 \textcolor{blue}{\texttt{robot}} &
                 . \textcolor{green}{\texttt{killermachine}} &
                 . \textcolor{orange}{\texttt{com}} &
-                / \textcolor{purple}{\texttt{?znicitlidstvo=false\&odpoved=42}}
+                / \textcolor{purple}{\texttt{?znicitlidstvo=false\&parametr=42}}
                 
             \end{tabular}
             \label{Složení URL (URI)}
@@ -318,24 +328,23 @@
 
         
         \subsection{MVC - Model View Controller}
-        Nejvýznamnějším bodem vývoje bylo zavedení architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
-        Ten odděluje logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
+        Nejvýznamnějším bodem vývoje bylo rozšíření architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
+        Podle této architektury oddělujeme logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
 
-        Díky tomu můžeme mít jednu aplikaci, která bude mít různé zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webovou stránku, mobilní aplikaci a desktopovou aplikaci.
+        Díky tomu můžeme mít jednu aplikaci, která bude mít různé zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webovou stránku, mobilní aplikaci a~desktopovou aplikaci.
 
-        Má tři složky; \textbf{Model}, který se~stará o~manipulaci s~daty, \textbf{Controller}, který říká \textbf{Modelu}, co má dělat
+        Má tři složky; \textbf{Model}, který se~stará o~manipulaci s~daty, \textbf{Controller}, který říká \textbf{Modelu}, co~má~dělat
         a~\textbf{View}, který se~stará o~výsledné zobrazení dat.
 
-        Taky to umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace. \parencite{mvc}
+        Také to~umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace. \parencite{mvc}
 
         \subsection{Frontend, Backend}
         Aplikace se~díky architektuře \textsc{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
-        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o interakci s~uživatelem a~komunikuje s~\textbf{backendem},
-        zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
-        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}.
-        Spolupracuje s~databází a~dalšími službami, které jsou potřeba pro~správné fungování aplikace.
-        \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
+        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o zobrazení (\textbf{View}) a interakci s~uživatelem a~komunikuje (\textbf{Controller}) s~\textbf{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
+
+        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}. 
+        Spolupracuje s~databází (\textbf{Model}) a~dalšími službami, které jsou potřeba pro~správné fungování aplikace. \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
 
         \subsection{JSON - Javascript Object Notation}
         JSON je~formát pro~výměnu dat. Je~to~textový formát, to znamená, že je~čitelný pro~člověka i~stroj.
@@ -418,7 +427,7 @@
 
             \subsubsection{JWT - JSON Web Token}
             Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli.
-            Při autentikaci se~vygeneruje token\footnote{řetězec znaků}, který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
+            Při autentikaci se~vygeneruje \textsc{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
             Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze změnit. V~případě změny dat v~tokenu se~token stává neplatným.
             To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
             a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
@@ -667,7 +676,7 @@
             
             Jednotlivé databáze - někdy používáme název \textsc{schéma} - fyzicky na~disku reprezentují adresáře s~názvem konkrétní databáze. Jednotlivé~tabulky potom tvoří binární soubory s~příponou podle databázového \textsc{enginu}, který používáme. V~našem případě používáme \textsc{InnoDB}, který ukládá strukturu a~data v~souborech \textsc{*.ibd}. \parencite{MySQLInnoDB}
             
-            \textbf{GORM} je~ORM\footnote{ORM - Object-relational mapper} pro~jazyk Go. \textsc{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. 
+            \textbf{GORM} je~ORM (ORM - Object-relational mapper) pro~jazyk Go. \textsc{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. 
             Z~definovaných~struktur se~automaticky vytvoří všechny databázové tabulky a~při jejich změnách se~automaticky promítnou i~do~databáze během tzv.~migrace modelů.
             Struktury zároveň umožňují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat. \parencite{freecodecamp:orm}
 
@@ -755,7 +764,7 @@
         
         K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
 
-        Aplikace by~se~dala využít také~ke~tvorbě interaktivních výukových materiálů a~minikvízů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy.
+        Aplikace by~se~dala využít také~ke~tvorbě interaktivních výukových materiálů a~minikvízů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost zadat příklad do~WolfRam Alpha. 
         
         Předchozí rozšíření vybízí k~využítí k~online výuce, kde by~učitel měl~k~dispozici živě přenášenou \uv{tabuli}, ideálně s~živým přepisem do~formátu \textsc{Markdown}u a~Mathjaxu.
 
