@@ -254,10 +254,10 @@
             \caption{Rozdíl použití React vs.~JSX}
         \end{figure}
 
-        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků.
-        Vite je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~Reactu podobný.
-        Také zrychluje spouštění aplikace a~nastavuje hot reload, což znamená, že~při~každé změně kódu se~aplikace v~prohlížeči automaticky načte znovu.
-        Vite se~také chlubí, že~dokáže spouštět aplikace rychleji než jiné nástroje.\parencite{vitejs}
+        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~Reactu podobný.
+        
+        \textsc{Vite} také zrychluje spouštění aplikace a~nastavuje tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} aplikace v~prohlížeči automaticky načte znovu, bez~nutnosti manipulace s~prohlížečem.
+        Vite údajně také zrychluje sestavení modulů více než jiné nástroje.\parencite{vitejs}
         
         \subsection{Client-Server}
         Vývoj webových aplikací je~založen na~modelu klient-server.
@@ -271,25 +271,17 @@
         \textbf{Klient} může být webový prohlížeč, ale i~jiná, např. mobilní aplikace, která posílá požadavky a~data na~server.
 
         \subsection{Webová služba, webový server}
-        Webová služba je~program, který běží na~serveru a~poskytuje data klientovi. Na serveru může běžet více webových služeb,
-        rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80,
-        resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP (\textsc{Simple Mail Transfer Protocol}), která poběží nejčastěji na~portu~25 a další.
-        Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů.
-        K~jednotlivým serverům se~přistupuje pomocí IP adresy a~portu, na~kterém služba běží. \parencite{webserver:mdn}
+        Webová služba je~program, který běží na~serveru a~poskytuje data klientovi. Na serveru může běžet více webových služeb, rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80, resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP (\textsc{Simple Mail Transfer Protocol}), která poběží nejčastěji na~portu~25 a další.
+        
+        Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů. K~jednotlivým serverům se~přistupuje pomocí IP adresy a~portu, na~kterém služba běží. \parencite{webserver:mdn}
 
         \subsection{DNS - Domain Name System}
         DNS je~zkratka pro~\textsc{Domain Name System}, někdy \textsc{Domain Name Server}. Je~to~systém, který překládá doménová jména na~IP adresy. To~umožňuje, aby~uživatelé používali lidem čitelná doménová jména namísto \textsc{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
+        
         Bez DNS by~se~oblíbený český vyhledávač \texttt{Seznam.cz} proměnil ve~směsici čísel \texttt{77.75.79.222}, což~by~uživatel moc neocenil. To~samé by~platilo i~pro~ostatní weby.
 
-        \textbf{DNS Resolve} je~proces překladu doménového jména na~IP adresu. Když uživatel zadá do~prohlížeče doménové jméno, prohlížeč se~připojí na~DNS server a~požádá ho o~překlad doménového jména na~IP adresu. DNS server odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
-
-        \textsc{Doménové jméno} je~složeno ze~tří částí. První část je~\textsc{subdoména}, která je~volitelná. Druhou částí je~\textsc{doména} (2.\,řádu), která je~povinná a~třetí část je~\textsc{doménová přípona} (TLD, doména nejvyššího řádu), která je~také povinná. TLD mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. \parencite{tld:mdn}
+        \textsc{Doménové jméno} je~složeno ze~tří částí. První část je~\textsc{subdoména}, která je~volitelná. Druhou částí je~\textsc{doména} (2.\,řádu), která je~povinná a~třetí část je~\textsc{doménová přípona} (TLD, doména nejvyššího řádu), která je~také povinná. TLD mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. Doménové jméno je~v~procesu \textbf{DNS resolve} přeloženo zpět na \textsc{IP adresu}. \parencite{tld:mdn}
         
-
-        Když~zadáme do~prohlížeče doménové jméno, prohlížeč se~pokusí najít \textsc{IP~adresu} v~DNS cache, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá jej o~překlad doménového jména na~IP adresu. DNS server odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
-
-        Nejbližší DNS bývá poskytovatel internetu, který si~udržuje DNS-cache, kde~jsou uloženy DNS záznamy pro~servery, na~které již zákazníci přistupovali. Pokud~záznamy ještě nemá, požádá o~ně~postupně (v~tomto pořadí) nadřazený DNS server, správce národní domény a~kořenový DNS server.
-
         \begin{figure}
             \centering
             \begin{tabular}{l l l l l}
@@ -306,9 +298,15 @@
                 / \textcolor{purple}{\texttt{?znicitlidstvo=false\&parametr=42}}
                 
             \end{tabular}
-            \label{Složení URL (URI)}
+            \label{slozeni-uri}
             \caption{Složky URI}
         \end{figure}
+
+        \textbf{DNS Resolve} je~proces překladu doménového jména na~IP adresu. Když si~uživatel vyžádá nějaké doménové jméno, prohlížeč se~připojí k~\textsc{DNS} a~požádá ho o~překlad doménového jména na~IP adresu. \textsc{DNS} odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
+
+        Když~zadáme do~prohlížeče doménové jméno, prohlížeč se~pokusí najít \textsc{IP~adresu} v~DNS cache, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá jej o~překlad doménového jména na~IP adresu. DNS odpoví IP adresou, kterou prohlížeč použije pro~navázání spojení se~serverem.
+
+        Nejbližší \textsc{DNS} bývá poskytovatel internetu, který si~udržuje \textsc{DNS-cache}, kde~jsou uloženy \textsc{IP} adresy pro~servery, na~které v~minulosti zákazníci přistupovali. Pokud~tedy záznamy ještě nejsou v~\textsc{DNS cache} prohlížeče, zeptá se~prohlížeč poskytovatele (dále \textsc{ISP}), resp.~zašle požadavek na~adresu nastaveného \textsc{DNS}. Pokud ani~potom záznamy v~\textsc{cache} nezíská, požádá o~ně~postupně nadřazený \textsc{DNS}, správce národní domény (\textbf{CZ.NIC}) a~kořenový DNS server.
 
         \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textsc{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další informace, jako např.~\textsc{TXT} záznamy, které se~používají pro~ověření domény pro~e-mailové servery.\parencite{dns:mdn}
 
@@ -341,29 +339,31 @@
         \subsection{Frontend, Backend}
         Aplikace se~díky architektuře \textsc{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
 
-        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prohlížeč. Stará se~o zobrazení (\textbf{View}) a interakci s~uživatelem a~komunikuje (\textbf{Controller}) s~\textbf{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
+        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\textbf{View}) a~interakci s~uživatelem (\textbf{Controller}) a~komunikuje s~\textbf{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
-        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}. 
-        Spolupracuje s~databází (\textbf{Model}) a~dalšími službami, které jsou potřeba pro~správné fungování aplikace. \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
+        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}. Spolupracuje s~databází (\textbf{Model}em), souborovým systémem a~dalšími službami, které jsou potřeba pro~správné fungování aplikace. \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
 
         \subsection{JSON - Javascript Object Notation}
-        JSON je~formát pro~výměnu dat. Je~to~textový formát, to znamená, že je~čitelný pro~člověka i~stroj.
-        Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát XML,
-        který je~podobný struktuře HTML. Ostatně XML stále používá spousta aplikací, zejména státní správy.
+        \textsc{JSON}~je~formát pro~výměnu dat. Je~to~textový formát, to znamená, že~je~čitelný pro~člověka i~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát XML, který je~podobný struktuře HTML. Ostatně XML stále používá spousta aplikací, zejména aplikace státní správy.
 
-        Formát JSON je~podobný zápisu objektů v~Javascriptu. Obsahuje dvojice klíč-hodnota, které jsou odděleny dvojtečkou.
-        Klíčem je~řetězec a~hodnota může být číselná, řetězcová, logická hodnota, pole nebo objekt.
-        Práce s~formátem JSON je~pohodlnější než s~formátem XML, protože je~mnohem jednodušší a~čitelnější a vyžaduje méně kódu,
-        jak na straně serveru, tak na straně klienta a~jde~celkově o~úspornější formát.
+        Formát JSON je~podobný zápisu objektů v~Javascriptu. Obsahuje dvojice klíč-hodnota, které jsou odděleny dvojtečkou. Klíčem je~řetězec a~hodnota může být číselná, řetězcová, logická hodnota, pole nebo objekt.
+        
+        Práce s~formátem JSON je~pohodlnější než s~formátem XML, protože je~mnohem jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně serveru, tak na~straně klienta a~jde~celkově o~úspornější formát.
+
+        \subsection{AJAX - Asynchronous Javascript Request}
+        AJAX je~technologie, která umožňuje asynchronní komunikaci mezi frontendem a~backendem.
+        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale pouze se~načtou data ze~serveru a~přidají se~do~stránky.
+
+        Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}.
+
+        AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\parencite{ajax:mdn}
 
         \subsection{API - Application Interface}
-        API je~rozhraní, které umožňuje komunikaci mezi aplikacemi. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem.
-        Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
-        Někerá API jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~API Google Maps.
+        API je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem. Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
+        
+        Někerá API jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~API Google Firebase, Microsoft Azure nebo Amazon Web Services umožňují tvorbu tzv.~Serverless aplikací, kde~vývojář tvoří pouze \textsc{frontend} a~o~zbytek se~stará externí služba. To~umožňuje vývojářům se~soustředit na~vývoj aplikace a~nemusí se~starat o~infrastrukturu, která je~potřeba pro~běh aplikace.
 
-        V~dnešní době jsou nejrozšířenější formou API \textsc{REST} a~\textsc{GraphQL}.
-
-        Pro komunikaci mezi interními aplikacemi se~často používá \textsc{SOAP}. Různý hardware používá k~ovládání např.~\textsc{UART} a~\textsc{SPI}.
+        V~dnešní době jsou nejrozšířenější formou API \textsc{REST} a~\textsc{GraphQL}. Pro komunikaci mezi interními aplikacemi se~často používá \textsc{SOAP}. Různý hardware používá k~ovládání např.~\textsc{UART} a~\textsc{SPI}.
 
         Velice oblíbená je~metoda \textsc{gRPC} (\textsc{Google Remote Procedure Call}), která je~založena na~protokolu HTTP/2 a~používá binární formát \textsc{Protocol Buffers}.
         RPC je~zkratka pro~\textsc{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru, což je mnohdy velmi efektivní.
@@ -371,14 +371,11 @@
         Další výhodou je, že~gRPC zastává deklarativní přístup, kde definujeme služby a~jejich rozhraní a gRPC vygeneruje pomocný kód pro~jazyk, který používáme.\parencite{thenewstackBuildRealWorld}
 
         \subsection{REST - Representational state transfer}
-        \textbf{REST} je~architektura, která definuje způsob komunikace mezi klientem a~serverem.
-        V dnešní době je~díky své jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových služeb. Jednoduchost spočívá zejména v~tom, že~každý \textsc{Endpoint} má~svou~vlastní adresu.
+        \textbf{REST} je~architektura, která definuje způsob komunikace mezi klientem a~serverem. V dnešní době je~díky své jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Jednoduchost spočívá zejména v~tom, že~každý \textsc{Endpoint} má~svou~vlastní adresu.
         
-        \textbf{REST} je~bezstavový, takže každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi.
+        \textsc{REST} je~bezstavový, takže každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi. To~umožňuje jednodušší testování a~ladění aplikace. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \texttt{Cookies} nebo \texttt{Session} je~možné využívat.
         
-        To~umožňuje jednodušší testování a~ladění aplikace. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \texttt{Cookies} nebo \texttt{Session} je~možné využívat.
-        
-        \textbf{REST} definuje, jaké \textsc{HTTP metody} se~používají pro~komunikaci, a~každé přiděluje určitý význam. Mezi nejčastěji používané metody patří \textbf{GET}, \textbf{POST}, \textbf{PUT}, \textbf{DELETE} a \textbf{PATCH}. Metoda je~uložena v~hlavičce HTTP požadavku.
+        \textsc{REST} definuje, jaké \textsc{HTTP metody} se~používají pro~komunikaci, a~každé přiděluje určitý význam. Mezi nejčastěji používané metody patří \textbf{GET}, \textbf{POST}, \textbf{PUT}, \textbf{DELETE} a \textbf{PATCH}. Metoda je~uložena v~hlavičce HTTP požadavku.
 
         Funkce jednotlivých \textsc{HTTP metod} jsou:
         \begin{itemize}
@@ -394,31 +391,27 @@
         Kromě požadavků \textbf{GET} se v~těle požadavku posílají data v~textové formě, např.~formátu~JSON. 
         V~případě požadavku \textbf{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají limitovanou velikost maximální délkou \textsc{URL adresy}.
 
-        \subsection{AJAX - Asynchronous Javascript Request}
-        AJAX je~technologie, která umožňuje asynchronní komunikaci mezi frontendem a~backendem.
-        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale pouze se~načtou data ze~serveru a~přidají se~do~stránky.
+        \subsection{GraphQL}
+        Naproti \textsc{REST}u má \textsc{GraphQL} pouze jeden \textsc{endpoint}. \textsc{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což může být výhodné, pokud máme pomalé připojení nebo~při~mobilním připojení, kdy chceme co~nejvíce ušetřit data.
 
-        Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}.
+        Na~druhou stranu implementace \textsc{GraphQL} je~složitější než \textsc{REST}, protože je~potřeba implementovat \textsc{GraphQL} server, který bude umět zpracovat požadavky od~klienta. Každý kousek informace, který chceme zpřístupnit, navíc musíme specifikovat v~\textsc{GraphQL} schématu a~vytvořit pro~něj tzv.~\textsc{resolver}, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože musíme pro~každou vyžadovanou položku spustit vlastní funkci, což~je v~případě větších datových objektů a~přístupů do~databáze neefektivní.
 
-        AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\parencite{ajax:mdn}
-
+        
         \subsection{Zabezpečení}
         Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
         To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~tedy nutné zvážit např. jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, a~ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~SSH tunelu. Taky je~nutné udržovat systémy aktuální.
-
+        
         Z~hlediska zabezpečení webové aplikace pak~hovoříme o~dvou základních bodech. \textbf{Autentikace} a~\textbf{autorizace}.
 
             \subsubsection{Autentikace (Authentication)}
-            \textbf{Autentikace} je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává.
-            To~se~dělá pomocí hesla, které uživatel zná, nebo pomocí certifikátu, který uživatel má.
-
-            \textsc{Autentikací} nazýváme také proces, kdy ověřujeme, že požadavek na~server přišel z~naší aplikace a~ne z~jiného zdroje,
-            např.~od~útočníka. Na~to~existují různé metody, např.~využití \textsc{JWT}.
-
+            \textbf{Autentikace} je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává. To~se~dělá pomocí hesla nebo pomocí certifikátu, který uživatel má.
+            
+            V~případě \textsc{API} se~jedná o~ověření, že~požadavek přišel z~naší aplikace a~ne z~jiného zdroje, např.~od~útočníka. Na~to~existují různé metody, např.~využití \textsc{JWT}.
+            
             Do~aplikace vložíme tajný klíč, který aplikace použije k~autentikaci a~po~úspěšné autentikaci aplikace se~vygeneruje textový řetězec, tzv.~\textsc{Token}, který pak~při~každém požadavku na~server \textsc{klient} posílá v~hlavičce požadavku.
 
             Při autentikaci aplikace je~důležité kontrolovat také jestli~požadavek přišel z~povolené IP~adresy, byl vytvořen naší aplikací na~našem webu, klientovu \textsc{IP~adresu} a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\textsc{token} nebyl změněn a~přichází stále z~naší aplikace. \parencite{graham2021ethical}
-
+            
             \subsubsection{Autorizace (Authorization)}
             Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
             To~je možné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
@@ -426,26 +419,43 @@
             Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat.\parencite{graham2021ethical}
 
             \subsubsection{JWT - JSON Web Token}
-            Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli.
+            Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli a~aktivním stavu aplikace.
+            
             Při autentikaci se~vygeneruje \textsc{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
-            Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze změnit. V~případě změny dat v~tokenu se~token stává neplatným.
+            Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit. Do~tokenu se~přidávají data, která potřebujeme uchovat nebo je~využíváme na~dodatečnou kontrolu. V~případě změny nebo nepřesnosti v~datech tokenu se~token stává neplatným.
             To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
             a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
 
-            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč.\parencite{ieee:jwt}
+            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak v~případě více služeb na jednom serveru umožnit jednotné přihlášení. JWT~není vázán na~symetrické šifrování a~tak je k~využití přenositelnosti možné používat i~dvojici klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč} \parencite{miguelgrinbergJSONTokens}.
 
-        \subsection{Údržba aplikace}
-        Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
-        Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
-        
+            \subsection{Testování}
+            Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
+            
+            Na~druhou stranu - zejména automatickým - testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
+            
+            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\textbf{čisté funkce}, což jsou funkce, které nemají žádné vedlejší efekty a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \textbf{unit testing}.
+            
+            V~každém jazyce existují nástroje pro~automatické testování. Např.~v~případě Javascriptu jsou~to~\textbf{Jest}, \textbf{Mocha}, \textbf{Chai} nebo \textbf{Jasmine}. Go~má~vestavěný nástroj pro~testování~\textbf{Go~test}.
+            
+            Pro~testování React aplikace budu používat \textbf{Jest}. Pro~testování backendu budu používat \textbf{Go~test} \parencite{jestjsTestingReact}.
+            
+            \textbf{Testování API}
+            Pro~automatické testování API existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~hotovou \textsc{frontendovou} část. Mezi nejznámější patří \textbf{Postman}, \textbf{Insomnia} nebo \textbf{Swagger}. Některé navíc nabízejí možnost vytvořit si~sadu automatických testů, které můžeme automaticky spustit při~sestavení aplikace a~ověřit si~tak, že~API stále funguje správně.
+    
+            K~tomuto účelu využívám \textsc{Postman}. S~nastaveným testovacím skriptem si~jednoduše ukládám nový \textsc{token} a~při~dalším požadavku ho~posílám v~hlavičce požadavku. Tímto způsobem můžu testovat backend, bez vypínání bezpečnostních opatření.
+
+            \subsection{Údržba aplikace}
+            Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
+            Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
+            
             \subsubsection{SDLC - Životní cyklus vývoje software (Software Development Life Cycle)}
             SDLC je~životní cyklus vývoje softwaru. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru.
             Tyto procesy se~opakují v~kolech, které se~nazývají iterace. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
             Vývojáři se~také mohou v~každé iteraci vrátit k~předchozí části a~upravit ji~podle potřeby.
-
+            
             Existuje několik modelů \textsc{SDLC}, které se~liší počtem iterací a~způsobem vývoje. Nejčastěji se~používá model \textsc{Agile},
             který je~založen na~iteracích a~pravidelné komunikaci se~zákazníkem. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
-
+            
             Existují ale i~jiné modely vývoje, jako např.~\textsc{Vodopádový}, který je~založen na~jedné iteraci.
             V~té se~vyvíjí celá aplikace a~až poté se~testuje a~nasazuje.
             V~případě chyby je~potřeba se~vrátit na~začátek a~vyvíjet aplikaci znovu.
@@ -500,13 +510,11 @@
 
         Výslednou práci můžeme označit pomocí tagů, které se~používají pro~označení oficiálních vydání aplikace.
 
-        Existují taky různé služby, které poskytují prostor pro~ukládání projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\textbf{GitHub}, \textbf{GitLab} nebo~\textbf{Bitbucket}.
-
-        Mimo zmíněné funkce nabízejí třeba možnost vytvářet \textsc{Issues}, které může vývojář vytvořit, pokud narazí na~chybu nebo~má~nápad na~vylepšení. Tímto způsobem může vývojáři sdělit svůj nápad nebo~chybu a~případně se~k~ním vrátit později. \textsc{Issues} je~také možné přiřadit konkrétnímu vývojáři, který se~o~danou chybu nebo~nápad postará, a~automaticky vytvořit větev, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní větve projektu. Je~taky možné jednoduše zobrazit rozdíly mezi hlavní větví a~tou, na~které vývojář pracuje.
+        Existují taky různé služby, které poskytují prostor pro~ukládání projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\textbf{GitHub}, \textbf{GitLab} nebo~\textbf{Bitbucket}. Mimo zmíněné funkce nabízejí třeba možnost vytvářet \textsc{Issues}, které může vývojář vytvořit, pokud narazí na~chybu nebo~má~nápad na~vylepšení. Tímto způsobem může vývojáři sdělit svůj nápad nebo~chybu a~případně se~k~ním vrátit později. \textsc{Issues} je~také možné přiřadit konkrétnímu vývojáři, který se~o~danou chybu nebo~nápad postará, a~automaticky vytvořit větev, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní větve projektu. Je~taky možné jednoduše zobrazit rozdíly mezi hlavní větví a~tou, na~které vývojář pracuje.
         
-
-        \textbf{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj. \parencite{gitscmBook}
-
+        \textbf{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj \parencite{gitscmBook}.
+        
+        \textbf{Gitlab} je open-source nástroj pro~správu verzí na~serveru. Je~možné jej~zdarma nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty. Nabízí také možnost vytvářet \textsc{Issues}, \textsc{Merge Requesty} a~další funkce. Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, což~využívá spousta společností, které mají např.~více projektů.
 
         \subsection{Linux a příkazová řádka, WSL2}
         Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Je~to~nejrozšířenější open source operační systém,
@@ -523,11 +531,11 @@
         Na Windows je možné Linux využívat pomocí \textbf{WSL2 (Windows Subsystem for Linux)}. Jedná se~o~virtuální stroj, který běží na~pozadí a umožní uživateli Windows používat výhody, které nabízí Linux, např.~má~vývojové nástroje na~jednom místě, místo několika oken, které musí mít při vývoji na Windows.
 
 	\section{Návrh aplikace}
-        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Potom můžeme vytvořit \textsc{UML modely}, které mohou pomoct blíže promyslet strukturu.
+        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tak tzv.~\textsc{funkční požadavky} na~výslednou aplikaci. Potom můžeme vytvořit \textsc{UML modely}, které mohou pomoct blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
 
-        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet.
+        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet \parencite{bctynovsky:specifikacepozadavku}.
     
-        V~profesionálním prostředí je~potom důležité se~zamyslet nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
+        V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
 
         \subsection{Účel a~popis fungování vyvíjené aplikace}
         Aplikace \textsc{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně
@@ -666,8 +674,8 @@
             Základní funkce webových frameworků obecně je~tzv.~\textsc{Router}, který umožňuje definovat jednotlivé \textsc{koncové body} (\textbf{endpointy}) a~typy požadavků, které můžeme využít pro~komunikaci s~nimi.
             Když~do~aplikace přijde požadavek, \textsc{Router} zkontroluje, zda~existuje \textsc{koncový bod}, který odpovídá požadavku a~pokud ano, předá požadavek příslušné \textsc{Obslužné rutině} (\textbf{handler}u).
 
-            Každý \textsc{koncový bod} může mít svou vlastní \textsc{Obslužnou rutinu}, která zpracuje požadavek a~vrátí odpověď.
-            Gin také umožňuje vytvářet skupiny \textsc{koncových bodů}, které mají společný základ~URL adresy, které mohou mít společnou \textsc{obslužnou rutinu}.
+            Každý \textsc{koncový bod} má~svou~vlastní \textsc{Obslužnou rutinu} (dále \textbf{handler}), která zpracuje požadavek a~vrátí odpověď.
+            Gin také umožňuje vytvářet skupiny \textsc{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \textsc{handler}.
             To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \textsc{koncové body} pro~přihlášené
             uživatele můžeme předem definovat a~zabezpečit.
             
@@ -682,6 +690,8 @@
 
             Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované SQL dotazy. \parencite{gormGORM}
 
+            \textbf{Vite} je~nový nástroj pro~vytváření \textsc{Frontendu}. Je~to~nástroj, který je~velice rychlý a~jednoduchý na~použití.
+
             \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace.
             Použití kontejnerů při vývoji je~výhodné, protože vždy, když si~projekt znovu stáhneme, máme jistotu, že~aplikace běží
             ve~stejném prostředí, jako kdekoliv jinde. To~umožňuje jednodušší vývoj a~nasazení aplikace.
@@ -691,12 +701,11 @@
 
             Na~serveru navíc lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
 
-            \textbf{Nginx} se~definuje jako webový server s~možností reverzního proxy serveru a~load balanceru.
-            \textsc{Reverzní server} umožňuje přesměrovat požadavky na~různé servery nebo aplikace (porty), podle zadaných pravidel.
-            Třeba podle URL adresy nebo typu požadavku.
+            \textbf{Nginx} se~sám~definuje jako webový server a~reverzní proxy server a~load balancer.
+
+            \textsc{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku.
             
-            \textsc{Load balancer} umožňuje rozdělovat zátěž mezi servery, které jsou za~ním. To~se~využívá u~větších aplikací nebo v~případě, že~aplikace běží na~více serverech.
-            To~umožňuje i~nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server nedostupný.
+            \textsc{Load balancer} umožňuje rozdělovat zátěž mezi servery (resp.~aplikacemi), které má~k~dispozici. To~se~využívá u~větších aplikací, které mají vysokou používanost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. To~může nastat třeba v~případě externí služby pro~účely části aplikace nebo nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server přetížený či~nedostupný.
             
             \textsc{Nginx} je~považován za~velmi rychlý ve~srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů.
             Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. Vydaná  \parencite{WhatNGINX}
@@ -729,18 +738,25 @@
         
         \subsection{Backend}
             V aplikaci používám pro~tvorbu backendu jazyk \textbf{Go}, který bude zpracovávat požadavky od~klienta a~komunikovat s~databází.
+            Protože je~dobrou praxí rozdělit kód na~více funkčních celků, budu využívat \textsc{moduly}. Moduly umožňují mimo jiné další využití v~jiných projektech a~pokud použijeme nějaké obecné moduly, spravované jiným týmem (pokud to dovoluje zadání od~zákazníka i~licence využívaného modulu), ušetříme vývojem podobného modulu spoustu času. \parencite{Zimmerman2023:howtowritebetter}
             Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}. Ten zároveň přidává základní \textsc{endpointy} pro~autentikaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\textbf{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
-            K~databázi se~budu připojovat pomocí \textsc{ORM systému} \href{https://gorm.io/}{\textbf{go-gorm/gorm}}, který bude spravovat tabulky a~modely dat pro~manipulaci s~nimi.
-
-            K~připojení do~databáze tedy budu potřebovat tzv.~\textsc{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Potřebujeme \textbf{adresu} databáze a~\textbf{port}, na~kterém běží, \textbf{název databáze}, \textbf{jméno uživatele} a~\textbf{heslo}. Ty~si~načítám z~prostředí systému, tedy \textsc{Dockeru}.
-
+            
+            \subsubsection{Funkce Init}
             \textbf{Go} má~dvě vstupní funkce \textbf{main} a~\textbf{init}. Funkce \textbf{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \textbf{init} se~spustí jako první, ale~před funkcí \textbf{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \textbf{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
 
-            Ve chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \textbf{init}, poté hlavní část aplikace, funkce \textbf{main}. Je~to~podobné jazyku C a~dalším.
+            Ve chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \textbf{init} a~poté hlavní část aplikace, funkce \textbf{main}. Je~to~podobné jako v~jazyce C a~dalších kompilovaných jazycích.
+            
+            K~databázi se~budu připojovat pomocí \textsc{ORM systému} \href{https://gorm.io/}{\textbf{go-gorm/gorm}}, který bude spravovat tabulky a~modely dat pro~manipulaci s~nimi. ORM automaticky ukládá data do~databáze a~při~změně modelů je~schopen automaticky migrovat databázi, což výrazně zjednoduší vývoj aplikace.
 
-            V~hlavní funkci je~potřeba spustit \textsc{HTTP server}, který bude čekat na~požadavky od~klienta. K~tomu využijeme funkci \textbf{Run} z~balíčku \textbf{gin-gonic/gin}, prostřednictvím balíčku \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, který přidá do~serveru tzv.~\textsc{middleware} pro~kontrolu \textsc{JWT} tokenu a~přidá do~každého požadavku informace o~uživateli, který požadavek poslal. \textsc{Middleware}, je~funkce, která se~spustí před zpracováním požadavku a~může měnit jeho chování. V~tomto případě kontroluje, zda~je~požadavek autentický, případně zda je~přihlášen nějaký uživatel. Tyto~informace pak~uloží do~požadavku, aby~s~nimi mohl pracovat handler. Serveru tím říkáme, aby přijímal a~obsluhoval požadavky na~zadaném portu.
+            K~připojení do~databáze tedy budu potřebovat tzv.~\textsc{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Potřebujeme \textbf{adresu} databáze a~\textbf{port}, na~kterém běží, \textbf{název databáze}, \textbf{jméno uživatele} a~\textbf{heslo}. Ty~si~načítám z~prostředí systému, tedy \textsc{Dockeru}. Takto vytvořené spojení předám do \textbf{GORM}
+
+            Ve~funkci \texttt{init} také spustím migraci databáze, kde \textsc{GORM} vytvoří tabulky nebo je~aktualizuje.
+
+
+            \subsubsection{Funkce Main}
+            V~hlavní funkci spouštíme hlavní logiku aplikace. Je~potřeba spustit \textsc{HTTP server}, který bude čekat na~požadavky od~klienta na~definovaném portu. K~tomu využijeme funkci \textbf{Run} z~balíčku \textbf{gin-gonic/gin}, prostřednictvím balíčku \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, který přidá do~serveru tzv.~\textsc{middleware} pro~udržování a~kontrolu \textsc{JWT} tokenu a~přidá do~každého požadavku informace o~uživateli, který požadavek poslal. \textsc{Middleware}, je~funkce, která se~spustí před zpracováním požadavku a~může měnit jeho chování. V~tomto případě kontroluje, zda~je~požadavek autentický, případně zda jsou data autentická (nezměněná) a~zda~je~přihlášen nějaký uživatel. Tyto~informace pak~uloží do~požadavku, aby~s~nimi mohly pracovat handlery. Serveru tím říkáme, aby přijímal a~obsluhoval požadavky na~zadaném portu.
             
             % TODO: GORM Modely
 
