@@ -107,8 +107,6 @@
         \subsection{Co používají učitelé}
         % TODO: dotazník/rozhovory s učiteli
 
-    \section{Testová úloha}
-
     \section{Vývoj moderních webových aplikací}
     V dnešní době je~webová aplikace první volbou pro~většinu vývojářů. Je~to~způsobeno tím, že~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu a~je~schopné zobrazit webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
     
@@ -428,25 +426,28 @@
 
             Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak v~případě více služeb na jednom serveru umožnit jednotné přihlášení. JWT~není vázán na~symetrické šifrování a~tak je k~využití přenositelnosti možné používat i~dvojici klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč} \parencite{miguelgrinbergJSONTokens}.
 
-            \subsection{Testování}
-            Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
-            
-            Na~druhou stranu - zejména automatickým - testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
-            
-            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\textbf{čisté funkce}, což jsou funkce, které nemají žádné vedlejší efekty a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \textbf{unit testing}.
-            
-            V~každém jazyce existují nástroje pro~automatické testování. Např.~v~případě Javascriptu jsou~to~\textbf{Jest}, \textbf{Mocha}, \textbf{Chai} nebo \textbf{Jasmine}. Go~má~vestavěný nástroj pro~testování~\textbf{Go~test}.
-            
-            Pro~testování React aplikace budu používat \textbf{Jest}. Pro~testování backendu budu používat \textbf{Go~test} \parencite{jestjsTestingReact}.
-            
-            \textbf{Testování API}
-            Pro~automatické testování API existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~hotovou \textsc{frontendovou} část. Mezi nejznámější patří \textbf{Postman}, \textbf{Insomnia} nebo \textbf{Swagger}. Některé navíc nabízejí možnost vytvořit si~sadu automatických testů, které můžeme automaticky spustit při~sestavení aplikace a~ověřit si~tak, že~API stále funguje správně.
-    
-            K~tomuto účelu využívám \textsc{Postman}. S~nastaveným testovacím skriptem si~jednoduše ukládám nový \textsc{token} a~při~dalším požadavku ho~posílám v~hlavičce požadavku. Tímto způsobem můžu testovat backend, bez vypínání bezpečnostních opatření.
+        \subsection{Testování}
+        Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
+        
+        Na~druhou stranu - zejména automatickým - testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
+        
+        Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\textbf{čisté funkce}, což jsou funkce, které nemají žádné vedlejší efekty a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \textbf{unit testing}.
+        
+        V~každém jazyce existují nástroje pro~automatické testování. Např.~v~případě Javascriptu jsou~to~\textbf{Jest}, \textbf{Mocha}, \textbf{Chai} nebo \textbf{Jasmine}. Go~má~vestavěný nástroj pro~testování~\textbf{Go~test}.
+        
+        Pro~testování React aplikace budu používat \textbf{Jest}. Pro~testování backendu budu používat \textbf{Go~test} \parencite{jestjsTestingReact}.
+        
+        \subsubsection{Testování API}
+        Pro~automatické testování API existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~hotovou \textsc{frontendovou} část. Mezi nejznámější patří \textbf{Postman}, \textbf{Insomnia} nebo \textbf{Swagger}. Některé navíc nabízejí možnost vytvořit si~sadu automatických testů, které můžeme automaticky spustit při~sestavení aplikace a~ověřit si~tak, že~API stále funguje správně.
 
-            \subsection{Údržba aplikace}
-            Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
-            Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
+        K~tomuto účelu využívám \textsc{Postman}. S~nastaveným testovacím skriptem si~jednoduše ukládám nový \textsc{token} a~při~dalším požadavku ho~posílám v~hlavičce požadavku. Tímto způsobem můžu testovat backend, bez vypínání bezpečnostních opatření.
+
+        \subsubsection{Testování frontendu}
+        Pro~testování frontendu budu používat knihovnu \textbf{Jest}, kterou na~testování používá např.~Facebook. Testovat~bude potřeba čisté funkce, ale také komponenty. Komponenty se~testují pomocí snapshotů, které porovnávají vykreslenou komponentu s~předchozí verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku. \parencite{jestjsTestingReact}
+
+        \subsection{Údržba aplikace}
+        Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
+        Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
             
             \subsubsection{SDLC - Životní cyklus vývoje software (Software Development Life Cycle)}
             SDLC je~životní cyklus vývoje softwaru. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru.
@@ -546,7 +547,7 @@
         
         Zaregistruje~se do~aplikace \textsc{Písemkomat} a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je do kategorie Matematika.
 
-        Následně si~vytvoří písemnou práci a~může si~vybrat, zda chce, aby se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
+        Následně si~vytvoří písemnou práci a~může si~vybrat, zda~chce, aby~se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
         
         Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
         Proto \textsc{Písemkomat} umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
@@ -594,8 +595,7 @@
             \end{aligned}
         \end{align*}
 
-        Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné, podtržené místo o~velikosti určené při~zadávání proměnné.
-        Nebo v~případě možnosti výběru se~na~místě vykreslí všechny možnosti, aby~žák mohl vybrat správnou možnost kroužkováním nebo tak, jak učitel určí.
+        Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné nebo podtržené místo o~velikosti určené při~zadávání proměnné. Nebo v~případě možnosti výběru se~na~místě vykreslí všechny možnosti, aby~žák mohl vybrat správnou možnost kroužkováním nebo tak, jak učitel určí.
         
         To umožní systém používat např.~pro jazykové předměty, kde se~využívá doplňování slov do~textu nebo~výběr písmene.
 
@@ -611,7 +611,7 @@
             \item \textbf{Diagramy chování} - popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
         \end{itemize}
 
-        Pro naplánování své práce jsem si~vybral diagram~případů užití \textsc{UCD} a diagram~vztahů mezi~entitami \textsc{ERD}.
+        Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~vztahů mezi~třídami \textsc{Class Diagram}.
 
         \subsection{UCD - Use Case Diagram}
         \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele.
@@ -631,13 +631,23 @@
             \item \textbf{Zahrnutí} (include)- zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
         \end{itemize}
 
-        \subsection{ERD - Entity Relationship Diagram}
-        \textsc{ERD} není ve~standardu \textsc{UML}, ale je~to~diagram, který se~často používá pro~modelování vztahů mezi entitami.
-        \textbf{Entitou} nazýváme objekt, který má~svůj význam v~rámci aplikace. Entitou může být např.~uživatel, předmět, nebo~příspěvek.
-        Entita je~hlavní jednotka, se~kterou se~v~aplikaci pracuje a~většinou má~svou~tabulku v Databázi.
+        \subsection{Class Diagram}
+        \textsc{Class diagram} je~také součástí~standardu \textsc{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi.
 
-        Obvykle je~\textsc{ERD} spojováno s~návrhem databázových tabulek. Zejména pomáhá s~plánováním struktury tabulek a~vztahů mezi~nimi (\textsc{cizích klíčů}).
-        \parencite{vertabeloERD}
+        \textbf{Vlastnost (atribut) třídy} je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva}, která bude mít~hodnotu \texttt{červená} a~vlastnost \texttt{maxSpeed}, která bude mít~hodnotu \texttt{200 km/h}.
+
+        \textbf{Metoda třídy} je~funkce, která je~přiřazena k~třídě. Může mít~parametry a~výstupní hodnotu. Např.~třída \texttt{Auto} může mít~metodu \texttt{drive}, která bude mít~parametr \texttt{speed} k~určení, jakou rychlostí má~auto jet.
+        
+        Třída je v~diagramu~tříd zobrazena jako obdélník rozdělený na tři části. V~první části je~název třídy, ve~druhé jsou vlastnosti a~ve~třetí metody. \textbf{Veřejné} vlastnosti a~metody mají na~začátku názvu \texttt{+}, \textbf{chráněné} \texttt{\#}, \textbf{privátní} \texttt{-} a~\textbf{statické} \texttt{_}.
+        
+        \begin{itemize}
+            \item \textbf{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu je~může zobrazit či~změnit.
+            \item \textbf{Chráněné (protected)} vlastnosti a~metody jsou přístupné jen třídám, které dědí vlastnosti z~třídy, ve~které jsou definovány.
+            \item \textbf{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat.
+            \item \textbf{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu.
+        \end{itemize}
+        
+        Vztahy inkluze a~rozšíření jsou zobrazeny stejně jako u~\textsc{UCD} \parencite{visualparadigmClassDiagram}.
 
         \subsection{Návrh struktury databáze}
         Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
@@ -742,13 +752,14 @@
             Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}. Ten zároveň přidává základní \textsc{endpointy} pro~autentikaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\textbf{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
+            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje výsledné zadání, nebo sdělí chyby v~případě, že~nějaké nastanou.
             
             \subsubsection{Funkce Init}
             \textbf{Go} má~dvě vstupní funkce \textbf{main} a~\textbf{init}. Funkce \textbf{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \textbf{init} se~spustí jako první, ale~před funkcí \textbf{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \textbf{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
 
-            Ve chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \textbf{init} a~poté hlavní část aplikace, funkce \textbf{main}. Je~to~podobné jako v~jazyce C a~dalších kompilovaných jazycích.
+            Ve~chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \textbf{init} a~poté hlavní část aplikace, funkce \textbf{main}. Je~to~podobné jako v~jazyce C a~dalších kompilovaných jazycích, nebo při psaní kódu pro \textsc{Arduino}, kde se~automaticky spouští hlavní funkce \textbf{loop}, řídí logiku výstupních pinů a~dalších částí programu.
             
-            K~databázi se~budu připojovat pomocí \textsc{ORM systému} \href{https://gorm.io/}{\textbf{go-gorm/gorm}}, který bude spravovat tabulky a~modely dat pro~manipulaci s~nimi. ORM automaticky ukládá data do~databáze a~při~změně modelů je~schopen automaticky migrovat databázi, což výrazně zjednoduší vývoj aplikace.
+            Ve~funkci~\textsc{init} se~pomocí \textsc{systému GORM} (\href{https://gorm.io/}{\textbf{go-gorm/gorm}}), připojíme k~databázi, aby mohl spravovat tabulky a~modely dat pro~manipulaci s~nimi. ORM automaticky ukládá data do~databáze a~při~změně modelů je~schopen automaticky migrovat databázi, což výrazně zjednoduší vývoj aplikace.
 
             K~připojení do~databáze tedy budu potřebovat tzv.~\textsc{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Potřebujeme \textbf{adresu} databáze a~\textbf{port}, na~kterém běží, \textbf{název databáze}, \textbf{jméno uživatele} a~\textbf{heslo}. Ty~si~načítám z~prostředí systému, tedy \textsc{Dockeru}. Takto vytvořené spojení předám do \textbf{GORM}
 
@@ -772,9 +783,9 @@
         Bylo by dobré, kdyby aplikaci učitelé používali a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům. Postupně by~tak mohla vzniknout databáze příkladů, které by~mohli využít ostatní učitelé a~žáci k~procvičování příkladů.
         Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. V~plánu je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila důvěryhodnost uživatelů.
         
-        Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Kdyby byla aplikace dostupná přes API, mohla by~být integrována do~těchto prostředí a~učitelé by~mohli využívat příklady vytvořené v~aplikaci i~v~těchto prostředích.
+        Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \textsc{Písemkomat} bude dostupná přes~\textsc{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
         
-        Mohly by~tak~vzniknout moduly pro~použití v~těchto prostředích, které by~umožňovaly vytvářet příklady a~zadávat je~žákům přímo v~Moodlu, Google Classroom nebo rychle sdílet přes MS~Teams. Zajímavá by~mohla~být i~integrace do~CMS systému Wordpress pomocí pluginu.
+        Mohly by~tak~vzniknout moduly pro~použití v~těchto prostředích, které by~umožňovaly vytvářet příklady a~zadávat je~žákům přímo v~Moodlu, Google Classroom nebo~je~rychle sdílet přes MS~Teams. Zajímavá by~mohla~být i~integrace do~\textsc{CMS} systému Wordpress.
 
         Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady.
         
