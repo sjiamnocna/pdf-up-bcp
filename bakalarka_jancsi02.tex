@@ -219,7 +219,7 @@
         
         \textbf{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje využívat zápisu komponent jako v~HTML kódu. Jednotlivé prvky jsou tzv.~komponenty, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \parencite{reactJSX}
 
-        Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{code:ComponentJSX}.
+        Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
                 \begin{minted}[fontsize=\footnotesize,framesep=2mm]{js}
@@ -248,7 +248,7 @@
                 \vspace{1cm}
                 \caption{použití JSX}
             \end{subfigure}
-            \label{code:ComponentJSX}
+            \label{JSXcomponent}
             \caption{Rozdíl použití React vs.~JSX}
         \end{figure}
 
@@ -656,7 +656,7 @@
         
         \textbf{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat. Na~začátku názvu píšeme~\texttt{-}.
         
-        \textbf{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Označujeme znakem \texttt{_}.
+        \textbf{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Označujeme znakem \texttt{\textunderscore}.
         
         Vztahy inkluze a~rozšíření jsou v diagramu tříd zobrazeny stejně jako u~\textsc{UCD} \parencite{visualparadigmClassDiagram}.
 
