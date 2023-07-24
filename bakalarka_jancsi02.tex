@@ -406,7 +406,7 @@
             
             V~případě \textsc{API} se~jedná o~ověření, že~požadavek přišel z~naší aplikace a~ne z~jiného zdroje, např.~od~útočníka. Na~to~existují různé metody, např.~využití \textsc{JWT}.
             
-            Do~aplikace vložíme tajný klíč, který aplikace použije k~autentikaci a~po~úspěšné autentikaci aplikace se~vygeneruje textový řetězec, tzv.~\textsc{Token}, který pak~při~každém požadavku na~server \textsc{klient} posílá v~hlavičce požadavku.
+            Do~frontendu aplikace vložíme dvojici tajných údajů, které backendu řeknou, že~jde skutečně o~naši aplikaci, resp.~o~jinou aplikaci, která má~k~backendu přístup. Taky můžeme přístup pomocí tajných údajů omezit na~konkrétní IP adresu, ze~které se~připojuje, nebo jakékoliv další informace, které jsou stálé a~můžeme je~vyčíst z~přicházejícího požadavku.
 
             Při autentikaci aplikace je~důležité kontrolovat také jestli~požadavek přišel z~povolené IP~adresy, byl vytvořen naší aplikací na~našem webu, klientovu \textsc{IP~adresu} a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\textsc{token} nebyl změněn a~přichází stále z~naší aplikace. \parencite{graham2021ethical}
             
@@ -414,7 +414,7 @@
             Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
             To~je možné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
 
-            Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat.\parencite{graham2021ethical}
+            Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat. \parencite{graham2021ethical}
 
             \subsubsection{JWT - JSON Web Token}
             Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli a~aktivním stavu aplikace.
@@ -424,7 +424,18 @@
             To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
             a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
 
-            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak v~případě více služeb na jednom serveru umožnit jednotné přihlášení. JWT~není vázán na~symetrické šifrování a~tak je k~využití přenositelnosti možné používat i~dvojici klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč} \parencite{miguelgrinbergJSONTokens}.
+            Lze to~vidět na~schématu \ref{model-jwt}.
+
+            \begin{figure}
+                \centering
+                \includegraphics{img/jwt.jpg}
+                \label{model-jwt}
+                \caption{Použití JWT v~praxi}
+            \end{figure}
+
+            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. JWT~není vázán na~symetrické šifrování a~tak se~k~využití přenositelnosti často využívá \textsc{asymetrické šifrování} - dvojice klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč} \parencite{miguelgrinbergJSONTokens}.
+
+            Zajímavou možností by~bylo i~využití \textsc{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \parencite{homeomorphicEncryption}
 
         \subsection{Testování}
         Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
@@ -614,17 +625,16 @@
         Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~vztahů mezi~třídami \textsc{Class Diagram}.
 
         \subsection{UCD - Use Case Diagram}
-        \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele.
-        Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jakým způsobem může aktér systém používat.
+        \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce může aktér systém používat.
 
-        To nám může pomoct při~přípravě zjistit, jaké funkce bude aplikace mít a~tím nastínit, jak budou vypadat \textsc{Endpointy} v~\textsc{API}.
+        To nám může pomoct při~přípravě zjistit,  jaké funkce bude aplikace mít a~tím nastínit, jaké bude potřeba vytvořit \textsc{Endpointy} v~\textsc{API}.
         Taky si~můžeme ověřit správnost návrhu a~zjistit, zda~jsme nějakou funkcionalitu nevynechali, protože na~diagramu jsou případné nedostatky vidět lépe.
         
-        A hlavně nám to~umožní lépe si~představit, jak bude aplikace fungovat a~jaké funkce bude mít. \parencite{uml:usecase}
+        A hlavně nám to~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \textsc{endpointy} budeme potřebovat vytvořit, aby~bylo možné akce provádět. \parencite{uml:usecase}
 
         Při~modelování pomocí \textsc{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu.
         \begin{itemize}
-            \item \textbf{Aktér} je~osoba nebo systém, který používá aplikaci. Aktérem může být např.~uživatel, nebo~jiná aplikace. K~označení se~používají ikony lidí a~textový popisek.
+            \item \textbf{Aktér} je~osoba nebo systém, který používá aplikaci. Aktérem může být např.~uživatel, čas nebo~jiná aplikace. K~označení se~používají ikony lidí a~textový popisek.
             \item \textbf{Případ užití} je~akce, kterou aplikace \textsc{aktérovi} nabízí. Případ užití je~zobrazen jako elipsa, která je~připojena k~aktérovi čarou.
             \item \textbf{Vztahy mezi~aktéry a~případy užití} znázorňují, jestli a~jakým způsobem může aktér případ užití používat. Vztahy se~značí šipkami, které vycházejí z~aktéra a~končí u~případu užití.
             \item \textbf{Rozšíření} (extend) - je~případ užití, který přejímá vlastnosti předchozího případu užití a~rozšiřuje je~o~další možnosti. Znázorňuje se~jako šipka, která míří směrem z~případu užití a~končí u~případu užití, který rozšiřuje.
@@ -632,7 +642,7 @@
         \end{itemize}
 
         \subsection{Class Diagram}
-        \textsc{Class diagram} je~také součástí~standardu \textsc{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi.
+        \textsc{Class diagram} (\textsc{Diagram tříd}) je~také součástí~standardu \textsc{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi.
 
         \textbf{Vlastnost (atribut) třídy} je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva}, která bude mít~hodnotu \texttt{červená} a~vlastnost \texttt{maxSpeed}, která bude mít~hodnotu \texttt{200 km/h}.
 
@@ -640,14 +650,15 @@
         
         Třída je v~diagramu~tříd zobrazena jako obdélník rozdělený na tři části. V~první části je~název třídy, ve~druhé jsou vlastnosti a~ve~třetí metody. \textbf{Veřejné} vlastnosti a~metody mají na~začátku názvu \texttt{+}, \textbf{chráněné} \texttt{\#}, \textbf{privátní} \texttt{-} a~\textbf{statické} \texttt{\_}.
         
-        \begin{itemize}
-            \item \textbf{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu je~může zobrazit či~změnit.
-            \item \textbf{Chráněné (protected)} vlastnosti a~metody jsou přístupné jen třídám, které dědí vlastnosti z~třídy, ve~které jsou definovány.
-            \item \textbf{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat.
-            \item \textbf{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu.
-        \end{itemize}
+        \textbf{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu je~může zobrazit či~změnit. Vlastnosti a~metody mají na~začátku názvu \texttt{+}.
+
+        \textbf{Chráněné (protected)} vlastnosti a~metody jsou přístupné jen třídám, které dědí vlastnosti z~třídy, ze~které dědí. Na~začátku názvu píšeme~\texttt{\#}.
         
-        Vztahy inkluze a~rozšíření jsou zobrazeny stejně jako u~\textsc{UCD} \parencite{visualparadigmClassDiagram}.
+        \textbf{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat. Na~začátku názvu píšeme~\texttt{-}.
+        
+        \textbf{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Označujeme znakem \texttt{_}.
+        
+        Vztahy inkluze a~rozšíření jsou v diagramu tříd zobrazeny stejně jako u~\textsc{UCD} \parencite{visualparadigmClassDiagram}.
 
         \subsection{Návrh struktury databáze}
         Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
@@ -675,13 +686,13 @@
             \LaTeX je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí.\parencite{Rybicka2003:latex}
 
             \textbf{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní.
-            Protože je~kompilovaný, je~rychlý i~při~běhu. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací.
-            Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů nebo i~jiných zdrojů a~používat je~v~aplikaci a~sám
-            si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
+
+            Protože je~kompilovaný, je~rychlý i~při~běhu programu. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů nebo i~jiných zdrojů a~používat je~v~aplikaci a~sám si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
 
             Zároveň při kompilaci vzniká jeden binární soubor, takže přestože je aplikace docela rozsáhlá, je~dostatečně rychlá.
 
             Základní funkce webových frameworků obecně je~tzv.~\textsc{Router}, který umožňuje definovat jednotlivé \textsc{koncové body} (\textbf{endpointy}) a~typy požadavků, které můžeme využít pro~komunikaci s~nimi.
+            
             Když~do~aplikace přijde požadavek, \textsc{Router} zkontroluje, zda~existuje \textsc{koncový bod}, který odpovídá požadavku a~pokud ano, předá požadavek příslušné \textsc{Obslužné rutině} (\textbf{handler}u).
 
             Každý \textsc{koncový bod} má~svou~vlastní \textsc{Obslužnou rutinu} (dále \textbf{handler}), která zpracuje požadavek a~vrátí odpověď.
@@ -717,11 +728,9 @@
             
             \textsc{Load balancer} umožňuje rozdělovat zátěž mezi servery (resp.~aplikacemi), které má~k~dispozici. To~se~využívá u~větších aplikací, které mají vysokou používanost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. To~může nastat třeba v~případě externí služby pro~účely části aplikace nebo nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server přetížený či~nedostupný.
             
-            \textsc{Nginx} je~považován za~velmi rychlý ve~srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů.
-            Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. Vydaná  \parencite{WhatNGINX}
+            \textsc{Nginx} je~považován za~velmi rychlý ve~srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů. Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. Vydaná  \parencite{WhatNGINX}
 
-            A~nakonec \textbf{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech,
-            nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo.
+            A~nakonec \textbf{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech, nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo. 
 
             Tuto distribuci používám jako hlavní systém na~svém VPS\footnote{VPS - Virtual Private Server}.
             Na~serveru poběží pouze \textbf{Nginx}, který nasměruje požadavky na~správné porty, a \textbf{Firewall} (\textbf{UFW}), který zablokuje přístup k~neveřejným portům.
