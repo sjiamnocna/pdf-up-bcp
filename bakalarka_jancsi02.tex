@@ -437,43 +437,13 @@
                 \caption{Použití JWT v~praxi}
             \end{figure}
 
-            \textbf{JWT} sestává ze~tří částí, které jsou odděleny tečkou, viz. \ref{slozeni-jwt}.
+            \textbf{JWT} sestává ze~tří částí, které jsou odděleny tečkou.
             
-            První část je~\textbf{hlavička (header)}, která obsahuje informace o~typu tokenu a~typu šifrování.
-            
-            Druhá část je~\textbf{tělo tokenu (body)}, které obsahuje data, která chceme uchovat (\textbf{payload}).
-            
-            Třetí část je~\textbf{podpis (signature)}, který zajišťuje kontrolu, že~token nebyl během cesty na~server změněn.
-
-            \begin{figure}
-                \centering
-                \begin{tabular}{l l l}
-                    \textcolor{red}{\texttt{header}} &
-                    \textcolor{orange}{\texttt{body/payload}} &
-                    \textcolor{green}{\texttt{signature}}\\
-
-                    \textcolor{red}{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9}. &
-                    \textcolor{orange}{eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ}. &
-                    \textcolor{green}{SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c}\\
-
-                    \textcolor{red}{\texttt{\{
-                        "alg": "HS256",
-                        "typ": "JWT"
-                      \}}} &
-                    \textcolor{orange}{\texttt{\{
-                        "sub": "1234567890",
-                        "name": "John Doe",
-                        "iat": 1516239022 // Issued At
-                      \}}} &
-                    \textcolor{green}{\texttt{HMACSHA256(
-                        base64UrlEncode(header) + "." +
-                        base64UrlEncode(payload)
-                    )}}\\
-                    
-                \end{tabular}
-                \label{slozeni-jwt}
-                \caption{Složení JWT}
-            \end{figure}
+            \begin{enumerate}
+                \item \textbf{Hlavička (header)}, která obsahuje informace o~typu tokenu a~typu šifrování podpisu.
+                \item \textbf{Tělo tokenu (body)}, které obsahuje data, která chceme uchovat (\textbf{payload}).
+                \item \textbf{Podpis (signature)}, který zajišťuje kontrolu, že~token nebyl během cesty na~server změněn.
+            \end{enumerate}
 
             Všechny tři~části jsou zakódovány pomocí \textsc{Base64} a~odděleny tečkou. Výsledný token je~také textový řetězec, který je~možné přenášet v~hlavičce \textsc{HTTP~požadavku}.
 
