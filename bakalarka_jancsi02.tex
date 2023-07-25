@@ -184,6 +184,18 @@
         
         Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. \parencite{ueda:compiled}
         
+        \subsection{Překladač (kompilátor)}
+        Překladač je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit chyby před spuštěním programu.
+
+        \textbf{Překladače} i~\textbf{interprety} pracují v~několika fázích:
+        \begin{enumerate}
+            \item \textbf{Lexikální analýza} - čte zdrojový kód znak po~znaku a~rozděluje kód na~jednotlivé tokeny a~určuje jejich typ (slova, čísla, operátory\dots). Při~tom kontroluje správnost zápisu a~případné chyby vypíše. Výstupem je~seznam tokenů.
+            \item \textbf{Syntaktická analýza} - kontroluje, jestli jsou jednotlivé tokeny správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \textsc{abstraktní syntaktický strom (AST = Abstract Syntax Tree)}, který reprezentuje strukturu programu.
+            \item \textbf{Sémantická analýza} - kontroluje správnost použití jednotlivých tokenů a~jejich význam. Generuje tabulku symbolů, která obsahuje informace o~proměnných a~funkcích, dostupných v~programu.
+            \item \textbf{Optimalizace} - v~této fázi optimalizujeme kód, aby byl ve výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a může být prováděna v~různých fázích překladu (a~nemusí být prováděna vůbec).
+            \item \textbf{Generování kódu} - Jakmile máme \textbf{AST}, můžeme generovat výslednou podobu v~požadované formě - binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo jiná požadovaná forma dat.
+        \end{enumerate}
+
         \subsection{Javascript}
         Javascript je~skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce, jako je~kliknutí, a~tedy na~rozdíl od~statické podoby HTML stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje.
 
@@ -558,6 +570,23 @@
         Navíc většina nástrojů pro vývoj webových aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky vše nastavit skriptem z~příkazové řádky. Není nutné instalovat a~mít~spuštěno 5 různých nástrojových oken, vše je~na~jednom místě.
 
         Na Windows je možné Linux využívat pomocí \textbf{WSL2 (Windows Subsystem for Linux)}. Jedná se~o~virtuální stroj, který běží na~pozadí a umožní uživateli Windows používat výhody, které nabízí Linux, např.~má~vývojové nástroje na~jednom místě, místo několika oken, které musí mít při vývoji na Windows.
+
+        \subsection{IDE a nástroje pro psaní kódu}
+        \textbf{IDE} (Integrated Development Environment) je~integrované vývojové prostředí, které umožňuje vývojářům psát kód, spouštět aplikaci a~ladit (debugovat) ji~v~jednom prostředí. To~umožňuje vývojářům pracovat efektivněji a~rychleji. V~jednom okně mají~všechny nástroje, které potřebují k~vývoji aplikace. V~dnešní době existuje spousta IDE, které se~liší podporovanými jazyky, funkcemi a~vzhledem. Funkcionalitu je~možné doplňovat o~nové funkce pomocí pluginů.
+        
+        Mezi nejznámější \textbf{IDE} patří \textbf{Visual Studio Code}, \textbf{IntelliJ IDEA}, \textbf{Google Atom}, \textbf{Netbeans} nebo \textbf{Sublime Text}. Jako \textbf{IDE} můžeme při~vhodném nastavení označit také konzolový editor \textbf{Vim}.
+        
+        Důležitými funkcemi jsou zvýrazňování syntaxe, automatické formátování kódu, možnost spouštět aplikaci přímo z~\textbf{IDE}, odchytávat a~ladit ji~v~něm.
+        
+        S~pokrokem umělé inteligence se~začínají objevovat i~nástroje, které dokáží automaticky opravovat chyby v~kódu, nebo~dokonce přímo psát kód za~vývojáře. To~ale zatím není možné v~každém jazyce a~funguje to~pouze pro~jednoduché úlohy. Navíc je~nutné kód osobně zkontrolovat, protože nástroje mohou vytvořit kód, který je~sice funkční, ale~neefektivní nebo~nečitelný.
+
+        Příkladem nástroje generování kódu může být~např.~\textbf{Github Copilot}, který dokáže na~základě komentářů nebo kontextu v~kódu vygenerovat funkční kód. Další nástroje jsou \textbf{Tabnine}, \textbf{Kite} nebo \textbf{Deep TabNine}.
+        
+        Také proto v~průzkumu \uv{The State Of AI Tools 2023}\parencite{zerotomasteryStateOfAI} většina vývojářů odpověděla, že~se~nebojí toho, že by~je~\textsc{AI} v~blízké budoucnosti plně nahradila. Programování je~komplexní proces, který vyžaduje kreativitu a~schopnost řešit problémy různého typu.
+        
+        Jazykové modely \textsc{AI}, jako např.~\textbf{ChatGPT} ale~pomáhá zejména ke~konzultaci problémů a~získání nápadů, jak je~vyřešit. Svým způsobem tím~nahrazuje \textbf{Stack Overflow}, fórum, kde~si vývojáři radí navzájem s~řešením problémů. Také jsou tyto pomocné nástroje skvělé na~opakované úkoly, jako přepisování struktury dat nebo~vytváření dokumentací.
+
+        \textbf{AI} navíc poslední dobou ztrácí na~faktické přesnosti, takže je~nutné výsledky posuzovat kriticky a~nenechat všechno na~nástrojích.
 
 	\section{Návrh aplikace}
         Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tak tzv.~\textsc{funkční požadavky} na~výslednou aplikaci. Potom můžeme vytvořit \textsc{UML modely}, které mohou pomoct blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
