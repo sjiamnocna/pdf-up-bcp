@@ -128,7 +128,7 @@
 
         Pokud si~učitel chce test vytvořit, může používat klasické \textbf{tabulkové procesory}, jako je~např.~\textsc{Microsoft Excel} nebo \textsc{Google Sheets}, nebo \textbf{textové procesory}, jako je~např.~\textsc{Microsoft Word} nebo \textsc{Google Docs}.
 
-        V~dnešní době může jednodušeji napsat testy v~\textsc{\LaTeX{u}} nebo ve~formátu \textsc{Markdownu}, které nabízejí jednodušší formátování textu než třeba Word.
+        V~dnešní době může učitel k~jednoduššímu formátování textu používat formáty \textsc{\LaTeX} nebo \textsc{Markdownu}, který nemá takové možnosti, jako textové procesory třeba MS Word, nicméně umožňují základní formátování textu i~seznamů.
 
         \subsection{Co na tvorbu testů používají učitelé}
         % TODO: dotazník/rozhovory s učiteli
@@ -159,57 +159,6 @@
         Zatímco tříd může mít prvek více, identifikátor může mít jen jeden. Identifikátor by měl být unikátní. V jedné HTML stránce by se měl vyskytovat jen jednou.
         Třídy se~používají pro~skupiny prvků, které mají stejný vzhled. Prvek může mít více tříd a~kombinovat tak jejich vlastnosti. \parencite{jpw:tridy}
 
-        \subsection{Kompilátor a Interpret}
-        Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
-
-        \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.\,překladače (kompilátoru) překládá do~binárního souboru, který obsahuje přímo instrukce,
-        které dokáže počítač (procesor) vykonávat. Při~každém spuštění se~do paměti načte binární soubor a~procesor vykonává jeho instrukce.
-
-        \textbf{Interpretovaný} jazyk naopak vykonáván programem, kterému říkáme interpret. Ten čte příkazy a~přímo je~vykonává. To~znamená,
-        že~při~každém spuštění se~příkazy překládají znovu. Interpret je program, který musí běžet, zatímco příkazy interpretuje,
-        což je taky jeden z~důvodů, proč je~interpretovaný jazyk pomalejší a náročnější na využítí zdrojů, než~kompilovaný.
-        
-        Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu. \parencite{ueda:compiled}
-        
-        \subsection{Javascript}
-        Javascript je skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce,
-        jako je~kliknutí, a~tedy na~rozdíl od~statické podoby HTML stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje.
-
-        Vznikl v~roce 1995 a~jeho tvůrci jsou Brendan Eich a~společnost Netscape.
-        Javascript je~dnes nejrozšířenějším programovacím jazykem na~světě a~používá se~nejen pro~webové stránky,
-        ale i~pro~tvorbu nativních aplikací.
-
-        Díky spouštěčům Javascriptu, kterým říkáme Javascriptové enginy, je~možné spouštět Javascript na~různých platformách.
-        A tak můžeme Javascript spouštět v~prohlížeči, ale i~na~serveru, a dokonce na~mikrokontrolerech. Jeden jazyk tak zvládne pokrýt
-        většinu potřeb, které můžeme při~vývoji aplikací mít.
-
-        Javascript je interpretovaný jazyk, což znamená, že~jednotlivé příkazy se~vykonávají postupně a~při~každém spuštění programu se~překládají.
-        To přináší výhodu v~tom, že je možné příkazy vykonávat ihned, ale zároveň to znamená, že~při~každém spuštění se~musí překládat, což může být pomalejší než spouštění kompilovaného binárního souboru.
-
-        Javascript dokáže příkazy zpracovávat synchronně i~asynchronně.
-        
-        Synchronní zpracování znamená, že~se~příkazy vykonávají postupně, tak jak
-        jsou zapsané.
-        
-        Asynchronní zpracování znamená, že~se~příkazy vykonávají nezávisle na~sobě. To je~užitečné např.~při~načítání dat ze~serveru,
-        které může trvat delší dobu. V~tomto případě se~synchronní příkazy vykonávají dál a~když se~data úspěšně načtou, vykoná~se příkaz, který na~ně čeká. \parencite{kantor_javascript}
-
-        \subsection{Typescript}
-        Další nevýhodou Javascriptu je, že~není typově bezpečný. To znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné
-        a~funkce použity správně. To může vést k~chybám, které se~projeví až při~spuštění programu. To je~pro~větší projekty nežádoucí, proto se~používají
-        jiné jazyky, které jsou typově bezpečné a~po~kontrole jsou přeloženy (kompilovány, transpilovány) zpět do Javascriptu. Jedním z~nich je~Typescript.
-        Kromě typové bezpečnosti přináší Typescript i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují výkon aplikace.
-
-        Typescript přidává do~Javascriptu statickou kontrolu typů, což znamená, že~proměnné mají přiřazený datový typ. V~Javascriptu to~normálně není nutné a~dokonce je~možné typy měnit za~běhu programu.
-        Díky kontrole typů je~možné provést při překladu kontrolu, zda~jsou všechny proměnné a~funkce použity správně, což redukuje množství chyb.
-        Typescript se~kompiluje (transpiluje) zpět do Javascriptu a~je~možné při~vývoji v~Typescriptu použít všechny vlastnosti Javascriptu.\parencite[Get started/TypeScript for the New Programmer]{TypeScript}
-
-        \subsection{DOM - Document Object Model}
-        DOM je~objektový model dokumentu, který vytváří prohlížeč na~základě HTML stránky. Jednotlivé HTML značky jsou reprezentovány objekty.
-        Před vykreslením stránky v prohlížeči, se~nejprve vytvoří DOM, který obsahuje všechny objekty (HTML prvky), které se~mají zobrazit.
-        K~nim pak prohlížeč přiřadí CSS styly a~vykreslí je~na~obrazovku. K~DOMu pak můžeme přistupovat pomocí Javascriptu
-        a~můžeme aktivně měnit obsah strány, včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.\parencite[2.1.01]{kantor_javascript}
-        
         \subsection{HTML s dynamickým obsahem}
         HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje.
         Na úrovni serveru se~může generovat HTML stránka, která obsahuje dynamický obsah. V~dnešní době se~častěji používá Javascript,
@@ -222,9 +171,45 @@
         To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze se~načtou data ze~serveru
         a~přidají se~do~stránky. To~je~mnohem rychlejší a~příjemnější pro~uživatele.
 
-        
+        \subsection{Kompilátor a Interpret}
+        Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
 
-        \subsection{React} je~knihovna pro~tvorbu uživatelského rozhraní. Je~vyvíjena společností Facebook a~je~používána při~vývoji mnoha webových aplikacích.
+        \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.\,překladače (kompilátoru) překládá do~binárního souboru, který obsahuje přímo instrukce pro~procesor, které dokáže počítač (procesor) vykonávat. Při~každém spuštění se~do paměti načte binární soubor a~procesor vykonává jeho instrukce.
+        
+        Při~překladu (\textsc{kompilaci}) překladač navíc kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit chyby před spuštěním programu.
+
+        Překladač navíc provádí optimalizace, které zvyšují výkon a~snižují nároky programu.
+
+        \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme interpret. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. Navíc je~interpret program, který musí běžet, zatímco příkazy interpretuje, což je taky jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~kompilovaný.
+        
+        Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. \parencite{ueda:compiled}
+        
+        \subsection{Javascript}
+        Javascript je~skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce, jako je~kliknutí, a~tedy na~rozdíl od~statické podoby HTML stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje.
+
+        Vznikl v~roce 1995 a~jeho tvůrci jsou \textbf{Brendan Eich} a~společnost \textbf{Netscape}. Javascript (resp.~Typescript) je~v~současnosti nejpoužívanějším programovacím jazykem na~světě a~používá se~nejen pro~webové stránky, ale i~pro~tvorbu \textsc{nativních} a~dokonce některých \textsc{embedded} aplikací.
+
+        Díky spouštěčům Javascriptu, kterým říkáme \textsc{Javascriptové enginy}, je~možné spouštět Javascript na~různých platformách. A~tak~můžeme Javascript spouštět v~prohlížeči, ale i~na~serveru, a dokonce na~mikrokontrolerech. Jeden jazyk tak zvládne pokrýt většinu potřeb, které můžeme při~vývoji aplikací mít.
+
+        Javascript dokáže příkazy zpracovávat synchronně i~asynchronně. \textbf{Synchronní} zpracování znamená, že~se~příkazy vykonávají postupně, tak jak
+        jsou zapsané. \textbf{Asynchronní} zpracování naopak znamená, že~se~příkazy vykonávají nezávisle na~sobě. To je~užitečné např.~při~načítání dat ze~serveru,
+        které může trvat delší dobu. V~tomto případě se~synchronní příkazy vykonávají dál a~když se~data úspěšně načtou, vykoná~se příkaz, který na~ně čeká. \parencite{kantor_javascript}
+
+        Zpracování \textsc{Javascriptu} je~rozdělen do~dvou částí. První částí je~\textbf{Javascriptový engine}, který zpracovává Javascriptový kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\textbf{Web APIs}, které poskytuje funkce, které můžeme v~Javascriptu používat, nicméně jde o~instrukce, poskytované nikoliv Javascriptovým enginem, ale prohlížečem. Jde~např.~o~přístupu k~\textsc{DOMu}, kameře, mikrofonu nebo veškeré asynchronní operace, jako je~načítání dat ze~serveru. \parencite{mdn:js}
+
+        \subsection{Typescript}
+        Nevýhodou Javascriptu je, že~není typově bezpečný. To znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné a~funkce použity správně a~jednotlivé typy je~možné za~běhu měnit. To může vést k~chybám, které se~projeví až při~spuštění programu. To je~pro~větší projekty nežádoucí, proto se~používají jiné jazyky, které typově bezpečné jsou a~po~kontrole jsou přeloženy (kompilovány, transpilovány) zpět do Javascriptu. Jedním z~nich je~Typescript. Kromě typové kontroly přináší Typescript i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují výkon aplikace.
+
+        Typescript přidává do~Javascriptu statickou kontrolu typů, což znamená, že~proměnné mají přiřazený datový typ, který se~během běhu aplikace nemění, což~v~Javascriptu normálně možné je. Díky kontrole typů je~možné provést při překladu kontrolu, zda~jsou všechny proměnné a~funkce použity správně, což redukuje množství chyb. Navíc umožňuje používat nové vlastnosti Javascriptu, které ještě nejsou podporovány ve~všech prohlížečích. A~také umožňuje tvořit vlastní typy a~struktury, které mohou být použity v~rámci \textsc{AJAX požadavků}. Díky tomu můžeme v~\textbf{IDE} (\textsc{Integrated Development Environment}) používat automatické doplňování kódu a~mít tak~lepší přehled o~tom, s~jakými daty budeme pracovat.
+
+        Typescript se~kompiluje (transpiluje) zpět do~Javascriptu a~je~možné při~vývoji v~Typescriptu použít všechny vlastnosti Javascriptu. \parencite[Get started/TypeScript for the New Programmer]{TypeScript}
+
+        \subsection{DOM - Document Object Model}
+        DOM je~objektový model dokumentu, který vytváří prohlížeč na~základě HTML kódu stránky. Jednotlivé HTML prvky jsou reprezentovány objekty, tzv.~\textsc{uzly}. Před vykreslením stránky v~prohlížeči, se~nejprve vytvoří DOM, který obsahuje všechny objekty (HTML prvky), které se~mají zobrazit. K~nim pak~prohlížeč přiřadí \textsc{CSS~styly} a~prohlížečové jádro je~vykreslí na~obrazovku. K~DOMu pak můžeme přistupovat pomocí Javascriptu pomocí globálních objektů \texttt{document} a~\texttt{window}.
+        
+        Díky nim~můžeme aktivně měnit obsah strány, včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.\parencite[2.1.01]{kantor_javascript}
+
+        \subsection{React} je~knihovna pro~tvorbu \textsc{uživatelského rozhraní}. Je~vyvíjena společností Facebook a~je~používána při~vývoji mnoha webových aplikacích.
         Je oblíbená pro svou jednoduchost a~rychlost. Je~také dobře dokumentovaná a~má~velkou komunitu, která ji~podporuje.
         Existuje mnoho nástrojů, které usnadňují vývoj aplikací v~Reactu, jako
         např.~\textsc{Create React App} (někdy se setkáme se zkratkou CRA), nebo \textsc{Vite}.
@@ -278,7 +263,7 @@
             \caption{Rozdíl použití React vs.~JSX}
         \end{figure}
 
-        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu ale~i~v~Javascriptu, Typescriptu, Vue a dalších frameworků. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~Reactu podobný.
+        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu, Vue ale~i~ve~\textsc{Vanilla Javascriptu} nebo \textsc{Typescriptu}. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~podobný Reactu.
         
         \textsc{Vite} také zrychluje spouštění aplikace a~nastavuje tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} aplikace v~prohlížeči automaticky načte znovu, bez~nutnosti manipulace s~prohlížečem.
         Vite údajně také zrychluje sestavení modulů více než jiné nástroje.\parencite{vitejs}
@@ -295,14 +280,14 @@
         \textbf{Klient} může být webový prohlížeč, ale i~jiná, např. mobilní aplikace, která posílá požadavky a~data na~server.
 
         \subsection{Webová služba, webový server}
-        Webová služba je~program, který běží na~serveru a~poskytuje data klientovi. Na serveru může běžet více webových služeb, rozlišují se portem, na~kterém běží. Např.~webová služba HTTP, která poskytuje webová data a~soubory bude běžet na~portu~80, resp.~443 pro~HTTPS. Další služby mohou být např.~emailová služba SMTP (\textsc{Simple Mail Transfer Protocol}), která poběží nejčastěji na~portu~25 a další.
+        Webová služba je~program, který běží na~serveru a~poskytuje data klientovi. Na serveru může běžet více webových služeb, rozlišují se portem, na~kterém běží a~přijímají instrukce a~data. Např.~webová služba HTTP, která poskytuje webová data a~soubory poběží na~portu~80, resp.~dneska hlavně~443 (\textbf{HTTPS}). Další služby mohou být např.~emailová služba SMTP (\textsc{Simple Mail Transfer Protocol}), která poběží nejčastěji na~portu~25 a další.
         
-        Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů. K~jednotlivým serverům se~přistupuje pomocí IP adresy a~portu, na~kterém služba běží. \parencite{webserver:mdn}
+        Služby \uv{naslouchají} na svých portech a~přijímají požadavky od~klientů. K~serverům na~internetu se~přistupuje pomocí \textsc{IP~adresy} a~ke~službám pak~pomocí portu, na~kterém běží. \parencite{webserver:mdn}
 
-        \subsection{DNS - Domain Name System}
-        DNS je~zkratka pro~\textsc{Domain Name System}, někdy \textsc{Domain Name Server}. Je~to~systém, který překládá doménová jména na~IP adresy. To~umožňuje, aby~uživatelé používali lidem čitelná doménová jména namísto \textsc{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
+        \subsection{DNS - Domain Name Server}
+        \textsc{DNS} je~zkratka pro~\textsc{Domain Name Server}, někdy \textsc{Domain Name System}. Je~to~systém, který překládá doménová jména na~IP adresy. To~umožňuje, aby~uživatelé používali lidem čitelná doménová jména namísto \textsc{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
         
-        Bez DNS by~se~oblíbený český vyhledávač \texttt{Seznam.cz} proměnil ve~směsici čísel \texttt{77.75.79.222}, což~by~uživatel moc neocenil. To~samé by~platilo i~pro~ostatní weby.
+        Bez \textsc{DNS} by~se~např.~oblíbený český vyhledávač \texttt{Seznam.cz} proměnil ve~směsici čísel \texttt{77.75.79.222}, což~by~uživatel moc neocenil. To~samé by~platilo i~pro~ostatní weby.
 
         \textsc{Doménové jméno} je~složeno ze~tří částí. První část je~\textsc{subdoména}, která je~volitelná. Druhou částí je~\textsc{doména} (2.\,řádu), která je~povinná a~třetí část je~\textsc{doménová přípona} (TLD, doména nejvyššího řádu), která je~také povinná. TLD mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. Doménové jméno je~v~procesu \textbf{DNS resolve} přeloženo zpět na \textsc{IP adresu}. \parencite{tld:mdn}
         
@@ -332,7 +317,7 @@
 
         Nejbližší \textsc{DNS} bývá poskytovatel internetu, který si~udržuje \textsc{DNS-cache}, kde~jsou uloženy \textsc{IP} adresy pro~servery, na~které v~minulosti zákazníci přistupovali. Pokud~tedy záznamy ještě nejsou v~\textsc{DNS cache} prohlížeče, zeptá se~prohlížeč poskytovatele (dále \textsc{ISP}), resp.~zašle požadavek na~adresu nastaveného \textsc{DNS}. Pokud ani~potom záznamy v~\textsc{cache} nezíská, požádá o~ně~postupně nadřazený \textsc{DNS}, správce národní domény (\textbf{CZ.NIC}) a~kořenový DNS server.
 
-        \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textsc{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další informace, jako např.~\textsc{TXT} záznamy, které se~používají pro~ověření domény pro~e-mailové servery.\parencite{dns:mdn}
+        \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textsc{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další záznamy, jako např.~\textsc{TXT}, které se~používají pro~ověření domény pro~e-mailové servery, nebo \textsc{MX} záznamy, které používá e-mailová služba pro doručování e-mailů.\parencite{dns:mdn}
 
         \subsection{Webový server}
         Webový server se~stará o~odpovědi na požadavky, většinou přicházející na~port 443 (\textsc{HTTPS}), dříve port 80 (\textsc{HTTP}).
@@ -350,18 +335,16 @@
 
         
         \subsection{MVC - Model View Controller}
-        Nejvýznamnějším bodem vývoje bylo rozšíření architektury MVC. MVC je~zkratka pro~\textbf{Model View Controller}.
-        Podle této architektury oddělujeme logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
+        Nejvýznamnějším bodem vývoje aplikací bylo rozšíření architektury \textbf{MVC}. \textbf{MVC} je~zkratka pro~\textbf{Model View Controller}. Podle této architektury oddělujeme logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
 
         Díky tomu můžeme mít jednu aplikaci, která bude mít různé zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webovou stránku, mobilní aplikaci a~desktopovou aplikaci.
 
-        Má tři složky; \textbf{Model}, který se~stará o~manipulaci s~daty, \textbf{Controller}, který říká \textbf{Modelu}, co~má~dělat
-        a~\textbf{View}, který se~stará o~výsledné zobrazení dat.
-
-        Také to~umožňuje vývoj aplikace týmem vývojářů, kde každý tým může pracovat na~jiné části aplikace. \parencite{MVC}
+        Má tři složky; \textbf{Model}, který se~stará o~manipulaci s~daty, \textbf{Controller}, který říká \textbf{Modelu}, co~má~dělat a~\textbf{View}, který se~stará o~výsledné zobrazení dat. \parencite{MVC}
 
         \subsection{Frontend, Backend}
-        Aplikace se~díky architektuře \textsc{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
+        Dnešní aplikace se~díky architektuře \textsc{MVC} běžně dělí na~\textbf{frontend} a~\textbf{backend}, které pracují spolu, ale jsou oddělené.
+
+        Díky \textbf{MVC} je~takto možné vývoj aplikace rozdělit mezi tým~vývojářů, kde každý může pracovat na~jiné části aplikace a~každá část aplikace má~své rozhraní, takže mohou pracovat téměř nezávisle na~sobě.
 
         \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\textbf{View}) a~interakci s~uživatelem (\textbf{Controller}) a~komunikuje s~\textbf{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
@@ -375,12 +358,11 @@
         Práce s~formátem JSON je~pohodlnější než s~formátem XML, protože je~mnohem jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně serveru, tak na~straně klienta a~jde~celkově o~úspornější formát.
 
         \subsection{AJAX - Asynchronous Javascript Request}
-        AJAX je~technologie, která umožňuje asynchronní komunikaci mezi frontendem a~backendem.
-        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale pouze se~načtou data ze~serveru a~přidají se~do~stránky.
+        AJAX je~technologie, která umožňuje asynchronní komunikaci, např.~mezi frontendem a~backendem.
 
-        Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}.
+        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale použije se~\textbf{AJAX}, čímž se~načtou požadovaná data ze~serveru a~změní se~ve~stránce.
 
-        AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\parencite{ajax:mdn}
+        Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\parencite{ajax:mdn}
 
         \subsection{API - Application Interface}
         API je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem. Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
@@ -389,10 +371,9 @@
 
         V~dnešní době jsou nejrozšířenější formou API \textsc{REST} a~\textsc{GraphQL}. Pro komunikaci mezi interními aplikacemi se~často používá \textsc{SOAP}. Různý hardware používá k~ovládání např.~\textsc{UART} a~\textsc{SPI}.
 
-        Velice oblíbená je~metoda \textsc{gRPC} (\textsc{Google Remote Procedure Call}), která je~založena na~protokolu HTTP/2 a~používá binární formát \textsc{Protocol Buffers}.
-        RPC je~zkratka pro~\textsc{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru, což je mnohdy velmi efektivní.
+        Velice oblíbená je~metoda \textsc{gRPC} (\textsc{Google Remote Procedure Call}), která je~založena na~protokolu HTTP/2 a~používá binární formát \textsc{Protocol Buffers}. \textsc{RPC} je~zkratka pro~\textsc{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru.
         
-        Další výhodou je, že~gRPC zastává deklarativní přístup, kde definujeme služby a~jejich rozhraní a gRPC vygeneruje pomocný kód pro~jazyk, který používáme.\parencite{thenewstackBuildRealWorld}
+        Výhodou je, že~gRPC zastává deklarativní přístup, kde definujeme služby a~jejich rozhraní a gRPC vygeneruje pomocný kód pro~jazyk, který používáme. Taky je~díky efektivnější komunikaci rychlejší než~jiné~přístupy. Bohužel je~k~jeho použitínutné se~naučit novému přístupu a~jazyku definice služeb \textbf{protobuf}. \parencite{thenewstackBuildRealWorld}
 
         \subsection{REST - Representational state transfer}
         \textbf{REST} je~architektura, která definuje způsob komunikace mezi klientem a~serverem. V dnešní době je~díky své jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Jednoduchost spočívá zejména v~tom, že~každý \textsc{Endpoint} má~svou~vlastní adresu.
@@ -416,14 +397,14 @@
         V~případě požadavku \textbf{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají limitovanou velikost maximální délkou \textsc{URL adresy}.
 
         \subsection{GraphQL}
-        Naproti \textsc{REST}u má \textsc{GraphQL} pouze jeden \textsc{endpoint}. \textsc{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což může být výhodné, pokud máme pomalé připojení nebo~při~mobilním připojení, kdy chceme co~nejvíce ušetřit data.
+        Naproti \textsc{REST}u má \textsc{GraphQL} pouze jeden \textsc{endpoint}. \textsc{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což může být výhodné, pokud máme pomalé připojení nebo~při~mobilním připojení, kdy chceme co~nejvíce ušetřit data a~snížit počet požadavků na~server.
 
-        Na~druhou stranu implementace \textsc{GraphQL} je~složitější než \textsc{REST}, protože je~potřeba implementovat \textsc{GraphQL} server, který bude umět zpracovat požadavky od~klienta. Každý kousek informace, který chceme zpřístupnit, navíc musíme specifikovat v~\textsc{GraphQL} schématu a~vytvořit pro~něj tzv.~\textsc{resolver}, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože musíme pro~každou vyžadovanou položku spustit vlastní funkci, což~je v~případě větších datových objektů a~přístupů do~databáze neefektivní.
+        Na~druhou stranu je~implementace \textsc{GraphQL} složitější než~implementace \textsc{REST}, protože je~potřeba implementovat \textsc{GraphQL} server, který bude umět zpracovat požadavky od~klienta. Každý kousek informace, který chceme zpřístupnit, navíc musíme specifikovat v~\textsc{GraphQL} schématu a~vytvořit pro~něj tzv.~\textsc{resolver}, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože musíme pro~každou vyžadovanou položku spustit vlastní funkci, což~je v~případě větších datových objektů a~přístupů do~databáze neefektivní.
 
-        
         \subsection{Zabezpečení}
         Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
-        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~tedy nutné zvážit např. jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, a~ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~SSH tunelu. Taky je~nutné udržovat systémy aktuální.
+        
+        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, a~ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně pomocí \textbf{SSH klíče}. Taky je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi.
         
         Z~hlediska zabezpečení webové aplikace pak~hovoříme o~dvou základních bodech. \textbf{Autentikace} a~\textbf{autorizace}.
 
@@ -437,20 +418,17 @@
             Při autentikaci aplikace je~důležité kontrolovat také jestli~požadavek přišel z~povolené IP~adresy, byl vytvořen naší aplikací na~našem webu, klientovu \textsc{IP~adresu} a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\textsc{token} nebyl změněn a~přichází stále z~naší aplikace. \parencite{graham2021ethical}
             
             \subsubsection{Autorizace (Authorization)}
-            Autorizace je~proces ověření oprávnění uživatele. To~znamená, že~uživatel musí dokázat, že~má~povolení k~provedení akce.
-            To~je možné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
+            Autorizace je~proces ověření oprávnění uživatele. Ověřujeme, zda~má~uživatel oprávnění k~provedení určité akce, např.~smazání příspěvku.
+            To~je nutné ověřit pomocí rolí, které uživatel má, nebo pomocí oprávnění k~operacím s~daným zdrojem.
 
             Třeba, zda je~uživatel autorem příspěvku a~tedy jej může upravit, pozměnit nebo smazat. \parencite{graham2021ethical}
 
             \subsubsection{JWT - JSON Web Token}
-            Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli a~aktivním stavu aplikace.
+            Metoda zabezpečení, která se~často používá, je~JWT. Jedná se~o~formát textového řetězce (tokenu), který obsahuje informace o~uživateli a~aktivním stavu aplikace. Ten se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak ověřit, že~požadavek přišel z~naší aplikace a~ne z~jiného zdroje.
             
-            Při autentikaci se~vygeneruje \textsc{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku.
-            Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit. Do~tokenu se~přidávají data, která potřebujeme uchovat nebo je~využíváme na~dodatečnou kontrolu. V~případě změny nebo nepřesnosti v~datech tokenu se~token stává neplatným.
-            To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen,
-            a~další kontrolní informace, jako např.~čas platnosti tokenu nebo IP adresa, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
+            Při autentikaci se~vygeneruje \textsc{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou zašifrována a~podepsána privátním šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit. Do~tokenu se~přidávají data, která potřebujeme uchovat nebo je~využíváme na~dodatečnou kontrolu. V~případě změny nebo nepřesnosti v~datech tokenu se~token stává neplatným. To~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu můžeme mít informace o~uživateli, který je právě přihlášen, a~další kontrolní informace, jako např.~\textbf{čas platnosti} tokenu nebo \textbf{IP~adresa} a~\textsc{doména}, ze~které byl požadavek na vytvoření tokenu prvně odeslán.
 
-            Lze to~vidět na~schématu \ref{model-jwt}.
+            Funkci \textbf{JWT} v~praxi lze~vidět na~schématu \ref{model-jwt}.
 
             \begin{figure}
                 \centering
@@ -459,9 +437,52 @@
                 \caption{Použití JWT v~praxi}
             \end{figure}
 
-            Výhodou je také možnost přenositelnosti. Token může být vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. JWT~není vázán na~symetrické šifrování a~tak se~k~využití přenositelnosti často využívá \textsc{asymetrické šifrování} - dvojice klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč} \parencite{miguelgrinbergJSONTokens}.
+            \textbf{JWT} sestává ze~tří částí, které jsou odděleny tečkou.
+            
+            První část je~\textbf{hlavička (header)}, která obsahuje informace o~typu tokenu a~typu šifrování.
+            
+            Druhá část je~\textbf{tělo tokenu (body)}, které obsahuje data, která chceme uchovat (\textbf{payload}).
+            
+            Třetí část je~\textbf{podpis (signature)}, který zajišťuje kontrolu, že~token nebyl během cesty na~server změněn.
 
-            Zajímavou možností by~bylo i~využití \textsc{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \parencite{homeomorphicEncryption}
+            \begin{figure}
+                \centering
+                \begin{tabular}{l l l}
+                    \textcolor{red}{\texttt{header}} &
+                    \textcolor{orange}{\texttt{body/payload}} &
+                    \textcolor{green}{\texttt{signature}}\\
+
+                    \textcolor{red}{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9}. &
+                    \textcolor{orange}{eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ}. &
+                    \textcolor{green}{SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c}\\
+
+                    \textcolor{red}{\texttt{\{
+                        "alg": "HS256",
+                        "typ": "JWT"
+                      \}}} &
+                    \textcolor{orange}{\texttt{\{
+                        "sub": "1234567890",
+                        "name": "John Doe",
+                        "iat": 1516239022 // Issued At
+                      \}}} &
+                    \textcolor{green}{\texttt{HMACSHA256(
+                        base64UrlEncode(header) + "." +
+                        base64UrlEncode(payload)
+                    )}}\\
+                    
+                \end{tabular}
+                \label{slozeni-uri}
+                \caption{Složky URI}
+            \end{figure}
+
+            Všechny tři~části jsou zakódovány pomocí \textsc{Base64} a~odděleny tečkou. Výsledný token je~také textový řetězec, který je~možné přenášet v~hlavičce \textsc{HTTP~požadavku}.
+
+            Výhodou je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. JWT~není vázán na~symetrické šifrování a~tak se~k~využití přenositelnosti často využívá \textsc{asymetrické šifrování} - dvojice klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč}. \parencite{miguelgrinbergJSONTokens}. \textsc{Veřejných klíčů} je~totiž možné v~rámci \textsc{asymetrického šifrování} vytvořit více a~přidělit je~různým službám, které je~pak mohou používat pro~ověření tokenu.
+
+            Jelikož formát \textsc{Base64} je~pouze kódování, které používáme pro~jednodušší přenos dat, a nikoliv pro šifrování. Bezpečnost \textbf{JWT} je~zajištěna pouze podpisem, který zaručuje integritu. Data ale~může číst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \textbf{JWT} slouží další standardy\,--\,\textsc{JWE}, \textsc{JWS}, \textsc{JWA} a~\textsc{JWK}. \parencite{jwtesak}
+
+            Zajímavou možností by~mohlo~být i~využití \textsc{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \parencite{homeomorphicEncryption}
+
 
         \subsection{Testování}
         Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
