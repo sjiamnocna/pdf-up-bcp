@@ -437,7 +437,7 @@
                 \caption{Použití JWT v~praxi}
             \end{figure}
 
-            \textbf{JWT} sestává ze~tří částí, které jsou odděleny tečkou.
+            \textbf{JWT} sestává ze~tří částí, které jsou odděleny tečkou, viz. \ref{slozeni-jwt}.
             
             První část je~\textbf{hlavička (header)}, která obsahuje informace o~typu tokenu a~typu šifrování.
             
@@ -471,8 +471,8 @@
                     )}}\\
                     
                 \end{tabular}
-                \label{slozeni-uri}
-                \caption{Složky URI}
+                \label{slozeni-jwt}
+                \caption{Složení JWT}
             \end{figure}
 
             Všechny tři~části jsou zakódovány pomocí \textsc{Base64} a~odděleny tečkou. Výsledný token je~také textový řetězec, který je~možné přenášet v~hlavičce \textsc{HTTP~požadavku}.
