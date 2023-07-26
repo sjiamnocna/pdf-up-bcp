@@ -709,10 +709,29 @@
         \subsection{Návrh struktury databáze}
         Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
 
-        Při~plánování budeme kromě ERD~společně s~UC diagramem plánovat konkrétní tabulky a~vztahy mezi~nimi. UC~diagram nám pomůže zjistit, jaké SQL~dotazy nejspíše budeme potřebovat, což nám umožní lepší náhled, které sloupce budeme indexovat pro~optimální dotazy.
-        Pak můžeme s~ERD zkonzultovat, jaké budeme potřebovat definovat cizí klíče.
+        Při~plánování databáze využijeme \textsc{diagram tříd} k~plánování konkrétních tabulek a~vztahů mezi~nimi. \textsc{UCD} nám~pomůže zjistit, jaké SQL~dotazy nejspíše budeme potřebovat, což~nám~umožní lepší náhled, které sloupce budeme zařazovat do~indexů.
 
         Potom již můžeme začít vytvářet SQL dotazy k~vytvoření tabulek. Používáme k~tomu jazyk \textsc{SQL} (Structured Query Language), kterým ovládáme naši MySQL (MariaDB) databázi.
+
+        \subsection{I18C - Mezinárodní lokalizace}
+        Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \textsc{ASCII}, které obsahovalo pouze 128 znaků (7 bitů, tj.~$2^7$, 0\,--\,127). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některé interpunkční znaménka. 
+        
+        V~dnešní době se~většinově používá kódování Unicode (UTF), které k~původním 7~bitům přidalo další bit, který označuje, zda daný znak pokračuje na~další byte. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač potřebuje více času na~zpracování každého znaku.
+        
+        Proto je~vhodné všechny~zdrojové kódy a~aplikace psát v~Anglickém jazyce, který využívá základní \textsc{ASCII} znaky, a~aplikaci pro~uživatele překládat (\textsc{lokalizovat}). Anglický jazyk je~navíc považován za~mezinárodní jazyk, který je~známý většině uživatelů a~aplikaci tak~zpřístupníme širší skupině uživatelů.
+        
+        Webový prohlížeč si~pamatuje preferenci jazyka uživatele a~při~požadavku na~aplikaci, zašle i~informaci o~preferovaném jazyce.
+
+        \textbf{I18C} je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \textbf{I18C} zahrnuje i~různé formy slov, např.~pro~různá množství. \parencite{w3Internationalization}
+
+        Pro překlad aplikace se~používají \textbf{lokalizační soubory}, které obsahují překlady jednotlivých textů aplikace. Každý jazyk má~svůj soubor, který se~načítá při~spouštění aplikace. Pokud překlad není nalezen, použije se~původní text.
+
+        V~rámci \textsc{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy, které budou odesílány uživatelům. V~rámci \textsc{frontendu} pak~\textsc{uživatelské rozhrání (UI)}, které bude používat uživatel.
+
+        \subsection{Pravidla přístupnosti webu}
+        Pokud vyvíjíme aplikaci, je~důležité myslet i~na~to, že~někteří uživatelé mohou mít~omezení. Je~tedy potřeba je~zahrnout do~návrhu aplikace a~umožnit jim~přístup k~aplikaci. V~rámci oficiálních aplikací jde~dokonce o~povinnost a~za~nedodržení standardu hrozí postih.
+
+        % TODO: Eva
 
         \subsection{Výběr technologií}
             Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které budou dostatečně výkonné a~zároveň budou
