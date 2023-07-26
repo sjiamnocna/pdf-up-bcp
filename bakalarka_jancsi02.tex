@@ -417,7 +417,17 @@
         Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
         
         To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, a~ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně pomocí \textbf{SSH klíče}. Taky je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi.
+            
+        \subsubsection{Hashování (Hashing)}
+        \textbf{Hashing} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~využíváme např.~při~ukládání hesel, kdy heslo uživatele neukládáme v~původní čitelné podobě, ale jako \textsc{hash}. Při~přihlášení pak~aplikujeme stejnou \textsc{hashovací} funkci na~zadané heslo a~porovnáme ho~s~uloženým \textsc{hashem}. Pokud se~shodují, uživatel je~přihlášen.
         
+        Pokud se~někomu podaří z~\textsc{hashe} získat původní data (heslo), nebo dokáže najít jiná data, která po~aplikování algoritmu generují stejný \textsc{hash}, považujeme algoritmus za~prolomený a~měli~bychom ho~přestat používat.
+        
+        K~\textsc{hashování} hesel navíc používáme tzv.~\textbf{salt (sůl)}, což~je~náhodně vygenerovaný řetězec, který přidáme k~heslu před \textsc{hashováním}. Protože pro~každou kombinaci by~měl algoritmus generovat jiný \textsc{hash}, je takto ztíženo zjištění původního hesla i~v~případě úniku \textsc{hashe}.
+        
+        \subsubsection{Šifrování (Encryption))}
+        U~šifrování naopak potřebujeme získat původní data z~šifrovaného textu. K~šifrovacímu algoritmu potřebujeme klíč, kterým se~šifrují i~dešifrují data. Algoritmu zadáme klíč a~data, která chceme zašifrovat, a~ten nám~vrátí šifrovaný text. Při~dešifrování zadáme algoritmu klíč a~šifrovaný text a~algoritmus nám~zpřístupní původní data.
+
         Z~hlediska zabezpečení webové aplikace pak~hovoříme o~dvou základních bodech. \textbf{Autentikace} a~\textbf{autorizace}.
 
             \subsubsection{Autentikace (Authentication)}
