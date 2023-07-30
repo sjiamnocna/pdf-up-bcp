@@ -196,6 +196,17 @@
             \item \textbf{Generování kódu} - Jakmile máme \textbf{AST}, můžeme generovat výslednou podobu v~požadované formě - binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretujeme jako~jinou formu dat.
         \end{enumerate} \parencite{baeldungCompilersWork}
 
+        \subsection{Procedurální a~objektově orientované programování (OOP)}
+        \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých procedur, které se~volají za~sebou. Procedura je~část programu, která vykonává určitou činnost. Procedury mohou mít parametry, které jim předáváme při~volání. Procedury mohou volat jiné procedury, což umožňuje znovupoužití kódu. Procedury a~funkce jsou~si~podobné, kromě faktu, že~funkce vždy vrací (\texttt{return}) nějakou hodnotu, zatímco procedura pouze vykoná své~instrukce. \parencite{procedural:wiki}
+        V~dnešní době se~častěji používá \textbf{OOP}, protože umožňuje vývvojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu.
+        \textbf{OOP (Objektově Orientované Programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~OOP se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \textbf{Objekty} vytváříme ze~tříd, což~jsou jakési vzory, podle kterých se vytvářejí (\textsc{inicializují})~objekty. \textsc{OOP} má 4~základní vlastnosti.
+        \begin{itemize}
+            \item \textbf{Zapouzdření} - objekty mohou své~vlastnosti a~metody, skrýt před~okolním světem. To~umožňuje měnit vnitřní strukturu objektu bez~toho, aniž bychom museli měnit ostatní části programu.
+            \item \textbf{Dědičnost} - objekty mohou dědit vlastnosti a~metody od~jiných objektů. To~umožňuje znovupoužití kódu a~zjednodušení programu.
+            \item \textbf{Polymorfismus} - objekty mohou mít stejné~vlastnosti a~metody, ale mohou se~lišit v~implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
+            \item \textbf{Abstrakce} - objekty mohou být abstraktní, což~znamená, že~nemusí mít implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
+        \end{itemize} \parencite{Keogh:OOP}
+
         \subsection{Javascript}
         Javascript je~skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce, jako je~kliknutí, a~tedy na~rozdíl od~statické podoby HTML stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje.
 
@@ -634,7 +645,7 @@
 
         Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly nebo výrazy.
         
-        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci nést jiné objekty, např.~pole pro~textový vstup nebo výběr z~možností. Toho bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít~za~úkol žák vyplnit.
+        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci být~i~jiné objekty, např.~pole pro~textový vstup nebo výběr z~možností. Toho bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít~za~úkol žák vyplnit.
 
         Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
         \begin{align*}
@@ -836,14 +847,14 @@
             Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}. Ten zároveň přidává základní \textsc{endpointy} pro~autentikaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\textbf{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
-            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje výsledné zadání, nebo sdělí chyby v~případě, že~nějaké nastanou.
+            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje výsledné parametry, které předá výslednému zoprazení. V~případě nalezených chyb, které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení.
             
             \subsubsection{Funkce Init}
             \textbf{Go} má~dvě vstupní funkce \textbf{main} a~\textbf{init}. Funkce \textbf{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \textbf{init} se~spustí jako první, ale~před funkcí \textbf{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \textbf{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
 
             Ve~chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \textbf{init} a~poté hlavní část aplikace, funkce \textbf{main}. Je~to~podobné jako v~jazyce C a~dalších kompilovaných jazycích, nebo při psaní kódu pro \textsc{Arduino}, kde se~automaticky spouští hlavní funkce \textbf{loop}, řídí logiku výstupních pinů a~dalších částí programu.
             
-            Ve~funkci~\textsc{init} se~pomocí \textsc{systému GORM} (\href{https://gorm.io/}{\textbf{go-gorm/gorm}}), připojíme k~databázi, aby mohl spravovat tabulky a~modely dat pro~manipulaci s~nimi. ORM automaticky ukládá data do~databáze a~při~změně modelů je~schopen automaticky migrovat databázi, což výrazně zjednoduší vývoj aplikace.
+            Ve~funkci~\textsc{init} nastavíme připojení k~databázi prostřednictvím systému~\textsc{GORM} (\href{https://gorm.io/}{\textbf{go-gorm/gorm}}), který pro~nás~automaticky spravuje tabulky a~modely dat pro~jejich ukládání a~úpravu. \textsc{ORM} automaticky ukládá data do~databáze a~při~změně modelů (struktur) je~schopen automaticky změnit (\textbf{migrovat}) databázi, což~výrazně zjednodušuje vývoj aplikace.
 
             K~připojení do~databáze tedy budu potřebovat tzv.~\textsc{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Potřebujeme \textbf{adresu} databáze a~\textbf{port}, na~kterém běží, \textbf{název databáze}, \textbf{jméno uživatele} a~\textbf{heslo}. Ty~si~načítám z~prostředí systému, tedy \textsc{Dockeru}. Takto vytvořené spojení předám do \textbf{GORM}
 
