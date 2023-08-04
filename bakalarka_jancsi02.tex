@@ -507,7 +507,7 @@
 
             Všechny tři~části jsou zakódovány pomocí \textsc{Base64} a~odděleny tečkou. Výsledný token je~také textový řetězec, který je~možné přenášet v~hlavičce \textsc{HTTP~požadavku}.
 
-            Výhodou je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který ná k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. JWT~není vázán na~symetrické šifrování a~tak se~k~využití přenositelnosti často využívá \textsc{asymetrické šifrování} - dvojice klíčů, kde hlavní server má \textsc{privátní klíč} a~ostatní mají \textsc{veřejný klíč}. \parencite{miguelgrinbergJSONTokens}. \textsc{Veřejných klíčů} je~totiž možné v~rámci \textsc{asymetrického šifrování} vytvořit více a~přidělit je~různým službám, které je~pak mohou používat pro~ověření tokenu.
+            Výhodou je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který má k~dispozici daný klíč \parencite{ieee:jwt}. Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. JWT~není vázán na~symetrické šifrování a~tak se~k~využití přenositelnosti často využívá \textsc{asymetrické šifrování} - n\,--\,tice klíčů, kde hlavní server má tzv.~\textsc{privátní klíč} a~ostatní mají svůj~vlastní \textsc{veřejný klíč}, odvozený od~privátního. \parencite{miguelgrinbergJSONTokens}. \textsc{Veřejných klíčů} je~totiž možné v~rámci \textsc{asymetrického šifrování} vytvořit více a~přidělit je~různým službám, které je~pak mohou používat pro~ověření tokenu.
 
             Jelikož formát \textsc{Base64} je~pouze kódování, které používáme pro~jednodušší přenos dat, a nikoliv pro šifrování. Bezpečnost \textbf{JWT} je~zajištěna pouze podpisem, který zaručuje integritu. Data ale~může číst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \textbf{JWT} slouží další standardy\,--\,\textsc{JWE}, \textsc{JWS}, \textsc{JWA} a~\textsc{JWK}. \parencite{jwtesak}
 
@@ -530,7 +530,9 @@
                         email := "mujmejl@seznam.cz', role='admin"
                         // příme spuštění dotazu
                         DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
-                        // výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
+                    \end{minted}
+                    \begin{minted}{sql}
+                        -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
                         UPDATE users SET email = '', role='admin' WHERE id = 42
                     \end{minted}
                     \label{model-sql-injection}
@@ -543,7 +545,7 @@
                         // nebezpečný vstup od uživatele
                         email := " ', role='admin"
                         // příme spuštění dotazu
-                        DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
+                        DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
                     \end{minted}
                     \begin{minted}{sql}
                         -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
@@ -927,7 +929,7 @@
             Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}. Ten zároveň přidává základní \textsc{endpointy} pro~autentikaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\textbf{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
-            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje výsledné parametry, které předá výslednému zoprazení. V~případě nalezených chyb, které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení.
+            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje jeho části podle zadání. Ty~potom předá výslednému zobrazení (ve~smyslu \textsc{MVC}, může být zobrazení cokoliv - \textbf{PDF soubor} nebo \textbf{Frontend}). V~případě nalezených chyb, které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení a~chyby odstranit.
             
             \subsubsection{Funkce Init}
             \textbf{Go} má~dvě vstupní funkce \textbf{main} a~\textbf{init}. Funkce \textbf{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \textbf{init} se~spustí jako první, ale~před funkcí \textbf{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \textbf{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
@@ -938,15 +940,28 @@
 
             K~připojení do~databáze tedy budu potřebovat tzv.~\textsc{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Potřebujeme \textbf{adresu} databáze a~\textbf{port}, na~kterém běží, \textbf{název databáze}, \textbf{jméno uživatele} a~\textbf{heslo}. Ty~si~načítám z~prostředí systému, tedy \textsc{Dockeru}. Takto vytvořené spojení předám do \textbf{GORM}
 
-            Ve~funkci \texttt{init} také spustím migraci databáze, kde \textsc{GORM} vytvoří tabulky nebo je~aktualizuje.
+            Ve~funkci \texttt{init} také spouštíme migraci databáze, aby \textsc{GORM} vytvořil databázové tabulky nebo je~aktualizoval.
 
+            % TODO: GORM Modely
 
             \subsubsection{Funkce Main}
             V~hlavní funkci spouštíme hlavní logiku aplikace. Je~potřeba spustit \textsc{HTTP server}, který bude čekat na~požadavky od~klienta na~definovaném portu. K~tomu využijeme funkci \textbf{Run} z~balíčku \textbf{gin-gonic/gin}, prostřednictvím balíčku \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, který přidá do~serveru tzv.~\textsc{middleware} pro~udržování a~kontrolu \textsc{JWT} tokenu a~přidá do~každého požadavku informace o~uživateli, který požadavek poslal. \textsc{Middleware}, je~funkce, která se~spustí před zpracováním požadavku a~může měnit jeho chování. V~tomto případě kontroluje, zda~je~požadavek autentický, případně zda jsou data autentická (nezměněná) a~zda~je~přihlášen nějaký uživatel. Tyto~informace pak~uloží do~požadavku, aby~s~nimi mohly pracovat handlery. Serveru tím říkáme, aby přijímal a~obsluhoval požadavky na~zadaném portu.
-            
-            % TODO: GORM Modely
 
-            Samotné \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~každý \textsc{Endpoint} bude mít svůj vlastní soubor. V~těchto souborech budou handlery pro~každý potřebný \textsc{Endpoint}. \textsc{Handler} dostane jako parametr \textbf{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním pracovat, a~budou odpovídat spefickou \textbf{JSON} odpověďí, případně chybovou hlášku.
+            \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~bude mít~každá skupina \textsc{Endpointů} svůj vlastní soubor. V~těchto souborech budou jejich \textsc{handlery}. \textsc{Handler} dostane jako parametr \textbf{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \textsc{handleru} s~ním pracovat. Komunikace \textsc{frontendu} a~\textsc{backendu} bude probíhat pomocí \textbf{JSON}u, případně zaslaným \textbf{HTTP stavovým kódem}.
+
+            \subsubsection{Generátor}
+            Zásadní funkcí \textbf{generátoru} při~generování příkladu bude řazení proměnných, spouštění jejich funkcí a~vyčíslení případných matematických výrazů. Protože pracujeme s~jazykem Go, \textbf{generátor} obdrží data ve~formě \textbf{struktury} a~výsledek taky jako strukturu, aby bylo možné ji~předat generátoru \textbf{PDF} nebo odeslat ke~zobrazení ve~formě \textbf{JSON}u.
+            
+            A~samozřejmě je~důležité nahrazení proměnných v~zadání a~odpovědích za~jejich hodnoty a~vytvoření skupiny dat pro~vykreslení výsledku.
+
+            \subsubsection{Webový server}
+            Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \textsc{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \textbf{CRUD} operace s~jednotlivými zdroji:
+
+            \begin{itemize}
+                \item \textbf{s~uživatelskýi účty} - přihlášení, registrace, načtení informací o~uživateli, změnu hesla/informací odhlášení, přidávání spolupracovníků
+                \item \textbf{s~příklady} - vytvoření, načtení, změna, smazání, zobrazení
+                \item \textbf{s~testy} - vytvoření, načtení, změna, smazání, zobrazení, vygenerování testu
+            \end{itemize}
 
         \subsection{Frontend}
             \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}}, který je~napsaný k~jednodušší komunikaci frontendu s~\href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, což je balíček, který k~modulu \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} přidává možnost automatické správy \textsc{JWT} a~zjednodušuje změnu v~datech uložených v~\textsc{JWT}.
