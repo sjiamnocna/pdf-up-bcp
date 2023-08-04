@@ -486,6 +486,59 @@
 
             Zajímavou možností by~mohlo~být i~využití \textsc{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \parencite{homeomorphicEncryption}
 
+            \subsubsection{SQL Injection}
+            \textbf{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus \textsc{SQL dotazu} do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~vykonán, což~může vést k~získání citlivých dat, jejich změně nebo~k~jejich smazání.
+            Při~nesprávném ošetření vstupních dat může útočník vložit do~vstupních dat i~část \textsc{SQL dotazu}, který se vloží do~původního dotazu a~spustí~se.
+
+            Proto se~data od~uživatele musí vždy ošetřit a~v~ideálním případě použít navíc tzv.\textsc{Prepared statements} (\textsc{Parametrizované dotazy}).
+            Při~použití \textsc{parametrizovaných dotazů} totiž do~dotazu nevkládáme přímo data, ale vložíme na~místo, kam~chceme data vložit tzv.~\textsc{placeholder} (\textsc{Zástupný symbol}), který je~poté nahrazen upravenými (\textsc{escapovanými}) daty, tak~aby~nebylo možné případný vložený příkaz provést.
+            
+            Např.~dotaz na~změnu emailové adresy, který by~v~případě neošetření umožnil útočníkovi získat administrátorský přístup do~aplikace, by~mohl vypadat, jako v~ukázce \ref{model-sql-injection}.:
+            \begin{figure}
+                \begin{subfigure}
+                    \centering
+                    \begin{minted}{go}
+                        id := 42
+                        // nebezpečný vstup od uživatele
+                        email := "mujmejl@seznam.cz', role='admin"
+                        // příme spuštění dotazu
+                        DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
+                        // výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
+                        UPDATE users SET email = '', role='admin' WHERE id = 42
+                    \end{minted}
+                    \label{model-sql-injection}
+                    \caption{Příklad útoku SQL Injection}
+                \end{subfigure}
+                \begin{subfigure}
+                    \centering
+                    \begin{minted}{go}
+                        id := 42
+                        // nebezpečný vstup od uživatele
+                        email := " ', role='admin"
+                        // příme spuštění dotazu
+                        DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
+                    \end{minted}
+                    \begin{minted}{sql}
+                        -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
+                        UPDATE users SET email = ' ', role=\'admin\' WHERE id = 42
+                    \end{minted}
+                    \label{model-sql-injection}
+                    \caption{Ošetření pomocí prepared statement}
+                \end{subfigure}
+            \end{figure}
+
+            Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet. Další kontroly na~úrovni databáze jsou~pak~už~dobrovolné, ale~doporučené. \parencite{w3s:SQLInjection}, \parencite{itnetwork:SQLInjection}
+
+            \subsubsection{XSS - Cross Site Scripting}
+            \textbf{XSS} je~útok, při~kterém útočník vloží do~uživatelského vstupu kód, který se~při~načtení stránky spustí. To~může vést k~získání citlivých dat, přesměrování na~jinou stránku, nebo~k~jiným nežádoucím akcím.
+
+            Jelikož v~projektu používáme React, který využívá \textbf{JSX}, je~tento typ útoku vyloučen. \textbf{JSX} totiž neumožňuje vkládat do~HTML kód, ale~pouze textové řetězce, které se~při~načtení stránky zobrazí.
+
+            Existují ale výjimky, to~je~použití \texttt{eval}, která spouští Javascript kód v~řetězci, a~přímé vkládání neošetřeného vstupu pomocí \texttt{dangerouslySetInnerHTML} nebo jiných vlastností, které se přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod.
+
+            Ochranou před tímto typem útoku je nahrazení znaků, které mohou způsobit problémy, za~jejich \textsc{HTML entity}, kde znaky jako~\texttt{<} nahradíme za~\texttt{\&lt;}, \texttt{>} za~\texttt{\&gt;}, \texttt{\&} za~\texttt{\&amp;}~apod.
+            
+            Možností je~také využít specializované knihovny, které toto ošetření provedou za~nás, a~nebudeme muset řešit, které znaky je~potřeba ošetřovat. Např.~\textbf{DOMPurify} nebo \textbf{sanitize-html}. \parencite{w3s:XSS}
 
         \subsection{Testování}
         Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
@@ -603,11 +656,11 @@
 
         Příkladem nástroje generování kódu může být~např.~\textbf{Github Copilot}, který dokáže na~základě komentářů nebo kontextu v~kódu vygenerovat funkční kód. Další nástroje jsou \textbf{Tabnine}, \textbf{Kite} nebo \textbf{Deep TabNine}.
         
-        Také proto v~průzkumu \uv{The State Of AI Tools 2023}\parencite{zerotomasteryStateOfAI} většina vývojářů odpověděla, že~se~nebojí toho, že by~je~\textsc{AI} v~blízké budoucnosti plně nahradila. Programování je~komplexní proces, který vyžaduje kreativitu a~schopnost řešit problémy různého typu.
+        V~průzkumu \uv{The State Of AI Tools 2023}\parencite{zerotomasteryStateOfAI} ale~většina vývojářů odpověděla, že~se~nebojí toho, že by~je~\textsc{AI} v~blízké budoucnosti plně nahradila. Programování je~komplexní proces, který vyžaduje kreativitu a~schopnost řešit problémy různého typu. Využití kódu od~\textsc{AI} je~ale~nutné brát s~rezervou - učí se~z~kódu, co~vytvořili lidi, takže může být ovlivněný jejich chybami a~nedostatky a~prozatím není~schopná přemýšlet nad~řešením problému, ale~pouze generovat kód na~základě předchozích řešení.
         
-        Jazykové modely \textsc{AI}, jako např.~\textbf{ChatGPT} ale~pomáhá zejména ke~konzultaci problémů a~získání nápadů, jak je~vyřešit. Svým způsobem tím~nahrazuje \textbf{Stack Overflow}, fórum, kde~si vývojáři radí navzájem s~řešením problémů. Také jsou tyto pomocné nástroje skvělé na~opakované úkoly, jako přepisování struktury dat nebo~vytváření dokumentací.
+        Jazykové modely \textsc{AI}, jako např.~\textbf{ChatGPT} pomáhají zejména ke~konzultaci problémů a~získání nápadů, jak je~vyřešit. Svým způsobem tím~nahrazuje \textbf{Stack Overflow}, fórum, kde~si vývojáři radí navzájem s~řešením problémů. Také jsou tyto pomocné nástroje skvělé na~opakované úkoly, jako přepisování struktury dat nebo~vytváření dokumentací.
 
-        \textbf{AI} navíc poslední dobou ztrácí na~faktické přesnosti, takže je~nutné výsledky posuzovat kriticky a~nenechat všechno na~nástrojích.
+        \textbf{AI} nástroje typu \textbf{ChatGPT} poslední dobou ztrácí na~přesnosti. Je~to~díky tomu, že~k~dalšímu učení využívá data přístupná z~internetu, a~to~i~data generovaná jinými \textsc{AI} systémy, takže je~nutné výsledky posuzovat kriticky a~nenechat všechno pouze na~nástrojích.\parencite{computerworld:AI}
 
 	\section{Návrh aplikace}
         Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tak tzv.~\textsc{funkční požadavky} na~výslednou aplikaci. Potom můžeme vytvořit \textsc{UML modely}, které mohou pomoct blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
@@ -747,7 +800,7 @@
 
         Pro překlad aplikace se~používají \textbf{lokalizační soubory}, které obsahují překlady jednotlivých textů aplikace. Každý jazyk má~svůj soubor, který se~načítá při~spouštění aplikace. Pokud překlad není nalezen, použije se~původní text.
 
-        V~rámci \textsc{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy, které budou odesílány uživatelům. V~rámci \textsc{frontendu} pak~\textsc{uživatelské rozhrání (UI)}, které bude používat uživatel.
+        V~rámci \textsc{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. V~rámci \textsc{frontendu} pak~\textsc{uživatelské rozhrání (UI)}, které bude používat uživatel.
 
         \subsection{Pravidla přístupnosti webu}
         Pokud vyvíjíme aplikaci, je~důležité myslet i~na~to, že~někteří uživatelé mohou mít~omezení. Je~tedy potřeba je~zahrnout do~návrhu aplikace a~umožnit jim~přístup k~aplikaci. V~rámci oficiálních aplikací jde~dokonce o~povinnost a~za~nedodržení standardu hrozí postih.
