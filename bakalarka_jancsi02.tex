@@ -923,7 +923,7 @@
             Samotné \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~každý \textsc{Endpoint} bude mít svůj vlastní soubor. V~těchto souborech budou handlery pro~každý potřebný \textsc{Endpoint}. \textsc{Handler} dostane jako parametr \textbf{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním pracovat, a~budou odpovídat spefickou \textbf{JSON} odpověďí, případně chybovou hlášku.
 
         \subsection{Frontend}
-            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}:main}, který je~napsaný k~jednodušší komunikaci frontendu s~\href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}.
+            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}}, který je~napsaný k~jednodušší komunikaci frontendu s~\href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, což je balíček, který k~modulu \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} přidává možnost automatické správy \textsc{JWT} a~zjednodušuje změnu v~datech uložených v~\textsc{JWT}.
         \subsection{Testování}
         \subsection{Údržba}
         
