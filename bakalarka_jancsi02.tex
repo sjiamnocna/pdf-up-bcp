@@ -286,9 +286,10 @@
             \caption{Rozdíl použití React vs.~JSX}
         \end{figure}
 
-        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu v~Reactu, Vue ale~i~ve~\textsc{Vanilla Javascriptu} nebo \textsc{Typescriptu}. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~podobný Reactu.
+        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\textsc{Vanilla Javascriptu} nebo~\textsc{Typescriptu}. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~podobný Reactu.
         
-        \textsc{Vite} také zrychluje spouštění aplikace a~nastavuje tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} aplikace v~prohlížeči automaticky načte znovu, bez~nutnosti manipulace s~prohlížečem.
+        \textsc{Vite} také zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem.
+        
         Vite údajně také zrychluje sestavení modulů více než jiné nástroje.\parencite{vitejs}
         
         \subsection{Client-Server}
@@ -495,7 +496,7 @@
             
             Např.~dotaz na~změnu emailové adresy, který by~v~případě neošetření umožnil útočníkovi získat administrátorský přístup do~aplikace, by~mohl vypadat, jako v~ukázce \ref{model-sql-injection}.:
             \begin{figure}
-                \begin{subfigure}
+                \begin{subfigure}{0.48\textwidth}
                     \centering
                     \begin{minted}{go}
                         id := 42
@@ -507,9 +508,9 @@
                         UPDATE users SET email = '', role='admin' WHERE id = 42
                     \end{minted}
                     \label{model-sql-injection}
-                    \caption{Příklad útoku SQL Injection}
+                    \subcaption{Příklad útoku SQL Injection}
                 \end{subfigure}
-                \begin{subfigure}
+                \begin{subfigure}{0.48\textwidth}
                     \centering
                     \begin{minted}{go}
                         id := 42
@@ -523,7 +524,7 @@
                         UPDATE users SET email = ' ', role=\'admin\' WHERE id = 42
                     \end{minted}
                     \label{model-sql-injection}
-                    \caption{Ošetření pomocí prepared statement}
+                    \subcaption{Ošetření pomocí prepared statement}
                 \end{subfigure}
             \end{figure}
 
@@ -845,7 +846,7 @@
             Jednotlivé databáze - někdy používáme název \textsc{schéma} - fyzicky na~disku reprezentují adresáře s~názvem konkrétní databáze. Jednotlivé~tabulky potom tvoří binární soubory s~příponou podle databázového \textsc{enginu}, který používáme. V~našem případě používáme \textsc{InnoDB}, který ukládá strukturu a~data v~souborech \textsc{*.ibd}. \parencite{MySQLInnoDB}
             
             \textbf{GORM} je~ORM (ORM - Object-relational mapper) pro~jazyk Go. \textsc{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. 
-            Z~definovaných~struktur se~automaticky vytvoří všechny databázové tabulky a~při jejich změnách se~automaticky promítnou i~do~databáze během tzv.~migrace modelů.
+            Z~nich se~automaticky vytvoří všechny databázové tabulky a~při jejich změně se~také~automaticky změní v~databázi, v~rámci \textsc{migrace modelů}.
             Struktury zároveň umožňují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat. \parencite{freecodecamp:orm}
 
             Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované SQL dotazy. \parencite{gormGORM}
