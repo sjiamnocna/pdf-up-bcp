@@ -564,7 +564,7 @@ const App = () => {
         \subsection{Zabezpečení}
         Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
         
-        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby potřebujeme veřejně dostupné a~zbytek zablokovat pomocí firewallu, a~ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně pomocí \textbf{SSH klíče}. Taky je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi.
+        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby potřebujeme veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí firewallu, ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně pomocí \textbf{SSH klíče}. Taky je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi.
             
         \subsubsection{Hashování (Hashing)}
         \textbf{Hashing} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~využíváme např.~při~ukládání hesel, kdy heslo uživatele neukládáme v~původní čitelné podobě, ale jako \textsc{hash}. Při~přihlášení pak~aplikujeme stejnou \textsc{hashovací} funkci na~zadané heslo a~porovnáme ho~s~uloženým \textsc{hashem}. Pokud se~shodují, uživatel je~přihlášen.
