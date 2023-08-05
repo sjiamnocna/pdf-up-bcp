@@ -209,6 +209,110 @@
             \item \textbf{Polymorfismus} - objekty mohou mít stejné~vlastnosti a~metody, ale mohou se~lišit v~implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
         \end{itemize} \parencite{Keogh:OOP}
 
+        Jazyk~\textbf{Go} (Golang) podporuje OOP, nicméně je~nutné si~uvědomit, že~jde o~jazyk \textsc{strukturovaný}, nikoliv o~\textsc{objektově orientovaný}. Proto poskytuje jen~některé vlastnosti OOP ve~formě struktur. \parencite{go:OOP}
+        V~příkladu \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \textbf{PHP} pomocí \textsc{tříd} a~ta~samá funkcionalita v~jazyce \textbf{Go} pomocí \textsc{struktur}, \textsc{rozhraní} a~tzv.~\textsc{receiver function}, což~jsou funkce definované na~dané struktuře.
+
+        \begin{figure}
+            \begin{subfigure}[b]{0.45\linewidth}
+                \begin{minted}[fontsize=\footnotesize,framesep=2mm]{php}
+<?php
+abstract class Animal {
+    public string $sound;
+    
+    public function __construct(public string $name) {}
+
+    public function makeSound() {
+        echo "My name is {$this->name} and I go {$this->sound}\n";
+    }
+}
+
+class Dog extends Animal {
+    public string $sound = "Haf";
+}
+
+class Cat extends Animal {
+    public string $sound = "Mňau";
+}
+
+$a = new Dog("Alík");
+$a->makeSound();
+$b = new Cat("Micka");
+$b->makeSound();
+                \end{minted}
+                \subcaption{oop:php}
+                \caption{Zápis tříd v PHP}
+            \end{subfigure}
+            \hfill
+            \begin{subfigure}[b]{0.45\linewidth}
+                \begin{minted}[fontsize=\footnotesize,framesep=2mm]{go}
+import "fmt"
+
+// Animal is an abstract class (interface) in Go
+type Animal interface {
+	makeSound()
+}
+
+// AnimalBase is a base struct to store common properties of animals
+type AnimalBase struct {
+	sound string
+	name  string
+}
+
+// Type (struct) representing a dog
+type Dog struct {
+	AnimalBase
+}
+
+// Cat
+type Cat struct {
+	AnimalBase
+}
+
+// Constructor-like function to create an instance of AnimalBase
+func NewAnimalBase(name string) *AnimalBase {
+	return &AnimalBase{
+		name: name,
+	}
+}
+
+// Method implemented for AnimalBase, which all animals inherit
+func (a *AnimalBase) makeSound() {
+	fmt.Printf("My name is %s and I go %s\n", a.name, a.sound)
+}
+
+// Constructor-like function to create an instance of Dog
+func NewDog(name string) *Dog {
+	dog := &Dog{
+		AnimalBase: *NewAnimalBase(name),
+	}
+	dog.sound = "Haf"
+	return dog
+}
+
+// NewCat is a constructor-like function to create an instance of Cat
+func NewCat(name string) *Cat {
+	cat := &Cat{
+		AnimalBase: *NewAnimalBase(name),
+	}
+	cat.sound = "Mňau"
+	return cat
+}
+
+func main() {
+	a := NewDog("Alík")
+	a.makeSound()
+
+	b := NewCat("Micka")
+	b.makeSound()
+}
+                \end{minted}
+                \label{oop:golang}
+                \caption{použití JSX}
+            \end{subfigure}
+            \label{oop:difference}
+            \caption{OOP v PHP a v Go}
+        \end{figure}
+
         \subsection{Javascript}
         Javascript je~skriptovací jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce, jako je~kliknutí, a~tedy na~rozdíl od~statické podoby HTML stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje.
 
