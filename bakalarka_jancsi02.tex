@@ -684,7 +684,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         \subsection{Testování}
         Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
         
-        Na~druhou stranu - zejména automatickým - testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
+        Na~druhou stranu - zejména automatickým - testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
         
         Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\textbf{čisté funkce}, což jsou funkce, které nemají žádné vedlejší efekty a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \textbf{unit testing}.
         
@@ -1064,21 +1064,22 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~bude mít~každá skupina \textsc{Endpointů} svůj vlastní soubor. V~těchto souborech budou jejich \textsc{handlery}. \textsc{Handler} dostane jako parametr \textbf{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \textsc{handleru} s~ním pracovat. Komunikace \textsc{frontendu} a~\textsc{backendu} bude probíhat pomocí \textbf{JSON}u, případně zaslaným \textbf{HTTP stavovým kódem}.
 
             \subsubsection{Generátor}
-            Zásadní funkcí \textbf{generátoru} při~generování příkladu bude řazení proměnných, spouštění jejich funkcí a~vyčíslení případných matematických výrazů. Protože pracujeme s~jazykem Go, \textbf{generátor} obdrží data ve~formě \textbf{struktury} a~výsledek taky jako strukturu, aby bylo možné ji~předat generátoru \textbf{PDF} nebo odeslat ke~zobrazení ve~formě \textbf{JSON}u.
+            Zásadní funkcí při~čtení zadání pomocí \textbf{Go} bude \textbf{parser}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslí matematické výrazy.
             
-            A~samozřejmě je~důležité nahrazení proměnných v~zadání a~odpovědích za~jejich hodnoty a~vytvoření skupiny dat pro~vykreslení výsledku.
+            Protože pracujeme s~jazykem Go, \textbf{parser} obdrží data ve~formě \textbf{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné ji~předat generátoru (\textbf{PDF} nebo \textbf{JSON} pro~zobrazení na~webu). A~samozřejmě nahrazení proměnných v~zadání a~odpovědích za~jejich hodnoty a~vytvoření struktury dat pro~vykreslení výsledku.
+
+            Konečné nahrazení hodnotami proměnných v~zadání a~nabízených možnostech proběhne použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje možností použít šablonu s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka Go. \parencite{GoTextTemplate}
 
             \subsubsection{Webový server}
-            Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \textsc{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \textbf{CRUD} operace s~jednotlivými zdroji:
+            Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \textsc{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \textbf{CRUD} operace s~jednotlivými zdroji.
 
-            \begin{itemize}
-                \item \textbf{s~uživatelskými účty} - registrace, přihlášení, načtení informací o~uživateli, změnu hesla/informací, odhlášení
-                \item \textbf{s~příklady} - vytvoření, načtení, změna, smazání, zobrazení
-                \item \textbf{s~testy} - vytvoření, načtení, změna, smazání, zobrazení, vygenerování testu
-            \end{itemize}
+            \subsubsection{Autentizace uživatelů}
+            Hned ze~začátku budu myslet na~registraci a~přihlášení více způsoby. Pro~všechny typy přihlášení je~jedna tabulka, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \textbf{e-mailové adresy a~hesla}, ale také pomocí služeb \textbf{Google}, \textbf{Linkedin} a~\textbf{Github}. Ty~jsem vybral, protože jsou nejrozšířenější a~umožňují jednoduchou integraci do~aplikace. Umožňují také jednoduché získání informací o~uživateli, jako je~jméno, příjmení a~e-mailová adresa.
+            
+            Na~\textsc{Frontendu} budu k~přihlašování používat nástroj \href{Google Firebase}, což~je~služba od~Google, která umožňuje mmj.~jednoduchou autentizaci uživatelů pomocí různých webových služeb. Po~přihlášení dostane každý takový uživatel svůj unikátní \textbf{UID}. \textbf{UID} budu při~registraci z~\textsc{frontendu} posílat na~\textsc{backend} a~ukládat do~databáze, do~tabulky s~přihlašovacími údaji, jako přihlašovací jméno. K~tomu vložím tajný \textsc{zahashovaný} řetězec sestavený z~vybraných statických informací, které od \textbf{Firebase} dostanu. Při~každém dalším přihlášení uživatele jen~zjistím, zda~je~v~databázi a~ověřím tajný řetězec, podobně jako heslo. Pokud~je~ověření úspěšné, uživatel je~přihlášen a~uložím hash~aktuální relace do~\textsc{JWT} i~do~databáze. To~mi~umožní mít přehled o~přihlášených uživatelích a~jim~zabezpečí přístup k~datům. Jakékoliv akce s~účtem navíc budou zalogovány do~tabulky a~zobrazovány uživateli, čímž bude mít přehled o~dění na~účtu.
 
         \subsection{Frontend}
-            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}}, který je~napsaný k~jednodušší komunikaci frontendu s~\href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}, což je balíček, který k~modulu \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} přidává možnost automatické správy \textsc{JWT} a~zjednodušuje změnu v~datech uložených v~\textsc{JWT}.
+            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}}, který je~napsaný ke~udržování \textsc{JWT} u~klientské části aplikace a~tedy~jednodušší komunikaci frontendu s~\textsc{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~toto~zaznamená a~změní v~\textsc{JWT}, čímž se~snažím redukovat riziko jeho zneužití.
         \subsection{Testování}
         \subsection{Údržba}
         
