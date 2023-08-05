@@ -11,6 +11,12 @@
 \usepackage{tikz}
 \usepackage{minted}
 
+\setminted{
+    breaklines=true,
+    fontsize=\footnotesize,
+    framesep=2mm
+}
+
 \usepackage{caption}
 \usepackage{subcaption}
 
@@ -214,7 +220,7 @@
 
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
-                \begin{minted}[fontsize=\footnotesize,framesep=2mm]{php}
+                \begin{minted}{php}
 <?php
 abstract class Animal {
     public string $sound;
@@ -244,7 +250,7 @@ $b->makeSound();
             \end{subfigure}
             \hfill
             \begin{subfigure}[b]{0.45\linewidth}
-                \begin{minted}[fontsize=\footnotesize,framesep=2mm]{go}
+                \begin{minted}{go}
 import "fmt"
 
 // Animal is an abstract class (interface) in Go
@@ -386,28 +392,28 @@ func main() {
         Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
-                \begin{minted}[fontsize=\footnotesize,framesep=2mm]{js}
-    function ComponentA({ name }) {
-        return React.createElement(
-            // typ prvku
-            'h1',
-            // atributy
-            { className: 'greeting' },
-            // textový obsah
-            'Hello World!'
-        );
-    }
+                \begin{minted}{js}
+function ComponentA({ name }) {
+    return React.createElement(
+        // typ prvku
+        'h1',
+        // atributy
+        { className: 'greeting' },
+        // textový obsah
+        'Hello World!'
+    );
+}
                 \end{minted}
                 \caption{použití React.createElement}
             \end{subfigure}
             \hfill
             \begin{subfigure}[b]{0.45\linewidth}
-                \begin{minted}[fontsize=\footnotesize,framesep=2mm]{js}
-    const App = () => {
-        return (
-            <h1 className="greeting">Hello World!</h1>
-        );
-    }
+                \begin{minted}{js}
+const App = () => {
+    return (
+        <h1 className="greeting">Hello World!</h1>
+    );
+}
                 \end{minted}
                 \vspace{1cm}
                 \caption{použití JSX}
@@ -629,15 +635,15 @@ func main() {
                 \begin{subfigure}{0.48\textwidth}
                     \centering
                     \begin{minted}{go}
-                        id := 42
-                        // nebezpečný vstup od uživatele
-                        email := "mujmejl@seznam.cz', role='admin"
-                        // příme spuštění dotazu
-                        DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
+id := 42
+// nebezpečný vstup od uživatele
+email := "mujmejl@seznam.cz', role='admin"
+// příme spuštění dotazu
+DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
                     \end{minted}
                     \begin{minted}{sql}
-                        -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
-                        UPDATE users SET email = '', role='admin' WHERE id = 42
+-- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
+UPDATE users SET email = 'mujmejl@seznam.cz', role='admin' WHERE id = 42
                     \end{minted}
                     \label{model-sql-injection}
                     \subcaption{Příklad útoku SQL Injection}
@@ -645,22 +651,24 @@ func main() {
                 \begin{subfigure}{0.48\textwidth}
                     \centering
                     \begin{minted}{go}
-                        id := 42
-                        // nebezpečný vstup od uživatele
-                        email := " ', role='admin"
-                        // příme spuštění dotazu
-                        DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
+id := 42
+// nebezpečný vstup od uživatele
+email := "mujmejl@seznam.cz', role='admin"
+// příme spuštění dotazu
+DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
                     \end{minted}
                     \begin{minted}{sql}
-                        -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
-                        UPDATE users SET email = ' ', role=\'admin\' WHERE id = 42
+-- ošetřený dotaz, který by pouze vložil do databáze nevalidní emailovou adresu
+UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHERE id = 42
                     \end{minted}
                     \label{model-sql-injection}
                     \subcaption{Ošetření pomocí prepared statement}
                 \end{subfigure}
             \end{figure}
 
-            Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet. Další kontroly na~úrovni databáze jsou~pak~už~dobrovolné, ale~doporučené. \parencite{w3s:SQLInjection}, \parencite{itnetwork:SQLInjection}
+            Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet.
+            
+            Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze. To~je ale už~na~uvážení autora aplikace. \parencite{w3s:SQLInjection}, \parencite{itnetwork:SQLInjection}
 
             \subsubsection{XSS - Cross Site Scripting}
             \textbf{XSS} je~útok, při~kterém útočník vloží do~uživatelského vstupu kód, který se~při~načtení stránky spustí. To~může vést k~získání citlivých dat, přesměrování na~jinou stránku, nebo~k~jiným nežádoucím akcím.
@@ -875,7 +883,7 @@ func main() {
             \item \textbf{Diagramy chování} - popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
         \end{itemize}
 
-        Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~vztahů mezi~třídami \textsc{Class Diagram}.
+        Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~tříd \textsc{Class Diagram}. Diagramy budu~zpracovávat pomocí nástroje \textbf{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\textbf{Draw.io} atd.
 
         \subsection{UCD - Use Case Diagram}
         \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce může aktér systém používat.
@@ -883,7 +891,7 @@ func main() {
         To nám může pomoct při~přípravě zjistit,  jaké funkce bude aplikace mít a~tím nastínit, jaké bude potřeba vytvořit \textsc{Endpointy} v~\textsc{API}.
         Taky si~můžeme ověřit správnost návrhu a~zjistit, zda~jsme nějakou funkcionalitu nevynechali, protože na~diagramu jsou případné nedostatky vidět lépe.
         
-        A hlavně nám to~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \textsc{endpointy} budeme potřebovat vytvořit, aby~bylo možné akce provádět. \parencite{uml:usecase}
+        To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \textsc{endpointy} budeme potřebovat vytvořit, aby~bylo možné akce provést. \parencite{uml:usecase}
 
         Při~modelování pomocí \textsc{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu.
         \begin{itemize}
@@ -912,6 +920,8 @@ func main() {
         \textbf{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Označujeme znakem \texttt{\textunderscore}.
         
         Vztahy inkluze a~rozšíření jsou v diagramu tříd zobrazeny stejně jako u~\textsc{UCD} \parencite{visualparadigmClassDiagram}.
+
+        \textbf{Diagram tříd} souvisí s~návrhem struktur, uložených v databázi. Lépe si~uvědomíme, jaká data bude nutné uchovávat v~databázi a~jaká jsou dočasná, nebo je~můžeme jednoduše odvodit z~jiných dat.
 
         \subsection{Návrh struktury databáze}
         Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
@@ -1062,7 +1072,7 @@ func main() {
             Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \textsc{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \textbf{CRUD} operace s~jednotlivými zdroji:
 
             \begin{itemize}
-                \item \textbf{s~uživatelskýi účty} - přihlášení, registrace, načtení informací o~uživateli, změnu hesla/informací odhlášení, přidávání spolupracovníků
+                \item \textbf{s~uživatelskými účty} - registrace, přihlášení, načtení informací o~uživateli, změnu hesla/informací, odhlášení
                 \item \textbf{s~příklady} - vytvoření, načtení, změna, smazání, zobrazení
                 \item \textbf{s~testy} - vytvoření, načtení, změna, smazání, zobrazení, vygenerování testu
             \end{itemize}
@@ -1079,7 +1089,7 @@ func main() {
         
         Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \textsc{Písemkomat} bude dostupná přes~\textsc{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
         
-        Mohly by~tak~vzniknout moduly pro~použití v~těchto prostředích, které by~umožňovaly vytvářet příklady a~zadávat je~žákům přímo v~Moodlu, Google Classroom nebo~je~rychle sdílet přes MS~Teams. Zajímavá by~mohla~být i~integrace do~\textsc{CMS} systému Wordpress.
+        To~by~umožnilo nechat si~vygenerovat testy přímo do~Moodlu, nebo~je~rychle sdílet přes MS~Teams. Zajímavá by~mohla~být i~integrace do~\textsc{CMS} systémů, jako~např.~Wordpress nebo~Drupal.
 
         Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady.
         
