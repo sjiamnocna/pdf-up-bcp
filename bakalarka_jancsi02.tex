@@ -191,15 +191,14 @@
         Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. \parencite{ueda:compiled}
         
         \subsection{Překladač (kompilátor)}
-        Překladač je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit chyby před spuštěním programu.
-
+        Překladač je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
         \textbf{Překladače} i~\textbf{interprety} pracují v~několika fázích:
         \begin{enumerate}
             \item \textbf{Lexikální analýza} - čte zdrojový kód znak po~znaku a~rozděluje kód na~jednotlivé tokeny a~určuje jejich typ (slova, čísla, operátory\dots). Při~tom kontroluje správnost zápisu a~případné chyby vypíše. Výstupem je~seznam tokenů.
             \item \textbf{Syntaktická analýza} - kontroluje, jestli jsou jednotlivé tokeny správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \textsc{abstraktní syntaktický strom (AST = Abstract Syntax Tree)}, který reprezentuje strukturu programu.
             \item \textbf{Sémantická analýza} - kontroluje správnost použití jednotlivých tokenů a~jejich význam. Generuje tabulku symbolů, která obsahuje informace o~proměnných a~funkcích, dostupných v~programu.
-            \item \textbf{Optimalizace} - v~této fázi optimalizujeme kód, aby byl ve výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a může být prováděna v~různých fázích překladu (a~nemusí být prováděna vůbec).
-            \item \textbf{Generování kódu} - Jakmile máme \textsc{AST}, můžeme generovat výslednou podobu v~požadované formě - binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretujeme jako~jinou formu dat.
+            \item \textbf{Optimalizace} - v~této fázi optimalizujeme kód, aby byl ve~výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a~může být~prováděna několikrát v~různých fázích překladu (a~nemusí být prováděna vůbec).
+            \item \textbf{Generování kódu} - Když~máme \textsc{AST}, můžeme generovat výslednou podobu v~požadované formě - binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretujeme jako~jinou formu dat.
         \end{enumerate} \parencite{baeldungCompilersWork}
 
         \subsection{Procedurální a~objektově orientované programování (OOP)}
@@ -209,7 +208,7 @@
         
         \textbf{OOP (Objektově Orientované Programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~OOP se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \textbf{Objekty} vytváříme ze~tříd, což~jsou jakési vzory, podle kterých se vytvářejí (\textsc{inicializují})~objekty. \textsc{OOP} má 4~základní vlastnosti.
         \begin{itemize}
-            \item \textbf{Abstrakce} - objekty mohou být abstraktní, což~znamená, že~nemusí mít implementaci. To~umožňuje vytvářet obecné (tzv.\textsc{bázové})~třídy, které mohou být použity pro~odvození více konkrétních tříd.
+            \item \textbf{Abstrakce} - třídy mohou být \textsc{abstraktní}, což~znamená, že~nemusí být~implementována jejich funkcionalita a~nelze je~samostatně \textsc{inicializovat}. To~umožňuje vytvářet obecné (tzv.\textsc{bázové})~třídy, které mohou být použity jako vzor pro~odvození více konkrétních tříd.
             \item \textbf{Zapouzdření} - objekty mohou své~vlastnosti a~metody, skrýt před~okolním světem. To~umožňuje měnit vnitřní strukturu objektu bez~toho, aniž bychom museli měnit ostatní části programu.
             \item \textbf{Dědičnost} - objekty mohou dědit vlastnosti a~metody od~jiných objektů. To~umožňuje znovupoužití kódu a~zjednodušení programu.
             \item \textbf{Polymorfismus} - objekty mohou mít stejné~vlastnosti a~metody, ale mohou se~lišit v~implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
@@ -228,6 +227,11 @@ abstract class Animal {
     public function __construct(public string $name) {}
 
     public function makeSound() {
+        if (empty($this->sound)){
+        	$name = get_class($this);
+            echo "What does the {$name} say?\n";
+            return;
+        }
         echo "My name is {$this->name} and I go {$this->sound}\n";
     }
 }
@@ -240,12 +244,15 @@ class Cat extends Animal {
     public string $sound = "Mňau";
 }
 
+class Fox extends Animal {}
+
 $a = new Dog("Alík");
 $a->makeSound();
 $b = new Cat("Micka");
 $b->makeSound();
+$b = new Fox("Foxy");
+$b->makeSound();
                 \end{minted}
-                \subcaption{oop:php}
                 \caption{Zápis tříd v PHP}
             \end{subfigure}
             \hfill
@@ -313,10 +320,10 @@ func main() {
 }
                 \end{minted}
                 \label{oop:golang}
-                \caption{použití JSX}
+                \caption{Stejná funkcionalita v jazyce Go}
             \end{subfigure}
             \label{oop:difference}
-            \caption{OOP v PHPz a v Go}
+            \caption{Zápis OOP v PHP je stručnější než v Go}
         \end{figure}
 
         \subsection{Javascript}
@@ -372,11 +379,11 @@ func main() {
 
         Při~psaní \textsc{Stavové aplikace} v~Reactu je~taky důležité vědět, že~v~Reactu funguje tzv.~\textsc{One directional data flow} (jednosměrný tok dat). To~znamená, že~data se~předávají směrem z~rodičovské komponenty potomkům, nikoliv naopak. To~umožňuje lepší kontrolu nad~daty, zároveň to~přináší výzvy při~správě stavu aplikace. Proto se~snažíme přesunout zdroj dat, se~kterým pracujeme na~nejvyšší možnou úroveň, aby bylo~možné data předávat do~komponent, které je~potřebují.
         
-        Z~toho vyplývá problém zvaný \textsc{prop drilling}, spočívající v~tom, že~data musíme předávat přes~několik komponent, které data třeba vůbec nevyužívají. To~může vést k~tomu, že~se~v~komponentách objeví nepotřebné kódy, které způsobují zbytečnou komplexitu. Při~změně jedné proměnné, která je~předávána přes~několik komponent, je~tedy~potřeba upravit všechny komponenty, které tuto proměnnou používají, abychom data dostali tam, kde~jsou potřeba. To~může být velice nepřehledné a~zdlouhavé.
+        Z~toho vyplývá problém zvaný \textsc{prop drilling} (\textsc{rekurzivní předávání dat komponentami}), spočívající v~tom, že~aby se~data dostala k~cílové komponentě, musíme je~předávat přes~několik vnořených komponent, které data třeba vůbec nepotřebují. To~může vést k~tomu, že~se~v~komponentách objeví nepotřebné kódy, které způsobují zbytečnou komplexitu. Při~změně jedné proměnné, která je~předávána přes~několik komponent, je~tedy~potřeba upravit všechny komponenty, které tuto proměnnou používají, abychom data dostali tam, kde~jsou potřeba. To~může být velice nepřehledné a~zdlouhavé.
         
-        Dochází také ke~zbytečnému překreslení všech komponent, které data předávají, i~když se~změna má projeviit pouze v~jedné koncové komponentě.
+        Při~změně dat dochází také ke~zbytečnému překreslení všech komponent, které data předávají, i~když se~má změna projeviit pouze v~jedné cílové komponentě.
 
-        \textsc{Prop drilling} řešíme tím, že~zdroj dat přesuneme na~nejvyšší možnou úroveň a~na~změny jednotlivých dat upozorňujeme pouze ty komponenty, které si~je~vyžádají. Tím se~zjednoduší kód a~zvýší se~přehlednost. Navíc se~sníží počet překreslení komponent, což zvýší výkon aplikace.
+        \textsc{Prop drilling} řešíme tím, že~zdroj dat přesuneme na~nejvyšší možnou úroveň a~na~změny jednotlivých dat upozorňujeme pouze ty~komponenty, které si~je~vyžádají. Tím se~zjednoduší kód a~zvýší se~přehlednost. Navíc se~sníží počet překreslení komponent, což zvýší výkon aplikace.
         
         K~tomu využíváme \textsc{Context API}, který umožňuje vytvořit tzv.~\textsc{kontext} a~zpřístupnit jej~pro~nás v~celé aplikaci. Kontext je~dostupný v~komponentách, které jsou~vnořené v~komponentě, ve~které je~kontext vytvořen. Obvykle \textsc{kontext} vytvoříme v~samostatném souboru pomocí \texttt{React.createContext} a~poté obalíme celou aplikaci pomocí komponenty \textsc{poskytovatele kontextu} (\textsc{provideru}).
         
@@ -424,9 +431,9 @@ const App = () => {
 
         \textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\textsc{Vanilla Javascriptu} nebo~\textsc{Typescriptu}. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~podobný Reactu.
         
-        \textsc{Vite} také zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem.
+        \textsc{Vite} zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem.
         
-        Vite údajně také zrychluje sestavení modulů více než jiné nástroje.\parencite{vitejs}
+        \textsc{Vite} údajně také zrychluje sestavení modulů~--~spojení importovaných modulů do~jednoho výstupu.\parencite{vitejs}
         
         \subsection{Client-Server}
         Vývoj webových aplikací je~založen na~modelu klient-server.
@@ -497,7 +504,7 @@ const App = () => {
         \subsection{MVC - Model View Controller}
         Nejvýznamnějším bodem vývoje aplikací bylo rozšíření architektury \textbf{MVC}. \textbf{MVC} je~zkratka pro~\textbf{Model View Controller}. Podle této architektury oddělujeme logiku aplikace od~jejího zobrazení. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím zobrazení.
 
-        Díky tomu můžeme mít jednu aplikaci, která bude mít různé zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webovou stránku, mobilní aplikaci a~desktopovou aplikaci.
+        Díky tomu můžeme mít jednu aplikaci, která bude mít různá zobrazení, ale čerpá pouze z~jednoho zdroje. Např.~webová stránka, mobilní i~desktopová aplikace mohou využívat téže~(\textsc{Backend}).
 
         Má tři složky; \textbf{Model}, který se~stará o~manipulaci s~daty, \textbf{Controller}, který říká \textbf{Modelu}, co~má~dělat a~\textbf{View}, který se~stará o~výsledné zobrazení dat. \parencite{MVC}
 
@@ -506,30 +513,30 @@ const App = () => {
 
         Díky \textbf{MVC} je~takto možné vývoj aplikace rozdělit mezi tým~vývojářů, kde každý může pracovat na~jiné části aplikace a~každá část aplikace má~své rozhraní, takže mohou pracovat téměř nezávisle na~sobě.
 
-        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\textbf{View}) a~interakci s~uživatelem (\textbf{Controller}) a~komunikuje s~\textbf{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
+        \textbf{Frontend} je~část aplikace, kterou vidí uživatel. Může to být např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\textsc{View}) a~interakci s~uživatelem (\textsc{Controller}) a~komunikuje s~\textbf{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
-        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}. Spolupracuje s~databází (\textbf{Model}em), souborovým systémem a~dalšími službami, které jsou potřeba pro~správné fungování aplikace. \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
+        \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \textbf{frontendu}. Spolupracuje s~databází (\textsc{Model}em), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \textbf{Backend} může být napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
 
         \subsection{JSON - Javascript Object Notation}
-        \textsc{JSON}~je~formát pro~výměnu dat. Je~to~textový formát, to znamená, že~je~čitelný pro~člověka i~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát XML, který je~podobný struktuře HTML. Ostatně XML stále používá spousta aplikací, zejména aplikace státní správy.
+        \textsc{JSON}~je~formát pro~uložení strukturovaných dat. Je~to~textový formát čitelný pro~člověka i~pro~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát \textsc{XML} (\textsc{Extended Markup Language}, který je~podobný struktuře \textsc{HTML}. Ostatně \textsc{XML} stále používá spousta aplikací, zejména aplikace státní správy.
 
-        Formát JSON je~podobný zápisu objektů v~Javascriptu. Obsahuje dvojice klíč-hodnota, které jsou odděleny dvojtečkou. Klíčem je~řetězec a~hodnota může být číselná, řetězcová, logická hodnota, pole nebo objekt.
+        Formát \textsc{JSON} je~podobný zápisu objektů v~Javascriptu. Obsahuje dvojice klíč-hodnota, které jsou odděleny dvojtečkou. Klíčem je~řetězec, který obvykle popisuje, jaká data jsou v~něm uložena, a~hodnota může být číselná, textová, logická hodnota, pole nebo další vnořená struktura dat.
         
-        Práce s~formátem JSON je~pohodlnější než s~formátem XML, protože je~mnohem jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně serveru, tak na~straně klienta a~jde~celkově o~úspornější formát.
+        Práce s~formátem \textsc{JSON} je~pohodlnější než s~formátem XML, protože je~mnohem jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně serveru, tak na~straně klienta a~jde~celkově o~úspornější formát.
 
         \subsection{AJAX - Asynchronous Javascript Request}
-        AJAX je~technologie, která umožňuje asynchronní komunikaci, např.~mezi frontendem a~backendem.
+        \textsc{AJAX} je~technologie, která umožňuje asynchronní komunikaci, např.~mezi frontendem a~backendem.
 
-        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale použije se~\textbf{AJAX}, čímž se~načtou požadovaná data ze~serveru a~změní se~ve~stránce.
+        To~znamená, že~při~každém požadavku na~server se~stránka nemusí znovu načítat, ale použije se~\textsc{AJAX}, čímž se~načtou požadovaná data ze~serveru a~změní se~ve~stránce.
 
         Funkce Javascriptu, umožňující asynchronní požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. AJAX využívá různé HTTP metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\parencite{ajax:mdn}
 
         \subsection{API - Application Interface}
-        API je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem. Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
+        \textsc{API} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi frontendem a~backendem. Některá rozhrání umožňují taky komunikaci na~stejném zařízení nebo mezi aplikacemi na~různých zařízeních.
         
-        Někerá API jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~API Google Firebase, Microsoft Azure nebo Amazon Web Services umožňují tvorbu tzv.~Serverless aplikací, kde~vývojář tvoří pouze \textsc{frontend} a~o~zbytek se~stará externí služba. To~umožňuje vývojářům se~soustředit na~vývoj aplikace a~nemusí se~starat o~infrastrukturu, která je~potřeba pro~běh aplikace.
+        Někerá \textsc{API} jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~\textsc{API} Google Firebase, Microsoft Azure nebo Amazon Web Services umožňují tvorbu tzv.~Serverless aplikací, kde~vývojář tvoří pouze \textsc{frontend} a~o~zbytek se~stará externí služba. To~umožňuje vývojářům se~soustředit na~vývoj aplikace a~nemusí se~starat o~infrastrukturu, která je~potřeba pro~běh aplikace.
 
-        V~dnešní době jsou nejrozšířenější formou API \textsc{REST} a~\textsc{GraphQL}. Pro komunikaci mezi interními aplikacemi se~často používá \textsc{SOAP}. Různý hardware používá k~ovládání např.~\textsc{UART} a~\textsc{SPI}.
+        V~dnešní době jsou nejrozšířenější formou tzv.~\textsc{REST API} a~\textsc{GraphQL}. Pro komunikaci mezi interními aplikacemi se~často používá \textsc{SOAP}. Různý hardware používá k~ovládání např.~\textsc{UART} a~\textsc{SPI}.
 
         Velice oblíbená je~metoda \textsc{gRPC} (\textsc{Google Remote Procedure Call}), která je~založena na~protokolu HTTP/2 a~používá binární formát \textsc{Protocol Buffers}. \textsc{RPC} je~zkratka pro~\textsc{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru.
         
@@ -562,9 +569,9 @@ const App = () => {
         Na~druhou stranu je~implementace \textsc{GraphQL} složitější než~implementace \textsc{REST}, protože je~potřeba implementovat \textsc{GraphQL} server, který bude umět zpracovat požadavky od~klienta. Každý kousek informace, který chceme zpřístupnit, navíc musíme specifikovat v~\textsc{GraphQL} schématu a~vytvořit pro~něj tzv.~\textsc{resolver}, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože musíme pro~každou vyžadovanou položku spustit vlastní funkci, což~je v~případě větších datových objektů a~přístupů do~databáze neefektivní.
 
         \subsection{Zabezpečení}
-        Vystavením aplikace na~internetu uvádíme naše API do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
+        Vystavením aplikace na~internetu uvádíme naše \textsc{API} do~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba aplikaci zabezpečit a~v~žádném případě nespoléhat na~neprůstřelnost zabezpečení knihoven 3.\,stran, které používáme.
         
-        To~znamená, že~je~potřeba zabezpečit API, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby potřebujeme veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí firewallu, ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně pomocí \textbf{SSH klíče}. Taky je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi.
+        To~znamená, že~je~potřeba zabezpečit \textsc{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby potřebujeme veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí firewallu, ke~službám, ke~kterým potřebujeme soukromý přístup, přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně pomocí \textbf{SSH klíče}. Taky je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi.
             
         \subsubsection{Hashování (Hashing)}
         \textbf{Hashing} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~využíváme např.~při~ukládání hesel, kdy heslo uživatele neukládáme v~původní čitelné podobě, ale jako \textsc{hash}. Při~přihlášení pak~aplikujeme stejnou \textsc{hashovací} funkci na~zadané heslo a~porovnáme ho~s~uloženým \textsc{hashem}. Pokud se~shodují, uživatel je~přihlášen.
