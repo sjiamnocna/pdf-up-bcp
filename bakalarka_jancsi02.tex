@@ -175,7 +175,7 @@
         Server může - samozřejmě po~povolení ze~strany uživatele - zasílat zprávy na~klientské zařízení i~bez~jeho požadavku díky \textsc{Server-Sent Events}\parencite{sse:mdn} nebo udržovat spojení pomocí \textsc{WebSockets}\parencite{websocket:mdn}. Živý přenos videa nebo internetové hovory jsou~příkladem použití WebSockets.
 
         To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze se~načtou data ze~serveru
-        a~přidají se~do~stránky. To~je~mnohem rychlejší a~příjemnější pro~uživatele.
+        a~přidají se~do~stránky. To~je~rychlejší a~příjemnější pro~uživatele.
 
         \subsection{Kompilátor a Interpret}
         Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
@@ -214,46 +214,53 @@
             \item \textbf{Polymorfismus} - objekty mohou mít stejné~vlastnosti a~metody, ale mohou se~lišit v~implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
         \end{itemize} \parencite{Keogh:OOP}
 
-        Jazyk~\textbf{Go} (Golang) podporuje OOP, nicméně je~nutné si~uvědomit, že~jde o~jazyk \textsc{strukturovaný}, nikoliv o~\textsc{objektově orientovaný}. Proto poskytuje jen~některé vlastnosti OOP ve~formě struktur. \parencite{go:OOP}
-        V~příkladu \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \textbf{PHP} pomocí \textsc{tříd} a~ta~samá funkcionalita v~jazyce \textbf{Go} pomocí \textsc{struktur}, \textsc{rozhraní} a~tzv.~\textsc{receiver function}, což~jsou funkce definované na~dané struktuře.
+        Jazyk~\textbf{Go} (Golang) podporuje~\textsc{OOP} jen~částečně. Je~nutné si~uvědomit, že~jde o~jazyk \textsc{strukturovaný}, nikoliv \textsc{objektově orientovaný}. Proto můžeme dosáhnout některých vlastností \textsc{OOP} ve~formě \textbf{struktur} a~\textbf{rozhrání} (\textbf{interface}). \parencite{go:OOP}
+        V~příkladu \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \textbf{Javascript} pomocí \textsc{tříd} a~ta~samá funkcionalita v~jazyce \textbf{Go} pomocí \textsc{struktur}, \textsc{rozhraní} a~tzv.~\textsc{receiver function}, což~jsou funkce definované na~dané struktuře.
+
+        Nutné je~podotknout, že~Javascript je~považován za~\textsc{objektově orientovaný}, nicméně \textsc{OOP} implementuje formou tzv.~\textsc{prototypové dědičnosti}. \parencite[2.1.01]{kantor_javascript}
 
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
-                \begin{minted}{php}
-<?php
-abstract class Animal {
-    public string $sound;
-    
-    public function __construct(public string $name) {}
+                \begin{minted}{js}
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
 
-    public function makeSound() {
-        if (empty($this->sound)){
-        	$name = get_class($this);
-            echo "What does the {$name} say?\n";
+    makeSound() {
+        if (!this.sound) {
+            const name = this.constructor.name;
+            console.log(`What does the ${name} say?`);
             return;
         }
-        echo "My name is {$this->name} and I go {$this->sound}\n";
+        console.log(`My name is ${this.name} and I go ${this.sound}`);
     }
 }
 
 class Dog extends Animal {
-    public string $sound = "Haf";
+    constructor(name) {
+        super(name);
+        this.sound = "Haf";
+    }
 }
 
 class Cat extends Animal {
-    public string $sound = "Mňau";
+    constructor(name) {
+        super(name);
+        this.sound = "Mňau";
+    }
 }
 
 class Fox extends Animal {}
 
-$a = new Dog("Alík");
-$a->makeSound();
-$b = new Cat("Micka");
-$b->makeSound();
-$b = new Fox("Foxy");
-$b->makeSound();
+const a = new Dog("Alík");
+a.makeSound();
+const b = new Cat("Micka");
+b.makeSound();
+const c = new Fox("Foxy");
+c.makeSound();
                 \end{minted}
-                \caption{Zápis tříd v PHP}
+                \caption{Zápis pomocí tříd v Javascriptu}
             \end{subfigure}
             \hfill
             \begin{subfigure}[b]{0.45\linewidth}
@@ -1050,7 +1057,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\textbf{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \textsc{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\textbf{sjiamnocna/goethe}}. Ten zároveň přidává základní \textsc{endpointy} pro~autentikaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\textbf{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
-            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje jeho části podle zadání. Ty~potom předá výslednému zobrazení (ve~smyslu \textsc{MVC}, může být zobrazení cokoliv - \textbf{PDF soubor} nebo \textbf{Frontend}). V~případě nalezených chyb, které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení a~chyby odstranit.
+            Samotný \textsc{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\textsc{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\textsc{generátor}, který přijme požadavky na~příklad a~vygeneruje jeho části podle zadání. Ty~potom předá výslednému zobrazení (ve~smyslu \textsc{MVC}, může být zobrazení cokoliv - \textbf{PDF soubor} nebo~webový \textbf{Frontend}). V~případě nalezených chyb, které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení a~chyby odstranit.
             
             \subsubsection{Funkce Init}
             \textbf{Go} má~dvě vstupní funkce \textbf{main} a~\textbf{init}. Funkce \textbf{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \textbf{init} se~spustí jako první, ale~před funkcí \textbf{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \textbf{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
@@ -1081,12 +1088,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \textsc{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \textbf{CRUD} operace s~jednotlivými zdroji.
 
             \subsubsection{Autentizace uživatelů}
-            Hned ze~začátku budu myslet na~registraci a~přihlášení více způsoby. Pro~všechny typy přihlášení je~jedna tabulka, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \textbf{e-mailové adresy a~hesla}, ale také pomocí služeb \textbf{Google}, \textbf{Linkedin} a~\textbf{Github}. Ty~jsem vybral, protože jsou nejrozšířenější a~umožňují jednoduchou integraci do~aplikace. Umožňují také jednoduché získání informací o~uživateli, jako je~jméno, příjmení a~e-mailová adresa.
+            Hned ze~začátku budu myslet na~registraci a~přihlášení více způsoby. Pro~všechny typy přihlášení bude existovat~jedna tabulka s~tajnými přihlašovacími údaji z~různých služeb, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \textbf{e-mailové adresy a~hesla}, ale také pomocí služeb \textbf{Google}, \textbf{Linkedin} a~\textbf{Github}. Ty~jsem vybral, protože~je~menší pravděpodobnost falešných profilů. Umožňují také jednoduché získání informací o~uživateli, jako je~jméno, příjmení a~e-mailová adresa.
             
             Na~\textsc{Frontendu} budu k~přihlašování používat nástroj \href{Google Firebase}, což~je~služba od~Google, která umožňuje mmj.~jednoduchou autentizaci uživatelů pomocí různých webových služeb. Po~přihlášení dostane každý takový uživatel svůj unikátní \textbf{UID}. \textbf{UID} budu při~registraci z~\textsc{frontendu} posílat na~\textsc{backend} a~ukládat do~databáze, do~tabulky s~přihlašovacími údaji, jako přihlašovací jméno. K~tomu vložím tajný \textsc{zahashovaný} řetězec sestavený z~vybraných statických informací, které od \textbf{Firebase} dostanu. Při~každém dalším přihlášení uživatele jen~zjistím, zda~je~v~databázi a~ověřím tajný řetězec, podobně jako heslo. Pokud~je~ověření úspěšné, uživatel je~přihlášen a~uložím hash~aktuální relace do~\textsc{JWT} i~do~databáze. To~mi~umožní mít přehled o~přihlášených uživatelích a~jim~zabezpečí přístup k~datům. Jakékoliv akce s~účtem navíc budou zalogovány do~tabulky a~zobrazovány uživateli, čímž bude mít přehled o~dění na~účtu.
 
         \subsection{Frontend}
-            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}}, který je~napsaný ke~udržování \textsc{JWT} u~klientské části aplikace a~tedy~jednodušší komunikaci frontendu s~\textsc{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~toto~zaznamená a~změní v~\textsc{JWT}, čímž se~snažím redukovat riziko jeho zneužití.
+            \textbf{Frontend} bude vytvořen pomocí nástroje \textbf{Vite} v~jazyce \textbf{Typescript} s~použitím knihovny \textbf{React}. Pro~komunikaci s~backendem využiju dříve napsaný \textsc{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\textbf{sjiamnocna/renette-api}}, který je~napsaný ke~udržování \textsc{JWT} u~klientské části aplikace a~tedy~jednodušší komunikaci frontendu s~\textsc{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~toto~zaznamená a~změní se~\textsc{JWT}, čímž se~snažím redukovat riziko jeho zneužití.
+
+            Zdrojové soubory \textsc{Frontendu} budou v~tradičním adresáři \texttt{viteapp/src} a~moduly použitých nástrojů, jako připojení k~\textsc{API} pomocí tajných údajů, spuštění \textsc{Firebase} nebo vytvoření \textsc{kontextu aplikace}, budou v~podadresáři \texttt{utils}. Jednotlivé \textsc{komponenty} pak~v~adresáři \texttt{components}.
+
+            V~hlavním souboru \texttt{src/main.tsx} importujeme aplikaci a~připojíme ji~k~\textsc{HTML} dokumentu. \textsc{React} se~postará o~její vykreslení do~zvoleného prvku.
         \subsection{Testování}
         \subsection{Údržba}
         
