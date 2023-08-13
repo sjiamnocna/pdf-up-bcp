@@ -378,10 +378,9 @@ func main() {
 
         Nejnáročnější operace na~výpočetní výkon je~vykreslování webu a~změn v~něm. Tedy změny v~klasickém DOMu.
 
-        React je~díky využití Virtuálního DOMu velice rychlý. Virtuální DOM je~kopie DOMu, která se~používá pro~porovnání změn. To~umožňuje aplikaci rozpoznat, kdy je~potřeba DOM upravit a~kdy ne. Zamezíme tak zbytečným operacím a~zvýšíme výkon aplikace. \parencite{elrom2021react}
+        React je~díky využití tzv.~\textbf{Virtuálního DOMu} velice rychlý. \textsc{Virtuální DOM} je~kopie DOMu, která se~používá pro~porovnání změn. To~umožňuje aplikaci rozpoznat, kdy je~potřeba reálný~DOM upravit a~kdy ne. Zamezíme tak zbytečným operacím a~zvýšíme výkon aplikace. \parencite{elrom2021react}
 
-        
-        Komponenty mohou obsahovat i~další komponenty. Tomu říkáme \textsc{zanořování} nebo anglicky \textsc{nesting}. To~umožňuje vytvářet složitější komponenty s~více prvky.
+        Jednotlivé \textsc{komponenty} mohou obsahovat další (\textbf{vnořené}) komponenty. Tomu říkáme \textsc{zanořování} nebo anglicky \textsc{nesting}. To~umožňuje vytvářet složitější komponenty s~více prvky.
         S~použitím \href{https://react.dev/reference/react/createElement}{\texttt{React.createElement} (viz. dokumentace)} by~takový kód byl složitě čitelný. I~proto máme k~dispozici \textbf{JSX}.
 
         Při~psaní \textsc{Stavové aplikace} v~Reactu je~taky důležité vědět, že~v~Reactu funguje tzv.~\textsc{One directional data flow} (jednosměrný tok dat). To~znamená, že~data se~předávají směrem z~rodičovské komponenty potomkům, nikoliv naopak. To~umožňuje lepší kontrolu nad~daty, zároveň to~přináší výzvy při~správě stavu aplikace. Proto se~snažíme přesunout zdroj dat, se~kterým pracujeme na~nejvyšší možnou úroveň, aby bylo~možné data předávat do~komponent, které je~potřebují.
@@ -400,9 +399,10 @@ func main() {
         Data potom měníme pomocí tzv.~\textsc{reduceru}, což~je~funkce, která vezme stávající stav a~název akce, kterou je~potřeba provést a~na~základě toho vytvoří nový, změněný stav aplikace, který uloží a~upozorní komponenty na~konkrétní změny. Reducer je~obvykle vytvořen spolu s~kontextem v~samostatném souboru a~předává se~jako parametr \textsc{kontextu}. Názvy akcí zapisujeme jako konstanty, které jsou~dostupné v~celé aplikaci. To~umožňuje snadnou změnu názvu akce pro~celou aplikaci najednou. Jelikož porovnání řetězců je pomalejší než porovnání čísel, je vhodné pro~akce používat tzv.~číselníky (\texttt{enum}), které nám poskytuje \textsc{Typescript}. Tím~zajistíme, že~se~názvy akcí ve~výsledné aplikaci reprezentují čísly a~jejich porovnání bude rychlejší. Také nám díky tomu bude \textsc{IDE} lépe napovídat názvy akcí.
 
         Dalšími možnostmi řešení je~použití knihoven jako \textbf{Redux} nebo \textbf{MobX}.
-        
-        \textbf{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje využívat zápisu komponent jako v~HTML kódu. Jednotlivé prvky jsou tzv.~komponenty, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \parencite{reactJSX}
 
+        
+        \subsection{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje využívat zápisu komponent jako v~HTML kódu. Jednotlivé prvky jsou tzv.~komponenty, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \parencite{reactJSX}
+        
         Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
@@ -415,38 +415,51 @@ function ComponentA({ name }) {
         { className: 'greeting' },
         // textový obsah
         'Hello World!'
-    );
-}
-                \end{minted}
-                \caption{použití React.createElement}
-            \end{subfigure}
-            \hfill
-            \begin{subfigure}[b]{0.45\linewidth}
-                \begin{minted}{js}
+        );
+    }
+\end{minted}
+\caption{použití React.createElement}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.45\linewidth}
+    \begin{minted}{js}
 const App = () => {
     return (
         <h1 className="greeting">Hello World!</h1>
-    );
-}
-                \end{minted}
-                \vspace{1cm}
-                \caption{použití JSX}
-            \end{subfigure}
-            \label{JSXcomponent}
-            \caption{Rozdíl použití React vs.~JSX}
-        \end{figure}
+        );
+    }
+\end{minted}
+\vspace{1cm}
+\caption{použití JSX}
+\end{subfigure}
+\label{JSXcomponent}
+\caption{Rozdíl použití React vs.~JSX}
+\end{figure}
 
-        \textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\textsc{Vanilla Javascriptu} nebo~\textsc{Typescriptu}. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~podobný Reactu.
-        
-        \textsc{Vite} zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem.
-        
-        \textsc{Vite} údajně také zrychluje sestavení modulů~--~spojení importovaných modulů do~jednoho výstupu.\parencite{vitejs}
-        
-        \subsection{Client-Server}
-        Vývoj webových aplikací je~založen na~modelu klient-server.
-        
-        \textbf{Server} je~počítač, který poskytuje služby klientovi. V~případě webové aplikace je~to~server, který poskytuje HTML stránku, styly a~skripty.
-        Taky posléze poskytuje data, která se~do~ní načítají a~ovlivňují její obsah.
+\textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\textsc{Vanilla Javascriptu} nebo~\textsc{Typescriptu}. Je~vyvíjen společností \textsc{Vue.js}, která je~známá díky svému frameworku \textsc{Vue.js}, který je~podobný Reactu.
+
+\textsc{Vite} zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\textsc{hot reload}, což znamená, že~se~při~každé změně kódu \textsc{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem.
+
+\textsc{Vite} údajně také zrychluje sestavení modulů~--~spojení importovaných modulů do~jednoho výstupu.\parencite{vitejs}
+
+\subsection{Server Side Rendering (SSR) a Static Site Generator (SSG)}
+Přestože je \textsc{React} velmi rychlý, zejména díky použití \textsc{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty, teprve potom se~vygeneruje výsledný \textsc{HTML} obsah a~prohlížeč stránku vykreslí (\textbf{Client Side Rendering~--~CSR})\parencite{mediumWhatCSR}. To~může být problém, pokud máme rozsáhlou aplikaci, která obsahuje mnoho komponent nebo rozsáhlou logiku, kde celý proces může trvat delší dobu a~uživatel musí déle čekat, což~je~samozřejmě nežádoucí.
+
+To~je~možné řešit pomocí metod \textbf{Static Site Generator (SSG)} a \textbf{Server Side Rendering (SSR)}.
+
+\textbf{Static Site Generator (SSG)} je~způsob zrychlení webů, kde generujeme statické soubory webu z~dat, které načítáme z~dynamického zdroje, např.~\textbf{CMS~--~Content Management System (Redakční Systém)}. Data jsou načítána pluginem a~z~nich~jsou - podle předdefinované šablony - generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \textsc{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů \textsc{Webovým Serverem}. To~samozřejmě nevylučuje použití \textsc{AJAXu}, ale ten~je~použit na~jiné uživatelské akce, nikoliv k~načítání prvotního obsahu.
+Uživateli posíláme statický \textsc{HTML~soubor}, který se~vykreslí před~zpracováním \textsc{Javascriptu} a~mnohem rychleji než~\textsc{Javascriptová} aplikace, které by~HTML nejdříve generovaly a~tím~oddálily vykreslování prohlížečem. Následně na~vygenerované \textsc{komponenty} aplikujeme jejich logiku a~akce. Tomuto procesu říkáme \textbf{hydratace} (\textbf{Hydration}).
+
+
+\textbf{Server Side Rendering (SSR)} má~koncept podobný \textsc{SSG}, jen na~straně serveru běží naše aplikace, která průběžně (při~změně v~datech) vygeneruje statický obsah s~použitím naší aplikační logiky. Při~prvním požadavku na~aplikaci server zasílá \textsc{HTML} kód celé stránky a~po~provedení \textbf{hydratace} aplikace funguje normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztratíme výhody frameworku, který používáme (např.~React). \parencite{uc:ssrandssg}
+
+Takto vygenerujeme \textsc{HTML kód} (se~skripty ap.) pro~každou stránku pouze v~případě změny obsahu a~uživateli a~uložíme si~jej. Při~dalším spuštění potom načítáme statický obsah, což~ušetří výkon na~straně serveru i~klienta.
+
+\subsection{Client-Server}
+Vývoj webových aplikací je~založen na~modelu klient-server.
+
+\textbf{Server} je~počítač, který poskytuje služby klientovi. V~případě webové aplikace je~to~server, který poskytuje HTML stránku, styly a~skripty.
+Taky posléze poskytuje data, která se~do~ní načítají a~ovlivňují její obsah.
 
         \textbf{Klient} je~počítač, který služby serveru využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje HTML stránku.
         V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě. \parencite{ClientServer}
