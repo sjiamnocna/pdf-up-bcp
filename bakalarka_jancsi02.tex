@@ -91,9 +91,9 @@
 	\section{Úvod}
     V~úvodu této práce bych~chtěl na~několika stránkách popsat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky a~definovat potřeby, které v~této souvislosti mohou nastat.
     
-    Ve~druhé části popíšu návrh a~implementaci aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat. V~rámci toho bych chtěl popsat základní prvky při~vývoji \textbf{moderní MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování pomocí diagramů, až k~její implementaci a spuštění za~použití vybraných technologií. Pochopitelně nepůjde o~jediný způsob, jak mohou aplikace vzniknout, nicméně by~mělo jít o~čitelný a~reprodukovatelný postup vývoje a~údržby podobné aplikace.
+    Ve~druhé části popíšu návrh a~implementaci aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat. V~rámci toho bych chtěl popsat základní prvky při~vývoji \textbf{moderní MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování pomocí diagramů, až k~její implementaci a spuštění za~použití vybraných technologií. Pochopitelně nepůjde o~jediný způsob, jak mohou aplikace vzniknout, nicméně by~mělo jít o~čitelný a~reprodukovatelný postup vývoje, zabezpečení a~údržby podobné aplikace. Vyhotovená aplikace bude následně veřejně dostupná jako webová služba.
 
-    \section{Testová úloha, zadání příkladu}
+    \section{Testy, testové úlohy}
     
     Testy jsou~jedním z~nejpoužívanějších nástrojů pro~ověření znalostí žáků. V~dnešní době se~testy používají nejen pro~ověření znalostí, ale i~pro~získání zpětné vazby od~žáků.
     
@@ -125,7 +125,7 @@
         \subsection{Tvorba testů}
         Při tvorbě testu ze~začátku uvažujeme o~jeho rozsahu. Jde~o~obecný test, ověřující schopnosti žáka, nebo pouze konkrétního výřezu učiva daného předmětu?
 
-        \uv{Otázky by měly být pestré, pokrývající co nejširší spektrum prověřovaného učiva, a to z různých úhlů pohledu. Takže by určitě neměly chybět otázky zjišťující schopnost žáka pracovat s fakty (značky a jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů). \parencite{Suchoradsky:testy}
+        \uv{Otázky by měly být pestré, pokrývající co nejširší spektrum prověřovaného učiva, a to z různých úhlů pohledu. Takže by určitě neměly chybět otázky zjišťující schopnost žáka pracovat s fakty (značky a jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů)}. \parencite{Suchoradsky:testy}
         
         Problémem je~také~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek. Pokud naším cílem je~dobře ověřit znalosti, pak~je~nutné tvořit otázky tak, aby nesprávné odpovědi vypadaly věrohodně. Taky nesmíme zapomenout, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
 
@@ -224,7 +224,7 @@
         V~příkladu \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \textbf{Javascript} pomocí \textsc{tříd} a~ta~samá funkcionalita v~jazyce \textbf{Go} pomocí \textsc{struktur}, \textsc{rozhraní} a~tzv.~\textsc{receiver function}, což~jsou funkce definované na~dané struktuře. \textsc{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované metody (\textsc{receiver functions}).
         \textsc{Interface} obecně představují vzor, jakým je~potřeba implementovat budoucí třídy. Výraz \textsc{Interface} obecně definuje komunikaci mezi objekty, viz.~kapitola věnovaná~\textbf{API}
 
-        A \textbf{Javascript} je~sice považován za~\textsc{objektově orientovaný}, nicméně \textsc{OOP} implementuje formou tzv.~\textsc{prototypové dědičnosti}, nikoliv tradičním použitím tříd. V~praxi tak~má~každý objekt definovanou vlastnost \texttt{__proto__}, která buďto obsahuje \textbf{rodičovský objekt} nebo obecný \textbf{prototyp objektů}. \parencite[2.1.01]{kantor_javascript}
+        A \textbf{Javascript} je sice považován za \textsc{objektově orientovaný}, nicméně \textsc{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V praxi tak má každý objekt definovanou vlastnost \texttt{proto}, která buďto obsahuje rodičovský objekt nebo obecný prototyp objektů. \parencite[2.1.01]{kantor_javascript}
 
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
@@ -353,10 +353,8 @@ func main() {
         Díky spouštěčům Javascriptu, kterým říkáme \textsc{Javascriptové enginy}, je~možné spouštět Javascript na~různých platformách. A~tak~můžeme Javascript spouštět v~prohlížeči, ale i~na~serveru nebo dokonce na~mikrokontrolerech. Jeden jazyk tak zvládne pokrýt většinu potřeb, které můžeme při~vývoji aplikací mít.
 
         \textbf{Javascript} dokáže příkazy zpracovávat \textsc{synchronně} (sekvenčně) i~\textsc{asynchronně} (paralelně).
-        
         \textbf{Synchronní} zpracování znamená, že~se~příkazy vykonávají postupně, tak jak
         jsou zapsané.
-        
         \textbf{Asynchronní} zpracování naopak znamená, že~se~příkazy vykonávají nezávisle na~sobě, tedy ke~spuštění dalšího příkazu nečekáme na~dokončení předchozího. To je~užitečné např.~při~načítání dat ze~serveru,
         které může trvat delší dobu. V~tomto případě se~synchronní příkazy vykonávají dál a~když se~data úspěšně načtou, vykoná~se příkaz, který na~ně čeká. \parencite{kantor_javascript}
 
@@ -688,7 +686,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz', role='admin' WHERE id = 42
 id := 42
 // nebezpečný vstup od uživatele
 email := "mujmejl@seznam.cz', role='admin"
-// příme spuštění dotazu
+// příprava dotazu pomocí "prepared statements"
 DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
                     \end{minted}
                     \begin{minted}{sql}
@@ -919,7 +917,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
 
         Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~tříd \textsc{Class Diagram}. Diagramy budu~zpracovávat pomocí nástroje \textbf{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\textbf{Draw.io} atd.
 
-        \subsection{UCD - Use Case Diagram}
+        \subsubsection{UCD - Use Case Diagram}
         \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce může aktér systém používat.
 
         To nám může pomoct při~přípravě zjistit,  jaké funkce bude aplikace mít a~tím nastínit, jaké bude potřeba vytvořit \textsc{Endpointy} v~\textsc{API}.
@@ -936,7 +934,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \item \textbf{Zahrnutí} (include)- zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
         \end{itemize}
 
-        \subsection{Class Diagram}
+        \subsubsection{Class Diagram}
         \textsc{Class diagram} (\textsc{Diagram tříd}) je~také součástí~standardu \textsc{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi.
 
         \textbf{Vlastnost (atribut) třídy} je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva}, která bude mít~hodnotu \texttt{červená} a~vlastnost \texttt{maxSpeed}, která bude mít~hodnotu \texttt{200 km/h}.
