@@ -89,15 +89,9 @@
     \setcounter{page}{1}
 	
 	\section{Úvod}
-    Cílem této práce je~zmapovat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky a~definovat potřeby, které v~této souvislosti mohou nastat.
+    V~úvodu této práce bych~chtěl na~několika stránkách popsat nástroje, které učitelé používají pro~tvorbu písemných prací pro~své~žáky a~definovat potřeby, které v~této souvislosti mohou nastat.
     
-    Ve~druhé části popíšu návrh a~implementaci webové aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat.
-    
-    Zároveň bych rád popsal základní prvky vývoje moderní \textsc{MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu
-    a~výběru technologií, přes plánování pomocí diagramů, až k~její implementaci a spuštění za~použití vybraných technologií.
-    
-    Pochopitelně nepůjde o~jediný způsob, jak mohou aplikace vzniknout, nicméně by~práce měla být čitelným a~reprodukovatelným postupem vývoje
-    a~údržby podobné aplikace.
+    Ve~druhé části popíšu návrh a~implementaci aplikace, kterou by~učitelé k~tvorbě různých variant zadání mohli používat. V~rámci toho bych chtěl popsat základní prvky při~vývoji \textbf{moderní MVC} aplikace a~popsal důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování pomocí diagramů, až k~její implementaci a spuštění za~použití vybraných technologií. Pochopitelně nepůjde o~jediný způsob, jak mohou aplikace vzniknout, nicméně by~mělo jít o~čitelný a~reprodukovatelný postup vývoje a~údržby podobné aplikace.
 
     \section{Testová úloha, zadání příkladu}
     
@@ -105,19 +99,21 @@
     
     Testy mohou být psány ručně, nebo mohou být generovány pomocí počítačových nástrojů. V~této kapitole se~budu zabývat problematikou testových úloh, jejich tvorbou a~možnostmi, které nám dnešní technologie nabízí.
 
-    V~rámci této práce se~budu zabývat především písemnými testy, které jsou~používány na~základních a~středních školách. Nicméně většina z~popisovaných technologií je~použitelná i~pro~jiné typy testů. Součástí je~dotazník určený učitelům, který by měl poskytnout informace o~tom, jaké nástroje učitelé v~současnosti používají.
+    V~rámci této práce se~budu zabývat především písemnými testy, které jsou~používány na~základních a~středních školách. Nicméně většina z~popisovaných technik je~použitelná i~pro~jiné typy testů.
+    
+    Součástí práce je~dotazník určený učitelům, který by měl poskytnout informace o~tom, jaké nástroje učitelé v~současnosti používají.
 
         \subsection{Uzavřené úlohy}
         
-        \textbf{Uzavřené úlohy} jsou~úlohy, které mají předem danou množinu odpovědí. Respondendt si~při~vyplňování testu vybere jednu z~nich a~tím odpoví na~otázku. Může jít o~označení vyjmenovaných možností nebo z~obecně předpokládaných odpovědí, např.~na~otázku \uv{V~jakém městě bydlíte?} očekáváme v~odpovědi město, nikoliv několik popisných vět.
+        \textbf{Uzavřené úlohy} jsou~úlohy, které mají předem danou množinu odpovědí. Respondendt si~při~vyplňování testu vybere jednu z~nich (nebo více správných, podle zadání) a~tím odpoví na~otázku. Může jít o~označení vyjmenovaných možností nebo z~obecně předpokládaných odpovědí, např.~na~otázku \uv{V~jakém městě bydlíte?} očekáváme v~odpovědi město, nikoliv několik popisných vět.
 
         Řešení takových úloh může~být~méně náročné, jak na~žáka, který může jednodušeji určit (nebo uhodnout) správnou odpověď, tak na~učitele, který nemusí při~hodnocení brát v~potaz různé možnosti odpovědí.
 
         Nabízí se~tím možnost zápisu do~odpovědních archů a~tím jednodušší vyhodnocení pomocí počítače.
 
-        Bodování takových úloh může být jednoduché, kde~za~každou správnou odpověď přičteme jeden bod, nebo může být složitější, např.~za~každou správnou odpověď jeden bod, kde~navíc za~každou špatnou odpověď bod (nebo část bodu) odečteme, za~nevyplněnou odpověď většinou nedostaneme žádný bod.
+        Bodování úloh může být jednoduché, kde~za~každou správnou odpověď přičteme jeden bod, nebo může být složitější, kde např.~za~každou správnou odpověď přičteme jeden bod, ale za~každou špatnou odpověď bod (nebo část bodu) odečteme, za~nevyplněnou odpověď většinou nepřičítáme ani~neodečítáme žádný bod.
 
-        Může jít také třeba o~doplnění písmen výběrem za~účelem procvičení správné gramatiky. Také jsou možné různé doplňovačky nebo výběr správného slova do textu, např.~v~cizích jazycích.
+        Může jít také třeba o~doplnění písmen výběrem za~účelem procvičení správné gramatiky. Také jsou možné různé doplňovačky nebo výběr správného slova do textu, např.~v~cizích jazycích. V~matematice může jít~o~výběr správné hodnoty (nebo množinu hodnot).
 
         \subsection{Otevřené úlohy}
         \textbf{Otevřené úlohy} naopak předem dané možnosti odpovědí nemají. Respondent musí odpověď napsat sám, odpovědí může být slovo, věta, nebo třeba i~celý text. Může jít o~návodné otázky, kde~je~potřeba odpovědět vlastními slovy, nebo o~otázky, kde~je~potřeba vypočítat nějakou hodnotu a~můžeme zhodnotit odpověď nejen podle výsledných hodnot, ale i~podle postupů, které byly~použity.
@@ -125,7 +121,18 @@
         Řešení takových úloh je~náročnější, jak na~žáka, který musí odpověď vymyslet, tak na~učitele, který musí při~hodnocení brát v~potaz různé možnosti odpovědí. Na~druhou stranu to~umožní ocenit i~částečně správné odpovědi nebo vlastní invenci při~řešení, což by~u~uzavřených úloh nebylo možné.
 
         Může jít o~vypsání odpovědi, nebo třeba výpočet matematického příkladu. \parencite{rozhlasOUtazky}
+
+        \subsection{Tvorba testů}
+        Při tvorbě testu ze~začátku uvažujeme o~jeho rozsahu. Jde~o~obecný test, ověřující schopnosti žáka, nebo pouze konkrétního výřezu učiva daného předmětu?
+
+        \uv{Otázky by měly být pestré, pokrývající co nejširší spektrum prověřovaného učiva, a to z různých úhlů pohledu. Takže by určitě neměly chybět otázky zjišťující schopnost žáka pracovat s fakty (značky a jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů). \parencite{Suchoradsky:testy}
         
+        Problémem je~také~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek. Pokud naším cílem je~dobře ověřit znalosti, pak~je~nutné tvořit otázky tak, aby nesprávné odpovědi vypadaly věrohodně. Taky nesmíme zapomenout, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
+
+        Můj~druhý obor je~matematika, proto se~v~příkladu zaměřím na~ni. Pokud budeme testovat např.~znalosti \emph{lineárních rovnic}, pravděpodobně necháme otázku s~otevřenou odpovědí, abychom zjistili, zda je~student schopný odpověď vyčíslit. Ale může nastat situace, že~chceme ověřit rychlý úsudek studenta na~základě daného učiva a~pak mu nabídneme možnosti.
+
+        Možnostmi pro~odpovědi k~lineární rovnici budou výsledné hodnoty proměnné (např.~$x$), které můžeme definovat třeba jako násobek jiných koeficientů. Řekněme, že~budeme požadovat, aby výsledek odpovídal některému z~číselných oborů. Pro žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud chceme ověřit znalost výpočtu kvadratické rovnice s~imaginárními čísly, budeme chtít v~rovnici a v~odpovědích obsáhnout imaginární složku.
+
         \subsection{V současnosti používané nástroje}
         V~současnosti je~pro~účely tvorby testů používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
         
@@ -203,20 +210,21 @@
         \subsection{Procedurální a~objektově orientované programování (OOP)}
         \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých procedur, které se~volají za~sebou. Procedura je~část programu, která vykonává určitou činnost. Procedury mohou mít parametry, které jim předáváme při~volání. Procedury mohou volat jiné procedury, což umožňuje znovupoužití kódu. Procedury a~funkce jsou~si~podobné, kromě faktu, že~funkce vždy vrací (\texttt{return}) nějakou hodnotu, zatímco procedura pouze vykoná své~instrukce. \parencite{procedural:wiki}
         
-        V~dnešní době se~častěji používá \textbf{OOP}, protože umožňuje vývvojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují abstrakci objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu.
+        V~dnešní době se~častěji používá \textbf{OOP}, protože umožňuje vývojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují abstrakci objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu, na~kterých mohou vývojáři pracovat paralelně.
         
         \textbf{OOP (Objektově Orientované Programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~OOP se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \textbf{Objekty} vytváříme ze~tříd, což~jsou jakési vzory, podle kterých se vytvářejí (\textsc{inicializují})~objekty. \textsc{OOP} má 4~základní vlastnosti.
         \begin{itemize}
-            \item \textbf{Abstrakce} - třídy mohou být \textsc{abstraktní}, což~znamená, že~nemusí být~implementována jejich funkcionalita a~nelze je~samostatně \textsc{inicializovat}. To~umožňuje vytvářet obecné (tzv.\textsc{bázové})~třídy, které mohou být použity jako vzor pro~odvození více konkrétních tříd.
+            \item \textbf{Abstrakce} - třídy mohou být \textsc{abstraktní}, což~znamená, že~nemusí být~implementována jejich funkcionalita a~nelze je~samostatně \textsc{inicializovat}. To~umožňuje vytvářet obecné (tzv.\textsc{bázové})~třídy, které mohou být použity jako vzor pro~odvození jiných konkrétních tříd, využívajících jejich vlastnosti a~metody.
             \item \textbf{Zapouzdření} - objekty mohou své~vlastnosti a~metody, skrýt před~okolním světem. To~umožňuje měnit vnitřní strukturu objektu bez~toho, aniž bychom museli měnit ostatní části programu.
             \item \textbf{Dědičnost} - objekty mohou dědit vlastnosti a~metody od~jiných objektů. To~umožňuje znovupoužití kódu a~zjednodušení programu.
             \item \textbf{Polymorfismus} - objekty mohou mít stejné~vlastnosti a~metody, ale mohou se~lišit v~implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
         \end{itemize} \parencite{Keogh:OOP}
 
-        Jazyk~\textbf{Go} (Golang) podporuje~\textsc{OOP} jen~částečně. Je~nutné si~uvědomit, že~jde o~jazyk \textsc{strukturovaný}, nikoliv \textsc{objektově orientovaný}. Proto můžeme dosáhnout některých vlastností \textsc{OOP} ve~formě \textbf{struktur} a~\textbf{rozhrání} (\textbf{interface}). \parencite{go:OOP}
-        V~příkladu \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \textbf{Javascript} pomocí \textsc{tříd} a~ta~samá funkcionalita v~jazyce \textbf{Go} pomocí \textsc{struktur}, \textsc{rozhraní} a~tzv.~\textsc{receiver function}, což~jsou funkce definované na~dané struktuře.
+        Jazyk~\textbf{Go} (Golang) podporuje~\textsc{OOP} jen~částečně. Je~nutné si~uvědomit, že~jde o~jazyk \textsc{strukturovaný}, nikoliv \textsc{objektově orientovaný}. Některých vlastností \textsc{OOP} ale můžeme dosáhnout pomocí \textbf{struktur} a~\textbf{rozhrání} (\textbf{interface}). \parencite{go:OOP}
+        V~příkladu \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \textbf{Javascript} pomocí \textsc{tříd} a~ta~samá funkcionalita v~jazyce \textbf{Go} pomocí \textsc{struktur}, \textsc{rozhraní} a~tzv.~\textsc{receiver function}, což~jsou funkce definované na~dané struktuře. \textsc{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované metody (\textsc{receiver functions}).
+        \textsc{Interface} obecně představují vzor, jakým je~potřeba implementovat budoucí třídy. Výraz \textsc{Interface} obecně definuje komunikaci mezi objekty, viz.~kapitola věnovaná~\textbf{API}
 
-        Nutné je~podotknout, že~Javascript je~považován za~\textsc{objektově orientovaný}, nicméně \textsc{OOP} implementuje formou tzv.~\textsc{prototypové dědičnosti}. \parencite[2.1.01]{kantor_javascript}
+        A \textbf{Javascript} je~sice považován za~\textsc{objektově orientovaný}, nicméně \textsc{OOP} implementuje formou tzv.~\textsc{prototypové dědičnosti}, nikoliv tradičním použitím tříd. V~praxi tak~má~každý objekt definovanou vlastnost \texttt{__proto__}, která buďto obsahuje \textbf{rodičovský objekt} nebo obecný \textbf{prototyp objektů}. \parencite[2.1.01]{kantor_javascript}
 
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
@@ -299,7 +307,7 @@ func (a *AnimalBase) makeSound() {
 	fmt.Printf("My name is %s and I go %s\n", a.name, a.sound)
 }
 
-// Constructor-like function to create an instance of Dog
+// NewDog je tzv. konstruktor objektu Dog, vytvoří v paměti strukturu s konkrétními daty o psovi (jméno) a vrátí ukazatel na dané místo v paměti
 func NewDog(name string) *Dog {
 	dog := &Dog{
 		AnimalBase: *NewAnimalBase(name),
@@ -308,7 +316,7 @@ func NewDog(name string) *Dog {
 	return dog
 }
 
-// NewCat is a constructor-like function to create an instance of Cat
+// NewCat je konstruktor objektu Cat, vytvoří strukturu s konkrétními daty o kočce
 func NewCat(name string) *Cat {
 	cat := &Cat{
 		AnimalBase: *NewAnimalBase(name),
@@ -317,12 +325,17 @@ func NewCat(name string) *Cat {
 	return cat
 }
 
+// a musí implementovat rozhrání (interface) Animal
+func animalMakeSound(a Animal) {
+    a.makeSound()
+}
+
 func main() {
 	a := NewDog("Alík")
-	a.makeSound()
+	animalMakeSound(a)
 
 	b := NewCat("Micka")
-	b.makeSound()
+	animalMakeSound(b)
 }
                 \end{minted}
                 \label{oop:golang}
@@ -365,9 +378,7 @@ func main() {
         
         React je~postaven na~tzv.\,\textsc{deklarativním} přístupu. To~znamená, že~v~kódu popisujeme, jak má aplikace vypadat, nikoliv jak se~má chovat. To~umožňuje \textsc{Reactu} optimalizovat vykreslování a~zvýšit výkon aplikace.
         
-        Existuje mnoho nástrojů, které usnadňují vývoj aplikací v~Reactu, jako např.~\textsc{Create React App} (někdy se setkáme se zkratkou CRA), nebo \textsc{Vite}.
-        
-        Existuje také spousta již~hotových komponent, které můžeme stáhnout a~v~naší aplikaci používat.
+        Existuje mnoho nástrojů, které usnadňují vývoj aplikací v~Reactu, jako např.~\textsc{Create React App} (někdy se setkáme se zkratkou CRA), nebo \textsc{Vite}. Taky je~připraveno spousta již~hotových šablon, komponent a~modulů, které můžeme stáhnout (pomocí `npm`, `yarn`\dots) a~v~naší aplikaci používat.
 
 
         Jednotlivé komponenty mohou mít svůj vlastní stav, který se~může měnit. To~umožňuje vytvářet interaktivní aplikace.
@@ -395,12 +406,9 @@ func main() {
         Do~kontextu vložíme \uv{obálku} na~data ve~formě \texttt{useState} nebo \texttt{useReducer}. \textsc{Poskytovatel} (\texttt{context.Provider}) pak~do~kontextu ukládá data a~zpřístupňuje je~pro~komponenty, které jsou~vnořené v~komponentě \textsc{poskytovatele}. \parencite{hswolff:reactContextReducer}
         \textsc{Provider} má~vlastnost \texttt{value}, kam vložíme výchozí data, která chceme v~kontextu uchovávat. V~komponentách, které potřebují z~\textsc{kontextu} číst, data načteme pomocí \texttt{useContext}.
         
-        Data potom měníme pomocí tzv.~\textsc{reduceru}, což~je~funkce, která vezme stávající stav a~název akce, kterou je~potřeba provést a~na~základě toho vytvoří nový, změněný stav aplikace, který uloží a~upozorní komponenty na~konkrétní změny. Reducer je~obvykle vytvořen spolu s~kontextem v~samostatném souboru a~předává se~jako parametr \textsc{kontextu}. Názvy akcí zapisujeme jako konstanty, které jsou~dostupné v~celé aplikaci. To~umožňuje snadnou změnu názvu akce pro~celou aplikaci najednou. Jelikož porovnání řetězců je pomalejší než porovnání čísel, je vhodné pro~akce používat tzv.~číselníky (\texttt{enum}), které nám poskytuje \textsc{Typescript}. Tím~zajistíme, že~se~názvy akcí ve~výsledné aplikaci reprezentují čísly a~jejich porovnání bude rychlejší. Také nám díky tomu bude \textsc{IDE} lépe napovídat názvy akcí.
+        Data potom měníme pomocí tzv.~\textsc{reduceru}, což~je~funkce, která jako argumenty přijme stávající stav a~název akce, kterou je~potřeba provést a~na~základě toho vytvoří nový, změněný stav aplikace, který uloží a~upozorní komponenty na~konkrétní změny. Reducer je~obvykle vytvořen spolu s~kontextem v~samostatném souboru a~předává se~jako parametr \textsc{kontextu}. Názvy akcí zapisujeme jako konstanty, které jsou~dostupné v~celé aplikaci. To~umožňuje snadnou změnu názvu akce pro~celou aplikaci najednou. Jelikož porovnání řetězců je pomalejší než porovnání čísel, je vhodné pro~akce používat tzv.~číselníky (\texttt{enum}), které nám poskytuje \textsc{Typescript}. Tím~zajistíme, že~se~názvy akcí ve~výsledné aplikaci reprezentují čísly a~jejich porovnání bude rychlejší. Také nám díky tomu bude \textsc{IDE} lépe napovídat názvy akcí. Dalšími možnostmi řešení stavu je~použití knihoven jako \textbf{Redux} nebo~\textbf{MobX}.
 
-        Dalšími možnostmi řešení je~použití knihoven jako \textbf{Redux} nebo \textbf{MobX}.
-
-        
-        \subsection{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje využívat zápisu komponent jako v~HTML kódu. Jednotlivé prvky jsou tzv.~komponenty, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \parencite{reactJSX}
+        \subsection{JSX (Javascript XML)} je~rozšíření jazyka Javascript, které umožňuje využívat zápisu komponent jako v~HTML kódu. Jednotlivé prvky jsou tzv.~komponenty, které se~při~překladu (\textsc{transpilaci}) přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \parencite{reactJSX}
         
         Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
         \begin{figure}
@@ -1115,7 +1123,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         
 	\section{Budoucí rozvoj aplikace}
         Pro rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
-        Bylo by dobré, kdyby aplikaci učitelé používali a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům. Postupně by~tak mohla vzniknout databáze příkladů, které by~mohli využít ostatní učitelé a~žáci k~procvičování příkladů.
+        Bylo by dobré, kdyby aplikaci používalo množství učitelů a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům a~nechat vymýšlení testovacích úloh na~nástrojích. Postupně by~tak mohla vzniknout databáze příkladů, které by~mohli využít ostatní učitelé a~žáci k~procvičování příkladů.
         Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. V~plánu je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila důvěryhodnost uživatelů.
         
         Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \textsc{Písemkomat} bude dostupná přes~\textsc{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
