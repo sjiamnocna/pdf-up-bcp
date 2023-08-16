@@ -915,7 +915,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \item \textbf{Diagramy chování} - popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
         \end{itemize}
 
-        Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~tříd \textsc{Class Diagram}. Diagramy budu~zpracovávat pomocí nástroje \textbf{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\textbf{Draw.io} atd.
+        Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~tříd \textsc{Class Diagram}, které si~myslím, že~jsou pro~jednoduché plánování dostačující. Diagramy budu~zpracovávat pomocí nástroje \textbf{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\textbf{Draw.io} atd.
 
         \subsubsection{UCD - Use Case Diagram}
         \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce může aktér systém používat.
@@ -958,10 +958,12 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         \subsection{Návrh struktury databáze}
         Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
 
-        Při~plánování databáze využijeme \textsc{diagram tříd} k~plánování konkrétních tabulek a~vztahů mezi~nimi. \textsc{UCD} nám~pomůže zjistit, jaké SQL~dotazy nejspíše budeme potřebovat, což~nám~umožní lepší náhled, které sloupce budeme zařazovat do~indexů.
+        Při~plánování databáze využijeme \textsc{diagram tříd} k~plánování konkrétních tabulek a~vztahů mezi~nimi. \textsc{UCD} nám~pomůže zjistit, jaké SQL~dotazy nejspíše budeme potřebovat, což~nám~umožní lepší náhled, které sloupce budeme zařazovat do~indexů, umožňujících rychlejší prohledávání a~řazení s~použitím daných sloupců. Nutné je~poznamenat, že~ne~všechny vlastnosti z~diagramu tříd je~nutné ukládat do~databáze.
 
         Potom již můžeme začít vytvářet SQL dotazy k~vytvoření tabulek. Používáme k~tomu jazyk \textsc{SQL} (Structured Query Language), kterým ovládáme naši MySQL (MariaDB) databázi.
-
+        
+        %TODO: modely | popis
+        
         \subsection{I18C - Mezinárodní lokalizace}
         Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \textsc{ASCII}, které obsahovalo pouze 128 znaků (7 bitů, tj.~$2^7$, 0\,--\,127). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některé interpunkční znaménka. 
         
@@ -975,10 +977,10 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
 
         Pro překlad aplikace se~používají \textbf{lokalizační soubory}, které obsahují překlady jednotlivých textů aplikace. Každý jazyk má~svůj soubor, který se~načítá při~spouštění aplikace. Pokud překlad není nalezen, použije se~původní text.
 
-        V~rámci \textsc{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. V~rámci \textsc{frontendu} pak~\textsc{uživatelské rozhrání (UI)}, které bude používat uživatel.
+        V~rámci \textsc{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. K~tomu použijeme balík \texttt{go-i18n}, pomocí kterého načteme jednotlivé lokalizace. V~rámci \textsc{frontendu} je pak~potřeba přeložit \textsc{uživatelské rozhrání (UI)}, které bude používat uživatel. K~tomu slouží 
 
         \subsection{Pravidla přístupnosti webu}
-        Pokud vyvíjíme aplikaci, je~důležité myslet i~na~to, že~někteří uživatelé mohou mít~omezení. Je~tedy potřeba je~zahrnout do~návrhu aplikace a~umožnit jim~přístup k~aplikaci. V~rámci oficiálních aplikací jde~dokonce o~povinnost a~za~nedodržení standardu hrozí postih.
+        Pokud vyvíjíme aplikaci, je~důležité myslet i~na~to, že~někteří uživatelé mohou mít~různá zdravotní~omezení, která jim~brání v~normálním používání stránky. Je~tedy potřeba je~zahrnout do~návrhu aplikace a~umožnit jim~přístup k~aplikaci. Při~tvorbě oficiálních aplikací jde~dokonce o~povinnost a~za~nedodržení standardů přístupnosti hrozí postih autorům aplikace.
 
         % TODO: Eva
 
@@ -999,6 +1001,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
 
             \LaTeX je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí.\parencite{Rybicka2003:latex}
 
+            Každý \textsc{koncový bod} má~svou~vlastní \textsc{Obslužnou rutinu} (dále \textbf{handler}), která zpracuje požadavek a~vrátí odpověď.
+            Gin také umožňuje vytvářet skupiny \textsc{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \textsc{handler}.
+            To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \textsc{koncové body} pro~přihlášené
+            uživatele můžeme předem definovat a~zabezpečit.
+            
+            \textbf{MySQL} je~relační databáze, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. \parencite{databases21}
+            MySQL~je~\textsc{relační databáze}. Ukládá data v~databázích a~tabulkách, kde~jednotlivé sloupce určují typ dat a~jejich název. Každý řádek je~záznamem v~dané tabulce.
+            
+            Jednotlivé databáze - někdy používáme název \textsc{schéma} - fyzicky na~disku reprezentují adresáře s~názvem konkrétní databáze. Jednotlivé~tabulky potom tvoří binární soubory s~příponou podle databázového \textsc{enginu}, který používáme. V~našem případě používáme \textsc{InnoDB}, který ukládá strukturu a~data v~souborech \textsc{*.ibd}. \parencite{MySQLInnoDB}
+            ;
             \textbf{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní.
 
             Protože je~kompilovaný, je~rychlý i~při~běhu programu. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů nebo i~jiných zdrojů a~používat je~v~aplikaci a~sám si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
@@ -1009,50 +1021,31 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             
             Když~do~aplikace přijde požadavek, \textsc{Router} zkontroluje, zda~existuje \textsc{koncový bod}, který odpovídá požadavku a~pokud ano, předá požadavek příslušné \textsc{Obslužné rutině} (\textbf{handler}u).
 
-            Každý \textsc{koncový bod} má~svou~vlastní \textsc{Obslužnou rutinu} (dále \textbf{handler}), která zpracuje požadavek a~vrátí odpověď.
-            Gin také umožňuje vytvářet skupiny \textsc{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \textsc{handler}.
-            To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \textsc{koncové body} pro~přihlášené
-            uživatele můžeme předem definovat a~zabezpečit.
-            
-            \textbf{MySQL} je~relační databáze, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. \parencite{databases21}
-            MySQL~je~\textsc{relační databáze}. Ukládá data v~databázích a~tabulkách, kde~jednotlivé sloupce určují typ dat a~jejich název. Každý řádek je~záznamem v~dané tabulce.
-            
-            Jednotlivé databáze - někdy používáme název \textsc{schéma} - fyzicky na~disku reprezentují adresáře s~názvem konkrétní databáze. Jednotlivé~tabulky potom tvoří binární soubory s~příponou podle databázového \textsc{enginu}, který používáme. V~našem případě používáme \textsc{InnoDB}, který ukládá strukturu a~data v~souborech \textsc{*.ibd}. \parencite{MySQLInnoDB}
-            
             \textbf{GORM} je~ORM (ORM - Object-relational mapper) pro~jazyk Go. \textsc{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. 
             Z~nich se~automaticky vytvoří všechny databázové tabulky a~při jejich změně se~také~automaticky změní v~databázi, v~rámci \textsc{migrace modelů}.
             Struktury zároveň umožňují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat. \parencite{freecodecamp:orm}
 
             Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované SQL dotazy. \parencite{gormGORM}
 
-            \textbf{Vite} je~nový nástroj pro~vytváření \textsc{Frontendu}. Je~to~nástroj, který je~velice rychlý a~jednoduchý na~použití.
+            \textbf{Vite} je~nástroj pro~vytváření \textsc{Frontendu}. Je~velice rychlý a~jednoduchý na~použití. Umožňuje jednoduchou integraci s~jazykem \textbf{Go}, takže je~možné výslednou aplikaci spojit do~jednoho kontejneru a~tím ji~ještě trochu zrychlit vynecháním nutnosti komunikace mezi kontejnery (např. \href{https://github.com/torenware/vite-go}{torenware@vite-go}). Nicméně pro~některé aplikace bude~výhodné, že~aplikace jednoduše funguje s~použitím jiných jazyků na~backendu.
 
-            \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace.
-            Použití kontejnerů při vývoji je~výhodné, protože vždy, když si~projekt znovu stáhneme, máme jistotu, že~aplikace běží
-            ve~stejném prostředí, jako kdekoliv jinde. To~umožňuje jednodušší vývoj a~nasazení aplikace.
+            \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace. Použití kontejnerů při vývoji je~výhodné, protože vždy, když si~projekt znovu stáhneme, máme jistotu, že~aplikace běží ve~stejném prostředí, jako kdekoliv jinde. To~umožňuje jednodušší vývoj a~nasazení aplikace.
 
-            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu,
-            čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. \parencite{docker}
+            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. \parencite{docker}
 
-            Na~serveru navíc lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
+            Na~serveru tak~lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
 
-            \textbf{Nginx} se~sám~definuje jako webový server a~reverzní proxy server a~load balancer.
-
-            \textsc{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku.
-            
-            \textsc{Load balancer} umožňuje rozdělovat zátěž mezi servery (resp.~aplikacemi), které má~k~dispozici. To~se~využívá u~větších aplikací, které mají vysokou používanost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. To~může nastat třeba v~případě externí služby pro~účely části aplikace nebo nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server přetížený či~nedostupný.
+            \textbf{Nginx} se~sám~definuje jako webový server a~reverzní proxy server a~load balancer. \textbf{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku. \textbf{Load balancer} je~služba, která rozděluje zátěž mezi více servery (resp.~instancemi aplikace), které má~k~dispozici. To~se~využívá u~větších aplikací, které mají vysokou používanost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. To~může nastat třeba v~případě externí služby pro~účely části aplikace nebo nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server přetížený či~nedostupný.
             
             \textsc{Nginx} je~považován za~velmi rychlý ve~srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů. Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. Vydaná  \parencite{WhatNGINX}
 
-            A~nakonec \textbf{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech, nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo. 
+            A~nakonec \textbf{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech, nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~oproti jiným systémům docela málo.
 
-            Tuto distribuci používám jako hlavní systém na~svém VPS\footnote{VPS - Virtual Private Server}.
-            Na~serveru poběží pouze \textbf{Nginx}, který nasměruje požadavky na~správné porty, a \textbf{Firewall} (\textbf{UFW}), který zablokuje přístup k~neveřejným portům.
+            Tuto distribuci používám jako hlavní systém na~svém VPS (\emph{VPS - Virtual Private Server}). Na~serveru běží pouze \textbf{Nginx}, který nasměruje požadavky na~správné porty, a \textbf{Firewall} (\textbf{UFW}), který zablokuje přístup k~neveřejným portům.
 
-            \textbf{Docker} resp. \textbf{Docker-compose} bude spouštět kontejnery s~aplikací (Vite~i~Go) a~databází
-            kromě těch, které jsou potřeba pro chod aplikace.
-
-            Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
+            \textbf{Docker} resp. \textbf{Docker-compose} bude spouštět kontejnery s~aplikací (Vite~i~Go) a~databází. Stará se~o~spuštění všech kontejnerů a~kontrolu stavu kontejnerů. Díky tomu můžeme spolehnout na~správné spuštění všech závislých kontejnerů (kontejnery, které ke~své~činnosti potřebují jiné služby). \textsc{Docker-compose} také vytvoří uzavřenou síť mezi kontejnery, která umožňuje jednodušší komunikaci mezi~kontejnery. Jednotlivé kontejnery jsou~v~této~síti dosažitelné pod~názvem dané služby, pokud v~konfiguraci neurčíme jinak.
+            
+            Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti aplikace.
 	
 	\section{Postup implementace}
         Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~pro lepší automatizaci budou vývojové i~produkční prostředí tvořit \textsc{Docker kontejnery}.
