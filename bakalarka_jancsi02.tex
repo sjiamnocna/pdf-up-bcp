@@ -28,6 +28,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 
+% data highlighting
+\newcommand{\harddata}[1]{\boxed{\texttt{#1}}}
+
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -587,17 +590,17 @@ Taky posléze poskytuje data, která se~do~ní načítají a~ovlivňují její o
 
         Funkce jednotlivých \textsc{HTTP metod} jsou:
         \begin{itemize}
-            \item \textsc{GET} slouží pro~získání dat ze~serveru,
-            \item \textsc{POST} pro~odeslání dat na~server,
-            \item \textsc{PUT} pro~úpravu dat na~serveru,
-            \item \textsc{DELETE} slouží pro~smazání dat ze~serveru,
-            \item \textsc{PATCH} potom pro~úpravu části dat na~serveru.
+            \item \harddata{GET} slouží pro~získání dat ze~serveru,
+            \item \harddata{POST} pro~odeslání dat na~server,
+            \item \harddata{PUT} pro~úpravu dat na~serveru,
+            \item \harddata{DELETE} slouží pro~smazání dat ze~serveru,
+            \item \harddata{PATCH} potom pro~úpravu části dat na~serveru.
         \end{itemize}
 
         Souhrnně těmto operacím říkáme \textsc{CRUD operace}, což je~zkratka pro~\emph{Create}, \emph{Read}, \emph{Update} a \emph{Delete}.
 
-        Kromě požadavků \emph{GET} se v~těle požadavku posílají data v~textové formě, např.~formátu~JSON. 
-        V~případě požadavku \emph{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají limitovanou velikost maximální délkou \textsc{URL adresy}.
+        Kromě metod \emph{GET} a~\emph{DELETE} se~v~těle \emph{HTTP požadavku} posílají také data v~textové formě, např.~formátu~JSON. Během přenosu jsou data šifrována. 
+        V~případě požadavku \emph{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají velikost limitovanou maximální délkou \textsc{URL adresy}, který je~server schopen zpracovat. Specifikace \textsc{HTTP} neuvádí žádnou maximální délku, ale v~praxi je~limitována prohlížeči a~serverem. \cite{ietf-httpbis-messaging-03}
 
         \subsection{GraphQL}
         Naproti \textsc{REST}u má \textsc{GraphQL} pouze jeden \textsc{endpoint}. \textsc{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což může být výhodné, pokud máme pomalé připojení nebo~při~mobilním připojení, kdy chceme co~nejvíce ušetřit data a~snížit počet požadavků na~server.
@@ -862,7 +865,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         
         Zaregistruje~se do~aplikace \textsc{Písemkomat} a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je do kategorie Matematika.
 
-        Následně si~vytvoří písemnou práci a~může si~vybrat, zda~chce, aby~se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
+        Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
         
         Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
         Proto \textsc{Písemkomat} umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
@@ -914,7 +917,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         
         To umožní systém používat např.~pro jazykové předměty, kde se~využívá doplňování slov do~textu nebo~výběr písmene.
 
-        Některá nastavení bude možné ovlivnit (vypínat, zapínat, měnit velikosti) i~na úrovni celých písemek. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
+        Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu) i~na úrovni celých písemek. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
 
         \subsection{UML - Unified Modeling Language}
         Jeden ze~standardních nástrojů pro~modelování aplikace je~\textsc{UML}. \textsc{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů.
@@ -929,12 +932,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         Pro naplánování své práce jsem si~vybral diagramy ze~standardu \textsc{UML}\,--\,diagram případů užití \textsc{Use Case Diagram} a~diagram~tříd \textsc{Class Diagram}. Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io} atd.
 
         \subsubsection{UCD - Use Case Diagram}
-        \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce může aktér systém používat.
+        \textsc{UCD} je~diagram ze~standardu \textsc{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
 
-        To nám může pomoct při~přípravě zjistit,  jaké funkce bude aplikace mít a~tím nastínit, jaké bude potřeba vytvořit \textsc{Endpointy} v~\textsc{API}.
-        Taky si~můžeme ověřit správnost návrhu a~zjistit, zda~jsme nějakou funkcionalitu nevynechali, protože na~diagramu jsou případné nedostatky vidět lépe.
-        
-        To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \textsc{endpointy} budeme potřebovat vytvořit, aby~bylo možné akce provést. \cite{uml:usecase}
+        To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \textsc{endpointy} budeme potřebovat vytvořit, aby~bylo možné akce provést. Taky si~můžeme ověřit správnost návrhu a~zjistit, zda~jsme nějakou funkcionalitu nevynechali, protože na~diagramu jsou případné nedostatky vidět lépe. \cite{uml:usecase}
 
         Při~modelování pomocí \textsc{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu.
         \begin{itemize}
@@ -946,11 +946,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         \end{itemize}
 
         \subsubsection{Class Diagram}
-        \textsc{Class diagram} (\textsc{Diagram tříd}) je~také součástí~standardu \textsc{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi.
+        \textsc{Class diagram} (\textsc{Diagram tříd}) je~také součástí~standardu \textsc{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi. Souvisí s~návrhem struktur uložených v~databázi a~modelů dat, se kterými pracuji v~aplikaci.
 
-        \emph{Vlastnost (atribut) třídy} je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva}, která bude mít~hodnotu \texttt{červená} a~vlastnost \texttt{maxSpeed}, která bude mít~hodnotu \texttt{200 km/h}.
+        \emph{Vlastnost (atribut)} třídy je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva}, která bude mít~hodnotu \texttt{červená} a~vlastnost \texttt{maxSpeed}, která bude mít~hodnotu \texttt{200 km/h}.
 
-        \emph{Metoda třídy} je~funkce, která je~přiřazena k~třídě. Může mít~parametry a~výstupní hodnotu. Např.~třída \texttt{Auto} může mít~metodu \texttt{drive}, která bude mít~parametr \texttt{speed} k~určení, jakou rychlostí má~auto jet.
+        \emph{Metoda} třídy je~funkce, která je~přiřazena k~třídě. Může mít~parametry a~výstupní hodnotu. Např.~třída \texttt{Auto} může mít~metodu \texttt{drive}, která bude mít~parametr \texttt{speed} k~určení, jakou rychlostí má~auto jet.
         
         Třída je v~diagramu~tříd zobrazena jako obdélník rozdělený na tři části. V~první části je~název třídy, ve~druhé jsou vlastnosti a~ve~třetí metody. \emph{Veřejné} vlastnosti a~metody mají na~začátku názvu \texttt{+}, \emph{chráněné} \texttt{\#}, \emph{privátní} \texttt{-} a~\emph{statické} \texttt{\_}.
         
@@ -1066,7 +1066,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
 	
 	\section{Postup implementace}
-        Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~pro lepší automatizaci budou vývojové i~produkční prostředí tvořit \textsc{Docker kontejnery}.
+        Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~pro lepší automatizaci budou vývojové i~produkční prostředí tvořit \textsc{Docker kontejnery}, což~zajistí konzistentní prostředí pro~vývoj i~produkci, kdekoliv aplikaci spustíme.
+        
         Vývojová verze bude obsahovat kontejnery pro~React, Go a~databázi. \textsc{Go}~kontejner bude obsahovat nástroj \textsc{Air}, který umožní automatický restart aplikace při~změně kódu \textsc{backendu}. Při~vývojí ve~\textsc{Vite} využijeme přesměrování (\emph{proxy}) požadavků, které začínají \texttt{'/api/...'} na~kontejner, obsahující backend aplikace, pomocí konfigurace~\emph{proxy} ve~\emph{Vite}.
 
         Produkční verze, tedy ta~výsledná, bude obsahovat stejné kontejnery, ale nebude už~obsahovat nástroje pro~vývoj. Při tvorbě kontejnerů se~backend zkompiluje a~spustí se~pouze optimalizovaný binární soubor.
@@ -1104,14 +1105,22 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \subsubsection{Funkce Main}
             V~hlavní funkci spouštíme hlavní logiku aplikace. Je~potřeba spustit \textsc{HTTP server}, který bude čekat na~požadavky od~klienta na~definovaném portu. K~tomu využijeme funkci \emph{Run} z~balíčku \emph{gin-gonic/gin}, prostřednictvím balíčku \href{https://gitlab.com/sjiamnocna/goethe}{\emph{sjiamnocna/goethe}}, který přidá do~serveru tzv.~\textsc{middleware} pro~udržování a~kontrolu \textsc{JWT} tokenu a~přidá do~každého požadavku informace o~uživateli, který požadavek poslal. \textsc{Middleware}, je~funkce, která se~spouští před~zpracováním požadavku a~může měnit jeho chování. V~tomto případě kontroluje, zda~je~požadavek autentický, případně zda jsou data autentická (nezměněná) a~zda~je~přihlášen nějaký uživatel. Tyto~informace pak~uloží do~požadavku, aby~s~nimi mohly pracovat handlery. Serveru tím říkáme, aby přijímal a~obsluhoval požadavky na~zadaném portu.
 
-            \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~bude mít~každá skupina \textsc{Endpointů} svůj vlastní soubor. V~těchto souborech budou jejich \textsc{handlery}. \textsc{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \textsc{handleru} s~ním pracovat. Komunikace \textsc{frontendu} a~\textsc{backendu} bude probíhat pomocí \emph{JSON}u, případně zaslaným \emph{HTTP stavovým kódem}.
+            \textsc{Endpointy} budou umístěny v~adresáři \textsc{Endpoints}, kde~bude mít~každá skupina \textsc{Endpointů} svůj vlastní soubor. V~těchto souborech budou jejich \textsc{handlery}. \textsc{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \textsc{handleru} s~ním pracovat. Komunikace \textsc{frontendu} a~\textsc{backendu} bude probíhat pomocí \emph{JSON}u, případně zaslaným \emph{HTTP stavovým kódem}. \emph{Endpointy} budou rozděleny do~skupin s~názvy podle zdroje, se~kterým manipulují, v~jednotném čísle;
+
+            \begin{itemize}
+                \item \harddata{User}~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
+                \item \harddata{Task}~--~\emph{CRUD} akce spojené s~úkoly, které uživatelé vytváří a~řeší.
+                \item \harddata{Category}~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
+                \item \harddata{Test}~--~\emph{CRUD} akce spojené s~testy, umožňují přidávat otázky, pojmenovat a~vyhledat a~vygenerovat výsledek, resp.~získat na~něj odkaz.
+                \item \harddata{App}~--~zajistí manipulaci s~aplikací, jako je~nastavení a~jiné nespecifikované akce.
+            \end{itemize}
 
             \subsubsection{Generátor}
-            Zásadní funkcí při~čtení zadání pomocí \emph{Go} bude \emph{parser}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslovat matematické výrazy.
+            Zásadní funkcí při~čtení zadání pomocí \emph{Go} bude \emph{generátor}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslovat matematické výrazy.
             
-            Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Konečné nahrazení hodnotami proměnných v~zadání a~náhodné seřazení nabízených možnostech probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}. \cite{GoTextTemplate}
+            Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}. \cite{GoTextTemplate}
 
-            Protože pracuju s~jazykem Go, obdrží \emph{parser} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné ji~předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). A~samozřejmě nahrazení proměnných v~zadání a~odpovědích za~jejich hodnoty a~vytvoření struktury dat pro~vykreslení výsledku.
+            Protože pracuju s~jazykem Go, obdrží \emph{generátor} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné hodnoty předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). A~samozřejmě nahrazení proměnných v~zadání a~odpovědích za~jejich hodnoty a~vytvoření struktury dat pro~vykreslení výsledku.
 
             \subsubsection{Webový server}
             Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \textsc{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \emph{CRUD} operace s~jednotlivými zdroji.
@@ -1131,9 +1140,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         \subsection{Údržba}
         
 	\section{Budoucí rozvoj aplikace}
-        Pro rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
-        Bylo by dobré, kdyby aplikaci používalo množství učitelů a~sdíleli mezi sebou příklady. Tím se~budou moci více věnovat svým žákům a~nechat vymýšlení testovacích úloh na~nástrojích. Postupně by~tak mohla vzniknout databáze příkladů, které by~mohli využít ostatní učitelé a~žáci k~procvičování příkladů.
-        Do~budoucna bych chtěl vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. V~plánu je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila důvěryhodnost uživatelů.
+        Pro~rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
+        Pokud bude aplikaci využívat více učitelů a~sdílet mezi sebou příklady, budou~se moci více věnovat svým žákům a~nechat vymýšlení testovacích úloh na~počítači. Postupně by~vznikla databáze příkladů, které by~mohli využívat i~ostatní učitelé a~žáci k~procvičování příkladů.
         
         Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \textsc{Písemkomat} bude dostupná přes~\textsc{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
         
@@ -1143,12 +1151,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         
         K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
 
-        Aplikace by~se~dala využít také~ke~tvorbě interaktivních výukových materiálů a~minikvízů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost zadat příklad do~WolfRam Alpha. 
+        Aplikace by~se~dala využít také~ke~tvorbě interaktivních výukových materiálů a~minikvízů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost zadat příklad do~WolfRam Alpha. Důležitou součástí materiálů budou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu. Webové zdroje bude aplikace pravidelně kontrolovat a~oznámí změny, podle kterých bude učitel moci informace aktualizovat. To~umožní učitelům vytvářet výukové materiály, které nebudou obsahovat zastaralé informace.
         
-        Dříve zmíněné změny vybízí k~využítí k~online výuce, kde by~učitel měl~k~dispozici živě přenášenou \uv{tabuli}, ideálně s~živým přepisem do~formátu \textsc{Markdown}u a~Mathjaxu.
-
-        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli k~vývoji aplikace, což~by~umožnilo věnovat se~vývoji aplikace naplno a~rychleji rozšiřovat její funkce.
-	
+        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~rychleji rozšiřovat její funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. Důležitou možností je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila důvěryhodnost uživatelů.
 	\section{Závěr}
 
     \newpage
