@@ -1098,12 +1098,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \subsubsection{Generátor}
             Zásadní funkcí při~čtení zadání pomocí \emph{Go} bude \emph{generátor}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslovat matematické výrazy.
             
-            Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}. \cite{GoTextTemplate}
+            Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}.
 
             Protože pracuju s~jazykem Go, obdrží \emph{generátor} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné hodnoty předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). A~samozřejmě nahrazení proměnných v~zadání a~odpovědích za~jejich hodnoty a~vytvoření struktury dat pro~vykreslení výsledku.
-
-            \subsubsection{Webový server}
-            Webový server bude obsluhovat požadavky na~uživatelská data. Skupiny \emph{endpointů} budou zahrnovat operace z~Use Case diagramu. Půjde o~různé \emph{CRUD} operace s~jednotlivými zdroji.
 
             \subsubsection{Autentizace uživatelů}
             Hned ze~začátku budu myslet na~registraci a~přihlášení více způsoby. Pro~všechny typy přihlášení bude existovat~jedna tabulka s~tajnými přihlašovacími údaji z~různých služeb, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí služeb \emph{Google}, \emph{Linkedin} a~\emph{Github}. Ty~jsem vybral, protože~je~menší pravděpodobnost falešných profilů. Umožňují také jednoduché získání informací o~uživateli, jako je~jméno, příjmení a~e-mailová adresa.
