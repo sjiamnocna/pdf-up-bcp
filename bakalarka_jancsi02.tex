@@ -861,25 +861,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
 
         \subsection{Účel a~popis fungování vyvíjené aplikace}
-        Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně
-        strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě písemných prací,
-        kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~příklady vyberou, a~počet příkladů, které se~mají do~písemky vygenerovat. 
+        Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně strukturovaných kategorií - podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo konkrétní příklady, které se~mají do~písemky vložit. Uživatelé budou mít možnost přihlášení pomocí více způsobů, vč.~externích poskytovatelů ověření identity a~samozřejmě také pomocí přihlašovacího jména a~hesla.
+        
         \subsection{Příklad použití}
-        Učitel chce vytvořit 2~verze písemky s~rozdílnými příklady pro~své žáky.
-        
-        Zaregistruje~se do~aplikace \emph{Písemkomat} a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je do kategorie Matematika.
+        Řekněme, že~uživatel \emph{Písemkomatu} bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílnými příklady. Zaregistruje~se do~aplikace \emph{Písemkomat} a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
-        Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho písemce objevily všechny příklady, nebo jen některé. Bude tedy chtít použít 3\,příklady s~náhodně dosazenými nebo~dopočítanými hodnotami.
-        
-        Některé hodnoty nemohou být zcela náhodné, protože by~to mohlo vést k~neřešitelným příkladům, nebo příkladům s~nulovým výsledkem.
-        Proto \emph{Písemkomat} umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
+        Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho písemce objevily všechny příklady z~dané kategorie nebo zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu chce~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou příklady s~náhodně dosazenými hodnotami. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Aplikace \emph{Písemkomat} umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
 
-        Učitel si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ budou náhodná čísla od~1 do~10, $C = 4/3*A$ a $D = C + B$.
-
-        Řešený příklad se~vygeneruje do~vzorce, který potom zapíše do~\emph{Písemkomatu}. Do~proměnných $A, B$ se~uloží náhodné číslo z~intervalu, který~si~učitel nastavil a~pomocí zápisu proměnné \texttt{\$\{A\}} se~vloží do~příkladu na~zadané místo, resp.~do zápisu výpočtu dalších proměnných, kde budou použity ve výpočtu.
+        Učitel si~např.~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3*A$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~učitel nastavil a~pomocí zápisu proměnné \texttt{\$\{A\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~učitel nastaví. V~případě, že~učitel zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit jejich množství.
         
-        Tedy předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$
-        a~hodnoty proměnných $C, D$ jsou~zadány takto:
+        Předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$ a~hodnoty proměnných $C, D$ jsou~zadány takto:
         \begin{align*}
             \$A &= 3 \\
             \$B &= 5 \\
@@ -887,11 +878,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \$D &= \$C + \$B = 4 + 5 = 9
         \end{align*}
 
-        Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly nebo výrazy.
-        
-        Zároveň bude možné je~nastavit tak, aby hodnoty nevyčíslovaly. Proměnné budou také moci být~i~jiné objekty, např.~pole pro~textový vstup nebo výběr z~možností. Toho bude možné využít při~tvorbě zadání, kde~bude~více vstupních polí, která bude mít~za~úkol žák vyplnit.
-
-        Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
+        Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly, výrazy nebo funkčními prvky. Pokud budou vygenerovány příklady, uloží se~do~databáze konkrétní hodnoty proměnných a~vygenerovaných odpovědí, aby bylo možné identifikovat přesnou verzi příkladu. Výsledná podoba příkladu jednoduchého výrazu může vypadat např.~takto:
         \begin{align*}
             \text{Vyřeš v oboru N:} \quad \$Ax + \$B &= \$C + \$D \\
             \begin{aligned}
@@ -904,7 +891,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
 
         Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě písemky jen vybere, kterou variantu chce použít.
 
-        Učitel bude mít také možnost zvolit~si, jestli chce otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
+        Učitel bude také mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
 
         Výsledná podoba zadání a~možností příkladu může vypadat např.~takto:
         \begin{align*}
@@ -1008,17 +995,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
             \emph{Typescript} samozřejmě použijeme i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~samozřejmě počítá a~vydává
             kromě Reactu také balíček s~příslušnými datovými typy, pro použití v~Typescriptu. Typescript podporuje i~použití JSX šablon. \cite[Refeerence/Handbook/JSX]{TypeScript}
 
-            \emph{MathJax} je~knihovna, která umožňuje zobrazovat matematické vzorce na~webových stránkách.
-            Přijímá formáty matematiky zapsané ve~formátu, který používá systém \LaTeX. Ten~se poté převádí do~vizuální podoby, sestavené z~HTML prvků, kterou může prohlížeč zobrazit.
-            
-            MathJax nabízí i~možnost zobrazení ve~formě vektorové grafiky ve~formátu SVG.
-            Díky tomu můžeme v~aplikaci názorně vykreslovat matematické vzorce, které se~vyskytnou v~příkladech nebo~učebních materiálech.\cite{abclinuxuMatematickxE9Vzorce}
-
             \LaTeX je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí.\cite{Rybicka2003:latex}
+            
+            \emph{MathJax} je~knihovna, která umožňuje zobrazovat matematické vzorce na~webových stránkách. Přijímá formáty matematiky zapsané ve~formátu, který používá systém \LaTeX. Ten~se poté převádí do~vizuální podoby, sestavené z~HTML prvků, kterou může prohlížeč zobrazit. MathJax nabízí i~možnost zobrazení ve~formě vektorové grafiky ve~formátu SVG. Díky tomu můžeme v~aplikaci názorně vykreslovat matematické vzorce, které se~vyskytnou v~příkladech nebo~učebních materiálech.\cite{abclinuxuMatematickxE9Vzorce}
 
-            \emph{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní.
-
-            Protože je~kompilovaný, je~rychlý i~při~běhu programu. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů nebo i~jiných zdrojů a~používat je~v~aplikaci a~sám si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
+            \emph{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Zároveň během vývoje není třeba celý program kompilovat, stačí jej~spustit příkazem \texttt{go run} a~aplikace funguje. Při~publikaci programu stačí spustit \texttt{go build} a~\emph{Go} vytvoří optimalizovaný spustitelný binární soubor. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů, nebo jiných zdrojů přímo z~internetu, a~používat je~v~aplikaci a~sám si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
 
             Zároveň při kompilaci vzniká jeden binární soubor, takže přestože je aplikace docela rozsáhlá, je~dostatečně rychlá.
 
@@ -1044,32 +1025,25 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
 
             \emph{Vite} je~nový nástroj pro~vytváření \emph{Frontendu}. Je~to~nástroj, který je~velice rychlý a~jednoduchý na~použití.
 
-            \emph{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace.
-            Použití kontejnerů při vývoji je~výhodné, protože vždy, když si~projekt znovu stáhneme, máme jistotu, že~aplikace běží
-            ve~stejném prostředí, jako kdekoliv jinde. To~umožňuje jednodušší vývoj a~nasazení aplikace.
+            \emph{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace. Použití kontejnerů při~vývoji je~výhodné zejména při~spolupráci v~týmu, protože vždy když si~projekt znovu stáhneme a~spustíme, máme jistotu, že~aplikace běží v~na~aplikaci přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
 
-            Taky nám to~umožní rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu,
-            čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. \cite{docker}
+            Díky tomu~lze~rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~navíc umožněno provozovat více \emph{kontejnerů} (resp.~aplikací), dostupných na~různých portech. \cite{docker}
 
-            Na~serveru navíc lze provozovat více kontejnerů, dostupných na~různých portech, což umožňuje provozovat více aplikací na~jednom serveru.
+            \emph{Docker} resp. \emph{Docker-compose} bude v~mém projektu spravovat kontejnery s~aplikací (Vite~i~Go) a~databází kromě těch, které jsou potřeba pro chod aplikace.
 
             \emph{Nginx} se~sám~definuje jako webový server a~reverzní proxy server a~load balancer.
 
-            \emph{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku.
+            Jako \emph{reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku.
             
-            \emph{Load balancer} umožňuje rozdělovat zátěž mezi servery (resp.~aplikacemi), které má~k~dispozici. To~se~využívá u~větších aplikací, které mají vysokou používanost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. To~může nastat třeba v~případě externí služby pro~účely části aplikace nebo nastavení záložních serverů, které se~použijí v~případě, že~bude hlavní server přetížený či~nedostupný.
+            \emph{Load balancer} zajišťuje rozložení zátěže mezi servery (resp.~více instancemi aplikace), které má~k~dispozici. To~se~využívá u~větších aplikací, které mají vysokou používanost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech nebo využívá externí služby. Taky je~možné nastavení záložních serverů pro~případ, že~nastane výpadek nebo přetížení hlavního serveru.
             
-            \emph{Nginx} je~považován za~velmi rychlý ve~srovnání s~jinými servery, jako např.~Apache. Zejména pak při obsluze statických souborů. Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. Vydaná  \cite{WhatNGINX}
+            \emph{Nginx} je~ve~srovnání s~jinými servery, jako např.~Apache, považován za~velmi rychlý. Zejména pak~při~obsluze požadavků na~statické soubory. Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. \cite{WhatNGINX}
 
-            A~nakonec \emph{Alpine Linux}, který je~odlehčenou distribucí Linuxu, která je~určena pro~nasazení v~kontejnerech, nicméně je~možné ji~použít i~na~serveru. Celková velikost distribuce je~pouze 5~MB, což je~velice málo. 
+            A~\emph{Alpine Linux} je~odlehčenou distribucí Linuxu, která je~určena zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje, nicméně jde~o~plnohodnotný systém a~je~možné ji~použít i~jako~samostatný systém. Celková velikost distribuce po~instalaci je~pouze 5~MB, což je~velice málo.
 
-            Tuto distribuci používám jako hlavní systém na~svém VPS\footnote{VPS - Virtual Private Server}.
-            Na~serveru poběží pouze \emph{Nginx}, který nasměruje požadavky na~správné porty, a \emph{Firewall} (\emph{UFW}), který zablokuje přístup k~neveřejným portům.
+            Tuto distribuci používám jako hlavní systém na~svém VPS\footnote{VPS - Virtual Private Server}, kde~aplikace poběží. Na~serveru poběží pouze \emph{Nginx}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které nechci vystavovat na~veřejnost.
 
-            \emph{Docker} resp. \emph{Docker-compose} bude spouštět kontejnery s~aplikací (Vite~i~Go) a~databází
-            kromě těch, které jsou potřeba pro chod aplikace.
-
-            Tím bych chtěl dosáhnout maximálního poměru výkonu a~bezpečnosti.
+            Kombinací těchto technologií bych rád dosáhnul co~možná~nejlepšího poměru výkonu a~bezpečnosti.
 	
 	\section{Postup implementace}
         Nejprve je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~pro lepší automatizaci budou vývojové i~produkční prostředí tvořit \emph{Docker kontejnery}, což~zajistí konzistentní prostředí pro~vývoj i~produkci, kdekoliv aplikaci spustíme.
