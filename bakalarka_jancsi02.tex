@@ -1,4 +1,4 @@
-\documentclass[14pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[paper=a4paper, margin=1.5cm]{geometry}
 
@@ -214,7 +214,7 @@
         
         V~dnešní době se~častěji používá \emph{OOP}, protože umožňuje vývojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují \uv{modely} objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu, na~kterých mohou vývojáři pracovat paralelně.
         
-        \emph{OOP (Objektově orientované programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~OOP se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vytváříme ze~tříd, což~jsou jakési vzory, podle kterých se vytvářejí (\emph{inicializují})~objekty. \emph{OOP} má 4~základní vlastnosti, které při vývoji využíváme; \cite{Keogh:OOP}
+        \emph{OOP (objektově orientované programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~OOP se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vytváříme ze~tříd, což~jsou jakési vzory, podle kterých se vytvářejí (\emph{inicializují})~objekty. \emph{OOP} má 4~základní vlastnosti, které při vývoji využíváme; \cite{Keogh:OOP}
         \begin{itemize}
             \item \textbf{Zapouzdření}~--~objekty mohou své~vlastnosti a~metody, skrýt před~okolním světem. To~umožňuje měnit vnitřní strukturu objektu bez~nutnosti měnit ostatní části programu.
             \item \textbf{Dědičnost}~--~objekty mohou dědit vlastnosti a~metody od~jiných objektů. To~umožňuje znovupoužití kódu a~zjednodušení programu.
@@ -228,7 +228,7 @@
         
         A \emph{Javascript} je sice považován za \emph{objektově orientovaný}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V praxi tak má každý objekt definovanou vlastnost \texttt{proto}, která buďto obsahuje rodičovský objekt nebo obecný prototyp objektů. \cite[2.1.01]{kantor_javascript}
         
-        V~příkladě \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \emph{Javascript} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~objekt, který vyšetřujeme má~požadované vlastnosti a~metody, a~můžeme jej~používat zamýšleným způsobem např.~ve~funkci. \cite{go:OOP}
+        V~příkladě \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \emph{Javascript} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~objekt, který vyšetřujeme má~požadované vlastnosti a~metody, a~můžeme jej~používat zamýšleným způsobem např.~ve~funkci.~\cite{go:OOP}
 
         \begin{figure}
             \begin{subfigure}[b]{0.45\linewidth}
@@ -344,8 +344,8 @@ func main() {
                 \end{minted}
                 \caption{Stejná funkcionalita v jazyce Go}
             \end{subfigure}
-            \label{oop:difference}
             \caption{Zápis OOP v PHP je stručnější než v Go}
+            \label{oop:difference}
         \end{figure}
 
         \subsection{Javascript}
@@ -357,7 +357,7 @@ func main() {
 
         \emph{Javascript} dokáže příkazy zpracovávat \emph{synchronně} (sekvenčně) i~\emph{asynchronně} (paralelně). \textbf{Synchronní} zpracování znamená, že~se~příkazy vykonávají postupně, tak, jak jsou zapsány ve~skriptu. \textbf{Asynchronní} zpracování naopak znamená, že~se~příkazy vykonávají nezávisle na~sobě, tedy ke~spuštění dalšího příkazu nečekáme na~dokončení předchozího. To~je~užitečné např.~při~načítání dat ze~serveru, které může trvat delší dobu. V~tomto případě je~možné spustit \emph{asynchronní akce} a~pokračovat ve~zpracování sekvence příkazů programu. Když dojde k~dokončení \emph{asynchronní akce}, vykoná~se příkaz, který na~její dokončení čeká. V~rámci \emph{asynchronní operace} můžeme čekat na~dokončení více akcí. \cite{kantor_javascript}
 
-        Zpracování \emph{Javascriptu} je~rozděleno do~dvou částí. První částí je~\emph{Javascriptový engine}, který zpracovává Javascriptový kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\emph{Web APIs}, které umožňují využívat funkce prohlížeče a~systému. Jde~o~instrukce, poskytované nikoliv Javascriptovým enginem, ale prohlížečem nebo systémem. Jde~např.~o~přístupu k~\emph{DOMu}, kameře, mikrofonu nebo veškeré asynchronní operace, jako je~načítání dat ze~serveru. Jde převážně o~asynchronní operace (vykonává je~jiný program než~\emph{Javascript}) \cite{mdn:js}
+        Zpracování \emph{Javascriptu} je~rozděleno do~dvou částí. První částí je~\emph{Javascriptový engine}, který zpracovává Javascriptový kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\emph{Web APIs}, které umožňují využívat funkce prohlížeče a~systému. Jde~o~instrukce, poskytované nikoliv Javascriptovým enginem, ale prohlížečem nebo systémem. Jde~např.~o~přístupu k~\emph{DOMu}, kameře, mikrofonu nebo veškeré asynchronní operace, jako je~načítání dat ze~serveru. Jde převážně o~asynchronní operace (vykonává je~jiný program než~\emph{Javascript}) \cite{kantor_javascript}
 
         \subsection{Typescript}
         Jednou z~nevýhod \emph{Javascriptu} je, že~není typově bezpečný. To~znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné a~funkce použity správně a~jednotlivé typy je~dokonce možné za~běhu měnit. To~může vést k~chybám, které se~projeví až~při~spuštění programu, což~je~pro~větší projekty nežádoucí a~proto se~používají nástroje, které typově bezpečné jsou a~po~kontrole jsou přeloženy (\emph{transpilovány}) zpět do~\emph{Javascriptu}. Jedním z~těchto nástrojů je~jazyk~\emph{Typescript}. Kromě typové kontroly přináší \emph{Typescript} i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují výkon aplikace.
@@ -426,8 +426,8 @@ const App = () => {
                 \vspace{1cm}
                 \caption{použití JSX}
             \end{subfigure}
-            \label{JSXcomponent}
             \caption{Rozdíl použití React vs.~JSX}
+            \label{JSXcomponent}
         \end{figure}
 
 \emph{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\emph{Vanilla Javascriptu} nebo~\emph{Typescriptu}. Je~vyvíjen společností \texttt{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který podobně jako \emph{React} využívá \emph{virtuální DOM}.
@@ -482,8 +482,8 @@ Takto vygenerujeme \emph{HTML kód} (se~skripty ap.) pro~každou stránku pouze 
                 / \textcolor{purple}{\texttt{?znicitlidstvo=false\&parametr=42}}
                 
             \end{tabular}
-            \label{slozeni-uri}
             \caption{Složky URI}
+            \label{slozeni-uri}
         \end{figure}
 
         \textbf{DNS Resolve} je~proces překladu doménového jména na~IP adresu. Když si~uživatel vyžádá nějaké doménové jméno, prohlížeč se~připojí k~\emph{DNS} a~požádá ho o~překlad doménového jména na~IP adresu. \emph{DNS} odpoví \emph{IP~adresou}, kterou prohlížeč použije pro~navázání spojení se~serverem.
@@ -501,7 +501,7 @@ Takto vygenerujeme \emph{HTML kód} (se~skripty ap.) pro~každou stránku pouze 
 
         Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
         
-        \subsection{MVC\,--\,Model View Controller}
+        \subsection{MVC -- Model View Controller}
         Nejvýznamnějším bodem vývoje aplikací je~rozšíření architektury \emph{MVC}. \emph{MVC} je~zkratka pro~\emph{Model View Controller}. Podle této architektury oddělujeme \emph{logiku aplikace} od~jejího \emph{zobrazení}. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím \emph{}.
 
         Podle modelu \emph{MVC} má~aplikace 3~složky. \textbf{Model}, který se~stará o~úschovu a~manipulaci s~daty, \textbf{Controller}, který zprostředkuje komunikaci mezi \emph{modelem} a \emph{zobrazením}, a~\textbf{View}, který se~stará o~výsledné zobrazení dat. \cite{MVC}
@@ -605,8 +605,8 @@ Takto vygenerujeme \emph{HTML kód} (se~skripty ap.) pro~každou stránku pouze 
             \begin{figure}
                 \centering
                 \includegraphics[width=.8\linewidth]{img/jwt.jpg}
-                \label{model-jwt}
                 \caption{Použití JWT v~praxi}
+                \label{model-jwt}
             \end{figure}
 
             \emph{JWT} sestává ze~tří částí, které jsou odděleny tečkou.
@@ -625,7 +625,7 @@ Takto vygenerujeme \emph{HTML kód} (se~skripty ap.) pro~každou stránku pouze 
 
             Jelikož formát \emph{Base64} je~kódování, které používáme pro~jednodušší přenos dat, a~nikoliv pro~šifrování. Bezpečnost \emph{JWT} je~zajištěna pouze podpisem, který zaručuje integritu. Data ale~může číst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \emph{JWT} vznikly další standardy\,--\,\emph{JWE}, \emph{JWS}, \emph{JWA} a~\emph{JWK}. \cite{jwtesak}
 
-            Zajímavou možností je~využití \emph{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \cite{homeomorphicEncryption}
+            Zajímavou možností je~využití \emph{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \cite{graham2021ethical}
 
             \subsubsection{SQL Injection}
             \emph{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus \emph{SQL dotazu} (\emph{SQL Query}) do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~místo zpracování vykonán společně se~zbytkem dotazu. To~může vést k~získání citlivých dat, jejich změně nebo~k~jejich smazání. Může např.~dojít ke~změně hesla administrátorského účtu a~tím získání přístupu ke~chráněným datům.
@@ -648,7 +648,6 @@ DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
 -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
 UPDATE users SET email = 'mujmejl@seznam.cz', role='admin' WHERE id = 42
                     \end{minted}
-                    \label{model-sql-injection}
                     \subcaption{Příklad útoku SQL Injection}
                 \end{subfigure}
                 \begin{subfigure}{0.48\textwidth}
@@ -664,9 +663,11 @@ DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
 -- ošetřený dotaz, který by pouze vložil do databáze nevalidní emailovou adresu
 UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHERE id = 42
                     \end{minted}
-                    \label{model-sql-injection}
                     \subcaption{Ošetření pomocí prepared statement}
                 \end{subfigure}
+
+                \caption{SQL injection a jeho ošetření}
+                \label{model-sql-injection}
             \end{figure}
 
             Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet.
@@ -682,7 +683,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
 
             Ochranou před tímto typem útoku je nahrazení znaků, které mohou způsobit problémy, za~jejich \emph{HTML entity}, kde znaky jako~\texttt{<} nahradíme za~\texttt{\&lt;}, \texttt{>} za~\texttt{\&gt;}, \texttt{\&} za~\texttt{\&amp;}~apod.
             
-            Možností je~také využít specializované knihovny, které toto ošetření provedou za~nás, a~nebudeme muset řešit, které znaky je~potřeba ošetřovat. Např.~\emph{DOMPurify} nebo \emph{sanitize-html}. \cite{w3s:XSS}
+            Možností je~také využít specializované knihovny, které toto ošetření provedou za~nás, a~nebudeme muset řešit, které znaky je~potřeba ošetřovat. Např.~\emph{DOMPurify} nebo \emph{sanitize-html}. \cite{medium:XSS}
 
         \subsection{Testování}
         Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí všechny možné situace, které mohou nastat.
