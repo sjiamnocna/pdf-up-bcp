@@ -93,7 +93,7 @@
 	
 	\section{Úvod}
     V~úvodu této práce bych~chtěl na~několika stránkách popsat nástroje, které je~možné použít pro~tvorbu testů a~definovat potřeby, které v~této souvislosti mohou nastat.
-    
+    druhé
     Ve~druhé části popíšu návrh a~implementaci moderních aplikací a~vytvořím aplikaci, kterou učitelé mohou používat k~tvorbě různých variant zadání školních testů. V~rámci toho popíšu základní prvky při~vývoji \emph{moderní \emph{MVC}} aplikace a~popíšu důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování pomocí diagramů, až~k~její implementaci a~spuštění za~použití vybraných technologií.
     
     Aplikace mohou samozřejmě vznikat i~jinými způsoby, nicméně by~mělo jít o~čitelný a~reprodukovatelný postup vývoje, zabezpečení a~údržby podobné aplikace. Vyhotovená aplikace bude následně veřejně dostupná jako webová služba.
@@ -134,8 +134,7 @@
 
         Můj~druhý obor je~matematika, proto se~v~příkladu zaměřím na~ni. Pokud budeme testovat např.~znalosti \emph{lineárních rovnic}, pravděpodobně necháme otázku s~otevřenou odpovědí, abychom zjistili, zda je~student schopný odpověď vypočítat a~jak~při~tom postupuje. Ale může nastat situace, že~chceme ověřit rychlý úsudek studenta na~základě daného učiva a~pak mu nabídneme možnosti. V~tomto případě je~potřeba, aby nesprávné možnosti vypadaly věrohodně, aby student nemohl jednoduše uhodnout správnou odpověď, ale k~odhadu využil své~znalosti.
 
-        Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti můžeme definovat třeba výpočtem z~koeficientů. Nebo řekněme, že~budeme chtít, aby výsledek odpovídal některému z~číselných oborů. Pro žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud chceme ověřit znalost výpočtu kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~odpovědích obsáhnout imaginární složku.
-        % TODO: doplnit o https://www.knihovny.cz/Record/mzk.MZK01-001148235?sid=7492372 (Tvorba matematických problémů pro nadané žáky)
+        Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti můžeme definovat třeba výpočtem z~koeficientů. Nebo řekněme, že~budeme chtít, aby výsledek odpovídal některému z~číselných oborů. Pro žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud chceme ověřit znalost výpočtu kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~odpovědích obsáhnout imaginární složku. \cite{zhouf:tvorbamatproblemu}
 
         \subsection{V současnosti používané nástroje}
         V~současnosti je~pro~účely tvorby testů používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
@@ -796,7 +795,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         \subsection{Účel a~popis fungování vyvíjené aplikace}
         Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo konkrétní příklady, které se~mají do~písemky vložit. Uživatelé budou mít možnost přihlášení pomocí více způsobů, vč.~externích poskytovatelů ověření identity a~samozřejmě také pomocí přihlašovacího jména a~hesla.
         
-        \subsection{Příklad použití}
+        \subsubsection{Příklad použití}
         Řekněme, že~uživatel \emph{Písemkomatu} bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílnými příklady. Zaregistruje~se do~aplikace \emph{Písemkomat} a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
         Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho písemce objevily všechny příklady z~dané kategorie nebo zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu chce~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou příklady s~náhodně dosazenými hodnotami. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Aplikace \emph{Písemkomat} umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
@@ -890,14 +889,18 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHE
         
         Vztahy inkluze a~rozšíření jsou v diagramu tříd zobrazeny stejně jako u~\emph{UCD} \cite{visualparadigmClassDiagram}.
 
-        \emph{Diagram tříd} souvisí s~návrhem struktur, uložených v databázi. Lépe si~uvědomíme, jaká data bude nutné uchovávat v~databázi a~jaká jsou dočasná, nebo je~můžeme jednoduše odvodit z~jiných dat.
+        \emph{Diagram tříd} přímo souvisí s~návrhem struktur a~dat uložených v databázi. Lépe si~uvědomíme, jaká data bude nutné uchovávat v~databázi a~jaká jsou dočasná, nebo tyto~závěry můžeme z~diagramu jednodušeji vyvodit.
 
         \subsection{Návrh struktury databáze}
         Pro~ukládání dat v~aplikaci použijeme databázi. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
 
         Při~plánování databáze využiju \emph{diagram tříd} k~plánování konkrétních tabulek a~vztahů mezi~nimi. \emph{UCD} pomůže zjistit, jaké SQL~dotazy nejspíše budou potřeba, což~umožní lepší náhled, které sloupce budou zařazeny do~indexů.
 
-        Potom následuje vytvoření tabulek, resp.~\emph{modelů dat}. Používá se~k~tomu jazyk \emph{SQL} (Structured Query Language), který bude ovládat databázi \emph{MySQL} (\emph{MariaDB}).
+        O~problematiku tvorby databázových tabulek se~postará \emph{ORM} (\emph{Object-relational mapping}), který umožní vytvořit tabulky z~modelů dat, které budou používat aplikace. Autor aplikace se~tak nemusí starat o~tvorbu tabulek a~jejich vztahů, ale~může se~soustředit na~tvorbu aplikace, nicméně by~měl pamatovat na~zásady indexování a~optimalizace databáze. Tyto zásady jsou popsány jako 1\,--\,3.~normální formy a~do zásad \emph{ACID} (Atomicity, Consistency, Isolation, Durability). \cite{interval:normalniformydb, bmcACIDExplained}
+
+        Potom následuje vytvoření tabulek, resp.~\emph{modelů dat}. Používá se~k~tomu jazyk \emph{SQL} (Structured Query Language), který bude ovládat databázi \emph{MySQL} (\emph{MariaDB}). Veškerou komunikaci prostřednictvím \emph{SQL} obstará \emph{ORM} systém.
+
+        \textbf{Indexace} sloupců znamená optimalizaci dat v~daném sloupci pro~rychlejší třídění, spojování tabulek a~vyhledávání v~nich. \emph{Indexy} se~vytváří na~sloupcích představujících \emph{primární klíč} nebo \emph{unikátní} hodnoty, které se~v~tabulce nesmí vyskytnout opakovaně a~slouží k~jednoznačné identifikaci záznamu, nebo sloupců, které jsou~v~\emph{SQL} dotazech často využívány k~třídění a~vyhledávání. \emph{Indexy} je~možné připodobnit k~lékařské kartotéce, kde~se~snažíme, aby~karty pacientů byly~seřazeny abecedně, zdravotní sestra pak~při vyhledávání pacientů aplikuje metodu \textbf{binárního vyhledávání}, čímž~najde kartu dříve než~kdyby karty nebyly seřazeny. \cite{interval:normalniformydb, laurencik2018sql}
 
         \subsection{I18C~--~Mezinárodní lokalizace}
         \emph{I18C} je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \emph{I18C} zahrnuje i~různé formy slov, např.~pro~různá množství. \cite{w3Internationalization}
