@@ -662,8 +662,8 @@ email := "mujmejl@seznam.cz', role='admin"
 DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
                     \end{minted}
                     \begin{minted}{sql}
--- ošetřený dotaz, který by pouze vložil do databáze nevalidní emailovou adresu
-UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', role=\'admin\' WHERE id = 42
+-- ošetřený (escapovaný) dotaz, který by pouze vložil do databáze nevalidní emailovou adresu
+UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin\', role=\'admin' WHERE id = 42
                     \end{minted}
                     \subcaption{Ošetření pomocí prepared statement}
                 \end{subfigure}
