@@ -1055,13 +1055,17 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             V~hlavním souboru \texttt{src/main.tsx} importujeme aplikaci a~připojíme ji~k~\emph{HTML} dokumentu. \emph{React} se~postará o~její vykreslení do~zvoleného prvku.
 
-            \textbf{Router} v~případě \emph{frontendu} určí, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, na~stránky pro~přihlášené uživatele potom aplikuju tzv.~\emph{lazy loading}, který je~zpřístupní až~po~přihlášení. To~umožní načíst jen~potřebné části aplikace a~zrychlí načítání. \emph{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty ze~serveru načteme až~v~případě potřeby. \cite{lazyload}
+            \textbf{Router} v~případě \emph{frontendu} určí, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, na~stránky pro~přihlášené uživatele potom aplikuju tzv.~\emph{lazy loading}, který je~zpřístupní až~po~přihlášení. To~umožní načíst jen~potřebné části aplikace a~zrychlí načítání. \emph{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty ze~serveru načteme až~v~případě potřeby.
 
-            Po spuštění aplikace v~\emph{Reactu} normálně načítáme celou aplikaci naráz, včetně obrázků, obsahu ap. To~může vyústit v~načtení zbytečného objemu dat a~ke~snížení celkového výkonu aplikace, nehledě na~zátěž na~připojení.
+            Po~spuštění aplikace v~\emph{Reactu} normálně načítáme celou aplikaci naráz, včetně obrázků, obsahu ap. To~může vyústit v~načtení zbytečného objemu dat a~ke~snížení celkového výkonu aplikace, nehledě na~zátěž na~připojení.
 
-            \emph{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty a~další zdroje ze~serveru načteme až~v~případě potřeby. \cite{lazyload}
+            \textbf{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty a~další zdroje ze~serveru načteme až~v~případě potřeby. \cite{lazyload}
+
+            \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě chceme uživatele informovat, že~se~něco pokazilo a~případně mu~doporučit, co~může dělat dál.
 
         \subsection{Testování}
+            Nemá význam testovat celou aplikaci. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji, navíc při~sebemenší chybě aplikace vůbec nenastartuje a~pokud něco selže při~tvorbě \emph{Docker} kontejneru, aplikace se~vůbec nespustí. Proto se~budu věnovat testování pouze u~\emph{generátoru} (\texttt{\emph{Go} test}) a~\emph{frontendu} (\texttt{Jest}), případně menším funkcím, které nejsou závislé na~dalších částech aplikace a~měly by~generovat pro~kombinaci stejných dat stejný výsledek (viz.~\emph{Pure function}).
+
         \subsection{Údržba}
         
 	\section{Budoucí rozvoj aplikace}
