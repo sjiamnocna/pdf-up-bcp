@@ -505,11 +505,13 @@ Takto vygenerujeme \emph{HTML kód} (se~skripty ap.) pro~každou stránku pouze 
         Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
         
         \subsection{MVC -- Model View Controller}
-        Nejvýznamnějším bodem vývoje aplikací je~rozšíření architektury \emph{MVC}. \emph{MVC} je~zkratka pro~\emph{Model View Controller}. Podle této architektury oddělujeme \emph{logiku aplikace} od~jejího \emph{zobrazení}. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím \emph{}.
+        Nejvýznamnějším bodem vývoje aplikací je~rozšíření architektury \emph{MVC}. \emph{MVC} je~zkratka pro~\emph{Model View Controller}. Podle této architektury oddělujeme \emph{logiku aplikace} od~jejího \emph{zobrazení}. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím \emph{zobrazení}.
 
         Podle modelu \emph{MVC} má~aplikace 3~složky. \textbf{Model}, který se~stará o~úschovu a~manipulaci s~daty, \textbf{Controller}, který zprostředkuje komunikaci mezi \emph{modelem} a \emph{zobrazením}, a~\textbf{View}, který se~stará o~výsledné zobrazení dat. \cite{MVC}
         
         Díky tomu můžeme mít~jednu aplikaci, která bude mít~různá \emph{zobrazení} (\emph{view}), ale čerpá pouze z~jednoho zdroje. Např.~webová stránka, mobilní i~desktopová aplikace (\emph{zobrazení}) mohou využívat týž~\emph{Backend} (\emph{model}).
+        
+        Moderní aplikace díky tomu mohou snížit zátěž na~server, jelikož část aplikace, která se~stará o~zobrazení, běží na~straně klienta a~mezi nimi probíhá pouze výměna dat.
 
         \subsection{Frontend, Backend}
         Dnešní aplikace se~díky architektuře \emph{MVC} běžně dělí na~\emph{frontend} a~\emph{backend}, které pracují spolu, ale jsou oddělené.
@@ -1053,9 +1055,12 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             V~hlavním souboru \texttt{src/main.tsx} importujeme aplikaci a~připojíme ji~k~\emph{HTML} dokumentu. \emph{React} se~postará o~její vykreslení do~zvoleného prvku.
 
-            \textbf{Router} v~případě \emph{frontendu} určí, která stránka (resp. \emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejné části prezentace budou v~hlavní části \emph{routeru}, na~stránky pro~přihlášené uživatele potom aplikuju tzv.~\emph{lazy loading}.
+            \textbf{Router} v~případě \emph{frontendu} určí, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, na~stránky pro~přihlášené uživatele potom aplikuju tzv.~\emph{lazy loading}, který je~zpřístupní až~po~přihlášení. To~umožní načíst jen~potřebné části aplikace a~zrychlí načítání. \emph{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty ze~serveru načteme až~v~případě potřeby. \cite{lazyload}
 
-            \textbf{Lazy loading}
+            Po spuštění aplikace v~\emph{Reactu} normálně načítáme celou aplikaci naráz, včetně obrázků, obsahu ap. To~může vyústit v~načtení zbytečného objemu dat a~ke~snížení celkového výkonu aplikace, nehledě na~zátěž na~připojení.
+
+            \emph{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty a~další zdroje ze~serveru načteme až~v~případě potřeby. \cite{lazyload}
+
         \subsection{Testování}
         \subsection{Údržba}
         
