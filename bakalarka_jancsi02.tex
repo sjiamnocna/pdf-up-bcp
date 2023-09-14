@@ -663,7 +663,7 @@ DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
                     \end{minted}
                     \begin{minted}{sql}
 -- ošetřený (escapovaný) dotaz, který by pouze vložil do databáze nevalidní emailovou adresu
-UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin\', role=\'admin' WHERE id = 42
+UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \end{minted}
                     \subcaption{Ošetření pomocí prepared statement}
                 \end{subfigure}
@@ -813,7 +813,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin\', role=\'admin' WHE
             \$D &= \$C + \$B = 4 + 5 = 9
         \end{align*}
 
-        Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly, výrazy nebo funkčními prvky. Po vygenerování příkladu bude potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby bylo možné identifikovat přesnou verzi příkladu.
+        Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly, výrazy nebo funkčními prvky. Po vygenerování příkladu bude potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby bylo možné identifikovat přesnou verzi příkladu. Pokud se~v~příkladě nevyskytují žádné proměnné nebo není potřeba nic generovat, potom není potřeba hodnoty ukládát.
 
         Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
 
@@ -1039,7 +1039,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin\', role=\'admin' WHE
             
             Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}.
 
-            Protože pracuju s~jazykem Go, obdrží \emph{generátor} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné hodnoty předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). Výsledná data budou obsahovat pouze zadání otázky a~možnosti odpovědí. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude zpracován až~podle~volby~zobrazení.
+            Protože pracuju s~jazykem Go, obdrží \emph{generátor} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné hodnoty předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). Výsledná data budou obsahovat pouze zadání otázky a~možnosti odpovědí. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude zpracován až~podle~volby~zobrazení. Pokud bude generátor vytvářet nějaké konkrétní hodnoty (jako náh. čísla nebo výpočty nebo řazení odpovědí), výsledek bude obsahovat kladný \emph{příznak}, že~ke~generování proběhlo. \emph{Generátor} samotný nemá přístup k~databázi.
 
             \subsubsection{Autentizace uživatelů}
             Hned ze~začátku budu myslet na~registraci a~přihlášení více způsoby. Pro~všechny typy přihlášení bude existovat~jedna tabulka s~tajnými přihlašovacími údaji z~různých služeb, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí služeb \emph{Google}, \emph{Linkedin} a~\emph{Github}. Ty~jsem vybral, protože~je~menší pravděpodobnost falešných profilů. Umožňují také jednoduché získání informací o~uživateli, jako je~jméno, příjmení a~e-mailová adresa.
@@ -1052,6 +1052,10 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin\', role=\'admin' WHE
             Zdrojové soubory \emph{Frontendu} budou v~tradičním adresáři \texttt{viteapp/src} a~moduly použitých nástrojů, jako připojení k~\emph{API} pomocí tajných údajů, spuštění \emph{Firebase} nebo vytvoření \emph{kontextu aplikace}, budou v~podadresáři \texttt{utils}. Jednotlivé \emph{komponenty} pak~v~adresáři \texttt{components}.
 
             V~hlavním souboru \texttt{src/main.tsx} importujeme aplikaci a~připojíme ji~k~\emph{HTML} dokumentu. \emph{React} se~postará o~její vykreslení do~zvoleného prvku.
+
+            \textbf{Router} v~případě \emph{frontendu} určí, která stránka (resp. \emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejné části prezentace budou v~hlavní části \emph{routeru}, na~stránky pro~přihlášené uživatele potom aplikuju tzv.~\emph{lazy loading}.
+
+            \textbf{Lazy loading}
         \subsection{Testování}
         \subsection{Údržba}
         
@@ -1067,7 +1071,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin\', role=\'admin' WHE
         
         K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
 
-        Aplikace by~se~dala využít také~ke~tvorbě interaktivních výukových materiálů a~minikvízů, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost zadat příklad do~WolfRam Alpha. Důležitou součástí materiálů budou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu. Webové zdroje bude aplikace pravidelně kontrolovat a~oznámí změny, podle kterých bude učitel moci informace aktualizovat. To~umožní učitelům vytvářet výukové materiály, které nebudou obsahovat zastaralé informace.
+        Aplikace by~se~dala využít také~k~tvorbě interaktivních výukových materiálů s~minikvízy, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost zadat příklad do~WolfRam Alpha. Důležitou součástí materiálů budou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu. Webové zdroje bude aplikace pravidelně kontrolovat a~oznámí změny, podle kterých bude učitel moci informace aktualizovat. To~umožní učitelům vytvářet výukové materiály, které nebudou obsahovat zastaralé informace.
         
         Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~rychleji rozšiřovat její funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. Důležitou možností je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila jejich důvěryhodnost.
 	\section{Závěr}
