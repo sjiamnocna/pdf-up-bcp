@@ -843,8 +843,10 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu, zapnout/vypnout náhodné řazení otázek nebo odpovědí) i~na úrovni celých testů. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
 
+            Po~nasdílení trvalého odkazu na~daný~příklad/test bude umožněno zobrazit náhodně vygenerovanou variantu příkladu, případně si~příklad přidat a~upravit ve~vlastním účtu.
+
         \subsection{UML~--~Unified Modeling Language}
-            Jeden ze~standardních nástrojů pro~modelování aplikace je~\emph{UML}. \emph{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů. Základem \emph{UML} je~\emph{UML diagram}, který slouží k~vizualizaci návrhu aplikace. \cite{uml:diagram}
+            Jeden ze~standardních nástrojů pro~modelování aplikace je~\emph{UML}. \emph{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů. Základem \emph{UML} je~\emph{UML diagram}, který slouží k~vizualizaci návrhu aplikace.
             
             Specifikace definuje základní dva typy diagramů:
             \begin{itemize}
@@ -852,7 +854,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \item \textbf{Diagramy chování} popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
             \end{itemize}
 
-            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} \textbf{Use Case Diagram} a~\textbf{diagram~tříd} \textbf{Class Diagram}. Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}~ap. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval. \cite{uml:diagram}
+            Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout. \cite{uml:diagram}
+
+            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}~ap. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval. \cite{uml:diagram}
 
             \subsubsection{UCD~--~Use Case Diagram}
                 \emph{UCD} je~diagram ze~standardu \emph{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
@@ -866,6 +870,17 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \item \textbf{Vztahy mezi~aktéry a~případy užití} znázorňují, jestli a~jakým způsobem může aktér případ užití používat. Vztahy se~značí šipkami, které vycházejí z~aktéra a~končí u~případu užití.
                     \item \textbf{Rozšíření} (extend)~--~je~případ užití, který přejímá vlastnosti předchozího případu užití a~rozšiřuje je~o~další možnosti. Znázorňuje se~jako šipka, která míří směrem z~případu užití a~končí u~případu užití, který rozšiřuje.
                     \item \textbf{Zahrnutí} (include)- zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
+                \end{itemize}
+
+                V~aplikaci modeluju tyto základní aktéry~--~\textbf{návštěvník}, \textbf{uživatel}, \textbf{administrátor} a~\textbf{Systém}. \emph{Uživatel} je~osoba, která se~do~aplikace přihlásí a~má~možnost vytvářet, upravovat a~mazat příklady a~testy. \emph{Návštěvník} je~osoba, která se~do~aplikace nepřihlásí, ale~může si~prohlížet vygenerovaná zadání. A~\emph{systém} je~samotná aplikace, která pravidelně provádí nějaké akce.
+
+                Akce do~\emph{use case diagramu}:
+
+                \begin{itemize}
+                    \item \harddata{Návštěvník} -- zobrazit příklad/test
+                    \item \harddata{Uživatel} -- vše, co \emph{návštěvník} + registrace, přihlášení, tvorba a správa otázek, proměnných, testů, kategorií, zobrazit poslední/aktivní přihlášení, odhlášení, přidání přihlašovací metody, změna hesla, deaktivace účtu
+                    \item \harddata{Administrátor} -- vše, co \emph{uživatel} + správa ostatních uživatelů, nastavení aplikace, chat s~uživateli
+                    \item \harddata{Systém} -- pravidelná kontrola a~odstraňování neaktivních účtů, nevyužívaných proměnných nebo příkladů a~testů, přihlašovacích metod a přístupových tokenů
                 \end{itemize}
 
             \subsubsection{Class Diagram}
