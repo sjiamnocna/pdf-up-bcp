@@ -794,7 +794,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \subsection{Účel a~popis fungování vyvíjené aplikace}
             Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné ve~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo konkrétní příklady, které se~mají do~testu vložit. Uživatelé budou mít možnost přihlášení pomocí více způsobů, vč.~externích poskytovatelů ověření identity a~samozřejmě také pomocí přihlašovacího jména a~hesla.
             
-            Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
+            Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
             Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho testu objevily všechny příklady z~dané kategorie nebo zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu chce~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou příklady s~náhodně dosazenými hodnotami. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Aplikace umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
 
@@ -971,6 +971,62 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Gin také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \emph{handler}.
             To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \emph{koncové body} pro~přihlášené
             uživatele můžeme předem definovat a~zabezpečit.
+
+            V~Go~máme k~dispozici \textbf{metadata členů struktur} (\textbf{struct tags}), díky kterým můžeme pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~zadefinování přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatickému zkontrolování rozsahu dat daného údaje při~přijetí z~\emph{JSON požadavku}.
+
+            To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka následuje 
+
+            \begin{figure}
+                \begin{subfigure}[b]{0.45\linewidth}
+                    \begin{minted}{go}
+r.POST("/age", func(c *gin.Context) {
+    var data struct{
+        Age int `json:"age" min:"0" required`
+    }
+
+    err := c.BindJSON(&data)
+    if err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{
+            "error": err.Error(),
+        })
+        return
+    }
+
+    // The age is now in the `age` struct.
+
+    c.JSON(http.StatusOK, gin.H{
+        "age": age.Age,
+    })
+})
+                    \end{minted}
+                    \caption{Načtení dat z POST požadavku v jazyce Go}
+                \end{subfigure}
+                \hfill
+                \begin{subfigure}[b]{0.45\linewidth}
+                    \begin{minted}{php}
+<?php
+//...
+class dataLoader extends Endpoints{
+    //...
+    public function actionEndpoint{
+        if (!is_numeric($_POST['age'])){
+            throw new Exception("Age must be a number");
+        }
+
+        $age = intval($_POST['age']);
+
+        if ($age < 0){
+            throw new Exception("Age must be positive number");
+        }
+    }
+}
+
+                    \end{minted}
+                    \caption{Stejná funkcionalita v jazyce Go}
+                \end{subfigure}
+                \caption{Zápis OOP v PHP je stručnější než v Go}
+                \label{oop:difference}
+            \end{figure}
             
             \emph{MySQL} je~relační \textbf{databáze}, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. Největší jednotkou je~\emph{databáze}, která obsahuje \emph{tabulky}. Jednotlivé sloupce \emph{tabulek} určují \emph{typ dat} a~jejich název. Každý \emph{řádek} je~jeden záznam v~dané tabulce.\cite{databases21}
             
@@ -1021,11 +1077,13 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Pro~obsluhu požadavků na~backend budu využívat \href{https://github.com/gin-gonic/gin}{\emph{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~kontrolu~a~správu \emph{JWT} tokenu \href{https://gitlab.com/sjiamnocna/goethe}{\emph{sjiamnocna/goethe}}. Ten zároveň přidává základní \emph{endpointy} pro~autentizaci požadavků.
             Při~vývoji také využiju balíček \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}}, který umožňuje automaticky restartovat aplikaci při~každé změně kódu, čímž bude možné vývoj aplikace trochu zjednodušit a~zbavit se~nutnosti manuální kompilace a~restartování backendové aplikace.
 
-            Samotný \emph{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\emph{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\emph{generátor}, který přijme požadavky na~příklad a~vygeneruje jeho části podle zadání. Ty~potom předá výslednému zobrazení (ve~smyslu \emph{MVC}, může být zobrazení cokoliv~--~\emph{PDF soubor} nebo~webový \emph{Frontend}). V~případě nalezených chyb, které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení a~chyby odstranit.
+            Samotný \emph{backend} bude tvořen dvěma částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\emph{webový server}, který bude přijímat požadavky a~spravovat uživatelská data, a~\emph{generátor}, který přijme požadavky na~příklad a~vygeneruje jeho části podle zadání. Ty~potom předá výslednému zobrazení (ve~smyslu \emph{MVC}, může být zobrazení cokoliv~--~např.~\emph{PDF soubor} nebo~jakýkoliv jiný \emph{frontend}). V~případě nalezených chyb (např. nekompatibilní nastavení nebo problému v~závislostech proměnných), které by~mohly vést k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně navrhnout řešení a~chyby odstranit.
 
-            Základním prvkem aplikací je~registrace a~přihlašování uživatelů. Při~registraci je~potřeba ověřit uživatele aspoň pomocí existující e-mailové adresy aby byla~možná aspoň základní komunikace a~ověření. V~případě, že~uživatel zapomene heslo, je~potřeba mu~umožnit jej~změnit. K~tomu je~potřeba mu~poslat e-mail s~odkazem, který jej~přesměruje na~stránku, kde~si~může heslo změnit. Tento odkaz musí být unikátní a~platný pouze po~omezenou dobu, aby~nebylo možné jej~zneužít. K~tomu využiji \emph{JWT} token, který bude obsahovat informace o~uživateli a~bude platný pouze po~omezenou dobu. \emph{JWT}. Zároveň do~databáze vložím záznam o~tom, že~uživatel požádal o~změnu hesla a~při~přístupu na~stránku s~novým heslem zkontroluji, zda~je~požadavek platný a~případně heslo změním.
+            Základním prvkem aplikací je~registrace a~přihlašování uživatelů. Při~registraci je~potřeba ověřit uživatele alespoň pomocí existující e-mailové adresy aby byla~možná aspoň základní komunikace a~ověření. Taky je potřeba zamezit duplicitním účtům kontrolou existence uživatele ještě před registrací, aby měl uživatel vizuální \textbf{feedback (zpětnou vazbu)} ještě před dalším vyplňováním formuláře. Přihlašuje se~pak~pomocí jména a~hesla, případně pomocí \emph{externího poskytovatele identity}.
+            
+            V~případě, že~uživatel zapomene heslo, je~potřeba mu~umožnit jej~změnit. K~tomu je~potřeba mu~poslat e-mail s~odkazem, který jej~přesměruje na~stránku, kde~si~může heslo změnit. Tento odkaz musí být unikátní a~platný pouze po~omezenou dobu, aby~nebylo možné jej~zneužít. K~tomu využiji \emph{JWT} token, který bude obsahovat informace o~uživateli a~bude platný pouze po~omezenou dobu. \emph{JWT}. Zároveň do~databáze vložím záznam o~tom, že~uživatel požádal o~změnu hesla a~při~přístupu na~stránku s~novým heslem zkontroluji, zda~je~požadavek platný a~případně heslo změním.
 
-            Přihlašovací údaje budu tzv.\textbf{cachovat} [kešovat], což~znamená uložit si~data do~aplikace pro~pozdější využití, aby byla rychleji k~nalezení bez~nutnosti přístupu k~databázi nebo~bez~provádění náročných výpočtů.
+            Přihlašovací údaje budu tzv.~\textbf{cachovat} [kešovat], což~znamená uložím si~data posledních $n$~uživatelů z~databáze do~aktivní paměti běžícího programu pro~pozdější využití, aby byla rychleji k~nalezení bez~nutnosti přístupu k~databázi nebo~provádění náročných výpočtů, které by~vedly ke~stejným výsledkům. \emph{Cachovat} budu i~části příkladů, které nevyžadují generování dat, pouze jednoduché nahrazení.
             
         \subsubsection{Funkce Init}
             \emph{Go} má~dvě vstupní funkce \emph{main} a~\emph{init}. Funkce \emph{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \emph{init} se~spustí jako první, ale~před funkcí \emph{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \emph{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
