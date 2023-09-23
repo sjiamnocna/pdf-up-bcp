@@ -98,6 +98,8 @@
         
         Aplikace mohou samozřejmě vznikat i~jinými způsoby, nicméně by~mělo jít o~čitelný a~reprodukovatelný postup vývoje, zabezpečení a~údržby podobné aplikace. Vyhotovená aplikace bude následně veřejně dostupná jako webová služba.
 
+        K~upřesnění požadavků na~aplikaci použiju několik rozhovorů s~učiteli a~dalšími vývojáři.
+
     \section{Testy, testové úlohy}
         Školní testy jsou nástrojem pro hodnocení znalostí a dovedností studentů. Vznikají tak, že~učitelé nebo vzdělávací instituce vytvářejí \emph{otázky} (\emph{problémy}~\cite{zhouf:tvorbamatproblemu}) a~úkoly, které jsou zaměřeny na~konkrétní téma nebo oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do testu, který je studentům předložen k~vyplnění.
 
@@ -432,10 +434,10 @@ const App = () => {
 
             \emph{Vite} údajně navíc umí urychlit sestavení modulů~--~spojení importovaných modulů do~jednoho výstupu.\cite{vitejs}
 
-        \subsection{Server Side Rendering (SSR) a Static Site Generator (SSG)}
+        \subsection{Server Side Rendering (SSR) a Static Site Generation (SSG)}
             Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \emph{HTML} obsah a~prohlížeč stránku vykreslí (\emph{Client Side Rendering~--~CSR})\cite{mediumWhatCSR}. To~může být problém, pokud máme rozsáhlou aplikaci, která obsahuje mnoho komponent nebo rozsáhlou logiku, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \emph{Static Site Generation (SSG)} a~\emph{Server Side Rendering (SSR)}.
 
-            \textbf{Static Site Generator (SSG)} je~způsob zrychlení webů, kde ručně vygenerujeme \textbf{všechny} statické soubory z~dat, které načteme z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \emph{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby běžela žádná další \emph{služba/aplikace}. To~samozřejmě nevylučuje použití \emph{AJAXu}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli posíláme statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \emph{Javascriptu}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně na~vygenerované \emph{komponenty} aplikujeme jejich logiku a~akce. Tomuto procesu říkáme \textbf{hydratace} (\textbf{Hydration}).
+            \textbf{Static Site Generator (SSG)} (\emph{pre-rendering}) je~způsob zrychlení webů, kde vygenerujeme \textbf{všechny} statické soubory z~dat, které načteme z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \emph{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby běžela žádná další \emph{služba/aplikace}. To~samozřejmě nevylučuje použití \emph{AJAXu}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli posíláme statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \emph{Javascriptu}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně na~vygenerované \emph{komponenty} aplikujeme jejich logiku a~akce. Tomuto procesu říkáme \textbf{hydratace} (\textbf{Hydration}).
 
             \textbf{Server Side Rendering (SSR)} je~koncept podobný \emph{SSG}, jen na~straně serveru běží aplikace, která průběžně aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \emph{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztratíme žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\emph{backend} aplikace používá \emph{Javascript}. \cite{uc:ssrandssg}
 
@@ -755,7 +757,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj. \cite{gitscmBook}
             
-            \emph{Gitlab} je open-source nástroj pro~správu verzí na~serveru. Nabízí také možnost vytvářet \emph{Issues}, \emph{Merge Requesty} a~další funkce. Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, což~využívá spousta společností, které mají např.~více projektů.
+            \emph{Gitlab} je open-source nástroj pro~správu verzí na~serveru. Nabízí také možnost vytvářet \emph{Issues}, \emph{Merge Requesty} a~další funkce, podobně jako oblíbená služba \textbf{Github}. Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, což~využívá spousta společností, které mají např.~více projektů.
 
         \subsection{Linux a příkazová řádka, WSL2}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Je~to~nejrozšířenější open source operační systém, používaný zejména na~serverech ale také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí.
@@ -974,7 +976,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             V~Go~máme k~dispozici \textbf{metadata členů struktur} (\textbf{struct tags}), díky kterým můžeme pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~zadefinování přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatickému zkontrolování rozsahu dat daného údaje při~přijetí z~\emph{JSON požadavku}.
 
-            To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka následuje 
+            To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka následuje v příloze \ref{go:structuretags}.
 
             \begin{figure}
                 \begin{subfigure}[b]{0.45\linewidth}
@@ -999,7 +1001,7 @@ r.POST("/age", func(c *gin.Context) {
     })
 })
                     \end{minted}
-                    \caption{Načtení dat z POST požadavku v jazyce Go}
+                    \caption{Načtení věku z POST požadavku v jazyce Go}
                 \end{subfigure}
                 \hfill
                 \begin{subfigure}[b]{0.45\linewidth}
@@ -1018,14 +1020,18 @@ class dataLoader extends Endpoints{
         if ($age < 0){
             throw new Exception("Age must be positive number");
         }
+
+        return JSONResponse({
+            "age": $age
+        });
     }
 }
 
                     \end{minted}
-                    \caption{Stejná funkcionalita v jazyce Go}
+                    \caption{Zpracování v PHP}
                 \end{subfigure}
-                \caption{Zápis OOP v PHP je stručnější než v Go}
-                \label{oop:difference}
+                \caption{Kontrola dat pomocí PHP a Go}
+                \label{go:structuretags}
             \end{figure}
             
             \emph{MySQL} je~relační \textbf{databáze}, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. Největší jednotkou je~\emph{databáze}, která obsahuje \emph{tabulky}. Jednotlivé sloupce \emph{tabulek} určují \emph{typ dat} a~jejich název. Každý \emph{řádek} je~jeden záznam v~dané tabulce.\cite{databases21}
@@ -1057,7 +1063,7 @@ class dataLoader extends Endpoints{
 	\section{Postup implementace}
         Prvně je~potřeba vytvořit základní strukturu aplikace. Rozhodl jsem~se, že~pro lepší automatizaci a~kompatibilitu budou vývojové i~produkční prostředí tvořit \emph{Docker kontejnery}, což~zajistí konzistentní prostředí pro~vývoj i~produkci, kdekoliv aplikaci spustíme.
 
-        Při~vývojí ve~\emph{Vite} využiju nastavení \emph{proxy}, čímž~požadavky, jejichž \emph{query} začíná \texttt{'/api/...'} přesměruju na~kontejner s \emph{backendem} aplikace, pomocí konfigurace~\emph{proxy} ve~\emph{Vite}.
+        Při~vývojí ve~\emph{Vite} využiju nastavení \emph{proxy}, čímž~požadavky, jejichž \emph{query} začíná \texttt{'/api/...'} přesměruju na~kontejner s \emph{backendem} aplikace, pomocí konfigurace~\emph{proxy} ve~\emph{Vite}. Pro~základ \emph{frontendu} použiju předlohu pro~\emph{Vite} aplikaci s~přednastaveným \emph{Reactem}, \emph{Typescriptem}, \emph{I18C} a~\emph{SSR}.
         
         \textbf{Vývojová verze} bude obsahovat kontejnery pro~React, Go a~databázi. \emph{Go}~kontejner bude obsahovat nástroj \emph{Air}, který umožní automatický restart aplikace při~změně kódu \emph{backendu}. \emph{Frontend} bude spuštěný ve~vývojové verzi \emph{Vite}, která již~tyto nástroje obsahuje.
 
@@ -1123,24 +1129,29 @@ class dataLoader extends Endpoints{
             Protože pracuju s~jazykem Go, obdrží \emph{generátor} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné hodnoty předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). Výsledná data budou obsahovat pouze zadání otázky a~možnosti odpovědí. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude zpracován až~podle~volby~zobrazení. Pokud bude generátor vytvářet nějaké konkrétní hodnoty (jako náh. čísla nebo výpočty nebo řazení odpovědí), výsledek bude obsahovat kladný \emph{příznak}, že~ke~generování proběhlo. \emph{Generátor} samotný nemá přístup k~databázi.
 
         \subsubsection{Autentizace uživatelů}
-            Hned ze~začátku budu myslet na~registraci a~přihlášení více způsoby. Pro~všechny typy přihlášení bude existovat~jedna tabulka s~tajnými přihlašovacími údaji z~různých služeb, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí služeb \emph{Google}, \emph{Linkedin} a~\emph{Github}. Ty~jsem vybral, protože~je~menší pravděpodobnost falešných profilů. Umožňují také jednoduché získání informací o~uživateli, jako je~jméno, příjmení a~e-mailová adresa.
+            Registraci a~přihlášení do~aplikace bude možné více způsoby. Pro~všechny typy přihlášení bude existovat~jedna tabulka s~tajnými přihlašovacími údaji, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu přidám více služeb a~ověření.
             
-            Na~\emph{Frontendu} budu, samozřejmě mimo přihlášení jménem a~heslem, používat nástroj \href{Firebase}, což~je~služba od~společnosti Google, která umožňuje mmj.~jednoduchou autentizaci uživatelů pomocí různých webových služeb. Po~přihlášení dostane každý takový uživatel svůj unikátní \emph{UID}, který si~při~registraci z~\emph{frontendu} pošlu na~\emph{backend} namísto přihlašovacích údajů a~uložím do~databáze, do~tabulky s~přihlašovacími údaji. K~tomu vložím tajný \emph{zahashovaný} řetězec sestavený z~vybraných statických informací, které od \emph{Firebase} dostanu. Při~každém dalším přihlášení uživatele jen~zjistím, zda~je~v~databázi a~ověřím tajný řetězec, podobně jako heslo. Pokud~je~ověření úspěšné, uživatel je~přihlášen a~uložím hash~aktuální relace do~\emph{JWT} i~do~databáze. To~mi~umožní mít přehled o~přihlášených uživatelích a~jim~zabezpečí přístup k~datům. Jakékoliv akce s~účtem navíc budou zalogovány do~tabulky a~zobrazovány uživateli, čímž bude mít přehled o~dění na~účtu.
+            Na~\emph{Frontendu} budu používat nástroj \href{Firebase}, což~je~nástroj od~\emph{Google}, která umožňuje mmj.~jednoduchou autentizaci uživatelů pomocí různých webových služeb. Po~přihlášení dostane každý takový uživatel svůj unikátní \emph{UID}
+            
+            Tyto údaje budu ukládat do~tabulky \texttt{users} a~při~každém přihlášení je~budu kontrolovat. V~případě, že~uživatel neexistuje, vytvořím ho~a~přiřadím mu~jeho \emph{UID}. Tyto údaje poslouží k~přihlášení podobně jako jméno a~heslo.
+            
+            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~uložím hash~aktuální relace do~\emph{JWT} i~do~databáze a~při~každém přístupu bude zkontrolována platnost. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení. Jakékoliv akce s~účtem navíc budou zapsány do~tabulky akcí a~k~dispozici uživateli, který získá lepší přehled o~přihlašování a~dění na~účtu.
 
         \subsection{Frontend}
             \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný ke~udržování \emph{JWT} u~klientské části aplikace a~tedy~jednodušší komunikaci frontendu s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~toto~zaznamená a~změní se~\emph{JWT}, čímž se~snažím redukovat riziko jeho zneužití.
 
-            Zdrojové soubory \emph{Frontendu} budou v~tradičním adresáři \texttt{viteapp/src} a~moduly použitých nástrojů, jako připojení k~\emph{API} pomocí tajných údajů, spuštění \emph{Firebase} nebo vytvoření \emph{kontextu aplikace}, budou v~podadresáři \texttt{utils}. Jednotlivé \emph{komponenty} pak~v~adresáři \texttt{components}.
+            \emph{Frontend} bude založen na~\emph{Vite} v~\emph{Reactu}.
+            Její základ bude v~anglickém jazyce, do~ostatních jazyků (vč. Češtiny) budu aplikaci překládat.
 
-            V~hlavním souboru \texttt{src/main.tsx} importujeme aplikaci a~připojíme ji~k~\emph{HTML} dokumentu. \emph{React} se~postará o~její vykreslení do~zvoleného prvku.
+            \textbf{Router} v~případě \emph{frontendu} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
-            \textbf{Router} v~případě \emph{frontendu} určí, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, na~stránky pro~přihlášené uživatele potom aplikuju tzv.~\emph{lazy loading}, který je~zpřístupní až~po~přihlášení. To~umožní načíst jen~potřebné části aplikace a~zrychlí načítání. \emph{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty ze~serveru načteme až~v~případě potřeby.
+            \emph{React} po~spuštění aplikace normálně načte celou zobrazenou aplikaci naráz, včetně obrázků, obsahu ap. To~může vyústit v~načtení zbytečného objemu dat a~ke~snížení celkového výkonu aplikace, nehledě na~zátěž na~připojení.
 
-            Po~spuštění aplikace v~\emph{Reactu} normálně načítáme celou aplikaci naráz, včetně obrázků, obsahu ap. To~může vyústit v~načtení zbytečného objemu dat a~ke~snížení celkového výkonu aplikace, nehledě na~zátěž na~připojení.
-
-            \textbf{Lazy loading} je~technika, umožňující načíst jen~skutečně potřebné \emph{komponenty}. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~jednotlivé komponenty a~další zdroje ze~serveru načteme až~v~případě potřeby. \cite{lazyload}
+            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě potřeby. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~podle toho je~načítáme.
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě chceme uživatele informovat, že~se~něco pokazilo a~případně mu~doporučit, co~může dělat dál.
+            
+
 
         \subsection{Testování}
             Nemá význam testovat celou aplikaci. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji, navíc při~sebemenší chybě aplikace vůbec nenastartuje a~pokud něco selže při~tvorbě \emph{Docker} kontejneru, aplikace se~vůbec nespustí. Proto se~budu věnovat testování pouze u~\emph{generátoru} (\texttt{\emph{Go} test}) a~\emph{frontendu} (\texttt{Jest}), případně menším funkcím, které nejsou závislé na~dalších částech aplikace a~měly by~generovat pro~kombinaci stejných dat stejný výsledek (viz.~\emph{Pure function}).
@@ -1166,8 +1177,12 @@ class dataLoader extends Endpoints{
         Aplikace by~se~dala využít také~k~tvorbě interaktivních výukových materiálů s~minikvízy, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. V~rámci materiálů by~mohly být~menší kvízové otázky, které poslouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost zadat příklad do~WolfRam Alpha. Důležitou součástí materiálů budou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu. Webové zdroje bude aplikace pravidelně kontrolovat a~oznámí změny, podle kterých bude učitel moci informace aktualizovat. To~umožní učitelům vytvářet výukové materiály, které nebudou obsahovat zastaralé informace.
         
         Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~rychleji rozšiřovat její funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. Důležitou možností je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila jejich důvěryhodnost.
-	\section{Závěr}
 
-    \newpage
+	\section{Závěr}
+        V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~spoustu funkcionalit bude nutné teprve dokončit. V~budoucnu chci aplikaci rozšířit o~další funkce, které umožní lepší využití v~praxi a~přizvat ke~spolupráci další vývojáře.
+
+        V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení. IT je~rychle vyvíjející~se obor a~je~nutné sledovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů však zůstane platných. V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a rozšiřitelný kód.
+
+        Výsledná aplikace je veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí této práce je možné najít na~mém~\href{https://gitlab.com/sjiamnocna}{Gitlabu}.
     \printbibliography
 \end{document}
