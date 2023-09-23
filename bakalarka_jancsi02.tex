@@ -952,29 +952,27 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \subsection{Výběr technologií}
             Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které budou dostatečně výkonné a~zároveň budou přívětivé pro vývojáře, aby vývoj nebyl zbytečně časově náročný. Je~dobré také myslet na~budoucí podporu a~rozšiřitelnost aplikace.
 
-            \emph{React} použiju pro tvorbu \emph{Frontendu}. Umožní mi efektivní tvorbu uživatelského rozhrání, (\emph{User Interface, UI}).
+            \textbf{React} použiju pro tvorbu \emph{Frontendu}. Umožní mi efektivní tvorbu uživatelského rozhrání, (\emph{User Interface, UI}).
 
-            \emph{Typescript} samozřejmě použijeme i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~samozřejmě počítá a~vydává
+            \textbf{Typescript} samozřejmě použijeme i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~samozřejmě počítá a~vydává
             kromě Reactu také balíček s~příslušnými datovými typy, pro použití v~Typescriptu. Typescript podporuje i~použití JSX šablon. \cite[Refeerence/Handbook/JSX]{TypeScript}
 
             \LaTeX je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí.\cite{Rybicka2003:latex}
             
-            \emph{MathJax} je~knihovna, která umožňuje zobrazovat matematické vzorce na~webových stránkách. Přijímá formáty matematiky zapsané ve~formátu, který používá systém \LaTeX. Ten~se poté převádí do~vizuální podoby, sestavené z~HTML prvků, kterou může prohlížeč zobrazit. MathJax nabízí i~možnost zobrazení ve~formě vektorové grafiky ve~formátu SVG. Díky tomu můžeme v~aplikaci názorně vykreslovat matematické vzorce, které se~vyskytnou v~příkladech nebo~učebních materiálech.\cite{abclinuxuMatematickxE9Vzorce}
+            \textbf{MathJax} umožňuje zobrazovat matematické vzorce na~webu. Přijímá mmj.~zápisy matematiky ve~formátu, který používá systém \LaTeX. Ten~se poté převádí do~vizuální podoby sestavené z~HTML prvků, kterou umí zobrazit prohlížeč. \emph{MathJax} nabízí i~možnost zobrazení ve~formě \emph{vektorové grafiky} ve~formátu \emph{SVG}. Díky tomu můžeme v~aplikaci názorně vykreslovat matematické vzorce, které se~vyskytnou v~příkladech nebo~učebních materiálech. \cite{abclinuxuMatematickxE9Vzorce}
 
-            \emph{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Zároveň během vývoje není třeba celý program kompilovat, stačí jej~spustit příkazem \texttt{go run} a~aplikace funguje. Při~publikaci programu stačí spustit \texttt{go build} a~\emph{Go} vytvoří optimalizovaný spustitelný binární soubor. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů, nebo jiných zdrojů přímo z~internetu, a~používat je~v~aplikaci a~sám si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
+            \textbf{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Zároveň během vývoje není třeba celý program kompilovat, stačí jej~spustit příkazem \texttt{go run} a~aplikace funguje. Při~publikaci programu stačí spustit \texttt{go build} a~\emph{Go} vytvoří optimalizovaný spustitelný binární soubor. Je~to~jazyk, který je~velice oblíbený pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující balíčky z~GIT repozitářů, nebo jiných zdrojů přímo z~internetu, a~používat je~v~aplikaci a~sám si~tyto balíčky stáhne a~nainstaluje. Tím~značně urychluje vývoj aplikace.
 
             Zároveň při~kompilaci vzniká jeden binární soubor s~optimalizovanými strojovými instrukcemi, takže přestože je aplikace rozsáhlá, je~dostatečně rychlá.
 
-            Základní funkce webových frameworků obecně je~tzv.~\emph{Router}, který umožňuje definovat jednotlivé \emph{koncové body} (\emph{endpointy}) a~typy požadavků, které můžeme využít pro~komunikaci s~nimi.
+            \textbf{Gin gonic} je~webový framework pro~jazyk Go. Umožňuje vytvářet webové aplikace a~API. Základní součást webových frameworků je tzv.~\emph{Router}, který umožňuje definovat \emph{koncové body} (\emph{endpointy}) a~typy požadavků, které můžeme využít pro~komunikaci s~nimi.
             
-            Když~do~aplikace přijde požadavek, \emph{Router} zkontroluje, zda~existuje \emph{koncový bod}, který odpovídá požadavku a~pokud ano, předá požadavek příslušné \emph{Obslužné rutině} (\emph{handler}u).
+            Když~na~adresu aplikace přijde požadavek, \emph{Router} zkontroluje, zda~existuje \emph{koncový bod}, který odpovídá požadavku a~pokud ano, předá řízení příslušné \emph{obslužné rutině} (\emph{handler}u).
 
             Každý \emph{koncový bod} má~svou~vlastní \emph{Obslužnou rutinu} (dále \emph{handler}), která zpracuje požadavek a~vrátí odpověď.
-            Gin také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \emph{handler}.
-            To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \emph{koncové body} pro~přihlášené
-            uživatele můžeme předem definovat a~zabezpečit.
+            \emph{Gin} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \emph{handler}. To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. Např.~všechny \emph{koncové body} pro~přihlášené uživatele můžeme sloučit a~hromadně zabezpečit použitím jedinné funkce.
 
-            V~Go~máme k~dispozici \textbf{metadata členů struktur} (\textbf{struct tags}), díky kterým můžeme pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~zadefinování přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatickému zkontrolování rozsahu dat daného údaje při~přijetí z~\emph{JSON požadavku}.
+            V~\emph{Go}~máme k~dispozici \textbf{metadata členů struktur} (\textbf{struct tags}), díky kterým můžeme pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~zadefinování přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatickému zkontrolování rozsahu dat daného údaje při~přijetí z~\emph{JSON požadavku}.
 
             To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka následuje v příloze \ref{go:structuretags}.
 
@@ -1034,27 +1032,27 @@ class dataLoader extends Endpoints{
                 \label{go:structuretags}
             \end{figure}
             
-            \emph{MySQL} je~relační \textbf{databáze}, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. Největší jednotkou je~\emph{databáze}, která obsahuje \emph{tabulky}. Jednotlivé sloupce \emph{tabulek} určují \emph{typ dat} a~jejich název. Každý \emph{řádek} je~jeden záznam v~dané tabulce.\cite{databases21}
+            \textbf{MySQL} je~relační \textbf{databáze}, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. Největší jednotkou je~\emph{databáze}, která obsahuje \emph{tabulky}. Jednotlivé sloupce \emph{tabulek} určují \emph{typ dat} a~jejich název. Každý \emph{řádek} je~jeden záznam v~dané tabulce.\cite{databases21}
             
             Jednotlivé \emph{databáze}~--~někdy používáme název \emph{schéma}~--~fyzicky na~disku reprezentují adresáře s~názvem konkrétní \emph{databáze}. Jednotlivé~\emph{tabulky} potom tvoří binární soubory s~příponou podle databázového \emph{enginu}, který používáme. V~tomto případě je~to~\emph{engine} \emph{InnoDB}, který ukládá strukturu a~data v~souborech \texttt{*.ibd}. \cite{MySQLInnoDB}
             
-            \emph{GORM} je~ORM (ORM~--~Object-relational mapper) pro~jazyk Go. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \emph{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Struktury zároveň umožňují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
+            \textbf{GORM} je~ORM (ORM~--~Object-relational mapper) pro~jazyk Go. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \emph{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Struktury zároveň umožňují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
 
             Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované SQL dotazy. \cite{gormGORM, freecodecamp:orm}
 
-            \emph{Vite} je~nový nástroj pro~vytváření \emph{Frontendu}. Je~to~nástroj, který je~velice rychlý a~jednoduchý na~použití.
+            \textbf{Vite} je~nástroj zjednodušující tvorbu \emph{javascript frontendových aplikací} v~různých knihovnách. Je~velice rychlý a~jednoduchý na~použití. Bude použit pro~vytvoření \emph{Frontendu} aplikace. Prostřednictvím \emph{proxy} serveru bude komunikovat s~\emph{backendem}.
 
-            \emph{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace. Použití kontejnerů při~vývoji je~výhodné zejména při~spolupráci v~týmu, protože vždy když si~projekt znovu stáhneme a~spustíme, máme jistotu, že~aplikace běží v~na~aplikaci přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
+            \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace. Použití kontejnerů při~vývoji je~výhodné zejména při~spolupráci v~týmu, protože vždy když si~projekt znovu stáhneme a~spustíme, máme jistotu, že~aplikace běží v~na~aplikaci přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
 
             Díky tomu~lze~rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~navíc umožněno provozovat více \emph{kontejnerů} (resp.~aplikací), dostupných na~různých portech. \cite{docker}
 
             \emph{Docker} resp. \emph{Docker-compose} bude v~mém projektu spravovat kontejnery s~aplikací (Vite~i~Go) a~databází kromě těch, které jsou potřeba pro chod aplikace.
 
-            \emph{Nginx} sám~sebe~definuje jako \emph{webový server}, \emph{reverzní proxy server} a~\emph{load balancer}. \textbf{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku může vyvolat akci aplikace, běžící na~určitém portu. \textbf{Load balancer} zajišťuje rozložení zátěže mezi servery (resp.~více instancemi aplikace), které má~k~dispozici. To~se~využívá např.~u~větších aplikací, které mají vysokou návštěvnost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. Taky je~možné nastavení záložních serverů pro~případ, že~nastane výpadek nebo přetížení hlavního serveru.
+            \textbf{Nginx} sám~sebe~definuje jako \emph{webový server}, \emph{reverzní proxy server} a~\emph{load balancer}. \textbf{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku může vyvolat akci aplikace, běžící na~určitém portu. \textbf{Load balancer} zajišťuje rozložení zátěže mezi servery (resp.~více instancemi aplikace), které má~k~dispozici. To~se~využívá např.~u~větších aplikací, které mají vysokou návštěvnost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. Taky je~možné nastavení záložních serverů pro~případ, že~nastane výpadek nebo přetížení hlavního serveru.
             
             \emph{Nginx} je~ve~srovnání s~jinými servery, jako např.~Apache, považován za~velmi rychlý. Zejména pak~při~obsluze požadavků na~statické soubory. Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. \cite{WhatNGINX}
 
-            \emph{Alpine Linux} je~odlehčená distribuce \emph{Linuxu}, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje, nicméně jde~o~plnohodnotný systém a~je~možné jej~použít jako hlavní systém. Celková velikost distribuce po~instalaci je~pouze 5~MB, což je~velice málo.
+            \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu}, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje, nicméně jde~o~plnohodnotný systém a~je~možné jej~použít jako hlavní systém. Celková velikost distribuce po~instalaci je~pouze 5~MB, což je~velice málo.
 
             Tuto distribuci používám jako hlavní systém na~svém \textbf{VPS}\footnote{VPS~--~Virtual Private Server}, kde~aplikace poběží. Na~serveru běží pouze \emph{Nginx}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které nechci vystavovat na~veřejnost.
 
