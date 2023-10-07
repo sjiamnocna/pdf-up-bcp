@@ -495,6 +495,8 @@ const App = () => {
             \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\emph{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci). \cite{webserver:mdn}
 
             Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
+
+            \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}) resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting}). \cite{dockernginxperformance}
         
         \subsection{MVC -- Model View Controller}
             Nejvýznamnějším bodem vývoje aplikací je~rozšíření architektury \emph{MVC}. \emph{MVC} je~zkratka pro~\emph{Model View Controller}. Podle této architektury oddělujeme \emph{logiku aplikace} od~jejího \emph{zobrazení}. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím \emph{zobrazení}.
@@ -742,7 +744,6 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             \subsubsection{Sentry}
                 \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~našem případě \emph{Javascript a Go}. Ale funguje i~v~dalších jazycích.
 
-
                 V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb. Např.~v~případě \emph{Javascriptu} umožní sledovat akce, které uživatel provedl, před tím, než došlo k~chybě. Chyby z~backendu i~frontendu aplikace se~uloží na~jedno místo a~je~tak jednodušší s~nimi pracovat.
 
                 Díky tomu má~vývojář k~dispozici spoustu informací, které potřebuje k~nalezení, vyvolání a~opravě chyby. Sentry také umožňuje přímo vytvářet \emph{úkoly}, na kterých mohou vývojáři pracovat. To~umožňuje vývojářům efektivněji rozdělovat práci na~opravách chyb, které \emph{Sentry} zachytí.
@@ -760,12 +761,12 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj. \cite{gitscmBook}
             
-            \emph{Gitlab} je open-source nástroj pro~správu verzí na~serveru. Nabízí také možnost vytvářet \emph{Issues}, \emph{Merge Requesty} a~další funkce, podobně jako oblíbená služba \textbf{Github}. Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, což~využívá spousta společností, které mají např.~více projektů.
+            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatickému testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů, nebo nechtějí svůj kód~shraňovat na~cizích serverech ap. \cite{gitlab:CICD}
 
         \subsection{Linux a příkazová řádka, WSL2}
-            Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Je~to~nejrozšířenější open source operační systém, používaný zejména na~serverech ale také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí.
+            Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint\dots)
             
-            Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android open--source project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních. \cite{AOSP:linux}
+            Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android \emph{open--source} project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních. \cite{AOSP:linux}
             
             Velikou výhodou je otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům upravovat systém podle svých potřeb. Výhodou je~také jeho bezpečnost a~svoboda. V~porovnání s~jinými operačními systémy je~mnohem bezpečnější a~méně náchylný k~virům. \cite{medium:LinuxSecure}
 
@@ -1047,7 +1048,7 @@ class dataLoader extends Endpoints{
 
             \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace. Použití kontejnerů při~vývoji je~výhodné zejména při~spolupráci v~týmu, protože vždy když si~projekt znovu stáhneme a~spustíme, máme jistotu, že~aplikace běží v~na~aplikaci přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
 
-            Díky tomu~lze~rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~navíc umožněno provozovat více \emph{kontejnerů} (resp.~aplikací), dostupných na~různých portech. \cite{docker}
+            Díky tomu~lze~rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~navíc umožněno provozovat více \emph{kontejnerů} (resp.~aplikací), dostupných na~různých portech. \cite{docker, dockernginxperformance}
 
             \emph{Docker} resp. \emph{Docker-compose} bude v~mém projektu spravovat kontejnery s~aplikací (Vite~i~Go) a~databází kromě těch, které jsou potřeba pro chod aplikace.
 
@@ -1123,9 +1124,13 @@ class dataLoader extends Endpoints{
             \end{itemize}
 
         \subsubsection{Generátor}
-            Zásadní funkcí při~čtení zadání pomocí \emph{Go} bude \emph{generátor}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslovat matematické výrazy.
+            Zásadní funkcí při~čtení zadání pomocí \emph{Go} bude \emph{generátor}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslovat koeficienty u~\emph{mnohočlenů} a~matematických výrazů.
             
-            Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}.
+            Problémem generátoru je~také řazení na~sobě~závislých proměnných a~jejich postupné vyčíslování a~nahrazování hodnot v~případě jejich použití. K~tomuto účelu slouží modul správce proměnných, který závislosti během přidávání proměnných průběžně hlídá. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání probíhá použitím balíčku \texttt{text/template}, který nahrazení zjednodušuje přidáním možnosti využití šablony s~proměnnými. Tento balíček je~dostupný v~základní instalaci jazyka \emph{Go}.
+
+            K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam, aby~bylo~možné je~dále zpracovat. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}.
+            
+            Pro~vyčíslení výrazu (pokud to uživatel u~proměnné nezakáže) pak nejdříve dosadím hodnoty existujících proměnných, spustím funkce a~poté pomocí tzv.~\textbf{Postfixové notace} (Někdy také \textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů pomocí počítačů běžně používá, vyčíslím koeficienty u~případných mnohočlenů. \cite{postfixnotation}
 
             Protože pracuju s~jazykem Go, obdrží \emph{generátor} data ve~formě \emph{struktury} a~výsledek dostaneme taky jako strukturu, aby bylo možné hodnoty předat generátoru (\emph{PDF} nebo \emph{JSON} pro~zobrazení na~webu). Výsledná data budou obsahovat pouze zadání otázky a~možnosti odpovědí. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude zpracován až~podle~volby~zobrazení. Pokud bude generátor vytvářet nějaké konkrétní hodnoty (jako náh. čísla nebo výpočty nebo řazení odpovědí), výsledek bude obsahovat kladný \emph{příznak}, že~ke~generování proběhlo. \emph{Generátor} samotný nemá přístup k~databázi.
 
