@@ -1015,14 +1015,17 @@ r.POST("/age", func(c *gin.Context) {
 class dataLoader extends Endpoints{
     //...
     public function actionEndpoint{
+        if (!isset($_POST['age'])){
+            throw new Exception('Age must be sent');
+        }
         if (!is_numeric($_POST['age'])){
-            throw new Exception("Age must be a number");
+            throw new Exception('Age must be a number');
         }
 
         $age = intval($_POST['age']);
 
         if ($age < 0){
-            throw new Exception("Age must be positive number");
+            throw new Exception('Age must be positive number');
         }
 
         return JSONResponse({
