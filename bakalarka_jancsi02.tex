@@ -688,7 +688,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Na~druhou stranu~--~zejména automatickým~--~testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
             
-            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\emph{čisté funkce}, což jsou funkce, které nemají žádné vedlejší efekty a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \emph{unit testing}.
+            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\emph{čisté funkce}, což jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují data ani~výstupy vně funkce ale používají~se např.~pro~výpočty) a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \emph{unit testing}.
             
             V~každém jazyce existují nástroje pro~automatické testování. Např.~v~případě Javascriptu jsou~to~\emph{Jest}, \emph{Mocha}, \emph{Chai} nebo \emph{Jasmine}. Go~má~vestavěný nástroj pro~testování~\emph{Go~test}.
             
@@ -737,7 +737,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Na běhových chybách se~docela často zakládají útoky na~aplikace. Útočník může záměrně zasílat data, která způsobí chybu v~aplikaci, čímž může získat přístup k~systému nebo získat data, ke~kterým by~jinak přístup neměl.
 
-                Důležité pro opravu chyb je~uvědomit si~jejich příčinu. To~je~často složité, protože chyba se~může projevit až~po~několika krocích nebo pouze za~specifického stavu aplikace.
+                Důležité pro opravu chyb je~uvědomit si~jejich příčinu. To~je~často složité, protože chyba se~může projevit až~po~několika krocích nebo pouze za~specifického stavu aplikace. \cite{graham2021ethical}
 
                 Proto je~nutné aplikaci testovat a~opravovat chyby, které se~vyskytnou. To~je~důležitá část vývoje aplikace. Důležité je~také sledovat chyby, které se~vyskytnou uživatelům. Jeden z~nástrojů, které to~umožňují, je~\emph{Sentry}.
 
@@ -818,7 +818,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
 
-            Učitel bude také mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
+            Učitel bude také mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. V případě mnohočlenů je~aplikace bude~schopna náhodně seřadit, aby připravila žáky na nutnost seřazení před~sečtením. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
 
             Výsledná podoba vzoru příkladu jednoduchého výrazu může vypadat např.~takto:
             \begin{align*}
@@ -846,7 +846,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             To umožní systém používat např.~pro jazykové předměty, kde student doplňuje slova do~textu nebo~výbírá vhodné písmeno. Umožní to~také použití jak~pro~tisk, tak pro~webový dotazník.
 
-            Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu, zapnout/vypnout náhodné řazení otázek nebo odpovědí) i~na úrovni celých testů. Pokročilý uživatel potom bude mít možnost vytvořit si~vlastní šablony pro výpis příkladu.
+            Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu, zapnout/vypnout náhodné řazení otázek nebo odpovědí) i~na úrovni celých testů.
 
             Po~nasdílení trvalého odkazu na~daný~příklad/test bude umožněno zobrazit náhodně vygenerovanou (nebo vybranou) variantu příkladu, případně si~příklad přidat a~upravit ve~vlastním účtu.
 
@@ -1091,10 +1091,10 @@ class dataLoader extends Endpoints{
             
             V~případě, že~uživatel zapomene heslo, je~potřeba mu~umožnit jej~změnit. K~tomu je~potřeba mu~poslat e-mail s~odkazem, který jej~přesměruje na~stránku, kde~si~může heslo změnit. Tento odkaz musí být unikátní a~platný pouze po~omezenou dobu, aby~nebylo možné jej~zneužít. K~tomu využiji \emph{JWT} token, který bude obsahovat informace o~uživateli a~bude platný pouze po~omezenou dobu. \emph{JWT}. Zároveň do~databáze vložím záznam o~tom, že~uživatel požádal o~změnu hesla a~při~přístupu na~stránku s~novým heslem zkontroluji, zda~je~požadavek platný a~případně heslo změním.
 
-            Přihlašovací údaje budu tzv.~\textbf{cachovat} [kešovat], což~znamená uložím si~data posledních $n$~uživatelů z~databáze do~aktivní paměti běžícího programu pro~pozdější využití, aby byla rychleji k~nalezení bez~nutnosti přístupu k~databázi nebo~provádění náročných výpočtů, které by~vedly ke~stejným výsledkům. \emph{Cachovat} budu i~části příkladů, které nevyžadují generování dat, pouze jednoduché nahrazení.
+            Přihlašovací údaje budu tzv.~\textbf{cachovat} \texttt{[kešovat]}, což~znamená uložit si~data posledních $n$~přihlášených uživatelů z~databáze v~paměti~\emph{RAM} běžícího programu pro~pozdější využití, aby byla rychleji k~nalezení bez~nutnosti přístupu k~databázi nebo~provádění náročných výpočtů, které by~stejně vedly ke~stejným výsledkům. \emph{Cachovat} budu i~části příkladů, které nevyžadují generování dat, pouze jednoduché nahrazení.
             
         \subsubsection{Funkce Init}
-            \emph{Go} má~dvě vstupní funkce \emph{main} a~\emph{init}. Funkce \emph{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \emph{init} se~spustí jako první, ale~před funkcí \emph{main} a~slouží k~načtení konfigurací z~prostředí nebo připojení se~do~databáze. Funkce \emph{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace.
+            \emph{Go} má~dvě vstupní funkce \emph{main} a~\emph{init}. Funkce \emph{main} je~hlavní vstupní bod aplikace, který se~spustí jako první. Funkce \emph{init} se~spustí jako první, ještě~před funkcí \emph{main} a~slouží ke~konfiguraci programu nebo připojení do~databáze. Funkce \emph{main} je~hlavní funkcí aplikace, kde~se nachází logika aplikace volající další akce.
 
             Ve~chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \emph{init} a~poté hlavní část aplikace, funkce \emph{main}. Je~to~podobné jako v~jazyce C a~dalších kompilovaných jazycích, nebo při psaní kódu pro \emph{Arduino}, kde se~automaticky spouští hlavní funkce \emph{loop}, řídí logiku výstupních pinů a~dalších částí programu.
             
