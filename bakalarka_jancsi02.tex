@@ -797,6 +797,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
         Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet \cite{bctynovsky:specifikacepozadavku}. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
 
+        Specifikace aplikace vznikla vlastní invencí a~funkčnost se~upřesňovala během rozhovorů s~potenciálními uživateli (učiteli, lektory\dots).
+
         \subsection{Účel a~popis fungování vyvíjené aplikace}
             Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo konkrétní příklady, které se~mají do~testu vložit. Uživatelé budou mít možnost přihlášení pomocí více způsobů, vč.~externích poskytovatelů ověření identity a~samozřejmě také pomocí přihlašovacího jména a~hesla.
             
@@ -868,13 +870,13 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \emph{endpointy} budeme potřebovat vytvořit, aby~bylo možné akce provést. Taky si~můžeme ověřit správnost návrhu a~zjistit, zda~jsme nějakou funkcionalitu nevynechali, protože na~diagramu jsou případné nedostatky vidět lépe. Tvorba \emph{UCD} vychází ze~specifikace funkčních požadavků aplikace. \cite{uml:usecase}
 
-                Při~modelování pomocí \emph{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu.
+                Při~modelování pomocí \emph{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu
                 \begin{itemize}
                     \item \textbf{Aktér} je~osoba nebo systém, který používá aplikaci. Aktérem může být např.~uživatel, čas nebo~jiná aplikace. K~označení se~používají ikony lidí a~textový popisek.
                     \item \textbf{Případ užití} je~akce, kterou aplikace \emph{aktérovi} nabízí. Případ užití je~zobrazen jako elipsa, která je~připojena k~aktérovi čarou.
                     \item \textbf{Vztahy mezi~aktéry a~případy užití} znázorňují, jestli a~jakým způsobem může aktér případ užití používat. Vztahy se~značí šipkami, které vycházejí z~aktéra a~končí u~případu užití.
                     \item \textbf{Rozšíření} (extend)~--~je~případ užití, který přejímá vlastnosti předchozího případu užití a~rozšiřuje je~o~další možnosti. Znázorňuje se~jako šipka, která míří směrem z~případu užití a~končí u~případu užití, který rozšiřuje.
-                    \item \textbf{Zahrnutí} (include)- zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
+                    \item \textbf{Zahrnutí} (include)~--~zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
                 \end{itemize}
 
                 V~aplikaci modeluju tyto základní aktéry~--~\textbf{návštěvník}, \textbf{uživatel}, \textbf{administrátor} a~\textbf{systém}. \emph{Uživatel} je~osoba, která se~do~aplikace přihlásí a~má~možnost vytvářet, upravovat a~mazat příklady a~testy. \emph{Návštěvník} je~osoba, která se~do~aplikace nepřihlásí, ale~může si~prohlížet vygenerovaná zadání. A~\emph{systém} je~samotná aplikace, která pravidelně provádí nějaké akce.
@@ -1113,7 +1115,7 @@ class dataLoader extends Endpoints{
 
             Důležitou součástí aplikace \emph{GINu} je~tzv.~\textbf{Router}, který z~příchozího požadavku zjistí, jaký \emph{koncový bod} je~volán a~předá volání~příslušnému \emph{handleru}. \emph{Router} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~URL adresy a~které mohou sdílet část logiky. To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. \emph{Router} funguje podobně i~pro obsluhování požadavků na~\emph{Frontendu}.
 
-            \emph{Endpointy} budou umístěny v~adresáři \texttt{Endpoints}, kde~bude mít~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech budou jejich \emph{handlery}. \emph{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \emph{handleru} s~ním pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně zaslaným \emph{HTTP stavovým kódem}. \emph{Endpointy} budou rozděleny do~skupin s~názvy podle zdroje, se~kterým manipulují, v~jednotném čísle;
+            \emph{Endpointy} budou umístěny v~adresáři \texttt{Endpoints}, kde~bude mít~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech budou jejich \emph{handlery}. \emph{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \emph{handleru} s~ním pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně zaslaným \emph{HTTP stavovým kódem}. \emph{Endpointy} budou rozděleny do~skupin s~názvy podle zdroje, se~kterým manipulují, v~jednotném čísle, např.;
 
             \begin{itemize}
                 \item \harddata{User}~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
@@ -1147,7 +1149,7 @@ class dataLoader extends Endpoints{
             \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný ke~udržování \emph{JWT} u~klientské části aplikace a~tedy~jednodušší komunikaci frontendu s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~toto~zaznamená a~změní se~\emph{JWT}, čímž se~snažím redukovat riziko jeho zneužití.
 
             \emph{Frontend} bude založen na~\emph{Vite} v~\emph{Reactu}.
-            Její základ bude v~anglickém jazyce, do~ostatních jazyků (vč. Češtiny) budu aplikaci překládat.
+            Její základ bude v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu slouží \emph{Node} modul \texttt{i18n}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
             \textbf{Router} v~případě \emph{frontendu} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
@@ -1157,7 +1159,7 @@ class dataLoader extends Endpoints{
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě chceme uživatele informovat, že~se~něco pokazilo a~případně mu~doporučit, co~může dělat dál.
             
-
+            \textbf{UI (User Interface)}~--~uživatelské rozhrání bude co~nejjednoduší, využiju k~tvorbě knihovnu \emph{Semantic UI}, která nabízí jednoduché a~přehledné komponenty, které jsou navíc přizpůsobitelné. \emph{Semantic UI} je~dostupná jako \emph{npm} balíček, který je~možné nainstalovat pomocí \emph{npm} nebo~\emph{yarn}.
 
         \subsection{Testování}
             Nemá význam testovat celou aplikaci. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji, navíc při~sebemenší chybě aplikace vůbec nenastartuje a~pokud něco selže při~tvorbě \emph{Docker} kontejneru, aplikace se~vůbec nespustí. Proto se~budu věnovat testování pouze u~\emph{generátoru} (\texttt{\emph{Go} test}) a~\emph{frontendu} (\texttt{Jest}), případně menším funkcím, které nejsou závislé na~dalších částech aplikace a~měly by~generovat pro~kombinaci stejných dat stejný výsledek (viz.~\emph{Pure function}).
@@ -1187,9 +1189,9 @@ class dataLoader extends Endpoints{
 	\section{Závěr}
         V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~spoustu funkcionalit bude nutné teprve dokončit. V~budoucnu chci aplikaci rozšířit o~další funkce, které umožní lepší využití v~praxi a~přizvat ke~spolupráci další vývojáře.
 
-        V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení. IT je~rychle vyvíjející~se obor a~je~nutné sledovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů však zůstane platných. V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a rozšiřitelný kód.
+        V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení. IT je~rychle vyvíjející~se obor a~je~nutné sledovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů však zůstane platných. V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód.
 
-        Výsledná aplikace je veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí této práce je možné najít na~mém~\href{https://gitlab.com/sjiamnocna}{Gitlabu}.
+        Výsledná aplikace je veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí této práce je~možné veřejně najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}. \emph{Generátor příkladů} a~\emph{parser} bude vydán jako Open-source.
 
     \newpage
     \printbibliography
