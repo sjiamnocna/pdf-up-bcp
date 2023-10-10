@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,a4paper]{thesis}
 \usepackage[utf8]{inputenc}
 \usepackage[paper=a4paper, margin=1.5cm]{geometry}
 
@@ -679,7 +679,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Existují ale výjimky, to~je~použití \texttt{eval}, která spouští Javascript kód v~řetězci, a~přímé vkládání neošetřeného vstupu pomocí \texttt{dangerouslySetInnerHTML} nebo jiných vlastností, které se přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod.
 
-                Možnou ochranou před tímto typem útoku je nahrazení znaků, které mohou způsobit problémy, za~jejich \emph{HTML entity}, kde je~potřeba znaky jako~\texttt{<} nahradit za~\texttt{\&lt;}, \texttt{>} za~\texttt{\&gt;}, \texttt{\&} za~\texttt{\&amp;}~apod.. Takové \emph{HTML entity} prohlížeč vykreslí uživateli a~nezpracovává je~jako~funkční kód.
+                Možnou ochranou před tímto typem útoku je nahrazení znaků, které mohou způsobit problémy, za~jejich \emph{HTML entity}, kde je~potřeba znaky jako~\texttt{<} nahradit za~\texttt{\&lt;}, \texttt{>} za~\texttt{\&gt;}, \texttt{\&} za~\texttt{\&amp;}~apod. Takové \emph{HTML entity} prohlížeč vykreslí uživateli a~nezpracovává je~jako~funkční kód.
                 
                 Možností je~také využít specializované knihovny, které toto ošetření provedou za~nás, a~nebudeme muset řešit, které znaky je~potřeba ošetřovat. Např.~\emph{DOMPurify} nebo \emph{sanitize-html}. \cite{medium:XSS}
 
@@ -792,65 +792,20 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \emph{AI} nástroje typu \emph{ChatGPT} ale poslední dobou ztrácí na~přesnosti. Je~to~díky tomu, že~k~dalšímu učení využívají data přístupná z~internetu, a~to~často i~data generovaná jinými \emph{AI} systémy. Výsledky je~tedy nutné posuzovat kriticky. \cite{computerworld:AI}
 
-	\section{Návrh aplikace}
-        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tzv.~\emph{funkční požadavky} na~výslednou aplikaci. Potom můžeme vytvořit \emph{UML modely}, které mohou pomoct blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
+        \subsection{I18C~--~Mezinárodní lokalizace}
+            \emph{I18C} je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \emph{I18C} zahrnuje i~různé formy slov, např.~pro~různá množství. \cite{w3Internationalization}
 
-        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet \cite{bctynovsky:specifikacepozadavku}. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
-
-        Specifikace aplikace vznikla vlastní invencí a~funkčnost se~upřesňovala během rozhovorů s~potenciálními uživateli (učiteli, lektory\dots).
-
-        \subsection{Účel a~popis fungování vyvíjené aplikace}
-            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu... Tyto příklady bude možné následně využít při tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo konkrétní příklady, které se~mají do~testu vložit. Uživatelé budou mít možnost přihlášení pomocí více způsobů, vč.~externích poskytovatelů ověření identity a~samozřejmě také pomocí přihlašovacího jména a~hesla.
+            Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \emph{ASCII}, které obsahovalo pouze 128 znaků (7 bitů, tj.~$2^7$, 0\,--\,127). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některé interpunkční znaménka. 
             
-            Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
-
-            Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho testu objevily všechny příklady z~dané kategorie nebo zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu chce~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou příklady s~náhodně dosazenými hodnotami. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Aplikace umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
-
-            Uživatel si~vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3*A$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~uživatel nastavil a~pomocí zápisu proměnné \texttt{\$\{A\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~uživatel nastaví. V~případě, že~zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit, kolik odpovědí chce~generovat. Aplikace pohlídá, že~uživatel označí alespoň jedno správné řešení. Příklady bude možné komentovat a~hodnotit, aby bylo jednodušší najít chyby v~zadání.
+            V~dnešní době se~většinově používá kódování Unicode (UTF), které k~původním 7~bitům (\emph{ASCII}) přidává nový význam prvnímu bitu, který má~význam, zda je~daný znak reprezentován více než~jedním bajtem. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač potřebuje více času na~zpracování každého znaku.
             
-            Předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$ a~hodnoty proměnných $C, D$ jsou~zadány jako obecné výpočty takto:
-            \begin{align*}
-                \$A &= 3 \\
-                \$B &= 5 \\
-                \$C &= 4/3*\$A = 4/3*3 = 4 \\
-                \$D &= \$C + \$B = 4 + 5 = 9
-            \end{align*}
-
-            Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými čísly, výrazy nebo funkčními prvky. Po vygenerování příkladu bude potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby bylo možné identifikovat přesnou verzi příkladu. Pokud se~v~příkladě nevyskytují žádné proměnné nebo není potřeba nic generovat, potom není potřeba hodnoty ukládát.
-
-            Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
-
-            Učitel bude také mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. V případě mnohočlenů je~aplikace bude~schopna náhodně seřadit, aby připravila žáky na nutnost seřazení před~sečtením. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
-
-            Výsledná podoba vzoru příkladu jednoduchého výrazu může vypadat např.~takto:
-            \begin{align*}
-                \text{Vyřeš v oboru N:} \quad \$Ax + \$B &= \$C + \$D \\
-                \begin{aligned}
-                    a) \quad &\text{Nemá řešení v oboru N} \\
-                    b) \quad &\text{x = \$A} \\
-                    c) \quad &\text{x = \$B} \\
-                    d) \quad &\text{x = \$\{\$A * \$B - 2\}} \\
-                \end{aligned}
-            \end{align*}
-
-            Po~vygenerování a~dosazení hodnot:
-            \begin{align*}
-                \text{Vyřeš v oboru N:} \quad 3x + 5 = 4 + 9 \\
-                \begin{aligned}
-                    a) \quad &\text{Nemá řešení v oboru N} \\
-                    b) \quad &\text{x = 3} \\
-                    c) \quad &\text{x = 5} \\
-                    d) \quad &\text{x = 13} \\
-                \end{aligned}
-            \end{align*}
-
-            Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné nebo podtržené místo o~velikosti určené při~zadávání proměnné. V~případě otázky s~možnostmi výběru se~na~místě vykreslí všechny možnosti nebo pole pro~výber ve~webové aplikaci, aby~žák mohl vybrat správnou možnost kroužkováním nebo jinak, jak učitel určí.
+            Proto je~vhodné všechny~zdrojové kódy a~aplikace psát v~Anglickém jazyce, který využívá základní \emph{ASCII} znaky, a~aplikaci pro~uživatele překládat (\emph{lokalizovat}). Anglický jazyk je~navíc považován za~mezinárodní jazyk, který je~známý většině uživatelů a~aplikaci tak~jednodušeji zpřístupníme širší skupině uživatelů.
             
-            To umožní systém používat např.~pro jazykové předměty, kde student doplňuje slova do~textu nebo~výbírá vhodné písmeno. Umožní to~také použití jak~pro~tisk, tak pro~webový dotazník.
+            Webový prohlížeč si~pamatuje preferenci jazyka uživatele a~při~požadavku na~aplikaci, zašle i~informaci o~preferovaném jazyce.
 
-            Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu, zapnout/vypnout náhodné řazení otázek nebo odpovědí) i~na úrovni celých testů.
+            Pro překlad aplikace se~používají \emph{lokalizační soubory}, které obsahují překlady jednotlivých textů aplikace. Každý jazyk má~svůj soubor, který se~načítá při~spouštění aplikace. Pokud překlad není nalezen, použije se~původní text.
 
-            Po~nasdílení trvalého odkazu na~daný~příklad/test bude umožněno zobrazit náhodně vygenerovanou (nebo vybranou) variantu příkladu, případně si~příklad přidat a~upravit ve~vlastním účtu.
+            V~rámci \emph{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. V~rámci \emph{frontendu} pak~\emph{uživatelské rozhrání (UI)}, které bude používat uživatel.
 
         \subsection{UML~--~Unified Modeling Language}
             Jeden ze~standardních nástrojů pro~modelování aplikace je~\emph{UML}. \emph{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů. Základem \emph{UML} je~\emph{UML diagram}, který slouží k~vizualizaci návrhu aplikace.
@@ -879,7 +834,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \item \textbf{Zahrnutí} (include)~--~zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
                 \end{itemize}
 
-                V~aplikaci modeluju tyto základní aktéry~--~\textbf{návštěvník}, \textbf{uživatel}, \textbf{administrátor} a~\textbf{systém}. \emph{Uživatel} je~osoba, která se~do~aplikace přihlásí a~má~možnost vytvářet, upravovat a~mazat příklady a~testy. \emph{Návštěvník} je~osoba, která se~do~aplikace nepřihlásí, ale~může si~prohlížet vygenerovaná zadání. A~\emph{systém} je~samotná aplikace, která pravidelně provádí nějaké akce.
+                V~aplikaci modeluji tyto základní aktéry~--~\textbf{návštěvník}, \textbf{uživatel}, \textbf{administrátor} a~\textbf{systém}. \emph{Uživatel} je~osoba, která se~do~aplikace přihlásí a~má~možnost vytvářet, upravovat a~mazat příklady a~testy. \emph{Návštěvník} je~osoba, která se~do~aplikace nepřihlásí, ale~může si~prohlížet vygenerovaná zadání. A~\emph{systém} je~samotná aplikace, která pravidelně provádí nějaké akce.
 
                 Aktéři a~jejich akce do~\emph{use case diagramu}:
 
@@ -914,7 +869,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Je dobré udržovat \emph{diagram tříd} aktuální, protože se~může stát, že~se~v~průběhu vývoje změní návrh a~diagram tříd už~nebude odpovídat aktuálnímu stavu aplikace. Aktuální diagram může pomoci novému vývojáři k~rychlejšímu zorientování v~projektu. \cite{visualparadigmClassDiagram}.
 
                 
-                V~této~aplikaci modeluju tyto třídy:
+                V~této~aplikaci modeluji tyto třídy:
 
                 \begin{itemize}
                     \item Uživatel~--~fyzická osoba, která používá aplikaci. Slouží k~identifikaci uživatele, přidělení a~ohlídání oprávnění.
@@ -928,6 +883,65 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \item Test~--~reprezentuje soubor příkladů, kategorií a~pokyny pro~generování.
                 \end{itemize}
 
+	\section{Návrh aplikace}
+        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tzv.~\emph{funkční požadavky} na~výslednou aplikaci. Potom můžeme vytvořit \emph{UML modely}, které mohou pomoct blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
+
+        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem budeme aplikaci vyvíjet \cite{bctynovsky:specifikacepozadavku}. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají.
+
+        Specifikace aplikace vznikla vlastní invencí a~funkčnost se~upřesňovala během rozhovorů s~potenciálními uživateli (učiteli, lektory\dots).
+
+        \subsection{Případ použití generátoru}
+            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu\dots Tyto příklady bude možné následně využít při tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo konkrétní příklady, které se~mají do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také externích poskytovatelů ověření identity.
+            
+            Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
+
+            Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho testu objevily všechny příklady z~dané kategorie nebo zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu chce~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou příklady s~náhodně dosazenými hodnotami. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Aplikace umožní vytvořit si~proměnné, které budou mít~přiřazenou náhodnou hodnotu z~určitého intervalu nebo vypočtené z~jiných proměnných.
+
+            Jako součást příkladu si~uživatel vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3*A$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~uživatel nastavil a~pomocí zápisu proměnné \texttt{\$\{A\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~uživatel nastaví. V~případě, že~zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit, kolik odpovědí chce~generovat. Aplikace pohlídá, že~uživatel označí alespoň jedno správné řešení. Příklady bude možné komentovat a~hodnotit, aby bylo jednodušší najít chyby v~zadání.
+            
+            Předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$ a~hodnoty proměnných $C, D$ jsou~zadány jako obecné výpočty takto:
+            \begin{align*}
+                \$A &= 3 \\
+                \$B &= 5 \\
+                \$C &= 4/3*\$A = 4/3*3 = 4 \\
+                \$D &= \$C + \$B = 4 + 5 = 9
+            \end{align*}
+
+            Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými hodnotami (čísly, výrazy nebo funkčními prvky). Po vygenerování příkladu bude potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby bylo možné identifikovat přesnou verzi příkladu. Pokud se~v~příkladě nevyskytují žádné proměnné nebo není potřeba nic generovat, potom není potřeba hodnoty ukládát.
+
+            Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
+
+            Učitel bude také mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může taky využít proměnné, které si~vytvořil dříve. V~obou případech může taky zapsat vzorec, ze~kterého se~vypočtou možnosti a~označit správnou možnost. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. V případě mnohočlenů je~aplikace bude~schopna náhodně seřadit, aby připravila žáky na nutnost seřazení před~sečtením. Ve~výsledném příkladu se~v~možnostech výběru proměnné nahradí a~výraz se~vyčíslí, pokud nebude přepínači určeno jinak.
+
+            Výsledná podoba vzoru příkladu jednoduchého výrazu může vypadat např.~takto:
+            \begin{align*}
+                \text{Vyřeš v oboru N:} \quad \$Ax + \$B &= \$C + \$D \\
+                \begin{aligned}
+                    a) \quad &\text{Nemá řešení v oboru N} \\
+                    b) \quad &\text{x = \$A} \\
+                    c) \quad &\text{x = \$B} \\
+                    d) \quad &\text{x = \$\{\$A * \$B - 2\}} \\
+                \end{aligned}
+            \end{align*}
+
+            Po~vygenerování a~dosazení hodnot:
+            \begin{align*}
+                \text{Vyřeš v oboru N:} \quad 3x + 5 = 4 + 9 \\
+                \begin{aligned}
+                    a) \quad &\text{Nemá řešení v oboru N} \\
+                    b) \quad &\text{x = 3} \\
+                    c) \quad &\text{x = 5} \\
+                    d) \quad &\text{x = 13} \\
+                \end{aligned}
+            \end{align*}
+
+            Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné nebo podtržené místo o~velikosti určené při~zadávání proměnné. V~případě otázky s~možnostmi výběru se~na~místě vykreslí všechny možnosti nebo pole pro~výber ve~webové aplikaci, aby~žák mohl vybrat správnou možnost kroužkováním nebo jinak, jak učitel určí.
+            
+            To umožní systém používat např.~pro jazykové předměty, kde student doplňuje slova do~textu nebo~vybírá vhodné písmeno. Umožní to~také použití jak~pro~tisk, tak pro~webový dotazník.
+
+            Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu, zapnout/vypnout náhodné řazení otázek nebo odpovědí) i~na úrovni celých testů.
+
+            Po~nasdílení trvalého odkazu na~daný~příklad/test bude umožněno zobrazit náhodně vygenerovanou (nebo vybranou) variantu příkladu, případně si~příklad přidat a~upravit ve~vlastním účtu.
 
         \subsection{Návrh struktury databáze}
             Pro~ukládání dat v~aplikaci použiju relační databázový systém \emph{MySQL}. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
@@ -939,21 +953,6 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Potom následuje vytvoření tabulek, resp.~\emph{modelů dat}. Používá se~k~tomu jazyk \emph{SQL} (Structured Query Language), který bude ovládat databázi \emph{MySQL} (\emph{MariaDB}). Veškerou komunikaci prostřednictvím \emph{SQL} obstará \emph{ORM} systém.
 
             \textbf{Indexace} sloupců znamená optimalizaci dat v~daném sloupci pro~rychlejší třídění, spojování tabulek a~vyhledávání v~nich. \emph{Indexy} se~vytváří na~sloupcích představujících \emph{primární klíč} nebo \emph{unikátní} hodnoty, které se~v~tabulce nesmí vyskytnout opakovaně a~slouží k~jednoznačné identifikaci záznamu, nebo sloupců, které jsou~v~\emph{SQL} dotazech často využívány k~třídění a~vyhledávání. \emph{Indexy} je~možné připodobnit k~lékařské kartotéce, kde~se~snažíme, aby~karty pacientů byly~seřazeny abecedně, zdravotní sestra pak~při vyhledávání pacientů aplikuje metodu \textbf{binárního vyhledávání}, čímž~najde kartu dříve než~kdyby karty nebyly seřazeny. \cite{interval:normalniformydb, laurencik2018sql}
-
-        \subsection{I18C~--~Mezinárodní lokalizace}
-            \emph{I18C} je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \emph{I18C} zahrnuje i~různé formy slov, např.~pro~různá množství. \cite{w3Internationalization}
-
-            Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \emph{ASCII}, které obsahovalo pouze 128 znaků (7 bitů, tj.~$2^7$, 0\,--\,127). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některé interpunkční znaménka. 
-            
-            V~dnešní době se~většinově používá kódování Unicode (UTF), které k~původním 7~bitům (\emph{ASCII}) přidává nový význam prvnímu bitu, který má~význam, zda je~daný znak reprezentován více než~jedním bajtem. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač potřebuje více času na~zpracování každého znaku.
-            
-            Proto je~vhodné všechny~zdrojové kódy a~aplikace psát v~Anglickém jazyce, který využívá základní \emph{ASCII} znaky, a~aplikaci pro~uživatele překládat (\emph{lokalizovat}). Anglický jazyk je~navíc považován za~mezinárodní jazyk, který je~známý většině uživatelů a~aplikaci tak~jednodušeji zpřístupníme širší skupině uživatelů.
-            
-            Webový prohlížeč si~pamatuje preferenci jazyka uživatele a~při~požadavku na~aplikaci, zašle i~informaci o~preferovaném jazyce.
-
-            Pro překlad aplikace se~používají \emph{lokalizační soubory}, které obsahují překlady jednotlivých textů aplikace. Každý jazyk má~svůj soubor, který se~načítá při~spouštění aplikace. Pokud překlad není nalezen, použije se~původní text.
-
-            V~rámci \emph{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. V~rámci \emph{frontendu} pak~\emph{uživatelské rozhrání (UI)}, které bude používat uživatel.
 
         \subsection{Výběr technologií}
             Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které budou dostatečně výkonné a~zároveň budou přívětivé pro vývojáře, aby vývoj nebyl zbytečně časově náročný. Je~dobré také myslet na~budoucí podporu a~rozšiřitelnost aplikace.
@@ -1055,7 +1054,7 @@ class dataLoader extends Endpoints{
 
             Díky tomu~lze~rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~navíc umožněno provozovat více \emph{kontejnerů} (resp.~aplikací), dostupných na~různých portech. \cite{docker, dockernginxperformance}
 
-            \emph{Docker} resp. \emph{Docker-compose} bude v~mém projektu spravovat kontejnery s~aplikací (Vite~i~Go) a~databází kromě těch, které jsou potřeba pro chod aplikace.
+            \emph{Docker} resp.~\emph{Docker-compose} bude v~mém projektu spravovat kontejnery s~aplikací (Vite~i~Go) a~databází kromě těch, které jsou potřeba pro chod aplikace.
 
             \textbf{Nginx} sám~sebe~definuje jako \emph{webový server}, \emph{reverzní proxy server} a~\emph{load balancer}. \textbf{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku může vyvolat akci aplikace, běžící na~určitém portu. \textbf{Load balancer} zajišťuje rozložení zátěže mezi servery (resp.~více instancemi aplikace), které má~k~dispozici. To~se~využívá např.~u~větších aplikací, které mají vysokou návštěvnost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. Taky je~možné nastavení záložních serverů pro~případ, že~nastane výpadek nebo přetížení hlavního serveru.
             
