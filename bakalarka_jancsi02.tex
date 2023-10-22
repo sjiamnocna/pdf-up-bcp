@@ -1206,26 +1206,25 @@ class dataLoader extends Endpoints{
             Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány. Testy budou spouštěny samostatně během vývoje i~jako~součást budování \emph{produkčního} \emph{docker kontejneru}.
 
             Na~\emph{frontendu} budu pomocí \emph{jest} testovat funkčnost \emph{komponent} a~jejich správné vykreslení. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy.
-        
-	\section{Budoucí rozvoj aplikace}
-        Pro~rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
-        Pokud bude aplikaci využívat více učitelů a~sdílet mezi sebou příklady, budou~se moci více věnovat svým žákům a~nechat vymýšlení testovacích úloh na~počítači. Postupně by~vznikla databáze příkladů, které by~mohli využívat i~ostatní učitelé a~žáci k~procvičování příkladů.
-        
-        Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
-        
-        To~by~umožnilo nechat si~vygenerovat testy přímo do~prostředí \textbf{Moodlu}, nebo~je~rychle sdílet přes \textbf{MS~Teams}. Zajímavá by~mohla~být i~integrace do~\textbf{CMS} systémů jako~např.~\textbf{Wordpress} nebo~\textbf{Drupal}.
-
-        Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady nebo by~mohli sledovat pokrok žáků v~právě probíraném učivu.
-        
-        K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
-
-        Aplikace by~se~dala využít také~k~tvorbě interaktivních výukových materiálů s~minikvízy, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. Součástí materiálů by~byly kvízové otázky, které slouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost otevření příkladu v~aplikaci jako je~\emph{Wolfram Alpha}.
-        
-        Důležitou součástí materiálů jsou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu a~ověřit jejich správnost. Webové zdroje bude aplikace pravidelně kontrolovat a~v~případě změny informuje autora materiálů, který bude moci informace aktualizovat. To~umožní vytvářet výukové materiály, které budou udržovány aktuální.
-        
-        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~rychleji rozšiřovat její funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. Možností je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila jejich důvěryhodnost.
 
 	\section{Závěr}
+        \subsection{Budoucí rozvoj aplikace}
+            Pro~rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
+            Pokud bude aplikaci využívat více učitelů a~sdílet mezi sebou příklady, budou~se moci více věnovat svým žákům a~nechat vymýšlení testovacích úloh na~počítači. Postupně by~vznikla databáze příkladů, které by~mohli využívat i~ostatní učitelé a~žáci k~procvičování příkladů.
+            
+            Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
+            
+            To~by~umožnilo nechat si~vygenerovat testy přímo do~prostředí \textbf{Moodlu}, nebo~je~rychle sdílet přes \textbf{MS~Teams}. Zajímavá by~mohla~být i~integrace do~\textbf{CMS} systémů jako~např.~\textbf{Wordpress} nebo~\textbf{Drupal}.
+
+            Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady nebo by~mohli sledovat pokrok žáků v~právě probíraném učivu.
+            
+            K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
+
+            Aplikace by~se~dala využít také~k~tvorbě interaktivních výukových materiálů s~minikvízy, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. Součástí materiálů by~byly kvízové otázky, které slouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost otevření příkladu v~aplikaci jako je~\emph{Wolfram Alpha}.
+            
+            Důležitou součástí materiálů jsou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu a~ověřit jejich správnost. Webové zdroje bude aplikace pravidelně kontrolovat a~v~případě změny informuje autora materiálů, který bude moci informace aktualizovat. To~umožní vytvářet výukové materiály, které budou udržovány aktuální.
+            
+            Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~rychleji rozšiřovat její funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. Možností je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila jejich důvěryhodnost.
         V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~spoustu funkcionalit bude nutné teprve dokončit. V~budoucnu chci aplikaci rozšířit o~další funkce, které umožní lepší využití v~praxi a~přizvat ke~spolupráci další vývojáře.
 
         V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení. IT je~rychle vyvíjející~se obor a~je~nutné sledovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů však zůstane platných. V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód.
