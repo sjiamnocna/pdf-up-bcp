@@ -1194,45 +1194,36 @@ class dataLoader extends Endpoints{
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě chceme uživatele informovat, že~se~něco pokazilo a~případně mu~doporučit, co~může dělat dál. A~zaznamenat chybu do~logů~--~tj.~\emph{zalogovat}.
             
-            \textbf{UI (User Interface)}~--~uživatelské rozhrání bude co~nejjednoduší, k~tvorbě využiju knihovnu \textbf{Semantic UI}, která nabízí jednoduché a~přizpůsobitelné komponenty. \emph{Semantic UI} je~dostupná jako \emph{npm} balíček, který je~možné nainstalovat pomocí \emph{npm} nebo~\emph{yarn}. Použití externí \emph{CSS knihovny} zkrátí práci na~\emph{UI}, umožňuje použít \emph{komponenty}, které jsou připraveny na~různé velikosti zařízení a~v~základu přizpůsobené pravidlům o~přístupnosti webové aplikace.
+            \textbf{UI (User Interface)}~--~uživatelské rozhrání bude vytvořeno s~použitím knihovny \textbf{Semantic UI}, která nabízí jednoduché a~přizpůsobitelné komponenty. \emph{Semantic UI}. Použití externí \emph{CSS knihovny} zkrátí práci na~\emph{UI}, umožňuje použít \emph{komponenty}, které jsou připraveny na~různé velikosti zařízení a~v~základu přizpůsobené pravidlům o~přístupnosti webové aplikace.
 
             Je~samozřejmě možné použít i~další knihovny jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize CSS} nebo \textbf{Tailwind}.
 
         \subsection{Testování}
-            Nemá význam testovat celou aplikaci. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji, navíc při~sebemenší chybě aplikace vůbec nenastartuje a~pokud něco selže při~tvorbě \emph{Docker} kontejneru, aplikace se~vůbec nespustí. A~chyby na~straně externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat podle přibývajícího kódu a~nalezených chyb.
-            
-            Proto se~budu věnovat testování pouze u~\emph{generátoru} (\texttt{\emph{Go} test}) a~\emph{frontendu} (\texttt{Jest}), případně menším funkcím, které nejsou závislé na~dalších částech aplikace a~měly by~generovat pro~kombinaci stejných dat stejný výsledek (viz.~\emph{Pure function}).
+            Nemá význam testovat celý \emph{backend}. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje a~pokud selže tvorba \emph{Docker} kontejneru. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\emph{frontendu}, případně \emph{Pure function}.
 
-            Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány. Testy budou spouštěny samostatně během vývoje i~jako~součást budování \emph{produkčního} \emph{docker kontejneru}.
+            Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány~--~např. nahrazení proměnných a~spuštění funkcí. 
 
-            Na~\emph{frontendu} budu pomocí \emph{jest} testovat funkčnost \emph{komponent} a~jejich správné vykreslení. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy.
+            Na~\emph{frontendu} budu testovat funkčnost \emph{komponent}. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy. Díky \emph{Sentry} budu mít informace o~chybě z~\emph{frontendu} i~\emph{backendu}.
         
 	\section{Budoucí rozvoj aplikace}
-        Pro~rozvoj aplikace bude nutné sledovat použití aplikace a~případné chyby, které se~vyskytnou v~\emph{sentry} nebo nám~je~nahlásí uživatelé, a~opravovat je.
         Pokud bude aplikaci využívat více učitelů a~sdílet mezi sebou příklady, budou~se moci více věnovat svým žákům a~nechat vymýšlení testovacích úloh na~počítači. Postupně by~vznikla databáze příkladů, které by~mohli využívat i~ostatní učitelé a~žáci k~procvičování příkladů.
         
-        Existuje mnoho dalších prostředí, která by~mohla využít aplikaci pro~tvorbu příkladů. Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady i~v~těchto prostředích.
-        
-        To~by~umožnilo nechat si~vygenerovat testy přímo do~prostředí \textbf{Moodlu}, nebo~je~rychle sdílet přes \textbf{MS~Teams}. Zajímavá by~mohla~být i~integrace do~\textbf{CMS} systémů jako~např.~\textbf{Wordpress} nebo~\textbf{Drupal}.
+        Existují další prostředí, která by využila tvorbu příkladů. Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API}, mohla by~být integrována do~těchto prostředí formou pluginu a~učitelé by~mohli využívat generované příklady např.~v~prostředí \textbf{Moodlu}, nebo~\textbf{MS~Teams}. Možností~je i~integrace do~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}.
 
-        Učitelům by~mohla být~umožněna tvorba kampaní, kde by~žáci postupovali v~rámci kampaně a~otevírali nové schopnosti. Třeba sérii cvičení na~přijímací zkoušky na~konkrétní střední školu, nebo~soutěžní příklady nebo by~mohli sledovat pokrok žáků v~právě probíraném učivu.
+        Zajímavá je~možnost zpracování tématických otázek do~herního nebo~postupového módu pro~motivací žáků do~učení sbíráním bodů a~postupem v~tématech.
         
-        K~tomu se~nabízí rozšíření na~\uv{herní režim}, který by~umožňoval žákům soutěžit mezi sebou a~získávat body za~splněné příklady nebo posílat výzvy ostatním.
-
-        Aplikace by~se~dala využít také~k~tvorbě interaktivních výukových materiálů s~minikvízy, které by~mohly být využity pro~výuku na~dálku. Učitel by~mohl vytvořit výukový materiál, který by~žákům poslal a~ti~by~si~ho~mohli procházet. Součástí materiálů by~byly kvízové otázky, které slouží k~procvičování učiva. Učitel by~pak~mohl získat zpětnou vazbu, jak si~žáci vedou a~které části učiva jim dělají největší problémy. K~rychlému zobrazení řešení by~pomohla možnost otevření příkladu v~aplikaci jako je~\emph{Wolfram Alpha}.
-        
-        Důležitou součástí materiálů jsou zdroje, které učitel použil při~tvorbě materiálu, aby~si~žáci mohli přečíst více o~daném tématu a~ověřit jejich správnost. Webové zdroje bude aplikace pravidelně kontrolovat a~v~případě změny informuje autora materiálů, který bude moci informace aktualizovat. To~umožní vytvářet výukové materiály, které budou udržovány aktuální.
-        
-        Pro~realizaci výše zmíněných rozšíření by~bylo vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~rychleji rozšiřovat její funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace. Možností je~také přidat možnost ověření uživatele pomocí ITIC/ISIC, čímž by~se~zvýšila jejich důvěryhodnost.
+        Pro~realizaci výše zmíněných rozšíření je~vhodné získat sponzory, kteří by~přispěli na~vývoji aplikace, což~by~umožnilo věnovat se~vývoji naplno a~lépe rozšiřovat její~funkce. Do~budoucna by~bylo potřeba vývoj rozšířit o~další vývojáře, kteří by~se~podíleli na~vývoji a~rozšiřování aplikace.
 
 	\section{Závěr}
         V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~spoustu funkcionalit bude nutné teprve dokončit. V~budoucnu chci aplikaci rozšířit o~další funkce, které umožní lepší využití v~praxi a~přizvat ke~spolupráci další vývojáře.
 
-        V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení. IT je~rychle vyvíjející~se obor a~je~nutné sledovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů však zůstane platných. V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód.
+        V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení.
+        
+        V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód. Informační technologie se~neustále vyvíjí a~je~nutné kriticky sledovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Základní principy však zůstanou platné a~je~možné na~nich~stavět.
 
-        Výsledná aplikace je veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí této práce je~možné veřejně najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
+        Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí této práce je~možné veřejně najít na~mém~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
 
-        Základ pro~tvorbu moderní aplikace s~překlady a~možností lokálního vývoje pomocí jazyka \emph{Go} a~\emph{Vite} je~volně k~dispozici pod~licencí \textbf{MIT} na~Gitlabu: \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}.
+        Základ pro~tvorbu moderní aplikace s~překlady a~možností lokálního vývoje pomocí jazyka \emph{Go} a~\emph{Vite} je~volně k~dispozici pod~licencí \textbf{MIT} na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}.
 
     \newpage
     \printbibliography
