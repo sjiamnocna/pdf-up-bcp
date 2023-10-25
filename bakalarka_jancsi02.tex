@@ -988,19 +988,15 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             \emph{Go} je~oblíbený jazyk pro~tvorbu webových aplikací. Umožňuje při~vývoji jednoduše importovat existující moduly z~\emph{GIT} repozitářů nebo jiných zdrojů přímo z~internetu, a~používat je~v~aplikaci. Tím~urychluje vývoj aplikace. Zároveň při~kompilaci vzniká jeden binární soubor s~optimalizovanými strojovými instrukcemi a~přestože je~aplikace rozsáhlá, je~dostatečně rychlá.
             
-            Pro~aplikace jako je~webový server, je~\emph{Go}~dobrá volba.
+            Pro~aplikace jako je~webový server, je~\emph{Go}~dobrá volba. \emph{Go} navíc automaticky formátuje kód, což~zjednodušuje práci s~ním a~zpříjěmňuje spolupráci v~týmu.
 
-
-            \textbf{Gin gonic} je~webový framework pro~jazyk \emph{Go}. Umožňuje vytvářet webové aplikace a~API. Základní součást webových frameworků je tzv.~\emph{Router}, který umožňuje definovat \emph{koncové body} (\emph{endpointy}) a~typy požadavků, které můžeme využít pro~práci s~nimi.
+            \textbf{Gin gonic} je~webový framework pro~jazyk \emph{Go}. Umožňuje vytvářet webové aplikace a~\emph{API}. Základní součást webových frameworků je~tzv.~\emph{Router}, který umožňuje definovat \emph{koncové body} (\emph{endpointy}) a~typy požadavků, které můžeme využít pro~práci s~nimi.
             
-            Po~příchodu požadavku \emph{Router} kontroluje, zda~existuje \emph{koncový bod}, který odpovídá požadavku a~pokud ano, předá řízení jeho~\emph{obslužné rutině} (\emph{handler}u).
+            Po~příchodu požadavku \emph{Router} kontroluje, zda~existuje \emph{koncový bod}, který odpovídá požadavku a~pokud ano, předá řízení jeho~\emph{obslužné rutině} (\emph{handler}u), což~je funkce, která zpracuje požadavek a~vrátí odpověď. Každý \emph{koncový bod} má~svou~vlastní \emph{obslužnou rutinu}.
+            
+            \emph{Gin} umožňuje také vytvářet skupiny \emph{koncových bodů}, které mají společný základ~\emph{URL} adresy a~které mohou mít společný \emph{handler}. To~umožňuje vytvářet přehlednější kód aplikace.
 
-            Každý \emph{koncový bod} má~svou~vlastní \emph{Obslužnou rutinu} (dále \emph{handler}), která zpracuje požadavek a~vrátí odpověď.
-            \emph{Gin} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~URL adresy a které mohou mít společný \emph{handler}. To~umožňuje vytvářet přehlednější kód aplikace.
-
-            V~\emph{Go}~máme k~dispozici \textbf{metadata členů struktur} (\textbf{struct tags}), díky kterým můžeme pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~zadefinování přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatickému zkontrolování rozsahu dat daného údaje při~přijetí z~\emph{JSON požadavku}.
-
-            To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka následuje v příloze \ref{go:structuretags}.
+            V~\emph{Go}~máme k~dispozici \textbf{metadata položek struktur} (\textbf{struct tags}), díky kterým můžeme pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~definici přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatické kontrole dat při~přijetí požadavku ve~formátu \emph{JSON}. To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka, viz.~\ref{go:structuretags}.
 
             \begin{figure}
                 \begin{subfigure}[b]{0.45\linewidth}
@@ -1065,21 +1061,21 @@ class dataLoader extends Endpoints{
             
             Jednotlivé \emph{databáze}~--~někdy používáme název \emph{schéma}~--~fyzicky na~disku reprezentují adresáře s~názvem konkrétní \emph{databáze}. Jednotlivé~\emph{tabulky} potom tvoří binární soubory s~příponou podle databázového \emph{enginu}, který používáme. V~tomto případě je~to~\emph{engine} \emph{InnoDB}, který ukládá strukturu a~data v~souborech \texttt{*.ibd}. \cite{MySQLInnoDB}
             
-            \textbf{GORM} je~ORM (ORM~--~Object-relational mapper) pro~jazyk Go. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \emph{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhrání k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
+            \textbf{GORM} je~ORM (ORM~--~Object-relational mapper) pro~jazyk \emph{Go}. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \emph{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhrání k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
 
             Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
 
             \textbf{Vite} je~nástroj zjednodušující tvorbu \emph{javascript frontendových aplikací} v~různých knihovnách. Je~velice rychlý a~jednoduchý na~použití. Bude použit pro~vytvoření \emph{Frontendu} aplikace. Prostřednictvím \emph{proxy} serveru bude komunikovat s~\emph{backendem}.
 
-            \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet kontejnery, ve~kterých můžeme spouštět aplikace. Použití kontejnerů při~vývoji je~výhodné zejména při~spolupráci v~týmu, protože vždy když si~projekt znovu stáhneme a~spustíme, máme jistotu, že~aplikace běží v~na~aplikaci přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
+            \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet \textbf{kontejnery}, ve~kterých můžeme spouštět aplikace. Použití \emph{kontejnerů} při~vývoji je~výhodné zejména při~spolupráci v~týmu, protože vždy když si~projekt znovu stáhneme a~spustíme, máme jistotu, že~aplikace běží v~na~aplikaci přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
 
-            Díky tomu~lze~rychle vytvořit kontejnery s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě. Navíc je~kontejner přístupný pouze použitím specifického portu, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~navíc umožněno provozovat více \emph{kontejnerů} (resp.~aplikací), dostupných na~různých portech. \cite{docker, dockernginxperformance}
+            \textbf{Kontejnery} jsou~miniaturní verze operačního systému, který je~přizpůsobený pro~běh jedné aplikace. Pomocí souborů \texttt{Dockerfile} a~\texttt{docker-compose.yml} je~možné vytvořit \emph{kontejner} s~potřebnými službami, jako třeba databázi, na~jakékoliv platformě.
 
-            \emph{Docker} resp.~\emph{Docker-compose} bude v~mém projektu spravovat kontejnery s~aplikací (Vite~i~Go) a~databází kromě těch, které jsou potřeba pro chod aplikace.
+            Navíc \emph{kontejner} používá specifický port, čímž se~snižuje riziko útoku na~server, na~kterém aplikace běží. Na~jednom serveru je~tím~taky umožněno provozovat více tzv.~\textbf{kontejnerizovaných} aplikací. \cite{docker, dockernginxperformance}
 
             \textbf{Nginx} sám~sebe~definuje jako \emph{webový server}, \emph{reverzní proxy server} a~\emph{load balancer}. \textbf{Reverzní server} umožňuje přesměrovat požadavky na~různé servery, resp.~aplikace (porty), podle zadaných pravidel. Třeba podle URL adresy, typu požadovaného souboru nebo typu požadavku může vyvolat akci aplikace, běžící na~určitém portu. \textbf{Load balancer} zajišťuje rozložení zátěže mezi servery (resp.~více instancemi aplikace), které má~k~dispozici. To~se~využívá např.~u~větších aplikací, které mají vysokou návštěvnost nebo v~případě že~jednotlivé součásti aplikace běží na~více serverech. Taky je~možné nastavení záložních serverů pro~případ, že~nastane výpadek nebo přetížení hlavního serveru.
             
-            \emph{Nginx} je~ve~srovnání s~jinými servery, jako např.~Apache, považován za~velmi rychlý. Zejména pak~při~obsluze požadavků na~statické soubory. Je~napsán v~jazyce C a~je~dostupný pro~většinu operačních systémů. \cite{WhatNGINX}
+            \emph{Nginx} je~ve~srovnání s~jinými servery, jako např.~Apache, považován za~velmi rychlý. Zejména pak~při~obsluze požadavků na~statické soubory. Je~napsán v~jazyce~C a~je~dostupný pro~většinu operačních systémů. \cite{WhatNGINX}
 
             \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu}, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje, nicméně jde~o~plnohodnotný systém a~je~možné jej~použít jako hlavní systém. Celková velikost distribuce po~instalaci je~pouze 5~MB, což je~velice málo.
 
@@ -1141,36 +1137,34 @@ class dataLoader extends Endpoints{
             \end{itemize}
 
         \subsubsection{Generátor}
-            Zásadní funkcí při~čtení zadání pomocí \emph{Go} bude \emph{generátor}, který bude při~generování příkladu zpracovávat a~řadit proměnné, spouštět jejich funkce a~nahrazovat generované hodnoty, případně vyčíslovat koeficienty u~\emph{mnohočlenů} a~matematických výrazů.
+            Zásadní funkci při~tvorbě zadání bude~mít \emph{generátor}.
             
-            Problémem generátoru je~zejména postupné nahrazování hodnot použitých proměnných a~funkcí ke~generování čísel. K~tomuto účelu slouží modul správce proměnných, který nahrazuje proměnné a~funkce jejich hodnotami. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání proběhne pomocí modulu \texttt{text/template}, který umožňuje jednoduché využití šablony s~proměnnými.
+            Generátor bude~také postupně nahrazovat hodnoty použitých proměnných a~funkcí ke~generování čísel. K~tomuto účelu slouží modul správce proměnných, který nahrazuje proměnné a~funkce jejich hodnotami. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání proběhne pomocí modulu \texttt{text/template}, který umožňuje jednoduché využití šablon s~proměnnými.
+            
+            Proměnné budou při~definici i~v~zadání používat stejný zápis (\texttt{\{.jméno\}}). V~zadání pak~bude~možné využít i~filtry, které nabízí \emph{text/template} pomocí zápisu \texttt{\{.jméno|filtr\}}. Filtry je~možné použít např.~k~zaokrouhlení čísel, převodu na~velká nebo malá písmena, apod.
 
             K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}. U~každé části pak~určí, zda je~platná a~případně ji~nahradí její nalezenou/vypočítanou hodnotou.
             
-            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \emph{dílčí řetězce} (\emph{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory, ap. a vyfiltruje tzv.~\textbf{bílé znaky} (mezery, ukončení řádku~ap.). Nakonec~vrátí seznam \emph{tokenů}, které v~textu našel. Podle kontextu (typů okolních \emph{tokenů}) je~bude~potřeba sloučit a~určit, jaký význam v~aplikaci zastávají a~jak je~potřeba je~zpracovat. Písmeno za~číslem bude polynom, identifikátor se~znakem \texttt{\$} je~použitá proměnná, závorky za proměnnou je~funkce s~argumenty~atd.
+            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory, ap. a vyfiltruje tzv.~\textbf{bílé znaky} (mezery, ukončení řádku~ap.). Nakonec~vrátí seznam \emph{tokenů}, které v~textu našel. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
             
-            Jako první musí proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty.
+            Pokud např.~za~znakem \{ bude tečka, víme, že~jde o~proměnnou. Pokud je~tam~identifikátor a~závorky s~argumenty pro~funkci, jde o~funkci.
             
-            Proměnné budou označeny za~\textbf{kompletní} pokud nebudou obsahovat žádné funkce ani~proměnné. Ty~není třeba dále~zpracovávat. Zbytek bude zpracován postupně, dokud nebudou všechny proměnné kompletní.
+            Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu.
 
-            Poté je možné provést nahrazení proměnných, spojením \emph{tokenů} do~jednoho řetězce a~nahrazením proměnných jejich hodnotami. Tuto akci je nutné opakovat vícekrát, dokud nejsou vyřízeny všechny závislosti na~proměnných.
-            Pokud je~závislá proměnná definována dříve než~ta~zdrojová, vložíme ji~na~seznam odloženého zpracování. Pokud ani~po~vyhodnocení všech zadaných proměnných není~seznam odložených proměnných prázdný, jde~o~chybu zadání a~je~potřeba informovat uživatele a~přerušit generování příkladu.
+            Poté je možné provést nahrazení proměnných, spojením \emph{tokenů} do~jednoho řetězce. Pokud je~závislá proměnná definována dříve než~ta~kterou požaduje nahradit, jde o~chybu.
 
-            Pro~vyčíslení koeficientů jednotlivých členů výrazu (pokud to uživatel u~proměnné nezakáže) nejdříve dosadím hodnoty existujících proměnných a~poté pomocí tzv.~\textbf{Postfixové notace} (Někdy také \textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů pomocí počítačů běžně používá, vyčíslím koeficienty u~případných mnohočlenů. \cite{postfixnotation}
+            Poté je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech} (pokud to~uživatel u~proměnné nezakáže). To~realizuju pomocí algoritmu převzatého z~tzv.~\textbf{Postfixové notace} (Někdy také \textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů pomocí počítačů běžně používá. \cite{postfixnotation}
 
-            Protože pracuju s~jazykem \emph
-            {Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem je~struktura obsahující zpracované zadání a~případně vygenerované možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo \emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat pouze zadání otázky a~možnosti odpovědí. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude zpracován až~podle~volby~zobrazení.
+            Protože pracuju s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo~\emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo prostor pro~odpověď s~případným výčtem možností.
             
-            \emph{Generátor} samotný nemá přístup k~databázi, takže uložení vygenerovaných hodnot zajistí webserver, hodnoty si~načte ze~struktury obdržené z~generátoru. Potom konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem.
+            \emph{Generátor} samotný nemá přístup k~databázi, proto uložení vygenerovaných hodnot zajistí webserver, hodnoty si~načte ze~struktury obdržené z~generátoru. Konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem, který předá uživateli.
 
         \subsubsection{Autentizace uživatelů}
-            Registraci a~přihlášení do~aplikace bude možné více způsoby. Pro~všechny způsoby přihlášení bude existovat~jedna tabulka s~tajnými přihlašovacími údaji, jejíž záznamy se~budou odkazovat na~konkrétního uživatele v~tabulce s~uživateli. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu tak~bude~možné přidat více služeb k~ověření identity uživatele.
+            Registraci a~přihlášení do~aplikace bude možné více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
             
-            Na~\emph{Frontendu} použiju nástroj \emph{Firebase} od~firmy \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí různých webových služeb. Po~přihlášení dostane každý takový uživatel svůj unikátní \textbf{UID} (\textbf{User ID})
+            Na~\emph{frontendu} použiju nástroj \emph{Firebase} od~firmy \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí různých webových služeb. Po~přihlášení pomocí \emph{Firebase} obdržím informace o~uživateli, které poslouží k~přihlášení podobně jako jméno a~heslo.
             
-            Tyto údaje budu ukládat do~tabulky \texttt{users} a~při~každém přihlášení je~budu kontrolovat. V~případě, že~uživatel neexistuje, vytvořím ho~a~přiřadím mu~jeho \emph{UID}. Tyto údaje poslouží k~přihlášení podobně jako jméno a~heslo, které v~tabulce bude také.
-            
-            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~vložím \emph{hash} aktuální relace do~\emph{JWT} i~do~databáze. Při~každém přístupu bude~zkontrolována platnost daného připojení. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení. Jakékoliv akce s~účtem budou zapsány do~tabulky akcí a~k~dispozici uživateli, který získá lepší přehled o~přihlašování a~dění na~účtu a~možnost navrácení účtu do~minulého stavu.
+            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~vložím \emph{hash} aktuální relace do~\emph{JWT} i~do~databáze. Při~každém přístupu bude~zkontrolována platnost daného připojení. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
 
         \subsection{Frontend}
             \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} v~klientské části aplikace a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní \emph{JWT token}, čímž se~snažím redukovat riziko jeho zneužití.
