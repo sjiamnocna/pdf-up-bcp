@@ -1149,11 +1149,11 @@ class dataLoader extends Endpoints{
             
             Pokud např.~za~znakem \{ bude tečka, víme, že~jde o~proměnnou. Pokud je~tam~identifikátor a~závorky s~argumenty pro~funkci, jde o~funkci.
             
-            Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu.
+            Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu. Pro~snížení počtu operací toto provedu při~prvním použití proměnné v~jiné proměnné nebo~v~zadání příkladu.
 
-            Poté je možné provést nahrazení proměnných, spojením \emph{tokenů} do~jednoho řetězce. Pokud je~závislá proměnná definována dříve než~ta~kterou požaduje nahradit, jde o~chybu.
+            Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou chceme nahradit, jde o~chybu.
 
-            Poté je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech} (pokud to~uživatel u~proměnné nezakáže). To~realizuju pomocí algoritmu převzatého z~tzv.~\textbf{Postfixové notace} (Někdy také \textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů pomocí počítačů běžně používá. \cite{postfixnotation}
+            V~matematickém režimu je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů v~počítačových programech běžně používá. \cite{postfixnotation}
 
             Protože pracuju s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo~\emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo prostor pro~odpověď s~případným výčtem možností.
             
@@ -1167,10 +1167,9 @@ class dataLoader extends Endpoints{
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~vložím \emph{hash} aktuální relace do~\emph{JWT} i~do~databáze. Při~každém přístupu bude~zkontrolována platnost daného připojení. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
 
         \subsection{Frontend}
-            \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} v~klientské části aplikace a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní \emph{JWT token}, čímž se~snažím redukovat riziko jeho zneužití.
+            \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
 
-            \emph{Frontend} bude založen na~\emph{Vite} v~\emph{Reactu}.
-            Její základ bude v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu slouží \emph{Node} modul \texttt{i18n}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
+            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu slouží \emph{Node} modul \texttt{i18n}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
             \textbf{Router} v~případě \emph{frontendu} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
