@@ -1162,9 +1162,18 @@ class dataLoader extends Endpoints{
             \emph{Generátor} samotný nemá přístup k~databázi, proto manipulaci se~zadáním a~uložení vygenerovaných hodnot zajistí aplikace v~rámci konkrétního \emph{endpointu}, hodnoty si~načte ze~struktury, kterou obdrží z~generátoru. Konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem, který předá uživateli, který zároveň bude mít k~dispozici seznam dříve vygenerovaných verzí příkladu a~odkazy na~k~jejich~editaci.
 
         \subsubsection{Autentizace uživatelů}
-            Registraci a~přihlášení do~aplikace bude možné více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
+            Registrace a~přihlášení do~aplikace bude možná více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
             
-            Na~\emph{frontendu} použiju nástroj \emph{Firebase} od~firmy \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí různých webových služeb. Po~přihlášení pomocí \emph{Firebase} obdržím informace o~uživateli, které poslouží k~přihlášení podobně jako jméno a~heslo.
+            Na~\emph{frontendu} použiju nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí různých webových služeb. Průběh přihlášení pomocí \emph{Firebase} bude následující:
+            \begin{itemize}
+                \item Uživatel se~přihlásí k~\emph{frontendu} pomocí \textbf{Firebase Authentication}.
+                \item \emph{Frontend} vygeneruje \emph{JWT} pomocí uživatelských údajů získaných z~\emph{Firebase} a~odešle jej~na~\emph{backend}.
+                \item \emph{Backend} (\emph{Go}) ověří \emph{JWT} a~pravost pomocí údaju z~\emph{Firebase}.
+                \item \emph{Backend} najde uživatele v~databázi podle \emph{e-mailové adresy} a~pokud neexistuje, vytvoří nového uživatele.
+                \item \emph{Backend} provede ověření požadavkem na~\emph{Firebase} jménem uživatele a~ověří přihlášení.
+                \item \emph{Backend} vytvoří nový \emph{JWT} token a~zašle jej na~\emph{frontend}.
+                \item \emph{Frontend} si~uloží nový \emph{JWT} a~uživatele přesměruje do~aplikace.
+            \end{itemize}
             
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~vložím \emph{hash} aktuální relace do~\emph{JWT} i~do~databáze. Při~každém přístupu bude~zkontrolována platnost daného připojení. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
 
