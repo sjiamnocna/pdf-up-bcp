@@ -1159,7 +1159,7 @@ class dataLoader extends Endpoints{
 
             Protože pracuju s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo~\emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo prostor pro~odpověď s~případným výčtem možností.
             
-            \emph{Generátor} samotný nemá přístup k~databázi, proto uložení vygenerovaných hodnot zajistí webserver, hodnoty si~načte ze~struktury obdržené z~generátoru. Konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem, který předá uživateli.
+            \emph{Generátor} samotný nemá přístup k~databázi, proto manipulaci se~zadáním a~uložení vygenerovaných hodnot zajistí aplikace v~rámci konkrétního \emph{endpointu}, hodnoty si~načte ze~struktury, kterou obdrží z~generátoru. Konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem, který předá uživateli, který zároveň bude mít k~dispozici seznam dříve vygenerovaných verzí příkladu a~odkazy na~k~jejich~editaci.
 
         \subsubsection{Autentizace uživatelů}
             Registraci a~přihlášení do~aplikace bude možné více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
@@ -1175,20 +1175,20 @@ class dataLoader extends Endpoints{
 
             \textbf{Router} v~případě \emph{frontendu} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
-            \emph{React} po~spuštění aplikace normálně načte celou zobrazenou aplikaci naráz, včetně obrázků, obsahu ap. To~může vyústit v~načtení zbytečného objemu dat a~ke~snížení celkového výkonu aplikace, nehledě na~zátěž na~připojení.
+            \emph{React} po~spuštění aplikace normálně načte celou zobrazenou aplikaci naráz, včetně obrázků, obsahu~ap. To~může vyústit ve~zbytečné načítání velkého objemu dat a~ke~snížení celkové rychlosti aplikace, nehledě na~zátěž na~připojení.
 
-            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě potřeby. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~podle toho je~načítáme.
+            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě potřeby. Typicky rozdělujeme funkční komponenty tak, jak~je~v~aplikaci používáme a~podle toho je~načítáme. V~této aplikaci budu používat \emph{lazy loading} pro~načítání stránek, které jsou dostupné pouze přihlášeným uživatelům. V~případě, že~uživatel není přihlášen, bude mu~zobrazena stránka s~přihlašovacím formulářem. V~případě přihlášení uživatele pak~indikujeme načítání aplikace a~při~úspěšném načtení zobrazíme kontrolní prvky.
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě chceme uživatele informovat, že~se~něco pokazilo a~případně mu~doporučit, co~může dělat dál. A~zaznamenat chybu do~logů~--~tj.~\emph{zalogovat}.
             
-            \textbf{UI (User Interface)}~--~uživatelské rozhrání bude vytvořeno s~použitím knihovny \textbf{Semantic UI}, která nabízí jednoduché a~přizpůsobitelné komponenty. \emph{Semantic UI}. Použití externí \emph{CSS knihovny} zkrátí práci na~\emph{UI}, umožňuje použít \emph{komponenty}, které jsou připraveny na~různé velikosti zařízení a~v~základu přizpůsobené pravidlům o~přístupnosti webové aplikace.
+            \textbf{UI (User Interface)}~--~uživatelské rozhrání bude vytvořeno s~použitím knihovny \textbf{Semantic UI}, která nabízí jednoduché a~přizpůsobitelné komponenty. Použití \emph{CSS knihovny} třetí strany zkrátí práci na~\emph{UI}, umožňuje použít \emph{komponenty}, které jsou připraveny na~různé velikosti zařízení a~v~základu přizpůsobené pravidlům o~přístupnosti webové aplikace.
 
             Je~samozřejmě možné použít i~další knihovny jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize CSS} nebo \textbf{Tailwind}.
 
         \subsection{Testování}
-            Nemá význam testovat celý \emph{backend}. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje a~pokud selže tvorba \emph{Docker} kontejneru. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\emph{frontendu}, případně \emph{Pure function}.
+            Nemá význam testovat celý \emph{backend}. \emph{GIN} i~\emph{GORM} jsou aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje, protože selže tvorba \emph{Docker} kontejneru, a~zůstává v~původní funkční verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\emph{frontendu}, případně \emph{čistých funkcí}.
 
-            Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány~--~např. nahrazení proměnných a~spuštění funkcí. 
+            Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány~--~např. nahrazení proměnných a~spuštění funkcí. Náhodné řazení nelze testovat, protože výsledek je~náhodný a~nelze vyloučit, že~nebudou vygenerovány několikrát stejné hodnoty.
 
             Na~\emph{frontendu} budu testovat funkčnost \emph{komponent}. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy. Díky \emph{Sentry} budu mít informace o~chybě z~\emph{frontendu} i~\emph{backendu}.
         
