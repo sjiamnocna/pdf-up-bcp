@@ -173,7 +173,7 @@
 
             Jednotlivé \emph{HTML} stránky se~skládají z~\emph{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~JavaScript, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře. \cite{berners:1989:proposal}
 
-            Jednotlivé prvky je možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít prvek více, identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají mít stejný vzhled nebo funkcionalitu. Prvek může mít více \emph{tříd} a~kombinovat tak jejich vlastnosti. \cite{jpw:tridy}
+            Jednotlivé prvky je možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít prvek více a~jedna třída může být použita vícekrát, identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti. \cite{jpw:tridy}
 
         \subsection{HTML s dynamickým obsahem}
             HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje. Na~úrovni serveru se~může generovat \emph{HTML} stránka, která obsahuje dynamický obsah. V~dnešní době je~oblíbený přístup generovat výslednou stránku pomocí \emph{javascriptu} až~na~straně uživatele a~od~\emph{serveru} si~vyžádat pouze data, nicméně v minulosti se~dynamický obsah generoval převážně na~serveru pomocí technologií jako~\emph{PHP (HyperText Preprocessor)}, \emph{ASP.NET}, které na~serveru vygenerovaly kompletní \emph{HTML kód} stránky i~s~načtenými daty.
@@ -184,6 +184,13 @@
 
             Server může~--~samozřejmě po~povolení ze~strany uživatele~--~zasílat zprávy na~klientské zařízení a~vyžádat si~nějakou akci, díky \emph{Server-Sent Events}~\cite{sse:mdn} nebo udržovat spojení pomocí \emph{WebSockets}. Příkladem použití \emph{WebSockets} mohou být živý přenos videa, online hry, internetové hovory nebo jiné prvky na~webu, kde~využijeme oboustranou komunikaci.~\cite{websocket:mdn}
 
+        \subsection{SPA -- Single Page Application}
+            \textbf{Single Page Application} je~aplikace, která se~načte pouze jednou a~poté pouze aktualizujeme její obsah pomocí \emph{AJAXu}. Většinou k~práci s~daty využívá nějaké \emph{API}.
+
+            \textbf{Serverless aplikace} využívají již~připravené \emph{API} třetí strany, např.~\textbf{Google Firebase} nebo \textbf{Amazon Web Services}, což~usnadňuje vývoj a~umožňuje vývojářům se~soustředit na~vývoj aplikace a~ne~na~správu serveru.
+            
+            \textbf{Statické SPA} jsou vygenerovány na~serveru a~obsahují všechny potřebné zdroje. Jde~o~\emph{statickou webovou stránku}, která je~vytvořena pomocí \emph{HTML}, \emph{CSS} a~\emph{JavaScriptu}.
+        
         \subsection{Kompilátor a interpret}
             Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
 
