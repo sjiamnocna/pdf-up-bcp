@@ -358,7 +358,7 @@ func main() {
         \subsection{Javascript}
             \emph{Javascript} je~\emph{skriptovací} jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce, jako je~kliknutí, a~tedy na~rozdíl od~statické podoby \emph{HTML} stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje bez~nutnosti nového požadavku na~server.
 
-            Vznikl v~roce 1995 a~jeho tvůrci jsou \emph{Brendan Eich} a~společnost \emph{Netscape}. \emph{Javascript} (resp.~\emph{Typescript}) je~podle~--~průzkumů síte \textbf{Stack Overflow}~--~v~současnosti nejpoužívanějším programovacím jazykem na~světě používaným nejen pro~tvorbu webových aplikací, ale i~pro~tvorbu \emph{nativních} a~dokonce některých \emph{embedded} aplikací, což jsou programy určené pro~konkrétní elektronická zařízení s~konkrétním účelem, např.~rozhrání pro~dotyková zařízení (GPS, televize, kontrolní panel v~autě ap.).
+            Vznikl v~roce 1995 a~jeho tvůrci jsou \emph{Brendan Eich} a~společnost \emph{Netscape}. \emph{Javascript} (resp.~\emph{Typescript}) je~podle~--~průzkumů síte \textbf{Stack Overflow}~--~v~současnosti nejpoužívanějším programovacím jazykem na~světě používaným nejen pro~tvorbu webových aplikací, ale i~pro~tvorbu \emph{nativních} a~dokonce některých \emph{embedded} aplikací, což jsou programy určené pro~konkrétní elektronická zařízení s~konkrétním účelem, např.~rozhrání pro~dotyková zařízení (GPS, televize, kontrolní panel v~autě~ap.).
 
             Díky spouštěčům Javascriptu, kterým říkáme \emph{Javascriptové enginy}, je~možné spouštět Javascript na~různých platformách. A~tak~můžeme Javascript spouštět v~prohlížeči, ale i~na~serveru nebo dokonce na~mikrokontrolerech. Jeden jazyk tak~zvládne pokrýt většinu potřeb, které může autor aplikace při~vývoji mít.
 
@@ -397,7 +397,7 @@ func main() {
             
             K~tomu je~možné využít \emph{React Context API}, který umožňuje vytvořit tzv.~\emph{kontext} a~zpřístupnit jej~v~celé aplikaci. Kontext je~dostupný v~komponentách, které jsou~vnořené v~komponentě, \emph{kontext} poskytující. Obvykle \emph{kontext} vytvoříme v~samostatném souboru pomocí \texttt{React.createContext} a~poté obalíme celou aplikaci pomocí komponenty \emph{poskytovatele kontextu} (\emph{provideru}).
             
-            V~této práci nicméně pro~správu stavu aplikace využiju knihovnu \textbf{Zustand}, která je~moderní alternativou ke~\emph{Context API} a~nabízí spoustu výhod oproti \emph{Contextu} nebo jiným knihovnám jako \textbf{Redux}, \textbf{Mobx} apod. \cite{openreplayReactState}.
+            V~této práci nicméně pro~správu stavu aplikace využiju knihovnu \textbf{Zustand}, která je~moderní alternativou ke~\emph{Context API} a~nabízí spoustu výhod oproti \emph{Contextu} nebo jiným knihovnám jako \textbf{Redux}, \textbf{Mobx}~apod. \cite{openreplayReactState}.
 
         \subsection{JSX (Javascript XML)}
             \emph{JSX} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu (\emph{transpilaci}) přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \cite{reactJSX}
@@ -448,7 +448,7 @@ const App = () => {
 
             \textbf{Server Side Rendering (SSR)} je~koncept podobný \emph{SSG}, jen na~straně serveru běží aplikace, která průběžně aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \emph{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztratíme žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\emph{backend} aplikace používá \emph{Javascript}. \cite{uc:ssrandssg}
 
-            Takto vygenerujeme \emph{HTML kód} (se~skripty ap.) pro~každou stránku pouze v~případě změny obsahu a~uložíme si~jej. Při~dalším spuštění potom načítáme statický obsah, což~ušetří výkon na~straně serveru i~klienta.
+            Takto vygenerujeme \emph{HTML kód} (se~skripty~ap.) pro~každou stránku pouze v~případě změny obsahu a~uložíme si~jej. Při~dalším spuštění potom načítáme statický obsah, což~ušetří výkon na~straně serveru i~klienta.
 
         \subsection{Client-Server}
             Vývoj webových aplikací je~založen na~modelu klient-server.
@@ -493,7 +493,7 @@ const App = () => {
 
             \textbf{DNS Resolve} je~proces překladu doménového jména na~IP adresu. Když si~uživatel vyžádá nějaké doménové jméno, prohlížeč se~připojí k~\emph{DNS} a~požádá jej o~překlad doménového jména na~IP adresu. \emph{DNS} odpoví \emph{IP~adresou}, kterou prohlížeč použije pro~navázání spojení se~serverem.
 
-            Když~zadáme do~prohlížeče doménové jméno, prohlížeč se~pokusí najít \emph{IP~adresu} ve~vlastní \emph{DNS cache}, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá o~poskytnutí překladu jej a~uloží si~\emph{IP adresu} do~\emph{cache}. Pokud \emph{DNS server} adresu nemá, zeptá se~nadřazeného \emph{DNS serveru} atd.
+            Když~zadáme do~prohlížeče doménové jméno, prohlížeč se~pokusí najít \emph{IP~adresu} ve~vlastní \emph{DNS cache}, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá o~poskytnutí překladu jej a~uloží si~\emph{IP adresu} do~\emph{cache}. Pokud \emph{DNS server} adresu nemá, zeptá se~nadřazeného \emph{DNS serveru}~atd.
             
             Nejbližší \emph{DNS} bývá poskytovatel (\emph{ISP = Internet Service Provider}) internetu, který má~uloženy \emph{IP} adresy serverů, na~které v~minulosti zákazníci přistupovali. Pokud~záznamy ještě nemá, zeptá se~prohlížeč nadřazeného \emph{DNS serveru}, resp.~zašle požadavek na~adresu nastaveného \emph{DNS serveru}. Postupně~se tedy zeptá \emph{ISP}, správce národní domény (\emph{CZ.NIC}) a~\emph{kořenového DNS serveru} (\emph{Root DNS server}), který má~uloženy všechny \emph{IP adresy} serverů, které jsou~na~internetu.
 
@@ -721,7 +721,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 V~ČR je~přístupnost webu upravena zákonem č.~99/2019 Sb., o~přístupnosti internetových stránek a~mobilních aplikací veřejného sektoru a~o~změně zákona č.~365/2000 Sb., o~informačních systémech veřejné správy a~o~změně některých dalších zákonů (zákon o~přístupnosti).
 
-                \textbf{Pravidla přístupnosti} zahrnují optimalizaci webu zejména pro~použití osobami se~zrakovými nebo sluchovými vadami, poruchami pohybu ap. Mají např.~zjednodušit navigaci ve~stránce pomocí klávesnice, či~s~použitím programů na~čtení displeje, zmiňují kontrast prvků ve~stránce pro~lepší čitelnost a~správné použití \textbf{semantických} (\textbf{významových}) prvků \emph{HTML} jako~\texttt{<nav>}, \texttt{<header>}, \texttt{<article>}, správně použité úrovně nadpisů a~další. \cite{w3WCAGOverview}
+                \textbf{Pravidla přístupnosti} zahrnují optimalizaci webu zejména pro~použití osobami se~zrakovými nebo sluchovými vadami, poruchami pohybu~ap. Mají např.~zjednodušit navigaci ve~stránce pomocí klávesnice, či~s~použitím programů na~čtení displeje, zmiňují kontrast prvků ve~stránce pro~lepší čitelnost a~správné použití \textbf{semantických} (\textbf{významových}) prvků \emph{HTML} jako~\texttt{<nav>}, \texttt{<header>}, \texttt{<article>}, správně použité úrovně nadpisů a~další. \cite{w3WCAGOverview}
         \subsection{Údržba aplikace}
             Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
             Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
@@ -1150,13 +1150,13 @@ class dataLoader extends Endpoints{
             
             Generátor bude~také postupně nahrazovat hodnoty použitých proměnných a~funkcí ke~generování čísel. K~tomuto účelu slouží modul správce proměnných, který nahrazuje proměnné a~funkce jejich hodnotami. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání proběhne pomocí modulu \texttt{text/template}, který umožňuje jednoduché využití šablon s~proměnnými.
             
-            Proměnné budou při~definici i~v~zadání používat stejný zápis (\texttt{\{.jméno\}}). V~zadání pak~bude~možné využít i~filtry, které nabízí \emph{text/template} pomocí zápisu \texttt{\{.jméno|filtr\}}. Filtry je~možné použít např.~k~zaokrouhlení čísel, převodu na~velká nebo malá písmena, apod.
+            Proměnné budou při~definici i~v~zadání používat stejný zápis (\texttt{\{.jméno\}}). V~zadání pak~bude~možné využít i~filtry, které nabízí \emph{text/template} pomocí zápisu \texttt{\{.jméno|filtr\}}. Filtry je~možné použít např.~k~zaokrouhlení čísel, převodu na~velká nebo malá písmena~apod.
 
             K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}. U~každé části pak~určí, zda je~platná a~případně ji~nahradí její nalezenou/vypočítanou hodnotou.
             
-            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory, ap. a vyfiltruje tzv.~\textbf{bílé znaky} (mezery, ukončení řádku~ap.). Nakonec~vrátí seznam \emph{tokenů}, které v~textu našel. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
+            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory a~vyfiltruje \textbf{bílé znaky} (mezery, ukončení řádku~ap.). Nakonec~vrátí seznam \emph{tokenů}, které v~textu našel. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
             
-            Pokud např.~za~znakem \{ bude tečka, víme, že~jde o~proměnnou. Pokud je~tam~identifikátor a~závorky s~argumenty pro~funkci, jde o~funkci.
+            Např.~pokud za~znakem \{ bude tečka, vím, že~jde o~proměnnou. Pokud je~tam~identifikátor (řetězec znaků) a~závorky s~argumenty pro~funkci, jde o~funkci. Po~zpracování proměnných a~funkcí bude~možné určit zbytek jako~mnohočleny, zlomky~apod.
             
             Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu. Pro~snížení počtu operací toto provedu při~prvním použití proměnné v~jiné proměnné nebo~v~zadání příkladu.
 
