@@ -1146,11 +1146,11 @@ class dataLoader extends Endpoints{
             \end{itemize}
 
         \subsubsection{Generátor}
-            Zásadní funkci při~tvorbě zadání bude~mít \emph{generátor}.
+            Zásadní funkci při~tvorbě výsledné podoby zadání bude~mít \emph{generátor}.
             
-            Generátor bude~také postupně nahrazovat hodnoty použitých proměnných a~funkcí ke~generování čísel. K~tomuto účelu slouží modul správce proměnných, který nahrazuje proměnné a~funkce jejich hodnotami. Taky zajistí náhodné seřazení a~splnění dalších parametrů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání proběhne pomocí modulu \texttt{text/template}, který umožňuje jednoduché využití šablon s~proměnnými.
+            Generátor bude postupně nahrazovat hodnoty použitých proměnných a~funkcí ke~generování čísel a~dalších prvků. K~tomuto účelu slouží modul správce proměnných, který nahrazuje proměnné a~funkce jejich hodnotami. Mimo to~zajistí náhodné seřazení a~splnění dalších bodů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání proběhne pomocí modulu \texttt{text/template}, který umožňuje jednoduché využití šablon s~proměnnými.
             
-            Proměnné budou při~definici i~v~zadání používat stejný zápis (\texttt{\{.jméno\}}). V~zadání pak~bude~možné využít i~filtry, které nabízí \emph{text/template} pomocí zápisu \texttt{\{.jméno|filtr\}}. Filtry je~možné použít např.~k~zaokrouhlení čísel, převodu na~velká nebo malá písmena~apod.
+            Proměnné budou při~definici i~v~zadání používat stejný zápis (\texttt{\{\{.jméno\}\}}). V~zadání pak~bude~možné využít i~filtry, které nabízí \emph{text/template} pomocí zápisu \texttt{\{\{.jméno|filtr\}\}}. Filtry je~možné použít např.~k~zaokrouhlení čísel, převodu na~velká nebo malá písmena~apod.
 
             K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}. U~každé části pak~určí, zda je~platná a~případně ji~nahradí její nalezenou/vypočítanou hodnotou.
             
@@ -1160,9 +1160,9 @@ class dataLoader extends Endpoints{
             
             Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu. Pro~snížení počtu operací toto provedu při~prvním použití proměnné v~jiné proměnné nebo~v~zadání příkladu.
 
-            Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou chceme nahradit, jde o~chybu.
+            Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou chceme nahradit, jde o~chybu. Pokud závislá proměnná není zpracovaná, zpracuji ji~voláním téže funkce (\emph{rekurze}). Tím~zajistím, že~proměnné budou nahrazeny ve~správném pořadí. Pokud se~proměnná nenahradí, znamená to, že~neexistuje, což je~také chyba.
 
-            V~matematickém režimu je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů v~počítačových programech běžně používá. \cite{postfixnotation}
+            V~matematickém režimu, který bude~zapnutý nebo~vypnutý podle nastavené kategorie a~konkrétního příkladu, resp.~proměnné, je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo od~1 do~43. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů v~počítačových programech běžně používá. \cite{postfixnotation}
 
             Protože pracuju s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo~\emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo prostor pro~odpověď s~případným výčtem možností.
             
@@ -1182,7 +1182,7 @@ class dataLoader extends Endpoints{
                 \item \emph{Frontend} si~uloží nový \emph{JWT} a~uživatele přesměruje do~aplikace.
             \end{itemize}
             
-            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~vložím \emph{hash} aktuální relace do~\emph{JWT} i~do~databáze. Při~každém přístupu bude~zkontrolována platnost daného připojení. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
+            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\emph{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
 
         \subsection{Frontend}
             \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro~komunikaci s~backendem využiju dříve napsaný \emph{Typescript} modul \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
@@ -1226,7 +1226,7 @@ class dataLoader extends Endpoints{
 
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné veřejně najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
 
-        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{Vite} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}.
+        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{Vite} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~v~komentářích, dokumentačních řetězcích a~souborech typu \textbf{Markdown} v~popisu repozitářů.
 
     \newpage
     \printbibliography
