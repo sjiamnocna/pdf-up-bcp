@@ -1162,7 +1162,7 @@ class dataLoader extends Endpoints{
 
             Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou chceme nahradit, jde o~chybu. Pokud závislá proměnná není zpracovaná, zpracuji ji~voláním téže funkce (\emph{rekurze}). Tím~zajistím, že~proměnné budou nahrazeny ve~správném pořadí. Pokud se~proměnná nenahradí, znamená to, že~neexistuje, což je~také chyba.
 
-            V~matematickém režimu, který bude~zapnutý nebo~vypnutý podle nastavené kategorie a~konkrétního příkladu, resp.~proměnné, je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo od~1 do~43. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která se~k~vyčíslování výrazů v~počítačových programech běžně používá. \cite{postfixnotation}
+            V~matematickém režimu je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která nevyužívá závorky ani~prioritu operátorů a~je~vhodná ke~zpracování počítačem. Výraz je~zapsán jako~posloupnost \emph{operandů} a~\emph{operátorů}, např.~$19 + ( 26 + 1 )$ je~převeden do~\emph{postfixového} zápisu jako $19 26 1 + +$. Dvojice \emph{operandů} (\emph{hodnot}) jsou zpracovávány operátorem a~tedy jednodušší pro~zpracování pomocí funkce (např.\,\texttt{sum(a, b)}) v~programovacím jazyce. Pro~názornost algoritmu vyčíslení je~možné využít \href{https://www.free-online-calculator-use.com/postfix-evaluator.html#}{vizualizaci}. \cite{postfixnotation}
 
             Protože pracuju s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo~\emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo prostor pro~odpověď s~případným výčtem možností.
             
@@ -1218,15 +1218,15 @@ class dataLoader extends Endpoints{
         Pro~realizaci údržby a~rozšíření bych~chtěl získat sponzory, kteří by~na~vývoj na~vývoj aplikace finančně přispěli, což~by~umožnilo věnovat se~aplikaci naplno. Také bude~potřeba tým rozšířit o~další vývojáře.
 
 	\section{Závěr}
-        V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~spoustu funkcionalit bude nutné teprve dokončit. V~budoucnu chci aplikaci rozšířit o~další funkce, které umožní lepší využití v~praxi a~přizvat ke~spolupráci další vývojáře.
+        V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit. Potom bude možné ji~rozšířit o~další funkce.
 
         V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení.
         
-        V~práci jsem se~snažil používat aktuální technologie a~postupy, které jsou~v~současnosti používány, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód. Informační technologie se~neustále vyvíjí a~je~nutné kriticky sledovat nové trendy a~technologie, jelikož v~době tvorby této práce již~mohou být~některé postupy překonané. Většina principů ale zůstane platných a~je~možné na~nich~stavět.
+        V~práci jsem se~snažil používat aktuální technologie a~postupy, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód. Informační technologie se~ale neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, protože v~době této publikace již~mohou být~některé postupy překonané. Většina principů ale zůstane platná a~je~možné na~nich~stavět.
 
-        Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné veřejně najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
+        Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
 
-        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{Vite} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~v~komentářích, dokumentačních řetězcích a~souborech typu \textbf{Markdown} v~popisu repozitářů.
+        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{Vite} je~k~použití pro~vytváření projektů na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~v~komentářích, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
     \newpage
     \printbibliography
