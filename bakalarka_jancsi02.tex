@@ -383,7 +383,7 @@ func main() {
             
             \emph{React} je~postaven na~tzv.\,\emph{deklarativním} přístupu. To~znamená, že~v~kódu popisujeme, jak má aplikace vypadat, nikoliv jak se~má chovat. To~umožňuje \emph{Reactu} optimalizovat vykreslování a~zvýšit tím~výkon aplikace.
             
-            Existuje mnoho nástrojů, které usnadňují vývoj aplikací v~\emph{Reactu}, jako např.~\textbf{Create React App} (zkráceně \textbf{CRA}), nebo komplexnější nástroj \textbf{Vite}, který kromě \emph{Reactu} umožňuje použít i~další knihovny. Taky je~připraveno spousta již~hotových šablon, komponent a~modulů, které můžeme stáhnout pomocí balíčkovacích systémů `npm` nebo `yarn` a~v~naší aplikaci používat.
+            Existuje mnoho nástrojů, které usnadňují vývoj aplikací v~\emph{Reactu}, jako např.~\textbf{Create React App} (zkráceně \textbf{CRA}), nebo komplexnější nástroje jako \textbf{NextJS} nebo \textbf{Vite}. Taky je~k~dispozici spousta již~hotových šablon, komponent a~modulů, které je~možné v~aplikacích používat, pomocí balíčkovacích systémů \textbf{npm} nebo \textbf{yarn}.
 
             Jednotlivé \emph{komponenty} mohou mít svůj vlastní \textbf{stav}, který se~může měnit, což~umožňuje vytvářet interaktivní aplikace. Komponenty mohou být \textbf{funkční} nebo \textbf{třídní}. \emph{Funkční} komponenty jsou jednodušší a~práce s~nimi je~rychlejší. \emph{Třídní komponenty} jsou mírně složitější ale nabízejí k~použití všechny výhody Reactu. \emph{Funkcionální} komponenty mohou k~dosažení podobné funkcionality jako \emph{třídní} využívat tzv.~\textbf{Hooks}. \emph{Hooks} jsou stále ve~vývoji a~vývojáři používají \emph{třídní} komponenty, pokud potřebují využít některé funkce, které \emph{Hooks} zatím nepodporují.
 
@@ -435,11 +435,15 @@ const App = () => {
                 \label{JSXcomponent}
             \end{figure}
 
-            \emph{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\emph{Vanilla Javascriptu} nebo~\emph{Typescriptu}. Je~vyvíjen společností \texttt{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který podobně jako \emph{React} využívá \emph{virtuální DOM}.
+            \textbf{NextJS} je~\emph{framework} pro~\emph{React}, který umožňuje vytvářet \emph{SSR} aplikace. \emph{NextJS} je~vyvíjen společností \emph{Vercel}, která je~autorem \emph{serverless} řešení pro~\emph{Node.js} aplikace.
 
-            \emph{Vite} (i \emph{CRA}) zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\emph{hot reload}, což znamená, že~se~při~každé změně kódu \emph{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem.
+            V~základním nastavení umožňuje využívat \emph{SSR} i~\emph{SSG}, čímž jsou~aplikace v~\emph{Nextu} velmi~rychlé a~přitom poskytují všechny výhody \emph{Reactu} a~můžeme použít i~většinu balíčků pro~\emph{React}.
 
-            \emph{Vite} údajně navíc umí urychlit sestavení modulů~--~spojení importovaných modulů do~jednoho výstupu.\cite{vitejs}
+            Díky tomu je~možné jednoduchým vytvořením \emph{NextJS} projektu začít pracovat na~\emph{SSR} aplikaci, a~to~jak na~\emph{frontendu}, tak~na~\emph{backendu}, jelikož od~verze 9.3 je~možné využít také tzv.\textbf{API Routes}, které umožňují vytvořit \emph{REST API} na~jednom místě přímo v~\emph{NextJS} aplikaci. \cite{nextjs, nextjs-api-routes, nextjs-changelog-9-3}
+
+            \textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale třeba i~ve~Vue a~\emph{Vanilla Javascriptu} nebo~\emph{Typescriptu}. Je~vyvíjen společností \texttt{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který podobně jako \emph{React} využívá \emph{virtuální DOM}.
+
+            \emph{Vite} (i \emph{CRA}) zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\emph{hot reload}, což znamená, že~se~při~každé změně kódu \emph{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem. \cite{vitejs}
 
         \section{Server Side Rendering (SSR) a Static Site Generation (SSG)}
             Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \emph{HTML} obsah a~prohlížeč stránku vykreslí (\emph{Client Side Rendering~--~CSR})\cite{mediumWhatCSR}. To~může být problém, pokud máme rozsáhlou aplikaci, která obsahuje mnoho komponent nebo rozsáhlou logiku, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \emph{Static Site Generation (SSG)} a~\emph{Server Side Rendering (SSR)}.
@@ -716,6 +720,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             \subsection{Testování frontendu}
                 Pro~testování frontendu budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}. \cite{jestjsTestingReact}
 
+        \section{CI/CD - Continous Integration a Continuous Delivery}
+            \emph{CI/CD} je~souhrnný pojem pro~průběžnou integraci a~nasazování aplikace. \emph{CI} zajistí, že se~po~změnách aplikace sestaví a~spustí se~sada testů, které zjišťují, zda aplikace stále funguje tak, jak očekáváme. \emph{CD} znamená, že~při~úspěšném dokončení testů se~aplikace automaticky nasadí na~server. \cite{graham2021ethical}
+
+            \subsection{Gitlab Actions}
+                \emph{Gitlab Actions} jsou~součástí \emph{Gitlabu} a~umožňuje vytvořit sadu procesů (\emph{workflow}), které se~spustí při~určité události, např.~při~nahrání nového kódu do~repozitáře.
+                
+                \emph{Workflow} se~spouští ve~virtualizačním prostředí (\emph{kontejneru}), který je~vytvořený na~základě \emph{Dockerfile} a~obsahuje prostředí, potřebné pro~sestavení a~spuštění aplikace a~testů. Celý proces se~automaticky spouští na~\emph{virtuálním serveru}, např.~po~nahrání projektu na~\emph{Gitlab} a~nastavuje se~pomocí konfiguračního souboru \emph{.yml}.
+
+                Během procesu se~spustí \emph{kontejner}, ve~kterém se~aplikace sestaví a~spustí se~přednastavené testy. Pokud vše proběhne v~pořádku, aplikace se~automaticky nasadí na~server. Použitím \emph{CI/CD} procesů se~zjednoduší nasazování aplikace a~zrychlí proces~vývoje. \cite{gitlab:actions}
+
         \section{Pravidla přístupnosti webu}
                 Webové aplikace je~nutné vytvářet přístupné pro~všechny uživatele. Tato pravidla jsou~definována v~\textbf{WCAG} (\textbf{Web Content Accessibility Guidelines}), které jsou~vydávány organizací \emph{W3C} (\emph{World Wide Web Consortium}).
 
@@ -724,9 +738,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \textbf{Pravidla přístupnosti} zahrnují optimalizaci (přizpůsobení) aplikace pro~hladké použití aplikace osobami se~zrakovými nebo sluchovými vadami, poruchami pohybu~ap. Mají např.~zjednodušit navigaci ve~stránce pomocí klávesnice, či~s~použitím programů na~čtení displeje, zmiňují kontrast prvků ve~stránce pro~lepší čitelnost a~správné použití \textbf{semantických} (\textbf{významových}) prvků \emph{HTML} jako~\texttt{<nav>}, \texttt{<header>}, \texttt{<article>}, správně použité úrovně nadpisů a~další. \cite{w3WCAGOverview}
 
         \section{SEO - optimalizace pro vyhledávače}
-                Důležitou součástí, která souvisí i~s~přístupností je~optimalizace webu pro~vyhledávače. Při~\textbf{indexaci} (načtení strukturovaných dat ze~stránky a~jejich zařazení do vyhledávání). Vyhledávač musí -- stejně jako např.např.~software pro~čtení obrazovky -- načítat surová data, která si~ukládá do své databáze. V~případě, že~jsou data špatně strukturovaná, nebo~nejsou dostatečně popsaná, může dojít k~jejich špatnému zařazení, nebo~k~jejich nezařazení do~vyhledávání. To~může mít~za~následek, že~stránka nebude v~hledání nalezena, nebo~bude nalezena až~na~pozdějších pozicích. \cite{dover2012seo}
+                Důležitou součástí, která souvisí i~s~přístupností je~optimalizace webu pro~vyhledávače. Při~\textbf{indexaci} (načtení strukturovaných dat ze~stránky a~jejich zařazení do~vyhledávání). Vyhledávač musí -- stejně jako např.~software pro~čtení obrazovky -- načítat surová data, která si~ukládá do~své~databáze. V~případě, že~jsou data špatně strukturovaná, nebo~nejsou dostatečně popsaná, může dojít k~jejich špatnému zařazení, nebo~k~jejich nezařazení do~vyhledávání. To~může mít~za~následek, že~stránka nebude v~hledání nalezena, nebo~bude nalezena až~na~pozdějších pozicích. \cite{dover2012seo}
 
-                Důležitými faktory jsou~také zabezpečení webu (\emph{HTTPS}) a~optimalizace pro~mobilní zařízení, nebo správná struktura webu, např.~oddělení navigace od~obsahu (\texttt{<nav><article> ap.}). Vyhledávače (i sociální sítě ap.), např.~\emph{Google} bodují splnění různých kategorií a~podle vlastního algoritmu potom řadí výsledky ve~vyhledávání. Viz.~aktualizace algoritmu~\cite{hladis2016aktualizace}
+                Důležitými faktory jsou~také zabezpečení webu (\emph{HTTPS}) a~optimalizace pro~mobilní zařízení, nebo správná struktura webu, např.~oddělení navigace od~obsahu (\texttt{<nav><article>}~ap.). Vyhledávače (i~sociální sítě~ap.), např.~\emph{Google} bodují splnění různých kategorií a~podle vlastního algoritmu potom řadí výsledky ve~vyhledávání. Viz.~aktualizace algoritmu~\cite{hladis2016aktualizace}
 
         \section{Údržba aplikace}
             Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
@@ -776,7 +790,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj. \cite{gitscmBook}
             
-            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatickému testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů, nebo nechtějí svůj kód~ukládat na~cizích serverech. \cite{gitlab:CICD}
+            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatizaci testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}, viz.~sekce o~\emph{[testování aplikací](#Testování)}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů, nebo nechtějí svůj kód~ukládat na~cizích serverech. \cite{geerlings2022gitlab, gitlab:CICD, gitlab:actions}
 
         \section{Linux a příkazová řádka, WSL2}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint\dots)
@@ -1099,11 +1113,11 @@ class dataLoader extends Endpoints{
 	\chapter{Postup implementace}
         Prvně je~potřeba vytvořit základní strukturu aplikace. Pro~lepší automatizaci a~konzistenci prostředí, kdekoliv aplikaci spustím, budou \emph{vývojové} i~\emph{produkční} prostředí tvořit \emph{Docker kontejnery}.
 
-        Při~vývojí ve~\emph{Vite} využiju nastavení tzv.~\emph{proxy}. Požadavky, jejichž \emph{URI query} začíná \texttt{/api/\dots} nasměruje na~\emph{backend} aplikace.
+        Při~vývojí v~\emph{NextJS} využiju nastavení tzv.~\emph{proxy}. Požadavky, jejichž \emph{URI query} začíná \texttt{/api/\dots} nasměruje na~\emph{backend} aplikace.
         
-        \textbf{Vývojová verze} budou kontejnery pro~\emph{React}, \emph{Go} a~\emph{databázi}. \emph{Go}~kontejner bude~obsahovat nástroj \emph{Air}, který umožní automatické \emph{sestavení} a~znovuspuštění aplikace při~změně zdrojového kódu. \emph{Frontend} bude spuštěný ve~vývojové verzi \emph{Vite}, která již~má funkci (\textbf{Hot reload}), která při~změně automaticky přenačte stránku v~prohlížeči.
+        \textbf{Vývojová verze} budou kontejnery pro~\emph{React}, \emph{Go} a~\emph{databázi}. \emph{Go}~kontejner bude~obsahovat nástroj \emph{Air}, který umožní automatické \emph{sestavení} a~znovuspuštění aplikace při~změně zdrojového kódu. \emph{Frontend} bude spuštěný ve~vývojové verzi \emph{NextJS}, která již~má funkci (\textbf{Hot reload}), která při~změně automaticky přenačte stránku v~prohlížeči.
 
-        \textbf{Produkční verze}, tedy ta~výsledná, se~kterou bude pracovat \emph{koncový uživatel}, bude obsahovat stejné kontejnery bez~nástrojů pro~vývoj. Při tvorbě kontejnerů se~\emph{backend} zkompiluje a~spustí se~pouze optimalizovaný binární soubor. \emph{Frontend} (\emph{React}) bude~optimalizován podobným způsobem a~poběží s~použitím \emph{Vite}. \emph{Vite} bude obsluhovat webové požadavky a~příslušné požadavky přesměruje na~\emph{backend}. Přesměrování ze~serveru na~kontejnery zajistí \emph{Nginx}, který běží v~prostředí \emph{VPS} serveru a~obsluhuje i~další aplikace.
+        \textbf{Produkční verze}, tedy ta~výsledná, se~kterou bude pracovat \emph{koncový uživatel}, bude obsahovat stejné kontejnery bez~nástrojů pro~vývoj. Při tvorbě kontejnerů se~\emph{backend} zkompiluje a~spustí se~pouze optimalizovaný binární soubor. \emph{Frontend} (\emph{React}) bude~optimalizován podobným způsobem a~poběží s~použitím \emph{NextJS}. \emph{NextJS} bude obsluhovat webové požadavky a~požadavky na~\emph{API} přesměruje na~kontejner s~\emph{backendem}. Přesměrování ze~serveru na~kontejnery zajistí \emph{Nginx}, který běží v~prostředí \emph{VPS} serveru a~obsluhuje i~další aplikace.
 
         Kód pro~\emph{backend} bude v~adresáři \texttt{goapp} a~kód pro~\emph{frontend} v~adresáři \texttt{vite}. Všechny kontejnery budou mít své~úložiště v~adresáři \texttt{data}, kde budou trvalá data, která se~zachovají při~restartu kontejneru. To~zjednoduší zálohování dat a~případný přesun na~jiný server.
 
@@ -1221,13 +1235,13 @@ class dataLoader extends Endpoints{
     \chapter{Závěr}
         V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit. Potom bude možné ji~rozšířit o~další funkce.
         
-        V~části věnované vývoji aplikací je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit. Také nemusí jít o~nejlepší řešení.
+        Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, kterou budou moci využívat učitelé i~žáci k~tvorbě testů a~procvičování příkladů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
-        V~práci jsem se~snažil používat aktuální technologie a~postupy, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód. Informační technologie se~ale neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, protože v~době této publikace již~mohou být~některé postupy překonané. Většina principů ale zůstane platná a~je~možné na~nich~stavět.
+        V~práci jsem se~snažil používat aktuální technologie a~postupy, používat základní poučky pro vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód s~důrazem na~rychlost a~optimalizaci kódu, aby v~budoucnu dokázala obsloužit co~největší počet požadavků. Informační technologie se~ale neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, protože v~době této publikace již~mohou být~některé postupy překonané. Většina principů ale zůstane platná a~je~možné na~nich~stavět.
+        
+        Také je~potřeba brát v~potaz, že~popsané postupy jsou~pouze návrhem a~v~praxi se~mohou lišit a~nemusí jít o~ideální řešení.
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
-        
-        Uživatelé mohou sdílet příklady mezi sebou a~nechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, kterou budou moci využívat učitelé i~žáci k~tvorbě testů a~procvičování příkladů.
         
         Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API} a~mohla by~být integrována do~dalších prostředí formou pluginů. Uživatelé by~tak mohli používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}.
     
@@ -1235,7 +1249,7 @@ class dataLoader extends Endpoints{
         
         Pro~realizaci údržby a~rozšíření bych~chtěl získat sponzory, kteří by~na~vývoj na~vývoj aplikace finančně přispěli, což~by~umožnilo věnovat se~aplikaci naplno. Také bude~potřeba tým rozšířit o~další vývojáře.
             
-        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{Vite} je~k~dispozici pro~zjednodušení vytváření nových projektů na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~v~komentářích, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
+        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici pro~zjednodušení vytváření nových projektů na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~v~komentářích, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
     \newpage
     \printbibliography
