@@ -92,13 +92,13 @@
     \setcounter{page}{1}
 	
 	\chapter{Úvod}
-        V~úvodu této práce bych~chtěl na~několika stránkách popsat nástroje, které je~možné použít pro~tvorbu testů a~definovat potřeby, které v~této souvislosti mohou nastat.
+        Ověření výsledků je~důležitou součástí vzdělávání. V této práci na~několika stránkách popíšu náležitosti testů a~některé postupy, jakými je~možné postupovat při~tvorbě jejich zadání a definuju potřeby, které v~této souvislosti mohou nastat. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby.
+        
+        Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici ap. 
 
-        Ve~druhé části popíšu návrh a~implementaci moderních aplikací a~vytvořím aplikaci, kterou učitelé mohou používat k~tvorbě různých variant zadání školních testů. V~rámci toho popíšu základní prvky při~vývoji \emph{moderní \emph{MVC}} aplikace a~popíšu důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování pomocí diagramů, až~k~její implementaci a~spuštění za~použití vybraných technologií.
+        Ve~druhé části popíšu a~vytvořím aplikaci, kterou učitelé budou moci používat k~tvorbě různých variant zadání školních testů. Popíšu základní prvky při~vývoji \emph{moderní \emph{MVC}} aplikace a~popíšu důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování, až~k~její implementaci a~spuštění a~údržbě za~použití vybraných technologií.
         
         Aplikace mohou samozřejmě vznikat i~jinými způsoby, nicméně by~mělo jít o~čitelný a~reprodukovatelný postup vývoje, zabezpečení a~údržby podobné aplikace. Vyhotovená aplikace bude následně veřejně dostupná jako webová služba.
-
-        K~upřesnění požadavků na~aplikaci použiju několik rozhovorů s~učiteli a~dalšími vývojáři.
 
     \chapter{Testy, testové úlohy}
         Školní testy jsou nástrojem pro hodnocení znalostí a dovedností studentů. Vznikají tak, že~učitelé nebo vzdělávací instituce vytvářejí \emph{otázky} (\emph{problémy}~\cite{zhouf:tvorbamatproblemu}) a~úkoly, které jsou zaměřeny na~konkrétní téma nebo oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do testu, který je studentům předložen k~vyplnění.
@@ -1233,7 +1233,7 @@ class dataLoader extends Endpoints{
         
             
     \chapter{Závěr}
-        V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Je~nutné dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit. Potom bude možné ji~rozšířit o~další funkce.
+        V~této práci jsem se~zabýval tvorbou aplikace pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit. Potom bude možné ji~rozšířit o~další funkce.
         
         Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, kterou budou moci využívat učitelé i~žáci k~tvorbě testů a~procvičování příkladů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
@@ -1243,7 +1243,7 @@ class dataLoader extends Endpoints{
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
         
-        Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API} a~mohla by~být integrována do~dalších prostředí formou pluginů. Uživatelé by~tak mohli používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}.
+        Aplikace \emph{Písemkomat} bude dostupná přes~\emph{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}.
     
         Zajímavá je~možnost zpracování tématických otázek do~herního nebo~postupového módu pro~motivaci žáků do~učení sbíráním bodů a~postupem v~tématech.
         
