@@ -627,12 +627,15 @@ const App = () => {
                 
                 Díky \emph{asymetrickému šifrování} můžeme vytvořit více tzv.~\emph{veřejných klíčů} a~přidělit je~různým službám, které je~pak mohou používat pro~ověření tokenu z~původního \emph{serveru}.
 
-                Formát \emph{Base64} je~kódování, které používáme pro~jednodušší přenos dat, a~nikoliv pro~zabezpečení. Bezpečnost \emph{JWT} je~zajištěna pouze podpisem, který zaručuje \emph{integritu dat}. Data ale~může číst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \emph{JWT} vznikly navazující standardy\,--\,\emph{JWE}, \emph{JWS}, \emph{JWA} a~\emph{JWK}. \cite{jwtesak}
+                Formát \emph{Base64} je~kódování, které používáme pro~jednodušší přenos dat, nikoliv pro~zabezpečení. Bezpečnost \emph{JWT} je~zajištěna pouze podpisem, který zaručuje integritu dat. Data ale~může přečíst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \emph{JWT} vznikly navazující standardy\,--\,\emph{JWE}, \emph{JWS}, \emph{JWA} nebo~\emph{JWK}.~\cite{jwtesak, graham2021ethical}
 
-                Zajímavou možností je~využití \emph{homeomorfního šifrování}, které umožňuje pomocí speciálního klíče provádět operace přímo nad~zašifrovanými daty, aniž bychom je~museli předem dešifrovat. \cite{graham2021ethical}
+            \subsection{SQL - Structured Query Language}
+            \textbf{SQL} je~jazyk, používány pro~manipulaci s~daty uloženými v~rámci relačních databází. \emph{SQL} je~deklarativní jazyk, což~znamená, že~při~vytvoření dotazu popíšeme, co~chceme získat, a~ne jakým způsobem. \emph{SQL} je~standardizovaný jazyk, který je~podporován většinou relačních databází. Pomocí \emph{SQL} spouštíme nad~databází tzv.~\textbf{SQL dotazy} (\textbf{SQL Query}), které mohou ukládat, načítat, upravovat nebo~mazat data.
+
+            \textbf{DDL~--~Data Definition Language} je~součástí \emph{SQL} a~používá se~pro~vytváření a~úpravu struktury databáze. Pomocí \emph{DDL} vytváříme tabulky, definujeme vztahy mezi nimi, přidáváme nebo~měníme sloupce, indexy nebo~pohledy. \cite{laurencik2018sql}
 
             \subsection{SQL Injection}
-                \emph{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus \emph{SQL dotazu} (\emph{SQL Query}) do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~místo zpracování vykonán společně se~zbytkem dotazu. To~může vést k~získání citlivých dat, jejich změně nebo~smazání. Může např.~dojít ke~změně hesla administrátorského účtu a~tím získání přístupu ke~chráněným datům.
+                \emph{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus~\emph{SQL dotazu} do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~místo zpracování vykonán společně se~zbytkem dotazu. To~může vést k~získání citlivých dat, jejich změně nebo~smazání. Může např.~dojít ke~změně hesla administrátorského účtu a~tím získání přístupu ke~chráněným datům.
 
                 Proto je~nutné data od~uživatele vždy ošetřit a~v~ideálním případě použít navíc tzv.~\emph{Parametrizované dotazy} (\emph{Prepared statements}). Při~použití \emph{parametrizovaných dotazů} se~do~dotazu nevkládají přímo data, ale na~místo, kam~patří data je~vložený tzv.~\emph{Zástupný symbol} (\emph{placeholder}), který je~poté nahrazen ošetřenými (\emph{escapovanými}) daty tak, aby~nebylo možné případný vložený příkaz provést. Zástupný symbol v~SQL představuje otazník \uv{\texttt{?}} nebo v~případě pojmenovaných hodnot název proměnné za~dvojtečkou \uv{\texttt{:nazev}} \cite{graham2021ethical}
                 
@@ -675,7 +678,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet.
                 
-                Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze. To~už ale~je na~uvážení autora konkrétní aplikace. \cite{w3s:SQLInjection}, \cite{itnetwork:SQLInjection}
+                Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze. To~už ale~je na~uvážení autora konkrétní aplikace. \cite{w3s:SQLInjection, itnetwork:SQLInjection}
 
             \subsection{XSS -- Cross Site Scripting}
                 \emph{XSS} je~útok, při~kterém útočník vloží do~uživatelského vstupu kód, který se~při~načtení stránky spustí. To~může vést k~získání citlivých dat, přesměrování na~jinou stránku nebo~k~jiným nežádoucím akcím.
@@ -693,16 +696,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Na~druhou stranu~--~zejména automatickým~--~testováním můžeme ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které můžeme spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
             
-            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\emph{čisté funkce} (\textbf{pure function}), což jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují data ani~výstupy vně~funkce ale~používají~se např.~pro~výpočty) a~vždy vrací stejný výsledek pro~stejný vstup. Takové testování nazýváme \emph{unit testing}.
+            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména testujeme tzv.~\emph{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování nazýváme \emph{unit testing}.
             
             V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \emph{Javascriptu} to~jsou~\emph{Jest}, \emph{Mocha}, \emph{Chai} nebo~\emph{Jasmine}. Go~má~vestavěný nástroj pro~automatické~testování~\emph{Go~test}.
             
             Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování backendu potom zmíněný \emph{Go~test} \cite{jestjsTestingReact}.
             
             \subsection{Testování API}
-                Pro~testování \emph{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~hotovou \emph{frontendovou} část. Mezi nejznámější patří \emph{Postman}, \emph{Insomnia} nebo~\emph{Swagger}. Některé navíc nabízejí možnost vytvořit si~sadu automatických testů, které můžeme spouštět při~sestavování aplikace a~ověřit si~tak, že~\emph{API} stále funguje správně.
+                Pro~testování \emph{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \emph{frontendovou} část. Mezi nejznámější patří \emph{Postman}, \emph{Insomnia} nebo~\emph{Swagger}. Některé navíc nabízejí možnost vytvořit si~sadu automatických testů, které můžeme spouštět při~sestavování aplikace a~ověřit si~tak, že~\emph{API} stále funguje správně.
 
-                K~tomuto účelu využívám aplikaci \emph{Postman}. S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~dalším požadavku ho~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \emph{backend}, bez~vypínání bezpečnostních opatření.
+                K~tomuto účelu využiju \emph{Postman}. S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \emph{backend}, bez~omezení bezpečnostních opatření.
 
             \subsection{Testování frontendu}
                 Pro~testování frontendu budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}. \cite{jestjsTestingReact}
@@ -960,29 +963,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Po~nasdílení trvalého odkazu na~daný~příklad/test bude umožněno zobrazit konkrétní nebo náhodně vygenerovanou variantu příkladu, případně si~příklad přidat a~upravit ve~vlastním účtu.
 
-        \section{Diagram případů užití}
-            V~\emph{diagramu případů užití} jsem identifikoval tyto aktéry a~případy užití:
-
-            \begin{itemize}
-                \item \harddata{Neregistrovaný uživatel} může pouze prohlížet vygenerované příklady a~testy ze~sdíleného odkazu, případně volně dostupné příklady a~testy ostatních uživatelů. Může procházet veřejnou část aplikace, vybrat si~jazyk aplikace, zaregistrovat~se.
-
-                \item \harddata{Uživatel}, který se~zaregistroval do~aplikace~--~může vytvářet a~plně spravovat svoje kategorie, příklady a~testy, příp. ty, ke~kterým má~povolen přístup. Může si~měnit osobní údaje a~přidávat způsoby přihlášení, případně udělit právo ke~spolupráci na~vlastních příkladech. Může přizvat nové uživatele k~registraci do~aplikace.
-        
-                \item \harddata{Administrátor} může dělat vše, co~normální uživatel. Navíc může kontrolovat a~zasahovat do~dění v~celé aplikaci, pokud je~to~potřeba~--~měnit uživatele a~všechen další obsah. Bude mít na starosti údržbu systému.
-
-                \item \harddata{Systém} je fiktivní aktér, který provádí pravidelné kontroly, přepočty a~další akce. Většinou v~časech, kdy se~nepřihlašuje moc uživatelů, aby nebrzdil běžný provoz aplikace. Může se~jednat o~odstraňování neaktivních účtů a nevyužívaného obsahu, přihlašovacích metod nebo~přístupových tokenů, rozesílání e-mailů, zálohování databáze, aktualizace aplikace\dots
-            \end{itemize}            
-
-        \section{Diagram tříd}
-
         \section{Návrh struktury databáze}
             Pro~ukládání dat v~aplikaci použiju relační databázový systém \emph{MySQL}. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
 
-            Při~plánování databáze využiju \emph{diagram tříd} k~plánování konkrétních tabulek a~vztahů mezi~nimi. \emph{UCD} zase pomůže zjistit, jaké emph{SQL~dotazy} budou používány, což~umožní lepší promyšlení toho, které sloupce zařadím do~indexů a~které nikoliv.
+            Při~plánování databáze využiju \emph{diagram tříd} k~odvození konkrétních tabulek a~vztahů mezi~nimi. \emph{UCD} zase pomůže zjistit, jaké \textbf{SQL~dotazy} (\textbf{SQL Query}) budou používány, což~umožní lepší promyšlení toho, které sloupce zařadím do~indexů a~které nikoliv.
 
-            O~problematiku tvorby databázových tabulek se~postará \emph{ORM}, který sám vytvoří tabulky z~modelů dat, které bude aplikace používat. Autor aplikace se~tak nemusí starat o~tvorbu tabulek a~jejich vztahů, ale~může se~soustředit na~tvorbu aplikace, nicméně by~měl pamatovat na~zásady indexování a~optimalizace databáze. Tyto zásady jsou popsány jako 1\,--\,3.~normální formy a~jsou součástí zásad nazývaných \emph{ACID} (zkratka pro~\emph{Atomicity, Consistency, Isolation, Durability}). \cite{interval:normalniformydb, bmcACIDExplained}
+            O~problematiku tvorby databázových tabulek se~postará \textbf{ORM} (\textbf{Object Relational Mapper}), který sám vytvoří tabulky z~modelů dat, které bude aplikace používat. Autor aplikace se~tak nemusí starat o~tvorbu tabulek a~jejich vztahů, ale~může se~soustředit na~tvorbu aplikace, nicméně by~měl pamatovat na~zásady indexování a~optimalizace databáze.
+            
+            Tyto zásady jsou popsány jako 1\,--\,3.~normální formy a~jsou součástí zásad nazývaných \emph{ACID} (zkratka pro~\emph{Atomicity, Consistency, Isolation, Durability}). \cite{interval:normalniformydb, bmcACIDExplained}
 
-            Potom následuje vytvoření tabulek, resp.~\emph{modelů dat}. Používá se~k~tomu jazyk \emph{SQL} (Structured Query Language), který bude ovládat databázi \emph{MySQL} (\emph{MariaDB}). Veškerou komunikaci prostřednictvím \emph{SQL} obstará \emph{ORM}, nicméně je~dobré jazyk \emph{SQL} alespoň na~základní úrovni příkazů \texttt{INSERT} a~\texttt{SELECT} ovládat.
+            Potom následuje vytvoření tabulek, resp.~\emph{modelů dat}. Používá se~k~tomu jazyk \textbf{SQL} (\textbf{Structured Query Language}), resp.~\textbf{DDL} (\textbf{Data Definition Language}). Veškerou komunikaci prostřednictvím \emph{SQL} obstará \emph{ORM}, nicméně i~při~použití \emph{ORM} je~dobré jazyk \emph{SQL} alespoň na~základní úrovni příkazů \texttt{INSERT} a~\texttt{SELECT} ovládat.
 
             \textbf{Indexace} sloupců znamená optimalizaci dat v~daném sloupci pro~rychlejší třídění, spojování tabulek a~vyhledávání v~nich. \emph{Indexy} se~vytváří na~sloupcích představujících \emph{primární klíč} nebo \emph{unikátní} hodnoty, které se~v~tabulce nesmí vyskytnout opakovaně a~slouží k~jednoznačné identifikaci záznamu, nebo sloupců, které jsou~v~\emph{SQL} dotazech často využívány k~třídění a~vyhledávání. \emph{Indexy} je~možné připodobnit k~lékařské kartotéce, kde~se~snažíme, aby~karty pacientů byly~seřazeny abecedně, zdravotní sestra pak~při vyhledávání pacientů aplikuje metodu \textbf{binárního vyhledávání}, čímž~najde kartu dříve než~kdyby karty nebyly seřazeny. \cite{interval:normalniformydb, laurencik2018sql}
 
