@@ -1132,13 +1132,13 @@ class dataLoader extends Endpoints{
 
             Důležitou součástí aplikace \emph{GINu} je~tzv.~\textbf{Router}, který z~příchozího požadavku zjistí, jaký \emph{koncový bod} je~volán a~předá volání~příslušnému \emph{handleru}. \emph{Router} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~\emph{URL} adresy a~které mohou sdílet část logiky. To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. \emph{Router} funguje podobně i~pro obsluhování požadavků na~\emph{Frontendu}.
 
-            \emph{Endpointy} budou umístěny v~adresáři \texttt{Endpoints}, kde~bude mít~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech budou jejich \emph{handlery}. \emph{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \emph{handleru} s~ním pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou rozděleny do~skupin, podle zdroje se~kterým manipulují, např.;
+            \emph{Endpointy} budou umístěny v~adresáři \texttt{Endpoints}, kde~bude mít~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech budou jejich \emph{handlery}. \emph{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \emph{handleru} s~ním pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují, např.;
             \begin{itemize}
-                \item \harddata{User}~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
-                \item \harddata{Task}~--~\emph{CRUD} akce spojené s~úkoly, které uživatelé vytváří a~řeší.
-                \item \harddata{Category}~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
-                \item \harddata{Test}~--~\emph{CRUD} akce spojené s~testy, umožňují přidávat otázky, pojmenovat a~vyhledat a~vygenerovat výsledek, resp.~získat na~něj odkaz.
-                \item \harddata{App}~--~zajistí manipulaci s~aplikací, jako je~nastavení a~jiné nespecifikované akce.
+                \item \harddata{/api/user}~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
+                \item \harddata{/api/cat}~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
+                \item \harddata{/api/exam}~--~\emph{CRUD} akce spojené s~testy, umožňují přidávat otázky, pojmenovat a~vyhledat a~vygenerovat výsledek, resp.~získat na~něj odkaz.
+                \item \harddata{/api/app}~--~zajistí manipulaci s~aplikací, jako je~nastavení a~jiné nespecifikované akce.
+                \item Další skupiny\dots
             \end{itemize}
 
         \subsection{Generátor}
@@ -1183,9 +1183,45 @@ class dataLoader extends Endpoints{
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\emph{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
 
         \section{Frontend}
-            \emph{Frontend} bude vytvořen pomocí nástroje \emph{Vite} v~jazyce \emph{Typescript} s~použitím knihovny \emph{React}. Pro lepší přístupnost a~aplikace znevýhodněmým a~pro~lepší \emph{SEO} využiju k~tvorbě komponent některý z~\emph{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~nějakou optimalizací přístupnosti, což~zjednoduší práci při~tvorbě uživatelského rozhrání.
+            \emph{Frontend} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \emph{Typescript}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro lepší přístupnost a~aplikace znevýhodněmým a~pro~lepší \emph{SEO} využiju k~tvorbě komponent některý z~\emph{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~nějakou optimalizací přístupnosti, což~zjednoduší práci při~tvorbě uživatelského rozhrání.
 
             Pro~komunikaci s~backendem budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
+
+            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv a~vystavujeme se~tak~riziku zneužití údajů. Proto jsou takové údaje načítány z~\emph{proměnných prostředí}, které budou uloženy v~souboru \texttt{.env} a~\emph{Docker} si~je~automaticky načte. Jelikož \emph{NextJS} neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí načítat do~\emph{Javascriptového} souboru a~dále s~nimi budu pracovat jako s~\emph{konstantami}. \emph{Backend} napsaný v~\emph{Go} umí~takové proměnné číst pomocí \texttt{os.Getenv("nazevpromenne")}.
+            
+            \begin{figure}
+                \begin{minted}{js}
+// node.js environment
+const fs = require('fs');
+const os = require('os');
+
+// truncate the file and write new env vars into it
+const f = fs.open('env_vars.js', 'w', function(err, fd) {
+    if (err) {
+        throw 'could not open file: ' + err;
+    }
+
+    // now one by one write the env vars into the file
+    for (const i in process.env){
+        if (!i.startsWith("NEXT_PUBLIC")){
+            continue;
+        }
+
+        const content = `export const ${i} = '${process.env[i]}'${os.EOL}`
+        fs.appendFile(fd, content, function(err) {
+            if (err) throw 'error appending file: ' + err;
+        });        
+    }
+
+    // close the file
+    fs.close(fd, function() {
+        console.log('wrote the file successfully');
+    });
+});
+                \end{minted}
+                \caption{Skript \emph{Node.js} načítající \emph{env proměnné} do~\emph{Javascriptového} souboru.}
+                \label{oop:difference}
+            \end{figure}
 
             Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu slouží \emph{Node} modul \texttt{i18n}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
