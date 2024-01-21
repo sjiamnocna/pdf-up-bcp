@@ -91,9 +91,9 @@
     \setcounter{page}{1}
 	
 	\chapter{Úvod}
-        Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem pro~zhodnocení nabytých znalostí a~dovedností. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí \emph{otázky} (\emph{problémy}~\cite{zhouf:tvorbamatproblemu}) a~úkoly, které jsou zaměřeny na~konkrétní téma nebo oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do testu, který je studentům předložen k~vyplnění.
+        Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem pro~zhodnocení nabytých znalostí a~dovedností. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~studentům předložen k~vyplnění.
 
-        Testy umožňují učitelům zjistit, jak dobře žáci porozuměli učivu a~jaké jsou jejich silné a~slabé stránky. Žákům poskytnou informace o~tom, na~kterých vědomostech by~měli dále pracovat. Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici~ap. Kromě toho jsou výsledky různých testů použity jako parametr přijímání na~vysoké školy nebo k~udělování stipendií. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby.
+        Testy umožňují učitelům zjistit, jak~dobře žáci porozuměli učivu a~jaké jsou~jejich silné a~slabé stránky. Žákům poskytnou informace o~tom, které znalosti je~potřeba ještě zlepšovat. Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici~ap. Kromě toho jsou výsledky různých testů použity jako parametr přijímání na~vysoké školy nebo k~udělování stipendií. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby.
         
         V této práci na~několika stránkách popíšu náležitosti testů a~některé postupy, jakými je~možné postupovat při~tvorbě jejich zadání a definuji potřeby, které v~této souvislosti mohou nastat. Zabývat se~budu především písemnými testy, které jsou~používány na~základních a~středních školách, nicméně většina z~popisovaných pojmů bude použitelná i~pro~další typy testů.
         
@@ -102,7 +102,7 @@
         V~práci se~nebudu zabývat využitím \textbf{umělé inteligence} (\textbf{AI}) při~tvorbě testů, přestože je~samozřejmě možné ji~do~tvorby zapojit.
 
     \chapter{Testy, testové úlohy}
-         V~této kapitole se~budu zabývat problematikou a~náležitostmi testových úloh a~jaké~možnosti nabízejí moderní technologie ke~zjednodušení jejich tvorby. Zaměřuji se~na~nástroje, které jsou dostupné bezplatně nebo~jsou přímo vydávány s~\textbf{otevřeným zdrojovým kódem} (\textbf{open--source}).
+         V~této kapitole se~budu zabývat problematikou a~náležitostmi testových úloh a~jaké~možnosti nabízejí moderní technologie ke~zjednodušení jejich tvorby. Zaměřuji se~na~nástroje, které jsou dostupné bezplatně nebo~jsou dostupné s~\textbf{otevřeným zdrojovým kódem} (\textbf{open--source}).
 
         \section{Uzavřené úlohy}
             \textbf{Uzavřené úlohy} jsou~úlohy, které mají předem danou množinu odpovědí. Respondent si~při~vyplňování testu vybere jednu nebo více správných odpovědí (podle zadání) a~tím odpoví na~otázku. Může jít o~označení vyjmenovaných možností nebo z~obecně předpokládaných odpovědí: např.~na~otázku \uv{V~jakém městě bydlíte?} očekáváme v~odpovědi existující město, nikoliv několik popisných vět. Hodnocení probíhá pomocí bodování.
@@ -120,8 +120,11 @@
 
         \section{Tvorba testů}
             Na začátku tvorby testu je nutné uvažovat o~jeho rozsahu. Jde~o~obecný test, ověřující schopnosti žáka, nebo pouze konkrétního výřezu učiva daného předmětu?
+            Zároveň je~ale~potřeba při~tvorbě myslet na~žáky.
 
-            \uv{\emph{Otázky} by~měly být~pestré, pokrývající co~nejširší spektrum prověřovaného učiva, a~to z~různých úhlů pohledu. Proto je~nutné použít \emph{otázky}, které zjišťují schopnost žáka pracovat s~fakty (značky a~jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů~atd.)}. \cite{Suchoradsky:testy}
+            \uv{\emph{Otázky} by~měly být~pestré, pokrývající co~nejširší spektrum prověřovaného učiva, a~to z~různých úhlů pohledu. Proto je~nutné použít \emph{otázky}, které zjišťují schopnost žáka pracovat s~fakty (značky a~jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů~atd.)}.
+
+            Zároveň je~potřeba myslet na~to, že~žáci mají různé schopnosti a~znalosti a~ne pro všechny je~test stejně náročný. Proto je~potřeba k~dosažení spolehlivého ověření znalostí kombinovat testy s~jinými metodami ověřování znalostí a~dávat důraz na~získané schopnosti a~jejich aplikaci, nikoliv na~to, co~si~žák dokázal doslovně zapamatovat. Důležitá je i~práce s~chybou a~individuální přístup k~žákům. \cite{Suchoradsky:testy, chraska:testy, Berkley2017LearningFromErrors}
             
             Důležitý aspekt je~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek s~výběrem z~nabídnutých možností. Pokud je~naším cílem dobře ověřit znalosti, pak~je~nutné tvořit \emph{otázky} tak, aby nesprávné odpovědi vypadaly věrohodně. Také nesmíme zapomenout na to, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
 
@@ -129,7 +132,7 @@
 
             Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti můžeme definovat výpočtem z~koeficientů. Nebo~řekněme, že~budeme chtít, aby~výsledek odpovídal některému z~číselných oborů. Pro~žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud chceme ověřit znalost výpočtu kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~odpovědích obsáhnout i~imaginární složku. \cite{zhouf:tvorbamatproblemu}
 
-        \section{V současnosti používané nástroje}
+        \section{Nástroje k tvorbě testů}
             V~současnosti je~pro~účely tvorby testů používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
             
             Na~internetu je~možné nalézt připravené sady otázek ke~stažení, které učitel jen~vytiskne, nebo jednotlivé příklady, ze~kterých učitel test sestaví, např.~pomocí textového procesoru. Pokud je~potřeba procvičovat test k~přijímacím zkouškám, materiál můžeme nalézt na~oficiálních webech společností \emph{CERMAT} nebo~\emph{SCIO}. Existují také různě obsáhlé sbírky úloh a~testů, které jsou vydávány jako~samostatné knihy pro~různé obory a~obtížnost učiva.
@@ -144,26 +147,26 @@
 
             Je~možné otázky zadat např.~do~systému \emph{Moodle} a~využít jeho možností. \emph{Moodle} je~\emph{open--source} systém pro~správu vzdělávacích kurzů. Obsahuje mnoho funkcí, např.~možnost vytvářet různé typy testů. \cite{drlik2013moodle}
 
-            Přestože je~možné všechny tyto nástroje využívat, nejsou přímo určeny pro~tvorbu testů, mohou vyžadovat speciální instalaci a~mohou být pro~učitele příliš složité. Proto tvořím aplikaci přímo zaměřenou na~správu a~generování otázek a~testů, kterou bude možné jednoduše integrovat do~dalších systémů.
+            Přestože je~možné všechny tyto nástroje využívat, nejsou přímo určeny pro~tvorbu testů nebo mají každá jinou množinu těchto funkcionalit, mohou vyžadovat speciální instalaci a~mohou být pro~učitele příliš složité. Proto tvořím aplikaci přímo zaměřenou na~správu a~generování otázek a~testů, kterou bude možné jednoduše integrovat do~dalších systémů.
 
-    \chapter{Technologie a principy vývoje webové aplikace}
+    \chapter{Technologie a principy vývoje webových aplikací}
         V~dnešní době je~webová aplikace první volbou pro~většinu vývojářů, zejména protože~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu přes~webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji~instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
         
         Vývojáři se~také nemusí starat o~kompatibilitu, jelikož webový prohlížeč je~dostupný na~všech hlavních platformách. Webová aplikace je~také snadno škálovatelná, protože je~uložena na~serveru a~uživatelé se~k~ní připojují. Navíc je~možné z~jednoho zdrojového kódu jednoduše sestavit aplikaci ve~verzích pro~různé platformy (Windows, Linux, Android, IOS\dots).~\cite{adobe:webapp}
 
         Většina dnešních projektů je~tedy vyvíjena jako~\emph{MVC} webová \emph{aplikace}. Tím~je~možné~oddělit logiku aplikace od~jejího zobrazení, což~umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části a~můžeme pracovat s~různými technologiemi.
         
-        Obvykle není nutné tvořit aplikaci od začátku. \uv{Pro frontend i backend aplikace existuje na webu obrovské množství použitelných materiálů. Ať už jsou to různé grafické prvky nebo serverové komponenty, to vše je už někde nejspíše hotové.}\cite{itnetworkBestPractices}
+        Obvykle není nutné tvořit aplikaci od~začátku (tzv.~\uv{na~zelené louce}). \uv{Pro frontend i~backend aplikace existuje na~webu velké množství použitelných materiálů. Ať~už~jsou to~různé grafické prvky nebo~serverové komponenty, to~vše je už~někde nejspíše hotové.}\cite{itnetworkBestPractices}
 
         \section{Základní statická HTML stránka}
-            V roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}. \emph{HTML} je~zkratka pro~HyperText Markup Language (Hypertextový značkovací jazyk). Základem je HTML stránka~--~soubor, který obsahuje textový obsah a~HTML značky, které určují význam jednotlivých částí obsahu. Navíc lze jednotlivé soubory propojit pomocí hypertextových odkazů, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
+            V@roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}. \emph{HTML} je~zkratka pro~HyperText Markup Language (Hypertextový značkovací jazyk). Základem je~HTML stránka~--~soubor, který obsahuje textový obsah a~HTML značky, které určují význam jednotlivých částí obsahu. Navíc lze jednotlivé soubory propojit pomocí hypertextových odkazů, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
             Jednotlivé \emph{HTML} stránky se~skládají z~\emph{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~JavaScript, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře. \cite{berners:1989:proposal}
 
-            Jednotlivé prvky je možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít prvek více a~jedna třída může být použita vícekrát, identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti. \cite{jpw:tridy}
+            Jednotlivé prvky je možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít prvek více a~jedna třída může být~použita vícekrát, identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti. \cite{jpw:tridy}
 
         \section{HTML s dynamickým obsahem}
-            HTML stránky mohou mít i~dynamický obsah. To znamená, že~se~mohou měnit podle toho, jak s~nimi uživatel pracuje. Na~úrovni serveru se~může generovat \emph{HTML} stránka, která obsahuje dynamický obsah. V~dnešní době je~oblíbený přístup generovat výslednou stránku pomocí \emph{javascriptu} až~na~straně uživatele a~od~\emph{serveru} si~vyžádat pouze data, nicméně v minulosti se~dynamický obsah generoval převážně na~serveru pomocí technologií jako~\emph{PHP (HyperText Preprocessor)}, \emph{ASP.NET}, které na~serveru vygenerovaly kompletní \emph{HTML kód} stránky i~s~načtenými daty.
+            HTML stránky mohou mít i~dynamický obsah. To~znamená, že~se~obsah může~měnit podle toho, jak se~stránkou uživatel pracuje. Na~úrovni serveru se~může generovat \emph{HTML} stránka, která obsahuje dynamický obsah. V~dnešní době je~oblíbený přístup generovat výslednou stránku na~serveru a~pomocí \emph{javascriptu} si~při~změnách od~\emph{serveru} vyžádat pouze data, nicméně v minulosti se~dynamický obsah generoval převážně na~serveru pomocí technologií jako~\emph{PHP (HyperText Preprocessor)}, \emph{ASP.NET}, které na~serveru vygenerovaly kompletní \emph{HTML kód} stránky i~s~načtenými daty.
 
             To samozřejmě znamenalo, že~při~každé změně obsahu bylo~potřeba znovu kontaktovat server a~stránku znovu načíst do~prohlížeče. Také byla veškerá komunikace omezená na~požadavek od~klienta, server pouze obsluhoval požadavky a~neměl možnost samostatně zaslat zprávu klientovi. Tento problém právě adresuje Javascript. Odesílá požadavky na~server a~na~základě odpovědi mění obsah celé nebo části stránky. Díky metodám, jako je~\emph{AJAX (Asynchronous Javascript And XML)}~\cite{ajax:mdn} je~možné komunikovat se~serverem i~bez~načítání celé stránky.
 
@@ -174,22 +177,25 @@
         \section{SPA -- Single Page Application}
             \textbf{Single Page Application} je~aplikace, která se~načte pouze jednou a~poté pouze aktualizujeme její obsah pomocí \emph{AJAXu}. Většinou k~práci s~daty využívá nějaké \emph{API}.
 
-            \textbf{Serverless aplikace} využívají již~připravené \emph{API} třetí strany, např.~\textbf{Google Firebase} nebo \textbf{Amazon Web Services}, což~usnadňuje vývoj a~umožňuje vývojářům se~soustředit na~vývoj aplikace a~ne~na~správu serveru.
+            \textbf{Serverless aplikace} využívají k~zajištění některých (nebo všech) svých~funkcí již~připravené \emph{API} služeb třetích stran, např.~\textbf{Google Firebase} nebo \textbf{Amazon Web Services}, což~usnadňuje vývoj a~umožňuje vývojářům se~soustředit na~vývoj aplikace a~ne~na~správu serveru.
             
             \textbf{Statické SPA} jsou vygenerovány na~serveru a~obsahují všechny potřebné zdroje. Jde~o~\emph{statickou webovou stránku}, která je~vytvořena pomocí \emph{HTML}, \emph{CSS} a~\emph{JavaScriptu}.
         
         \section{Kompilátor a interpret}
-            Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem.
+            Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem. Souvisí to~se~způsobem, jakým se~programy vykonávají.
 
             \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.~překladače (\emph{kompilátoru}) překládá do~binárního souboru, který obsahuje přímo instrukce pro~procesor. Při~každém spuštění se~potom do~paměti načte binární soubor s~instrukcemi a~procesor je~vykonává.
             
             Při~překladu (\emph{kompilaci}) překladač navíc kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit chyby před spuštěním programu.
 
-            \emph{Kompilátor} navíc při~překladu provádí optimalizace, které zvyšují výkon a~snižují nároky programu na~\emph{hardware}.
+            \emph{Kompilátor} při~překladu provádí optimalizace, které zvyšují výkon a~snižují nároky programu na~\emph{hardware}.
 
-            \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme interpret. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. Navíc je~interpret program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~kompilovaný.
+            Takový program je~rychlejší, nicméně při~jeho tvorbě je~potřeba řešit některé problémy, např.~správu paměti. Jde např.~o~jazyky \textbf{C a C++}, \textbf{Rust} nebo~\textbf{Go}.
+
+            \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme interpret. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. \textbf{Interpret} je~program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~ty~kompilované.
             
-            Interpretování může ale přinést i~výhody. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. \cite{ueda:compiled}
+            Interpretování ale přináší výhody, zejména pro~vývojáře. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. Do~této kategorie patří např.~\textbf{JavaScript}, \textbf{PHP}, \textbf{Python} nebo~\textbf{Perl}. \cite{ueda:compiled}
+             \cite{ueda:compiled}
         
         \section{Překladač (kompilátor)}
             Překladač je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
@@ -376,15 +382,15 @@ func main() {
 
             \emph{Komponenty} mohou obsahovat další (\emph{vnořené}) komponenty. Tomu říkáme \emph{zanořování} (\emph{nesting}). To~umožňuje vytvářet složitější komponenty s~více prvky. S~použitím \href{https://react.dev/reference/react/createElement}{\texttt{React.createElement} (viz. dokumentace)} by~takový kód byl složitě čitelný. Proto máme k~dispozici \emph{JSX}.
 
-            Při~psaní \emph{Stavové aplikace} v~\emph{Reactu} je~také důležité vědět, že~v~něm funguje tzv.~\emph{jednosměrný tok dat} (\emph{one directional data flow}). To~znamená, že~data se~předávají směrem z~\textbf{rodičovské} \emph{komponenty} \textbf{potomkům}, nikoliv naopak. To~umožňuje jednodušší kontrolu nad~daty, zároveň to~ale~přináší výzvy při~správě stavu celé aplikace.
+            Při~psaní \emph{stavové aplikace} (aplikace, která udržuje svůj vnitřní stav) v~\emph{Reactu} je~také důležité vědět, že~v~něm funguje tzv.~\emph{jednosměrný tok dat} (\emph{one directional data flow}). To~znamená, že~data se~předávají směrem z~\textbf{rodičovské} \emph{komponenty} \textbf{potomkům}, nikoliv naopak. To~umožňuje jednodušší kontrolu nad~daty, zároveň to~ale~přináší výzvy při~správě stavu celé aplikace.
             
-            Z~toho vyplývá problém zvaný \emph{prop drilling} (\emph{rekurzivní předávání dat komponentami}), který spočívá v~tom, že~aby se~data dostala k~cílové komponentě, je~nutné je~předávat přes~několik vnořených komponent, které data vůbec nepotřebují. To~může vést k~tomu, že~se~v~komponentách objeví nepotřebné kódy, které způsobují zbytečnou komplexitu a~snadněji se~do~kódu zavede nová chyba. Při~změně jedné proměnné, která je~předávána přes~několik komponent, je~kvůli tomu potřeba upravit kód všech komponent, které tuto proměnnou používají a~jde často o~nepřehledný a~zdlouhavý proces. Při~změně dat dochází také ke~zbytečnému překreslení všech komponent, které data předávají, i~když se~změna viditelně projeví pouze v~jedné cílové komponentě, což je z~hlediska výkonu nežádoucí. Proto je~snaha vývojáře přesunout zdroj dat, se~kterým pracuje na~nejvyšší možnou úroveň, aby bylo~možné data předávat přímo komponentám, které je~potřebují.
+            Z~toho vyplývá problém zvaný \textbf{prop drilling} (\emph{rekurzivní předávání dat komponentami}), který spočívá v~tom, že~aby se~data dostala k~cílové komponentě, je~nutné je~předávat přes~několik vnořených komponent, které data vůbec nepotřebují. To~může vést k~tomu, že~se~v~\emph{komponentách} objeví nepotřebné kódy, které způsobují zbytečnou komplexitu a~snadněji se~do~kódu zavede nová chyba. Při~změně jedné proměnné, která je~předávána přes~několik komponent, je~kvůli tomu potřeba upravit kód všech komponent, které tuto proměnnou používají a~jde často o~nepřehledný a~zdlouhavý proces. Při~změně dat dochází také ke~zbytečnému překreslení všech komponent, které data předávají, i~když se~změna viditelně projeví pouze v~jedné cílové komponentě, což je z~hlediska výkonu nežádoucí. Proto je~snaha vývojáře přesunout zdroj dat, se~kterým pracuje na~nejvyšší možnou úroveň, aby bylo~možné data předávat přímo komponentám, které je~potřebují.
 
             \emph{Prop drilling} se~řeší přesunem zdroje dat na~nejvyšší možnou úroveň a~na~změny jednotlivých dat upozorňovat pouze ty~komponenty, které to~potřebují. Tím se~zjednoduší kód a~zvýší se~přehlednost. Navíc se~sníží počet překreslení komponent, což sníží počet operací a~tím zvýší výkon aplikace.
             
-            K~tomu je~možné využít \emph{React Context API}, který umožňuje vytvořit tzv.~\emph{kontext} a~zpřístupnit jej~v~celé aplikaci. Kontext je~dostupný v~komponentách, které jsou~vnořené v~komponentě, \emph{kontext} poskytující. Obvykle \emph{kontext} vytvoříme v~samostatném souboru pomocí \texttt{React.createContext} a~poté obalíme celou aplikaci pomocí komponenty \emph{poskytovatele kontextu} (\emph{provideru}).
+            K~tomu je~možné využít \emph{React Context API} nebo~podobné nástroje, které umožňují centrálně udržovat \textbf{stav aplikace} (\textbf{kontext}) a~zpřístupnit jej~více \emph{komponentám}. \emph{Kontext} je~dostupný v~komponentách, které jsou~vnořené v~komponentě (\textbf{potomci}), \emph{kontext} poskytující. Obvykle \emph{kontext} vytvoříme v~samostatném souboru pomocí \texttt{React.createContext} a~poté obalíme celou aplikaci pomocí komponenty \emph{poskytovatele kontextu} (\emph{provideru}).
             
-            V~této práci nicméně pro~správu stavu aplikace využiju knihovnu \textbf{Zustand}, která je~moderní alternativou ke~\emph{Context API} a~nabízí spoustu výhod oproti \emph{Contextu} nebo jiným knihovnám jako \textbf{Redux}, \textbf{Mobx}~apod. \cite{openreplayReactState}.
+            V~této práci nicméně pro~správu stavu aplikace využiju knihovnu \textbf{Zustand}, která je~moderní alternativou ke~\emph{Context API} a~nabízí spoustu výhod oproti \emph{Contextu} i~knihovnám jako~\textbf{Redux}, \textbf{Mobx}~apod. \cite{openreplayReactState}.
 
         \section{JSX (Javascript XML)}
             \emph{JSX} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu (\emph{transpilaci}) přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent. \cite{reactJSX}
@@ -811,10 +817,10 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \emph{AI} nástroje typu \emph{ChatGPT} ale poslední dobou ztrácí na~přesnosti. Je~to~díky tomu, že~k~dalšímu učení využívají data přístupná z~internetu, a~to~často i~data generovaná jinými \emph{AI}. Výsledky je~tedy nutné posuzovat kriticky. \cite{computerworld:AI}
 
-        \section{I18C~--~Mezinárodní lokalizace}
-            \emph{I18C} je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \emph{I18C} zahrnuje i~různé formy slov, např.~pro~různá množství. \cite{w3Internationalization}
+        \section{I18n~--~Mezinárodní lokalizace}
+            \emph{I18n} (\textbf{Internationalization}) je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \emph{I18n} zahrnuje i~různé formy slov, např.~pro~různá množství. \cite{w3Internationalization}
 
-            Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \emph{ASCII}, které obsahovalo pouze 128 znaků (7 bitů, tj.~$2^7$, 0\,--\,127). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některé interpunkční znaménka. 
+            Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \emph{ASCII}, které (z~historických důvodů) obsahovalo pouze 128~znaků (7 bitů, tj.~rozsah 0\,--\,$2^7 - 1$ (127)). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některé interpunkční znaménka. 
             
             V~dnešní době se~většinově používá kódování Unicode (UTF), které k~původním 7~bitům (\emph{ASCII}) přidává další, který říká, zda daný znak pokračuje dalším \emph{bajtem}. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač potřebuje více času na~zpracování každého znaku.
             
@@ -1222,7 +1228,7 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
                 \label{oop:difference}
             \end{figure}
 
-            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu slouží \emph{Node} modul \texttt{i18n}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
+            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiju modul \texttt{next-intl}, který slibuje nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
             \textbf{Router} v~případě \emph{frontendu} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
@@ -1232,9 +1238,9 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě chceme uživatele informovat, že~se~něco pokazilo a~případně mu~doporučit, co~může dělat dál. A~zaznamenat chybu do~logů~--~tj.~\emph{zalogovat}.
             
-            \textbf{UI (User Interface)}~--~uživatelské rozhrání bude vytvořeno s~použitím knihovny \textbf{Semantic UI}, která nabízí jednoduché a~přizpůsobitelné komponenty. Použití \emph{CSS knihovny} třetí strany zkrátí práci na~\emph{UI}, umožňuje použít \emph{komponenty}, které jsou připraveny na~různé velikosti zařízení a~v~základu přizpůsobené pravidlům o~přístupnosti webové aplikace.
+            \textbf{UI (User Interface)} (\textbf{uživatelské rozhrání}) bude~vytvořeno s~použitím \textbf{Tailwind CSS}. \emph{Tailwind} je~\uv{\textbf{utility-first}} knihovna, tj. že~se soustředí na~poskytnutí jednoduchých prvků, které jsou připraveny jako~CSS třídy, a~ke~komponentám je~možné je~přidávat jako třídy, které upraví jejich vzhled. Skládáním těchto tříd je~možné vytvořit vzhled, který potřebujeme. \emph{Tailwind} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. \cite{Rappin2022ModernCSSTailwind}
 
-            Je~samozřejmě možné použít i~další knihovny jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize CSS} nebo \textbf{Tailwind}.
+            K~tvorbě \emph{UI} je~samozřejmě možné použít i~knihovny jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize CSS} nebo \textbf{CSS-in-JS} a~další přístupy.
 
         \section{Testování}
             Nemá význam testovat celý \emph{backend}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje, protože selže tvorba \emph{Docker} kontejneru, a~zůstává v~původní funkční verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\emph{frontendu}, případně \emph{čistých funkcí}.
@@ -1251,7 +1257,7 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
         
         V~práci jsem použil aktuální technologie a~postupy a~snažil se~držet základních pouček pro~vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód s~důrazem na~rychlost a~optimalizaci kódu, aby v~budoucnu dokázala obsloužit co~největší počet požadavků. Informační technologie se~ale neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, protože v~době této publikace již~mohou být~některé postupy překonané. Většina principů ale zůstane platná a~je~možné na~nich~stavět.
         
-        Je~potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace.
+        Je~ale potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace. Např.~kdybych generátor a~jiné kritické části napsal v~\emph{Go} a~veřejnou část celou pomocí \emph{NextJS}, ušetřil bych nějakou práci navíc.
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
         
