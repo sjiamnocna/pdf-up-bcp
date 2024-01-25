@@ -499,7 +499,7 @@ const App = () => {
 
             Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \emph{PHP}) a~vloží se~do~něj aktuální data, nebo před odesláním provést \emph{kompresi dat}, což uspoří mobilní data a~klient, který používá k~přístupu mobilní data za~to~bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
 
-            \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\emph{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci). \cite{webserver:mdn}
+            \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\textbf{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci). \cite{webserver:mdn}
 
             Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
 
@@ -792,7 +792,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android \emph{open--source} project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních. \cite{AOSP:linux}
             
-            Velikou výhodou je otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům upravovat systém podle svých potřeb. Výhodou je~také jeho bezpečnost a~svoboda. V~porovnání s~jinými operačními systémy je~mnohem bezpečnější a~méně náchylný k~virům. \cite{medium:LinuxSecure}
+            Velikou výhodou je~otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům nahlížet a~navrhovat změny ke~zlepšení do~jádra \emph{Linuxu}. Výhodou je~také jeho bezpečnost a~svoboda. V~porovnání s~jinými operačními systémy je~bezpečnější a~méně náchylný ke~škodlivým programům, zejména díky pravidlům pro~přístupy k~souborům. V~Linuxu je~navíc za~soubor považováno všechno (konfigurace, procesy, síť i~periférie atd.), což~zabezpečení zjednodušuje - pokud jsou~správně nastavena přístupová oprávnění a~vlastnictví. \cite{medium:LinuxSecure}
 
             Nabízí mnoho grafických prostředí, takže si~uživatel může vybrat, jakým způsobem bude systém používat a je možné téměř
             všechno nastavit tak, jak v práci potřebuje. Navíc většina nástrojů pro vývoj webových aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky vše nastavit skriptem z~příkazové řádky. Není nutné instalovat a~mít~spuštěno 5 různých nástrojových oken, vše je~na~jednom místě.
@@ -1260,9 +1260,11 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
         Je~ale potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace. Např.~kdybych generátor a~jiné kritické části napsal v~\emph{Go} a~veřejnou část celou pomocí \emph{NextJS}, ušetřil bych nějakou práci navíc.
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~\href{https://gitlab.com/pisemkomat}{Gitlabu}.
-        
+
+        Bohužel jsem po~mnoha pokusech s~pluginy a~konfiguracemi pro~\emph{I18n} zjistil, že~se~v~\emph{NextJS} vyskytuje chyba (viz.~\href{https://github.com/vercel/next.js/issues/21565}{odkaz}), která znemožňuje použití \emph{I18n} s~použitím konfigurace \emph{proxy}. Problém budu~řešit později mimo tuto práci.
+
         Aplikace \emph{Písemkomat} je~dostupná také pomocí~\emph{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}. Dokumentace k~\emph{API} je~k~dispozici~ve~veřejné části webu.
-            
+        
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~v~komentářích, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
     \newpage
