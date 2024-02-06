@@ -927,13 +927,13 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho testu objevily všechny příklady z~dané kategorie nebo bude chtít zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu bude chtít~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou moci být~náhodně dosazené hodnoty. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Pomocí proměnných bude~možné dosadit náhodnou hodnotu z~určeného intervalu nebo vypočtenou z~ostatních proměnných. Uživatel si~také bude moci vytvořit vlastní proměnné, které bude moci využít v~dalších příkladech. 
 
-            Jako součást příkladu si~uživatel vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3*A$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~uživatel nastavil a~pomocí zápisu proměnné \texttt{\{\{.A\}\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~uživatel nastaví. V~případě, že~zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit, kolik odpovědí chce~generovat. Aplikace pohlídá, že~uživatel označí alespoň jedno správné řešení. Příklady bude možné komentovat a~hodnotit, aby bylo jednodušší najít chyby v~zadání.
+            Jako součást příkladu si~uživatel vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3\cdot{A}$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~uživatel nastavil a~pomocí zápisu proměnné \texttt{\{\{.A\}\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~uživatel nastaví. V~případě, že~zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit, kolik odpovědí chce~generovat. Aplikace pohlídá, že~uživatel označí alespoň jedno správné řešení. Příklady bude možné komentovat a~hodnotit, aby bylo jednodušší najít chyby v~zadání.
             
             Předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$ a~hodnoty proměnných $C, D$ jsou~zadány jako obecné výpočty takto:
             \begin{align*}
                 \$A &= 3 \\
                 \$B &= 5 \\
-                \$C &= 4/3*\$A = 4/3*3 = 4 \\
+                \$C &= 4/3 \cdot \$A = 4/3 \cdot 3 = 4 \\
                 \$D &= \$C + \$B = 4 + 5 = 9
             \end{align*}
 
@@ -950,7 +950,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     a) \quad &\text{Nemá řešení v oboru } \mathbb{N} \\
                     b) \quad &\text{x = \$A} \\
                     c) \quad &\text{x = \$B} \\
-                    d) \quad &\text{x = \$\{\$A * \$B - 2\}} \\
+                    d) \quad &\text{x = \$\{\$A \cdot \$B - 2\}} \\
                 \end{aligned}
             \end{align*}
 
