@@ -22,7 +22,7 @@
 
 \floatplacement{figure}{H}
 
-\captionsetup{labelformat=numeric,labelsep=quad}
+\captionsetup{labelsep=quad}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -943,20 +943,20 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Učitel bude mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může také využít proměnné, které si~vytvořil dříve. V~obou případech bude moci zapsat vzorec, ze~kterého může~být~vygenerováno několik možností výběru, vč.~správné odpovědi. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu budou~v~možnostech výběru proměnné nahrazeny a~vyčísleny, pokud nebude přepínači určeno jinak.
 
-            Výsledná podoba vzoru příkladu jednoduchého výrazu může vypadat např.~takto:
+            Vzorový příklad na~výpočet kořenů jednoduché rovnice může vypadat např.~takto:
             \begin{align*}
-                \text{Vyřeš v oboru \mathbb{N}:} \quad \$Ax + \$B &= \$C + \$D \\
+                \text{Řeš v~oboru $\mathbb{N}$ kořeny rovnice } \{\{.A\}\}x + \{\{.B\}\} &= \{\{.C\}\} + \{\{.D\}\} \\
                 \begin{aligned}
-                    a) \quad &\text{Nemá řešení v oboru } \mathbb{N} \\
-                    b) \quad &\text{x = \$A} \\
-                    c) \quad &\text{x = \$B} \\
-                    d) \quad &\text{x = \$\{\$A \cdot \$B - 2\}} \\
+                    a) \quad &\text{Nemá řešení v oboru $\mathbb{N}$}\\
+                    b) \quad &\text{x = } \$A \\
+                    c) \quad &\text{x = } \$B \\
+                    d) \quad &\text{x = } \$A \cdot \$B - 2 \\
                 \end{aligned}
             \end{align*}
 
             Po~vygenerování a~dosazení hodnot:
             \begin{align*}
-                \text{Vyřeš v oboru \mathbb{N}:} \quad 3x + 5 = 4 + 9 \\
+                \text{Řeš v~oboru $\mathbb{N}$ kořeny rovnice } \quad 3x + 5 = 4 + 9 \\
                 \begin{aligned}
                     a) \quad &\text{Nemá řešení v oboru }\mathbb{N} \\
                     b) \quad &\text{x = 3} \\
@@ -1176,7 +1176,7 @@ class dataLoader extends Endpoints{
             \emph{Generátor} samotný nemá přístup k~databázi, proto manipulaci se~zadáním a~uložení vygenerovaných hodnot zajistí aplikace v~rámci konkrétního \emph{endpointu}, hodnoty si~načte ze~struktury, kterou obdrží z~generátoru. Konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem, který předá uživateli, který zároveň bude mít k~dispozici seznam dříve vygenerovaných verzí příkladu a~odkazy na~k~jejich~editaci.
 
         \subsection{Autentizace uživatelů}
-            Registrace a~přihlášení do~aplikace bude možná více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé se~budou moci přihlásit pomocí \emph{e-mailové adresy a~hesla}, ale také pomocí \emph{Google} účtu. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
+            Registrace a~přihlášení do~aplikace bude možná více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé budou moci k~používání aplikace použít kombinaci \emph{e-mailové adresy a~hesla}, ale také \emph{Google} účet, díky použití \emph{Firebase}. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
             
             Na~\emph{frontendu} použiju nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí různých webových služeb. Průběh přihlášení pomocí \emph{Firebase} bude následující:
             \begin{enumerate}
