@@ -26,6 +26,7 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsfonts}
 
 % data highlighting
 \newcommand{\harddata}[1]{\boxed{\texttt{#1}}}
@@ -627,9 +628,9 @@ const App = () => {
 
                 Všechny tři~části jsou zakódovány pomocí metody \emph{Base64} a~odděleny tečkou. Výsledný token je~také textový řetězec, který je~možné přenášet v~hlavičce \emph{HTTP~požadavku}.
 
-                Jednou z~výhod \emph{JWT} je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který má k~dispozici daný klíč (\cite{ieee:jwt}). Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. \emph{JWT}~není vázán na~symetrické šifrování a~tak se~k~využití přenositelnosti často využívá \emph{asymetrické šifrování}~--~n\,--\,tice klíčů, kde hlavní server má tzv.~\emph{privátní klíč} a~ostatní mají svůj~vlastní \emph{veřejný klíč}, odvozený od~privátního, kterým ověřují, že~byl~token vytvořen na~správném serveru~\cite{miguelgrinbergJSONTokens}..
+                Jednou z~výhod \emph{JWT} je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který má k~dispozici daný klíč (\cite{ieee:jwt}). Můžeme tak např.~umožnit jednotné přihlášení v~rámci několika služeb. \emph{JWT}~není vázán na~symetrické šifrování a~kvůli přenositelnosti se~často využívá \emph{asymetrické šifrování}, kde hlavní server má~tzv.~\textbf{privátní klíč} a~ostatní mají svůj~vlastní \textbf{veřejný klíč}, odvozený od~privátního, kterým ověřují, že~byl~token vytvořen na~správném serveru~\cite{miguelgrinbergJSONTokens}.
                 
-                Díky \emph{asymetrickému šifrování} můžeme vytvořit více tzv.~\emph{veřejných klíčů} a~přidělit je~různým službám, které je~pak mohou používat pro~ověření tokenu z~původního \emph{serveru}.
+                Díky \emph{asymetrickému šifrování} můžeme vytvořit více \emph{veřejných klíčů} a~přidělit je~různým službám, které je~pak mohou používat pro~ověření \emph{tokenu} z~původního \emph{serveru}.
 
                 Formát \emph{Base64} je~kódování, které používáme pro~jednodušší přenos dat, nikoliv pro~zabezpečení. Bezpečnost \emph{JWT} je~zajištěna pouze podpisem, který zaručuje integritu dat. Data ale~může přečíst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \emph{JWT} vznikly navazující standardy\,--\,\emph{JWE}, \emph{JWS}, \emph{JWA} nebo~\emph{JWK}.~\cite{jwtesak, graham2021ethical}
 
@@ -841,8 +842,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Specifikace definuje základní dva typy diagramů:
             \begin{itemize}
-                \item \textbf{Strukturální diagramy} popisují strukturu systému, tedy jeho části a~vztahy mezi nimi. Může jít např.~o~diagramy tříd, objektů, komponent, nebo~komunikace mezi~komponentami\dots
-                \item \textbf{Diagramy chování} popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram, nebo~diagram případů užití\dots
+                \item \textbf{Strukturální diagramy} popisují strukturu systému, tedy jeho části a~vztahy mezi nimi. Může jít~např.~o~diagramy tříd, objektů, komponent, nebo~komunikace mezi~komponentami~ap.
+                \item \textbf{Diagramy chování} popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram,~ap.
             \end{itemize}
 
             Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{ULM} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
@@ -917,10 +918,10 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
         Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budeme používat, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli budeme aplikaci vyvíjet sami nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají~\cite{bctynovsky:specifikacepozadavku}.
 
-        Specifikace aplikace vznikla vlastní invencí a~funkčnost se~upřesňovala během rozhovorů s~potenciálními uživateli (učiteli, lektory\dots).
+        Specifikace aplikace vznikla vlastní invencí a~funkčnost se~upřesňovala během rozhovorů s~potenciálními uživateli (učiteli, lektory, \dots).
 
         \section{Případ použití aplikace}
-            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu\dots Tyto příklady bude možné následně využít při~tvorbě testů, kde~bude mít~uživatel možnost zvolit kategorie, ze~kterých se~vybere určené množství příkladů, nebo~konkrétní příklady, které se~mají do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také externích poskytovatelů ověření identity.
+            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet.
             
             Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
@@ -944,9 +945,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Výsledná podoba vzoru příkladu jednoduchého výrazu může vypadat např.~takto:
             \begin{align*}
-                \text{Vyřeš v oboru N:} \quad \$Ax + \$B &= \$C + \$D \\
+                \text{Vyřeš v oboru \mathbb{N}:} \quad \$Ax + \$B &= \$C + \$D \\
                 \begin{aligned}
-                    a) \quad &\text{Nemá řešení v oboru N} \\
+                    a) \quad &\text{Nemá řešení v oboru \mathbb{N}} \\
                     b) \quad &\text{x = \$A} \\
                     c) \quad &\text{x = \$B} \\
                     d) \quad &\text{x = \$\{\$A * \$B - 2\}} \\
@@ -955,9 +956,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Po~vygenerování a~dosazení hodnot:
             \begin{align*}
-                \text{Vyřeš v oboru N:} \quad 3x + 5 = 4 + 9 \\
+                \text{Vyřeš v oboru \mathbb{N}:} \quad 3x + 5 = 4 + 9 \\
                 \begin{aligned}
-                    a) \quad &\text{Nemá řešení v oboru }\mathcal{N} \\
+                    a) \quad &\text{Nemá řešení v oboru }\mathbb{N} \\
                     b) \quad &\text{x = 3} \\
                     c) \quad &\text{x = 5} \\
                     d) \quad &\text{x = 13} \\
