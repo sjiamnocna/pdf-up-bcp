@@ -847,7 +847,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{ULM} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
 
-            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}~ap. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:diagram}.
+            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}~ap. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
 
             \subsection{UCD~--~Use Case Diagram}
                 \emph{UCD} je~diagram ze~standardu \emph{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
@@ -990,7 +990,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \textbf{Typescript} samozřejmě použiji i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~počítá a~vydává mimo \emph{React} také balíček s~příslušnými datovými typy, pro~použití v~Typescriptu. Typescript podporuje i~\emph{JSX} pomocí souborů \texttt{*.TSX}. \cite[Refeerence/Handbook/JSX]{TypeScript}
 
-            \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí. V~aplikaci poslouží jako prostředník mezi šablonou testu a~generovaným \texttt{*.PDF} souborem, čímž zajistím možnost úpravy a~výběr šablon testů~\cite{Rybicka2003:latex}.
+            \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci poslouží jako prostředník mezi šablonou testu a~příkladů a~generovaným \texttt{*.PDF} souborem, čímž~zajistí jednodušší možnost úpravy a~výběr šablon testů. Pokročilí uživatelé budou moci vytvářet vlastní šablony.
 
             \textbf{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Pro~správu paměti využívá tzv.~\textbf{Garbage collector}, který automaticky přiděluje a~uvolňuje pamět, pokud již není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite[7.5]{compilers}.
 
@@ -1190,7 +1190,7 @@ class dataLoader extends Endpoints{
 
             Pro~komunikaci s~backendem budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
 
-            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány z~\emph{proměnných prostředí}, které budou uloženy v~souboru \texttt{.env} a~\emph{Docker} si~je~automaticky načte. Jelikož \emph{NextJS} neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí načítat do~\emph{Javascriptového} souboru a~dále s~nimi budu pracovat jako s~\emph{konstantami}. \emph{Backend} napsaný v~\emph{Go} umí~takové proměnné číst pomocí \texttt{os.Getenv("nazevpromenne")}.
+            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \emph{Backend} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\emph{Javascriptového} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\emph{Javascriptu} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\emph{Javascriptového} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz \ref{js:env}.
             
             \begin{figure}
                 \begin{minted}{js}
@@ -1223,7 +1223,7 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
 });
                 \end{minted}
                 \caption{Skript \emph{Node.js} načítající \emph{env proměnné} do~\emph{Javascriptového} souboru.}
-                \label{oop:difference}
+                \label{js:env}
             \end{figure}
 
             Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiju modul \texttt{next-intl}, který slibuje nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
