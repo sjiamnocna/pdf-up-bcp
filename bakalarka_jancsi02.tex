@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{minted}
+\usepackage{pdfpages}
 
 \setminted{
     breaklines=true,
@@ -42,6 +43,24 @@
     pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
 }
 
+\newcommand{\emptypage}{
+    \newpage
+    \null
+    \newpage
+}
+
+\newenvironment{singletonpage}[1]{
+    \clearpage          % Ensure we start on a new page
+    \thispagestyle{empty} % No headers or footers
+    \vspace*{\stretch{1}} % Add vertical space before the content
+    \begin{center}      % Center the content horizontally
+        \textbf{\Huge #1}\\[.4cm]
+    \end{center}
+}{
+    \vspace*{\stretch{2}} % Add vertical space after the content
+    \clearpage          % Ensure we end on a new page
+}
+
 % citace a jazyk
 \usepackage[main=czech, english]{babel}
 \usepackage{csquotes}
@@ -53,7 +72,7 @@
 		\begin{center}
             {
             \centering
-            \includegraphics[]{./img/UP_logo_PdF-UP_horizont_cz.pdf}
+            \includegraphics[]{./files/img/UP_logo_PdF-UP_horizont_cz.pdf}
             }
 			
 			\vspace{3cm}
@@ -84,12 +103,23 @@
 			
 		\end{center}
 	\end{titlepage}
-	% generate table of contents
-	\tableofcontents
+    
+    % zadání práce
+    \includepdf[pages={1}]{./PDF_tisk/temata_vskp_-_podklady_pro_zadani_vskp.pdf}
+    \thispagestyle{empty} % This removes the page number on this page
+    \null\vfill % This centers the content vertically
 
-	\newpage
-    \clearpage
-    \setcounter{page}{1}
+    \begin{singletonpage}{Poděkování}
+        Chtěl bych v~této části poděkovat všem, kteří mi asistovali při tvorbě a~korektuře práce, sbírání dat a~zdrojů nebo upřesňování návrhu aplikace. Děkuji také blízkým za~psychickou podporu a~povzbuzení. Speciální dík patří vedoucímu práce panu {doc. RNDr. Petr Šalounovi, Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.\\
+
+        Děkuji. 
+    \end{singletonpage}
+    
+    \setcounter{page}{1} % Reset page numbering to start after ToC
+    \tableofcontents
+    
+    \clearpage % End the ToC and start a new page
+    
 	
 	\chapter{Úvod}
         Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem pro~zhodnocení nabytých znalostí a~dovedností. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~studentům předložen k~vyplnění.
@@ -203,8 +233,8 @@
                 \item[Syntaktická analýza] kontroluje, jestli jsou jednotlivé \emph{tokeny} správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \textbf{abstraktní syntaktický strom (AST = Abstract Syntax Tree)}, který reprezentuje strukturu programu.
                 \item[Sémantická analýza] kontroluje správnost použití jednotlivých \emph{tokenů} a~jejich význam. Generuje tabulku symbolů, která obsahuje informace o~proměnných a~funkcích, dostupných v~programu.
                 \item[Optimalizace] v~této fázi probíhá optimalizace kódu, aby byl ve~výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a~může být~prováděna několikrát v~různých fázích překladu (a~nemusí být prováděna vůbec).
-                \item[Generování kódu] Z~\emph{AST}, je~možné generovat výslednou podobu programu nebo dat v~požadované formě~--~binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretuje jako~jinou formu dat.
-            \end{description} \cite{baeldungCompilersWork, compilers}
+                \item[Generování kódu] Z~\emph{AST}, je~možné generovat výslednou podobu programu nebo dat v~požadované formě~--~binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretuje jako~jinou formu dat.~\cite{baeldungCompilersWork, compilers}
+            \end{description}
 
         \section{Procedurální a~objektově orientované programování (OOP)}
             \emph{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých procedur, které se~volají za~sebou. Procedura je~část programu, která vykonává určitou činnost. Procedury mohou mít parametry, které jsou jim~předány při~volání. Procedury mohou volat jiné procedury, což~umožňuje znovupoužití kódu. Procedury a~funkce jsou~si~podobné mimo~to, že~funkce vždy vrací (\texttt{return}) nějakou hodnotu, zatímco procedura pouze vykoná své~instrukce.
@@ -491,7 +521,7 @@ const App = () => {
 
             Když~je do~prohlížeče zadáno doménové jméno, prohlížeč se~pokusí najít \emph{IP~adresu} ve~vlastní \emph{DNS cache}, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá o~poskytnutí překladu jej a~uloží si~\emph{IP adresu} do~\emph{cache}. Pokud \emph{DNS server} adresu nemá, zeptá se~nadřazeného \emph{DNS serveru}~atd.
             
-            Nejbližší \emph{DNS} bývá poskytovatel (\emph{ISP = Internet Service Provider}) internetu, který má~uloženy \emph{IP} adresy serverů, na~které v~minulosti zákazníci přistupovali. Pokud~záznamy ještě nemá, zeptá se~prohlížeč nadřazeného \emph{DNS serveru}, resp.~zašle požadavek na~adresu nastaveného \emph{DNS serveru}. Postupně~se tedy zeptá \emph{ISP}, správce národní domény (\emph{CZ.NIC}) a~\emph{kořenového DNS serveru} (\emph{Root DNS server}), který má~uloženy všechny \emph{IP adresy} serverů, které jsou~na~internetu.
+            Nejbližší \emph{DNS} bývá poskytovatel (\textbf{ISP, Internet Service Provider}) internetu, který má~uloženy \emph{IP} adresy serverů, na~které v~minulosti zákazníci přistupovali. Pokud~záznamy ještě nemá, zeptá se~prohlížeč nadřazeného \emph{DNS serveru}, resp.~zašle požadavek na~adresu nastaveného \emph{DNS serveru}. Postupně~se tedy zeptá \emph{ISP}, správce národní domény (\emph{CZ.NIC}) a~\emph{kořenového DNS serveru} (\emph{Root DNS server}), který má~uloženy všechny \emph{IP adresy} serverů, které jsou~na~internetu.
 
             \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textbf{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další záznamy, jako např.~\emph{MX} záznamy, které používá e-mailová služba pro doručování e-mailů.\cite{dns:mdn}
 
@@ -523,19 +553,19 @@ const App = () => {
 
             \textbf{Frontend} je~část aplikace, kterou vidí uživatel, např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\emph{View}) a~interakci s~uživatelem (\emph{Controller}) a~komunikuje s~\emph{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
-            \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \emph{frontendu}. Spolupracuje s~databází (\emph{Modelem}), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \emph{Backend} může být~napsán v~různých jazycích, např.~PHP, Java, C\#, Go, Javascript, C++\dots
+            \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \emph{frontendu}. Spolupracuje s~databází (\emph{Modelem}), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \emph{Backend} může být~napsán v~různých jazycích~\cite{Dorman:webmappingajax, Zimmerman2023:howtowritebetter}, např.~PHP, Java, C\#, Go, Javascript, C++\dots
 
         \section{JSON~--~Javascript Object Notation}
             \textbf{JSON}~je~formát pro~uložení strukturovaných dat. Je~to~textový formát čitelný pro~člověka i~pro~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát \emph{XML} (\emph{Extended Markup Language}, který je~podobný struktuře \emph{HTML}. Ostatně \emph{XML} stále používá spousta aplikací, zejména aplikace státní správy.
 
             Formát \emph{JSON} je~podobný zápisu objektů v~\emph{Javascriptu}. Obsahuje dvojice \emph{klíč-hodnota}, které jsou odděleny dvojtečkou. Klíčem je~řetězec, který obvykle popisuje, jaká data jsou v~něm uložena, a~hodnota může být číselná, textová, logická hodnota, pole nebo další vnořená struktura dat.
             
-            Práce s~formátem \emph{JSON} je~pohodlnější než s~formátem XML, protože je~jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně \emph{serveru}, tak na~straně klienta. Jde~celkově o~úspornější formát pro~přenos dat.
+            Práce s~formátem \emph{JSON} je~pohodlnější než s~formátem XML, protože je~jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně \emph{serveru}, tak na~straně klienta. Jde~celkově o~úspornější formát pro~přenos dat~\cite{Dorman:webmappingajax}.
 
         \section{AJAX~--~Asynchronous Javascript Request}
             \textbf{AJAX} je~technologie, která umožňuje \emph{asynchronní} komunikaci, např.~mezi \emph{frontendem} a~\emph{backendem}. To~znamená, že~při~každém požadavku na~\emph{server} se~stránka nemusí znovu načítat, ale použije se~\emph{AJAX}, jsou~načtena požadovaná data ze~serveru a~změní se~ve~stránce.
 
-            Funkce \emph{Javascriptu} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. \emph{AJAX} využívá různé \emph{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\cite{ajax:mdn}
+            Funkce \emph{Javascriptu} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. \emph{AJAX} využívá různé \emph{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\cite{ajax:mdn, Dorman:webmappingajax}
 
         \section{API~--~Application Interface}
             \emph{API} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi \emph{frontendem} a~\emph{backendem}. Některá \emph{rozhrání} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
@@ -549,7 +579,7 @@ const App = () => {
             Výhodou \emph{gRPC} je, že autor aplikace pouze definuje služby a~jejich rozhraní a~\emph{gRPC} vygeneruje veškerý potřebný kód pro~jazyk, který používáme. Také je~díky efektivnější komunikaci rychlejší než~jiné~přístupy. Bohužel je~k~jeho použití nutné se~naučit novému přístupu k~přenosu~dat a~jazyku definice služeb \emph{protobuf}~\cite{thenewstackBuildRealWorld}.
 
         \section{REST~--~Representational state transfer}
-            \emph{REST} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
+            \textbf{REST} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
             
             \emph{REST} je~bezstavový, což~znamená, že~každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi. To~umožňuje jednodušší testování a~ladění aplikace a~trochu snižuje zátěž serveru. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je~sice při~tvorbě \emph{REST API} doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \texttt{Cookies} nebo \texttt{Session} je~v~případě potřeby možné využívat.
             
@@ -568,14 +598,14 @@ const App = () => {
             Kromě metod \emph{GET} a~\emph{DELETE} se~v~těle \emph{HTTP požadavku} mohou zasílat také data v~textové formě, např.~formátu~JSON. Během přenosu je~tělo požadavku zašifrováno. V~případě požadavku \emph{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají velikost limitovanou maximální délkou \emph{URL adresy}, který je~server schopen zpracovat. Specifikace \emph{HTTP} neuvádí žádnou maximální délku, ale v~praxi je~limitována prohlížeči a~serverem. \cite[3.2.1]{ietf-httpbis-messaging-03}
 
         \section{GraphQL}
-            Naproti \emph{REST}u má \emph{GraphQL} pouze jeden \emph{endpoint}. \emph{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což~může být~výhodné, pokud na~zařízení je~pomalé připojení nebo~používá~mobilní data, kdy~je~potřeba stahovat co~nejméně dat a~snížit počet požadavků na~server.
+            Naproti \emph{REST}u má \textbf{GraphQL} pouze jeden \emph{endpoint}. \emph{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což~může být~výhodné, pokud na~zařízení je~pomalé připojení nebo~používá~mobilní data, kdy~je~potřeba stahovat co~nejméně dat a~snížit počet požadavků na~server.
 
-            Na~druhou stranu je~implementace \emph{GraphQL} složitější než~implementace \emph{REST}, protože je~potřeba implementovat \emph{GraphQL} server, umí zpracovat požadavky od~klienta. Každá položka, kterou je~potřeba zpřístupnit, navíc musí mít vlastní~\emph{resolver} v~\emph{GraphQL} schématu, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože je~potřeba pro~každou položku spustit vlastní funkci a~to~je v~případě větších datových objektů a~přístupu do~databáze neefektivní.
+            Na~druhou stranu je~implementace \emph{GraphQL} složitější než~implementace \emph{REST}, protože je~potřeba implementovat \emph{GraphQL} server, umí zpracovat požadavky od~klienta. Každá položka, kterou je~potřeba zpřístupnit, navíc musí mít vlastní~\emph{resolver} v~\emph{GraphQL} schématu, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože je~potřeba pro~každou položku spustit vlastní funkci a~to~je v~případě větších datových objektů a~přístupu do~databáze neefektivní~\cite{Herrera:restgraphql, Dorman:webmappingajax}.
 
         \section{Zabezpečení}
             Vystavením aplikace na~internetu se~\emph{API} vystavuje~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba v~aplikaci na~zabezpečení myslet a~v~žádném případě nespoléhat pouze na~sílu zabezpečení knihoven 3.\,stran, které používáme.
             
-            To~znamená, že~je~potřeba zabezpečit \emph{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby je potřeba mít veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí firewallu. K~ostatním službám, ke~kterým je~potřeba mít soukromý přístup potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical}.
+            To~znamená, že~je~potřeba zabezpečit \emph{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby je potřeba mít veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí firewallu. K~ostatním službám, ke~kterým je~potřeba mít soukromý přístup potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical, Dorman:webmappingajax}.
             
             \subsection{Hashování}
                 \textbf{Hashing} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~se~používá např.~při~ukládání hesel, kdy heslo uživatele není uloženo v~původní čitelné podobě, ale jako \textbf{hash}. Při~přihlášení pak~stejnou \emph{hashovací} funkcí~zadané heslo ověří s~uloženým \emph{hashem}, jelikož \emph{hashovací funkce} pro~dva~stejné vstupy vrací totožné výsledné \emph{hashe}. Pokud se~shodují, uživatel byl~úspěšně ověřen a~tedy přihlášen.
@@ -614,7 +644,7 @@ const App = () => {
 
                 \begin{figure}
                     \centering
-                    \includegraphics[width=.8\linewidth]{img/jwt.jpg}
+                    \includegraphics[width=.9\linewidth]{./files/img/jwt.jpg}
                     \caption{Použití JWT v~praxi}
                     \label{model-jwt}
                 \end{figure}
