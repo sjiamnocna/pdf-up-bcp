@@ -212,20 +212,24 @@
         \section{Kompilátor a interpret}
             Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem. Souvisí to~se~způsobem, jakým se~programy vykonávají.
 
-            \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.~\textbf{překladače} (\textbf{kompilátoru}) překládá do~binárního souboru, který obsahuje přímo instrukce pro~procesor. Při~každém spuštění se~potom do~paměti načte binární soubor s~instrukcemi a~procesor je~vykonává.
+            \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.~\textbf{překladače} (\textbf{kompilátoru}) překládá do~binárního souboru, který obsahuje přímo instrukce pro~procesor, ten~nazýváme \textbf{program}. Při~každém spuštění se~potom do~paměti načte program s~instrukcemi a~procesor je~vykonává.
             
             Při~překladu (\emph{kompilaci}) překladač navíc kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit chyby před spuštěním programu.
-
-            \emph{Kompilátor} při~překladu provádí optimalizace, které zvyšují výkon a~snižují nároky programu na~\emph{hardware}.
-
-            Takový program je~rychlejší, nicméně při~jeho tvorbě je~potřeba řešit některé problémy, např.~správu paměti. Jde např.~o~jazyky \textbf{C a C++}, \textbf{Rust} nebo~\textbf{Go}.
-
-            \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme interpret. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. \textbf{Interpret} je~program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~ty~kompilované.
             
-            Interpretování ale~přináší některé výhody, zejména pro~vývojáře. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. Do~této kategorie patří např.~\textbf{JavaScript}, \textbf{PHP}, \textbf{Python} nebo~\textbf{Perl}~\cite{ueda:compiled}.
+            \emph{Kompilátor} při~překladu navíc provádí optimalizace, které zvyšují výkon a~snižují nároky programu na~\emph{hardware}. Kompilovaný jazyk je~většinou i~\textbf{staticky typovaný}, což~znamená, že~při~překladu navíc~zkontroluje správnost typů a~kompatibilitu proměnných a~funkcí.
+            
+            Kompilovaný program je~tím rychlejší, nicméně při~jeho tvorbě je~potřeba řešit některé problémy, např.~správu paměti. Jde např.~o~jazyky \textbf{C a C++}, \textbf{Rust} nebo~\textbf{Go}. Tyto jazyky jsou blíže ke~konkrétnímu \textbf{hardware} a~nazýváme je~\textbf{nízkoúrovňové} nebo jazyky.
+            
+            \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme interpret. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. \textbf{Interpret} je~program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~ty~kompilované. Kód v~takovém jazyce nazýváme \textbf{skript}.
+
+            Takové jazyky jsou většinou také \textbf{dynamicky typované}, tedy jazyky provádí kontrolu typů proměnných a~jejich použití až~při~vykonávání programu a~často umožňují i~změnu typu proměnné za~běhu programu, což~zavádí nutnost dalších kontrol a~zvyšuje nároky na~procesor. Proto vznikl např.~jazyk \emph{Typescript}, který v~Javascriptu umožňuje používat statické typování a~následně se~\emph{transpiluje} zpět do~\emph{Javascriptu}.
+            
+            Interpretování ale~přináší některé výhody, zejména pro~vývojáře. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. Do~této kategorie patří např.~\textbf{JavaScript}, \textbf{PHP}, \textbf{Python} nebo~\textbf{Perl}. Tyto jazyky můžeme zařadit do~\textbf{vysokoúrovňových jazyků}~\cite{ueda:compiled}.
+
+            \textbf{Transpilací} nazýváme proces podobný \emph{kompilaci}, kde mezi sebou překládáme \emph{vysokoúrovňové jazyky}. Např.~\emph{Typescript} do~\emph{Javascriptu}~\cite{fuertes:Transpilers}.
         
         \section{Kompilátor}
-            Překladač je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
+            \textbf{Překladač} je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
             \emph{Překladače} i~\emph{interprety} pracují v~několika fázích:
             \begin{description}
                 \item[Lexikální analýza] \emph{kompilátor} čte zdrojový kód znak po~znaku a~rozděluje~jej na~jednotlivé \emph{tokeny} a~určuje jejich typ (slova, čísla, operátory\dots). Při~tom kontroluje správnost zápisu a~případné chyby vypíše. Výstupem je~seznam tokenů.
@@ -423,7 +427,7 @@ func main() {
             V~této práci pro~správu stavu aplikace použiji knihovnu \textbf{Zustand}, která je~moderní, rychlá a~nabízí spoustu výhod oproti \emph{Contextu} i~knihovnám jako~\textbf{Redux}, \textbf{Mobx}~apod.~\cite{openreplayReactState}.
 
         \section{JSX (Javascript XML)}
-            \emph{JSX} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu (\emph{transpilaci}) přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent~\cite{reactJSX}.
+            \emph{JSX} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent~\cite{reactJSX}.
             
             Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
             \begin{figure}
@@ -727,7 +731,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Testování}
             Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí co~nejvíce možných scénářů, které mohou nastat.
             
-            Na~druhou stranu~--~zejména automatickým~--~testováním je~možné ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které je~možné spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně.
+            Zejména automatickým testováním je~možné ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které je~možné spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně. Pokud je~daný jazyk navíc \emph{dynamicky typovaný}, je dobré mít~nástroj na~kontrolu správnosti použití funkcí~\cite{compilers, itnetworkBestPractices}.
             
             Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména se~testují tzv.~\emph{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
             
@@ -1021,7 +1025,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci poslouží jako prostředník mezi šablonou testu a~příkladů a~generovaným \texttt{*.PDF} souborem, čímž~zajistí jednodušší možnost úpravy a~výběr šablon testů. Pokročilí uživatelé budou moci vytvářet vlastní šablony.
 
-            \textbf{Go} je~staticky typovaný, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Pro~správu paměti využívá tzv.~\textbf{Garbage collector}, který automaticky přiděluje a~uvolňuje pamět, pokud již není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite[7.5]{compilers}.
+            \textbf{Go} je~\emph{staticky typovaný}, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Pro~správu paměti využívá tzv.~\textbf{Garbage collector}, který automaticky přiděluje a~uvolňuje pamět, pokud již není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite[7.5]{compilers}.
 
             V~\emph{Go}~jsou také k~dispozici \textbf{metadata položek struktur} (\textbf{struct tags}), díky kterým je~možné pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~definici přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatické kontrole dat při~přijetí požadavku ve~formátu \emph{JSON}. To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka, viz~\ref{go:structuretags}.
 
