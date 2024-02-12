@@ -11,6 +11,14 @@
 \usepackage{tikz}
 \usepackage{minted}
 \usepackage{pdfpages}
+\usepackage{newfloat}
+
+% Define a new float type for code listings
+\DeclareFloatingEnvironment[
+    fileext=loc,
+    name=Kód,
+    placement=htbp,
+]{code}
 
 \setminted{
     breaklines=true,
@@ -111,7 +119,7 @@
     \begin{singletonpage}{Poděkování}
         Chtěl bych v~této části poděkovat všem, kteří mi asistovali při tvorbě a~korektuře práce, sbírání dat a~zdrojů nebo upřesňování návrhu aplikace. Děkuji také blízkým za~psychickou podporu a~povzbuzení. Speciální dík patří vedoucímu práce panu {doc. RNDr. Petru Šalounovi, Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.\\
 
-        Děkuji. 
+        Děkuji.
     \end{singletonpage}
     
     \begin{singletonpage}{Prohlášení}
@@ -138,7 +146,7 @@
         Ve~druhé části popíšu a~vytvořím aplikaci, kterou bude možné použít ke~generování různých variant zadání školních testů. Popíšu základní prvky při~vývoji aplikace a~popíšu důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování, až~k~její implementaci, provozu a~údržbě za~použití vybraných technologií. Vyhotovená aplikace bude následně veřejně dostupná jako webová služba.
 
     \chapter{Testy, testové úlohy}
-         V~této kapitole se~budu zabývat náležitostmi testových úloh a~jaké~možnosti nabízejí moderní technologie ke~zjednodušení jejich tvorby. Zaměřuji se~na~nástroje, které jsou dostupné bezplatně nebo~jsou dokonce dostupné s~\textbf{otevřeným zdrojovým kódem} (\textbf{open--source}).
+         V~této kapitole se~budu zabývat náležitostmi testových úloh a~jaké~možnosti nabízejí moderní technologie ke~zjednodušení jejich tvorby. Zaměřuji se~na~nástroje, které jsou dostupné bezplatně nebo~jsou dokonce dostupné s~\textbf{otevřeným zdrojovým kódem} (\textbf{open--source})~\cite{fogel:opensource}.
 
         \section{Uzavřené úlohy}
             \textbf{Uzavřené úlohy} jsou~úlohy, které mají předem danou množinu odpovědí. Respondent si~při~vyplňování testu vybere jednu nebo více správných odpovědí (podle zadání) a~tím odpoví na~otázku. Může jít o~označení vyjmenovaných možností nebo z~obecně předpokládaných odpovědí: např.~na~otázku \uv{V~jakém městě bydlíte?} očekáváme v~odpovědi existující město, nikoliv několik popisných vět. Hodnocení probíhá pomocí bodování.
@@ -270,8 +278,10 @@
             
             V~příkladě \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \emph{Javascript} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody a~je~možné jej~používat zamýšleným způsobem např.~ve~funkci.~\cite{go:OOP}
 
-            \begin{figure}
-                \begin{subfigure}[b]{0.45\linewidth}
+            \begin{code}
+                \centering
+                % First column for code sample
+                \begin{minipage}{.45\textwidth}
                     \begin{minted}{js}
 class Animal {
     constructor(name) {
@@ -309,64 +319,50 @@ a.makeSound();
 const b = new Cat("Micka");
 b.makeSound();
 const c = new Fox("Foxy");
-c.makeSound();
+c.makeSound();   
                     \end{minted}
-                    \caption{Zápis pomocí tříd v Javascriptu}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[b]{0.45\linewidth}
-                    \begin{minted}{go}
-import "fmt"
-
+                \end{minipage}
+                \hfill % Space between the two minipages
+                % Second column for code sample
+                \begin{minipage}{.45\textwidth}
+                    \begin{minted}{Go}
 // Animal is an abstract class (interface) in Go
 type Animal interface {
-	makeSound()
+    makeSound()
 }
 
 // AnimalBase is a base struct to store common properties of animals
 type AnimalBase struct {
-	sound string
-	name  string
+    sound string
+    name  string
 }
 
 // Type (struct) representing a dog
 type Dog struct {
-	AnimalBase
+    AnimalBase
 }
 
 // Cat
 type Cat struct {
-	AnimalBase
+    AnimalBase
 }
 
 // Constructor-like function to create an instance of AnimalBase
 func NewAnimalBase(name string) *AnimalBase {
-	return &AnimalBase{
-		name: name,
-	}
+    return &AnimalBase{
+        name: name,
+    }
 }
 
-// Method implemented for AnimalBase, which all animals inherit
+// Metoda zděděná všemi odvozenými objekty
 func (a *AnimalBase) makeSound() {
-	fmt.Printf("My name is %s and I go %s\n", a.name, a.sound)
-}
-
-// NewDog je tzv. konstruktor objektu Dog, vytvoří v paměti strukturu s konkrétními daty o psovi (jméno) a vrátí ukazatel na dané místo v paměti
-func NewDog(name string) *Dog {
-	dog := &Dog{
-		AnimalBase: *NewAnimalBase(name),
-	}
-	dog.sound = "Haf"
-	return dog
+    fmt.Printf("My name is %s and I go %s\n", a.name, a.sound)
 }
 
 // NewCat je konstruktor objektu Cat, vytvoří strukturu s konkrétními daty o kočce
 func NewCat(name string) *Cat {
-	cat := &Cat{
-		AnimalBase: *NewAnimalBase(name),
-	}
-	cat.sound = "Mňau"
-	return cat
+    cat := 
+    return cat
 }
 
 // a musí implementovat rozhrání (interface) Animal
@@ -375,18 +371,23 @@ func animalMakeSound(a Animal) {
 }
 
 func main() {
-	a := NewDog("Alík")
-	animalMakeSound(a)
+    a := &Dog{
+        AnimalBase: *NewAnimalBase("Alík"),
+    }
+    dog.sound = "Haf"
+    animalMakeSound(a)
 
-	b := NewCat("Micka")
-	animalMakeSound(b)
+    b := &Cat{
+        AnimalBase: *NewAnimalBase("Micka"),
+    }
+    cat.sound = "Mňau"
+    animalMakeSound(b)
 }
                     \end{minted}
-                    \caption{Stejná funkcionalita v jazyce Go}
-                \end{subfigure}
-                \caption{Zápis OOP v PHP je stručnější než v Go}
-                \label{oop:difference}
-            \end{figure}
+                \end{minipage}
+                \caption{Zápis OOP principů v jazycích Javascript a Go}
+                \label{code:classoop}
+            \end{code}
 
             V~návaznosti na~\emph{OOP} se~rozvíjí \textbf{Aspektové programování}, které umožňuje rozdělit program do~\emph{aspektů}, které se~při~vykonávání programu vkládají do~kódu~\cite{macurova2012:aspektove}.
 
@@ -438,8 +439,9 @@ func main() {
             \emph{JSX} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent~\cite{reactJSX}.
             
             Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
-            \begin{figure}
-                \begin{subfigure}[b]{0.45\linewidth}
+            \begin{code}
+                \centering
+                \begin{minipage}{0.45\textwidth}
                     \begin{minted}{js}
 function ComponentA({ name }) {
     return React.createElement(
@@ -451,11 +453,10 @@ function ComponentA({ name }) {
         'Hello World!'
         );
     }
+}
                     \end{minted}
-                \caption{použití React.createElement}
-                \end{subfigure}
-                \hfill
-                \begin{subfigure}[b]{0.45\linewidth}
+                \end{minipage}
+                \begin{minipage}{0.45\textwidth}
                     \begin{minted}{js}
 const App = () => {
     return (
@@ -463,12 +464,10 @@ const App = () => {
     );
 }
                     \end{minted}
-                    \vspace{1cm}
-                    \caption{použití JSX}
-                \end{subfigure}
+                \end{minipage}
                 \caption{Rozdíl použití React vs.~JSX}
                 \label{JSXcomponent}
-            \end{figure}
+            \end{code}
 
             \textbf{NextJS} je~\emph{framework} pro~\emph{React}, který umožňuje vytvářet \emph{SSR} aplikace. \emph{NextJS} je~vyvíjen společností \emph{Vercel}, která je~autorem \emph{serverless} řešení pro~\emph{Node.js} aplikace.
 
@@ -685,9 +684,9 @@ const App = () => {
                 Proto je~nutné data od~uživatele vždy ošetřit a~v~ideálním případě použít navíc tzv.~\emph{Parametrizované dotazy} (\emph{Prepared statements}). Při~použití \emph{parametrizovaných dotazů} se~do~dotazu nevkládají přímo data, ale na~místo, kam~patří data je~vložený tzv.~\emph{Zástupný symbol} (\emph{placeholder}), který je~poté nahrazen ošetřenými (\emph{escapovanými}) daty tak, aby~nebylo možné případný vložený příkaz provést. Zástupný symbol v~SQL představuje otazník \uv{\texttt{?}} nebo v~případě pojmenovaných hodnot název proměnné za~dvojtečkou \uv{\texttt{:nazev}}~\cite{graham2021ethical}.
                 
                 Např.~dotaz na~změnu emailové adresy, který by~v~případě neošetření umožnil útočníkovi získat administrátorský přístup do~aplikace, by~mohl vypadat, jako v~ukázce \ref{model-sql-injection}.:
-                \begin{figure}
-                    \begin{subfigure}{0.48\textwidth}
-                        \centering
+                \begin{code}
+                    \centering
+                    \begin{minipage}{0.45\textwidth}
                         \begin{minted}{go}
 id := 42
 // nebezpečný vstup od uživatele
@@ -699,10 +698,8 @@ DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
 -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
 UPDATE users SET email = 'mujmejl@seznam.cz', role='admin' WHERE id = 42
                         \end{minted}
-                        \subcaption{Příklad útoku SQL Injection}
-                    \end{subfigure}
-                    \begin{subfigure}{0.48\textwidth}
-                        \centering
+                    \end{minipage}
+                    \begin{minipage}{0.45\textwidth}
                         \begin{minted}{go}
 id := 42
 // nebezpečný vstup od uživatele
@@ -714,12 +711,11 @@ DB.Exec("UPDATE users SET email = ? WHERE id = ?", email, id)
 -- ošetřený (escapovaný) dotaz, který by pouze vložil do databáze nevalidní emailovou adresu
 UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                         \end{minted}
-                        \subcaption{Ošetření pomocí prepared statement}
-                    \end{subfigure}
-
+                        \subcaption{Ošetření SQL injection pomocí prepared statement}
+                    \end{minipage}
                     \caption{SQL injection a jeho ošetření}
                     \label{model-sql-injection}
-                \end{figure}
+                \end{code}
 
                 Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet.
                 
@@ -766,7 +762,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \emph{Git hooks} jsou~skripty, které se~spouští při~určité události v~\emph{Gitu}. Je~možné např.~automaticky spustit testy před~každým nahráním změn v~kódu do~repozitáře~\cite{gitscmBook}.
 
             \subsection{Gitlab Actions}
-                \emph{Gitlab Actions} jsou~součástí \emph{Gitlabu} a~umožňuje vytvořit sadu procesů (\emph{workflow}), které se~spustí při~určité události, např.~při~nahrání nového kódu do~repozitáře.
+                \emph{Gitlab Actions} jsou~součástí \emph{Gitlabu} a~umožňují vytvořit sadu procesů (\emph{workflow}), které se~spustí při~určité události, např.~při~nahrání nového kódu do~repozitáře.
                 
                 \emph{Workflow} se~spouští ve~virtualizačním prostředí (\emph{kontejneru}), který je~vytvořený na~základě \emph{Dockerfile} a~obsahuje prostředí, potřebné pro~sestavení a~spuštění aplikace a~testů. Celý proces se~automaticky spouští na~\emph{virtuálním serveru}, např.~po~nahrání projektu na~\emph{Gitlab} a~nastavuje se~pomocí konfiguračního souboru \emph{.yml}.
 
@@ -1038,7 +1034,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             V~\emph{Go}~jsou také k~dispozici \textbf{metadata položek struktur} (\textbf{struct tags}), díky kterým je~možné pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~definici přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatické kontrole dat při~přijetí požadavku ve~formátu \emph{JSON}. To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka, viz~\ref{go:structuretags}.
 
             \begin{figure}
-                \begin{subfigure}[b]{0.45\linewidth}
+                \begin{minipage}[b]{0.45\linewidth}
                     \begin{minted}{go}
 r.POST("/age", func(c *gin.Context) {
     var data struct{
@@ -1060,10 +1056,9 @@ r.POST("/age", func(c *gin.Context) {
     })
 })
                     \end{minted}
-                    \caption{Načtení věku z POST požadavku v jazyce Go}
-                \end{subfigure}
+                \end{minipage}
                 \hfill
-                \begin{subfigure}[b]{0.45\linewidth}
+                \begin{minipage}[b]{0.45\linewidth}
                     \begin{minted}{php}
 <?php
 //...
@@ -1090,9 +1085,8 @@ class dataLoader extends Endpoints{
 }
 
                     \end{minted}
-                    \caption{Zpracování v PHP}
-                \end{subfigure}
-                \caption{Kontrola dat pomocí PHP a Go}
+                \end{minipage}
+                \caption{Kontrola dat pomocí PHP a zjednodušení pomocí Bind v Go}
                 \label{go:structuretags}
             \end{figure}
 
