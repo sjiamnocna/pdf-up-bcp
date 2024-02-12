@@ -37,9 +37,6 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 
-% data highlighting
-\newcommand{\harddata}[1]{\boxed{\texttt{#1}}}
-
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -133,8 +130,7 @@
     \setcounter{page}{1} % Reset page numbering to start after ToC
     \tableofcontents
     
-    \clearpage % End the ToC and start a new page
-    
+    \clearpage % End the ToC and start a new page    
 	
 	\chapter{Úvod}
         Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem pro~zhodnocení nabytých znalostí a~dovedností. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~studentům předložen k~vyplnění.
@@ -276,12 +272,12 @@
             
             \emph{Javascript} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze kterého vycházel a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript}.
             
-            V~příkladě \ref{oop:difference} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \emph{Javascript} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody a~je~možné jej~používat zamýšleným způsobem např.~ve~funkci.~\cite{go:OOP}
+            V~příkladě \ref{code:classoop} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \emph{Javascript} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody a~je~možné jej~používat zamýšleným způsobem např.~ve~funkci.~\cite{go:OOP}
 
             \begin{code}
                 \centering
                 % First column for code sample
-                \begin{minipage}{.45\textwidth}
+                \begin{minipage}{.48\textwidth}
                     \begin{minted}{js}
 class Animal {
     constructor(name) {
@@ -324,7 +320,7 @@ c.makeSound();
                 \end{minipage}
                 \hfill % Space between the two minipages
                 % Second column for code sample
-                \begin{minipage}{.45\textwidth}
+                \begin{minipage}{.48\textwidth}
                     \begin{minted}{Go}
 // Animal is an abstract class (interface) in Go
 type Animal interface {
@@ -615,7 +611,7 @@ const App = () => {
         \section{Zabezpečení}
             Vystavením aplikace na~internetu se~\emph{API} vystavuje~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba v~aplikaci na~zabezpečení myslet a~v~žádném případě nespoléhat pouze na~sílu zabezpečení knihoven 3.\,stran, které používáme.
             
-            To~znamená, že~je~potřeba zabezpečit \emph{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby je potřeba mít veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí firewallu. K~ostatním službám, ke~kterým je~potřeba mít soukromý přístup potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical, Dorman:webmappingajax}.
+            To~znamená, že~je~potřeba zabezpečit \emph{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby je potřeba mít veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí \textbf{firewallu}. K~ostatním službám, ke~kterým je~potřeba mít soukromý přístup potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical, Dorman:webmappingajax}.
             
             \subsection{Hashování}
                 \textbf{Hashing} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~se~používá např.~při~ukládání hesel, kdy heslo uživatele není uloženo v~původní čitelné podobě, ale jako \textbf{hash}. Při~přihlášení pak~stejnou \emph{hashovací} funkcí~zadané heslo ověří s~uloženým \emph{hashem}, jelikož \emph{hashovací funkce} pro~dva~stejné vstupy vrací totožné výsledné \emph{hashe}. Pokud se~shodují, uživatel byl~úspěšně ověřen a~tedy přihlášen.
@@ -644,11 +640,11 @@ const App = () => {
                 Je~potřeba zkontrolovat vlastnictví nebo~přidělená oprávnění (\uv{může uživatel článek jen zobrazit nebo i~upravovat?}). Např.~pokud je~uživatel autorem příladu, může s~ním libovolně manipulovat. Pokud příklad vytvořil někdo jiný, musí k~úpravě dostat oprávnění~\cite{graham2021ethical}.
 
             \subsection{JWT~--~JSON Web Token}
-                Hojně používaná metoda zabezpečení je~\emph{JWT}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak ověřit, že~požadavek přichází z~naší aplikace a~nejde o~nepovolený přístup.
+                Hojně používaná metoda zabezpečení je~\textbf{JWT}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak ověřit, že~požadavek přichází z~naší aplikace a~nejde o~nepovolený přístup.
                 
-                Při~\emph{autentizaci} se~vygeneruje \emph{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou kódována ve~formátu \textbf{base64} a~podepsána šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit, protože jakákoliv změna v~datech znamená změnu \emph{podpisu}. Do~tokenu se~přidávají data, která je~potřeba uchovat nebo jsou~využita k~dodatečné kontrole. Je~důležité do \emph{tokenu} neukládatžádná citlivá data, jelikož formát \emph{base64} není šifrovaný. 
+                Při~\emph{autentizaci} se~vygeneruje \emph{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou kódována ve~formátu \textbf{base64} a~podepsána šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit, protože jakákoliv změna v~datech znamená změnu \emph{podpisu}. Do~tokenu se~přidávají data, která je~potřeba uchovat nebo jsou~využita k~dodatečné kontrole. Je~důležité do \emph{tokenu} neukládat žádná citlivá data, jelikož formát \emph{base64} není šifrovaný. 
                 
-                V~případě změny nebo nepřesnosti v~datech tokenu se~díky podpisu token stává neplatným, což~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech tokenu je~možné mít informace o~aktuálně přihlášeném uživateli, a~další kontrolní informace, jako~\emph{délka platnosti tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~vytvoření tokenu prvně odeslán.
+                V~případě změny nebo~nepřesnosti v~datech \emph{tokenu} se~díky podpisu \emph{token} stává neplatným, což~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech \emph{tokenu} je~možné mít informace o~aktuálně přihlášeném uživateli, a~další kontrolní informace, jako~délka platnosti \emph{tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~jeho~vytvoření prvně odeslán.
 
                 Funkci \emph{JWT} v~praxi lze~vidět na~schématu \ref{model-jwt}.
 
@@ -686,7 +682,7 @@ const App = () => {
                 Např.~dotaz na~změnu emailové adresy, který by~v~případě neošetření umožnil útočníkovi získat administrátorský přístup do~aplikace, by~mohl vypadat, jako v~ukázce \ref{model-sql-injection}.:
                 \begin{code}
                     \centering
-                    \begin{minipage}{0.45\textwidth}
+                    \begin{minipage}{0.48\textwidth}
                         \begin{minted}{go}
 id := 42
 // nebezpečný vstup od uživatele
@@ -698,8 +694,9 @@ DB.Exec("UPDATE users SET email = '" + email + "' WHERE id = " + id)
 -- výsledný spuštěný dotaz, který by umožnil útočníkovi získat administrátorský přístup
 UPDATE users SET email = 'mujmejl@seznam.cz', role='admin' WHERE id = 42
                         \end{minted}
+                        \subcaption{Neošetřený řetězec vložený do \emph{SQL}}
                     \end{minipage}
-                    \begin{minipage}{0.45\textwidth}
+                    \begin{minipage}{0.48\textwidth}
                         \begin{minted}{go}
 id := 42
 // nebezpečný vstup od uživatele
@@ -717,7 +714,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \label{model-sql-injection}
                 \end{code}
 
-                Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož odeslání dat lze~jednoduše obcházet.
+                Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Všechna vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož lze~jednoduše obcházet odeslání dat, tj.~kontrola na~straně uživatele je~především vizuální feedback a~pokyn pro~zadání správné formy dat uživatelem.
                 
                 Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze. To~už ale~je na~uvážení autora konkrétní aplikace. \cite{w3s:SQLInjection, itnetwork:SQLInjection}
 
@@ -791,7 +788,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 
                 Nejčastěji se~používá \textbf{Agilní} (\textbf{Agile}) model, který je~založen na~iteracích a~pravidelné komunikaci se~zákazníkem. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
                 
-                Existují ale i~jiné modely vývoje, jako např.~\emph{Vodopádový}, který je~založen na~jedné iteraci. V~té se~vyvíjí celá aplikace a~až poté se~testuje a~nasazuje. V~případě chyby je~potřeba se~vrátit na~začátek, opravit chybu a~aplikaci znovu vyvíjet~\cite{w3s:SDLC}.
+                Existují ale i~jiné modely vývoje, jako např.~\emph{Vodopádový}, který je~založen na~jedné iteraci. V~té se~vyvíjí celá aplikace a~až poté se~testuje a~nasazuje. V~případě chyby je~potřeba se~vrátit na~začátek, opravit chybu a~aplikaci znovu vyvíjet~\cite{sdlc:kadlec2004agilni}.
 
             \subsection{Sledování chyb nahlášených uživateli}
                 Pokud uživatel narazí na~chyby v~aplikaci, měl~by~je~mít~možnost nahlásit. Vývojář má~potom lepší možnost tyto chyby sledovat a~opravit~je.
@@ -828,7 +825,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj.
             
-            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatizaci testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}, viz~sekce o~\emph{testování aplikací}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů nebo nechtějí svůj kód~ukládat na~cizích serverech~\cite{geerlings2022gitlab, gitlab:CICD, gitlab:actions}.
+            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatizaci testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}, viz~sekce o~\emph{testování aplikací}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů nebo nechtějí svůj kód~ukládat na~cizích serverech~\cite{gitlab:panek2019optimalizace, gitlab:CICD, gitlab:actions}.
 
         \section{Linux a příkazová řádka, WSL2}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint, \dots)
@@ -1033,8 +1030,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             V~\emph{Go}~jsou také k~dispozici \textbf{metadata položek struktur} (\textbf{struct tags}), díky kterým je~možné pro~každý člen (údaj) dané struktury přidat doplňující parametry, které mohou sloužit např.~k~definici přesného datového typu v~tabulce vytvořené podle \emph{modelu} nebo~k~automatické kontrole dat při~přijetí požadavku ve~formátu \emph{JSON}. To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka, viz~\ref{go:structuretags}.
 
-            \begin{figure}
-                \begin{minipage}[b]{0.45\linewidth}
+            \begin{code}
+                \begin{minipage}[t]{0.48\linewidth}
                     \begin{minted}{go}
 r.POST("/age", func(c *gin.Context) {
     var data struct{
@@ -1049,16 +1046,15 @@ r.POST("/age", func(c *gin.Context) {
         return
     }
 
-    // The age is now in the `age` struct.
-
     c.JSON(http.StatusOK, gin.H{
         "age": age.Age,
     })
 })
                     \end{minted}
+                    \subcaption{Použití struktur v Go k validaci dat}
                 \end{minipage}
                 \hfill
-                \begin{minipage}[b]{0.45\linewidth}
+                \begin{minipage}[t]{0.48\linewidth}
                     \begin{minted}{php}
 <?php
 //...
@@ -1085,10 +1081,11 @@ class dataLoader extends Endpoints{
 }
 
                     \end{minted}
+                    \subcaption{Např. v PHP je potřeba další kontroly}
                 \end{minipage}
-                \caption{Kontrola dat pomocí PHP a zjednodušení pomocí Bind v Go}
+                \caption{Kontrola dat v PHP a použití Bind v Go}
                 \label{go:structuretags}
-            \end{figure}
+            \end{code}
 
             Během vývoje v~\emph{Go} není potřeba celý program kompilovat, stačí jej~spustit příkazem \texttt{go run}. Při~publikaci programu je~potřeba program \emph{zkompilovat} pomocí \texttt{go build}, čímž~\emph{Go} vytvoří optimalizovaný spustitelný binární soubor. Nástroj \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}} navíc automaticky restartuje server, pokud se~změní některý ze~zdrojových souborů. To~zjednoduší a~zrychlí vývoj \emph{backendu}.
             
@@ -1122,7 +1119,7 @@ class dataLoader extends Endpoints{
 
             \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu}, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje, nicméně jde~o~plnohodnotný systém a~je~možné jej~použít jako hlavní systém. Celková velikost distribuce po~instalaci je~pouze 5~MB, což je~velice málo.
 
-            Tuto distribuci používám jako hlavní systém na~svém \textbf{VPS} (Virtual Private Server), kde~aplikace poběží. Na~serveru běží pouze \emph{Nginx}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které nechci vystavovat na~veřejnost.
+            Na~\textbf{VPS} (Virtual Private Server) se~systémem \textbf{Debian} poběží pouze \emph{Nginx}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které nechci vystavovat na~veřejnost.
 
             Kombinací těchto technologií bych rád dosáhnul co~možná~nejlepšího poměru výkonu a~bezpečnosti.
 	
@@ -1174,7 +1171,7 @@ class dataLoader extends Endpoints{
             \emph{Endpointy} budou umístěny v~adresáři \texttt{Endpoints}, kde~bude mít~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech budou jejich \emph{handlery}. \emph{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \emph{handleru} s~ním pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují, např.;
             \begin{description}
                 \item[/api/user]~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
-                \item[/api/cat]~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
+                \item[/api/category]~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
                 \item[/api/exam]~--~\emph{CRUD} akce spojené s~testy, umožňují přidávat otázky, pojmenovat a~vyhledat a~vygenerovat výsledek, resp.~získat na~něj odkaz.
                 \item[/api/app]~--~zajistí manipulaci s~aplikací, jako je~nastavení a~jiné nespecifikované akce.
             \end{description}
@@ -1225,9 +1222,9 @@ class dataLoader extends Endpoints{
 
             Pro~komunikaci s~backendem budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \emph{JWT} a~tedy~zjednoduší komunikaci \emph{frontendu} s~\emph{backendem}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
 
-            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \emph{Backend} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\emph{Javascriptového} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\emph{Javascriptu} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\emph{Javascriptového} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz \ref{js:env}.
+            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv, kdo~má přístup k~používanému verzovacímu systému, a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \emph{Backend} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\emph{Javascriptového} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\emph{Javascriptu} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\emph{Javascriptového} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz~\ref{js:env}.
             
-            \begin{figure}
+            \begin{code}
                 \begin{minted}{js}
 // node.js environment
 const fs = require('fs');
@@ -1257,9 +1254,9 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
     });
 });
                 \end{minted}
-                \caption{Skript \emph{Node.js} načítající \emph{env proměnné} do~\emph{Javascriptového} souboru.}
+                \caption{Přepis \textbf{env proměnných} na~konstanty pomocí \emph{Node.js} kódu.}
                 \label{js:env}
-            \end{figure}
+            \end{code}
 
             Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiju modul \texttt{next-intl}, který slibuje nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
@@ -1267,7 +1264,7 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
 
             \emph{React} po~spuštění aplikace normálně načte celou zobrazenou aplikaci naráz, včetně obrázků, obsahu~ap. To~může vyústit ve~zbytečné načítání velkého objemu dat a~ke~snížení celkové rychlosti aplikace, nehledě na~zátěž na~připojení.
 
-            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě potřeby. Typicky rozdělujeme funkční komponenty tak, jak~jsou~v~aplikaci použity a~podle toho jsou~postupně načítány. V~této aplikaci budu~používat \emph{lazy loading} pro~načítání stránek, které jsou dostupné pouze přihlášeným uživatelům. V~případě, že~uživatel není přihlášen, bude mu~zobrazena stránka s~přihlašovacím formulářem. V~případě přihlášení uživatele pak~indikuji načítání aplikace a~při~úspěšném načtení zobrazím kontrolní prvky.
+            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě potřeby. Typicky rozdělujeme funkční komponenty tak, jak~jsou~v~aplikaci použity a~podle toho jsou~postupně načítány. V~této aplikaci budu~používat \emph{lazy loading} pro~načítání stránek, které jsou dostupné pouze přihlášeným uživatelům. V~případě, že~uživatel není přihlášen, bude mu~zobrazena stránka s~přihlašovacím formulářem. V~případě přihlášení uživatele pak~indikuji načítání aplikace a~při~úspěšném načtení zobrazím kontrolní prvky~\cite{lazyload}.
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě je~nutné uživatele informovat, že~došlo k~chybě a~případně mu~doporučit, co~může dělat dál. A~zaznamenat chybu do~logů~--~tj.~\emph{zalogovat}.
             
