@@ -56,12 +56,14 @@
 
 \newenvironment{singletonpage}[1]{
     \thispagestyle{empty} % No headers or footers
+    \setlength{\parskip}{10pt} % Set space between paragraphs
+    \setlength{\parindent}{0pt}
     \vspace*{\stretch{1}} % Add vertical space before the content
     \begin{center}      % Center the content horizontally
         \textbf{\Huge #1}\\[.4cm]
     \end{center}
 }{
-    \vspace*{\stretch{2}} % Add vertical space after the content
+    \vspace*{\stretch{3}} % Add vertical space after the content
     \clearpage          % Ensure we end on a new page
 }
 
@@ -113,16 +115,29 @@
     \thispagestyle{empty} % This removes the page number on this page
     \null\vfill % This centers the content vertically
 
+    \begin{singletonpage}{Abstrakt / Abstract}
+    
+        Tato práce se~zabývá využitím informačních technologií pro~generování zadání písemných testů. Zkoumá běžné metody tvorby testů a~představuje webovou aplikaci, která umožňuje učitelům efektivně vytvářet testy z~úloh s~parametricky zadanými vlastnostmi. Aplikace podporuje jak~uzavřené, tak~otevřené úlohy a~nabízí možnost generování testů ve~formátu pro~tisk. Práce zdůrazňuje význam technologií ve~vzdělávacím procesu a~přispívá k~modernizaci přístupu k~ověřování znalostí žáků.
+
+        This thesis explores the~use of~information technology when~creating written exam questions, examining current methods for~creating exams and~introducing a~web application that enables teachers to~efficiently construct tests with parameter-specified tasks. The~application supports both closed and~open tasks and~offers the~capability to~generate tests in~format using templates. The~work emphasizes the~significance of~technology in~the~educational process and~contributes to~modernizing the~approach to~student assessment.
+    \end{singletonpage}
+
     \begin{singletonpage}{Poděkování}
-        Chtěl bych v~této části poděkovat všem, kteří mi asistovali při tvorbě a~korektuře práce, sbírání dat a~zdrojů nebo upřesňování návrhu aplikace. Děkuji také blízkým za~psychickou podporu a~povzbuzení. Speciální dík patří vedoucímu práce panu {doc. RNDr. Petru Šalounovi, Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.\\
+    
+        Chtěl bych v~této části poděkovat všem, kteří mi~asistovali při~návrhu, tvorbě nebo~korektuře práce, sbírání dat a~zdrojů nebo~upřesňování návrhu aplikace. Děkuji také blízkým za~psychickou podporu a~povzbuzení.
+        
+        Speciální dík patří vedoucímu práce panu {doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.
+        
+        Děkuji také~Pedagogické fakultě univerzity Palackého v~Olomouci za~příspěvek na~pilotní provoz aplikace ve~formě stipendia.
 
         Děkuji.
     \end{singletonpage}
     
     \begin{singletonpage}{Prohlášení}
-        Tímto prohlašuji, že jsem práci zpracoval(a) samostatně.\\        
-        Některé části práce jsem konzultoval s~umělou inteligencí (ChatGPT, Bard) pro~doplnění kontextu nebo~kontrolu správnosti.\\
-        Potvrzuji, že~práce je~výsledkem mého samostatného úsilí za dodržení akademických etických principů.\\
+    
+        Potvrzuji, že~práce je~výsledkem mého samostatného úsilí za dodržení akademických etických principů.
+        
+        Některé části práce jsem konzultoval s~umělou inteligencí (ChatGPT, Bard) pro~doplnění kontextu nebo~kontrolu, ta~však není autorem tohoto textu jako celku.
 
         Šimon Janča, v~Olomouci \today
     \end{singletonpage}
