@@ -69,6 +69,9 @@
         }%
     }%
 }
+\let\oldacrshort\acrshort
+
+\renewcommand{\acrshort}[1]{\emph{\oldacrshort{#1}}}
 
 
 \newcommand{\emptypage}{
@@ -243,7 +246,7 @@
             
             Jednotlivé soubory na~různých adresách v~síti lze~také propojit pomocí \textbf{hypertextových odkazů}, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
-            Jednotlivé \emph{HTML} stránky se~skládají z~\emph{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~skriptovací jazyk \emph{JavaScript}, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře~\cite{berners:1989:proposal}.
+            Jednotlivé \acrshort{HTML} stránky se~skládají z~\emph{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~skriptovací jazyk \emph{JavaScript}, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře~\cite{berners:1989:proposal}.
 
             Jednotlivé prvky je~možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít~prvek více a~jednu třídu je~možné použít vícekrát, týž~identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti~\cite{jpw:tridy}.
 
@@ -1341,8 +1344,10 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
-    \newpage
-    \printglossary[type=\acronymtype]
-    \newpage
-    \printbibliography
+    \addcontentsline{toc}{chapter}{Seznam použitých zkratek}
+    \printglossary[type=\acronymtype, title={\chapter*{Seznam použitých zkratek}}]
+    \clearpage
+    
+    \addcontentsline{toc}{chapter}{Použitá literatura}
+    \printbibliography[title={Použitá literatura}]
 \end{document}
