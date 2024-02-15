@@ -15,7 +15,7 @@
 
 \usepackage[acronym]{glossaries}
 
-\makeglossaries
+% \makeglossaries
 
 % Define a new float type for code listings
 \DeclareFloatingEnvironment[
@@ -242,7 +242,7 @@
         \section{Základní statická HTML stránka}
             V~roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}.
             
-            \textbf{HTML} (\textbf{Hypertext Markup Language}), česky \textbf{Hypertextový značkovací jazyk}, je~strukturovaný jazyk, obsahující textový obsah a~hiearchicky strukturované \emph{HTML} značky, které určují význam jednotlivých částí dokumentu.
+            \acrdefprint{HTML}{Hypertext Markup Language}, česky \textbf{Hypertextový značkovací jazyk}, je~strukturovaný jazyk, obsahující textový obsah a~hiearchicky strukturované \emph{HTML} značky, které určují význam jednotlivých částí dokumentu.
             
             Jednotlivé soubory na~různých adresách v~síti lze~také propojit pomocí \textbf{hypertextových odkazů}, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
@@ -261,8 +261,8 @@
 
             Server může~--~samozřejmě po~povolení ze~strany uživatele~--~zasílat zprávy na~klientské zařízení a~vyžádat si~nějakou akci, díky \emph{Server-Sent Events}~\cite{sse:mdn} nebo udržovat spojení pomocí \emph{WebSockets}. Příkladem použití \emph{WebSockets} mohou být živý přenos videa, online hry, internetové hovory nebo jiné prvky na~webu, kde~využijeme oboustranou komunikaci.~\cite{websocket:mdn}
 
-        \section{Single Page Application (SPA)}
-            \textbf{Single Page Application} je~aplikace, která se~načte pouze jednou a~poté pouze aktualizujeme její obsah pomocí \emph{AJAXu}. Většinou k~práci s~daty využívá nějaké \emph{API}.
+        \section{Single Page Application}
+            \acrdefprint{SPA}{Single Page Application} je~aplikace, která se~načte pouze jednou a~poté pouze aktualizujeme její obsah pomocí \emph{AJAXu}. Většinou k~práci s~daty využívá nějaké \emph{API}.
 
             \textbf{Serverless aplikace} využívají k~zajištění některých (nebo všech) svých~funkcí již~připravené \emph{API} služeb třetích stran, např.~\textbf{Google Firebase} nebo \textbf{Amazon Web Services}, což~usnadňuje vývoj a~umožňuje vývojářům se~soustředit na~vývoj aplikace a~ne~na~správu serveru.
             
@@ -298,12 +298,14 @@
                 \item[Generování kódu] Z~\emph{AST}, je~možné generovat výslednou podobu programu nebo dat v~požadované formě~--~binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretuje jako~jinou formu dat.~\cite{baeldungCompilersWork, compilers}
             \end{description}
 
-        \section{Procedurální a~objektově orientované programování (OOP)}
-            \emph{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých procedur, které se~volají za~sebou. Procedura je~část programu, která vykonává určitou činnost. Procedury mohou mít parametry, které jsou jim~předány při~volání. Procedury mohou volat jiné procedury, což~umožňuje znovupoužití kódu. Procedury a~funkce jsou~si~podobné mimo~to, že~funkce vždy vrací (\texttt{return}) nějakou hodnotu, zatímco procedura pouze vykoná své~instrukce.
+        \section{Procedurální a~objektově orientované programování}
+            \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.\textbf{Návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} pouze vykoná své~instrukce.
+
+            \emph{Procedury} i~\emph{funkce} mohou mít tzv.~\textbf{vedlejší efekty} (\textbf{side effects}), což~značí, že~ovlivní chod programu~změnou \textbf{stavu aplikace}~\cite{Scott2019:programmingpragmatics}.
             
-            V~dnešní době se~častěji používá \emph{OOP}, protože umožňuje vývojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují modely objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu, na~kterých mohou vývojáři pracovat paralelně.
+            V~dnešní době se~častěji používá \acrdefprint{OOP}{Object Oriented Programming}, protože umožňuje vývojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují modely objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu, na~kterých mohou vývojáři pracovat paralelně.
             
-            \emph{OOP (objektově orientované programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~OOP se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vznikají ze~tříd. Třída je~předpis, podle kterého je~vytvořen (\emph{inicializován}) konkrétní~objekt.
+            \emph{OOP (objektově orientované programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~\emph{OOP} se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vznikají ze~tříd. Třída je~předpis, podle kterého je~vytvořen (\emph{inicializován}) konkrétní~objekt.
             
             \emph{OOP} má~4~základní vlastnosti, které se~při vývoji využívají~\cite{Keogh:OOP}.
             \begin{description}
@@ -313,11 +315,11 @@
                 \item[Abstrakce] nemusí být~implementována plná funkcionalita třídy a~nelze ji~samostatně \emph{inicializovat}. To~umožňuje vytvářet obecné (tzv.\emph{bázové})~třídy, které mohou být použity jako vzor pro~odvození jiných konkrétních tříd, využívajících jejich vlastnosti a~metody.
             \end{description}
 
-            Jazyk~\emph{Go} (Golang) podporuje~\emph{OOP} pouze~částečně. Je~nutné si~uvědomit, že~jde o~jazyk \emph{strukturovaný}, nikoliv \emph{objektově orientovaný}. Některých vlastností \emph{OOP} ale~je~možné dosáhnout pomocí použití \emph{struktur} a~\textbf{rozhrání} (\textbf{interface}). Metody na~strukturách je~možné vytvořit za~pomocí tzv.~\textbf{funkcí na~struktuře} (\textbf{receiver function}) a~imitovat tím~běžnou funkcionalitu \emph{metod}~\cite{go:OOP}.
+            Jazyk~\emph{Go} (Golang) podporuje~\emph{OOP} pouze~částečně. Je~nutné si~uvědomit, že~jde o~jazyk \emph{strukturovaný}, nikoliv \emph{objektově orientovaný}. Některých vlastností \emph{OOP} ale~je~možné dosáhnout pomocí použití \emph{struktur} a~\textbf{rozhrání} (\textbf{interface}). Metody na~strukturách je~možné vytvořit za~pomocí tzv.~\textbf{funkcí na~struktuře} (\textbf{receiver function}) a~imitovat tím~běžnou funkcionalitu \emph{metod}~\cite{go:OOP, Scott2019:programmingpragmatics}.
 
             Výraz \emph{rozhrání} běžně definuje komunikaci mezi objekty, viz~kapitola věnovaná~\emph{API}. V~případě \emph{OOP} definují vzor, podle kterého je~potřeba implementovat budoucí třídy~\cite{go:OOP}.
             
-            \emph{Javascript} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze kterého vycházel a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript}.
+            \emph{Javascript} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze kterého vycházel a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript, Scott2019:programmingpragmatics}.
             
             V~příkladě \ref{code:classoop} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \emph{Javascript} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody a~je~možné jej~používat zamýšleným způsobem např.~ve~funkci.~\cite{go:OOP}
 
@@ -478,8 +480,8 @@ func main() {
             
             V~této práci pro~správu stavu aplikace použiji knihovnu \textbf{Zustand}, která je~moderní, rychlá a~nabízí spoustu výhod oproti \emph{Contextu} i~knihovnám jako~\textbf{Redux}, \textbf{Mobx}~apod.~\cite{openreplayReactState}.
 
-        \section{JSX (Javascript XML)}
-            \emph{JSX} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent~\cite{reactJSX}.
+        \section{Javascript XML}
+            \acrdefprint{JSX}{Javascript XML} je~rozšíření jazyka \emph{Javascript}, které umožňuje využívat zápisu \emph{komponent} podobně jako v~\emph{HTML kódu}. Jednotlivé \emph{prvky} jsou tzv.~\textbf{komponenty}, které se~při~překladu přepisují na~\texttt{React.createElement} a~vykreslují se~do~HTML. To~umožňuje jednodušší tvorbu komponent~\cite{reactJSX}.
             
             Rozdíl práce na~tvorbě komponent za~použití \texttt{React.createElement}, resp.~\texttt{JSX} je~vidět v~kódu~\ref{JSXcomponent}.
             \begin{code}
@@ -522,12 +524,14 @@ const App = () => {
 
             \emph{Vite} (i \emph{CRA}) zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\emph{hot reload}, což znamená, že~se~při~každé změně kódu \emph{frontendu} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem~\cite{vitejs}.
 
-        \section{Server Side Rendering (SSR) a Static Site Generation (SSG)}
-            Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \emph{HTML} obsah a~prohlížeč stránku vykreslí (\emph{Client Side Rendering~--~CSR})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \emph{Static Site Generation (SSG)} a~\emph{Server Side Rendering (SSR)}.
+        \section{Server Side Rendering a Static Site Generation}
+            Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \emph{HTML} obsah a~prohlížeč stránku vykreslí (\emph{Client Side Rendering~--~CSR})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \emph{Static Site Generation (SSG)} a~\emph{Server Side Rendering (SSR)}, 
 
-            \textbf{Static Site Generator (SSG)} (\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \emph{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby běžela žádná další \emph{služba/aplikace}. To~samozřejmě nevylučuje použití \emph{AJAXu}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \emph{Javascriptu}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
+            \acrdefprint{SSG}{Static Site Generator} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \emph{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby~běžela další \emph{služba/aplikace}.
+            
+            To~samozřejmě nevylučuje použití \emph{AJAXu}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \emph{Javascriptu}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
 
-            \textbf{Server Side Rendering (SSR)} je~koncept podobný \emph{SSG}, jen na~straně serveru běží aplikace, která průběžně aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \emph{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\emph{backend} aplikace používá \emph{Javascript}~\cite{uc:ssrandssg}.
+            \acrdefprint{SSR}{Server Side Rendering} je~koncept podobný \emph{SSG}, pouze na~straně serveru běží aplikace, která průběžně sleduje data a~aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \emph{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\emph{backend} aplikace používá \emph{Javascript}~\cite{uc:ssrandssg}.
 
             Takto systém vygeneruje \emph{HTML kód} (se~skripty~ap.) pro~každou stránku pouze v~případě změny obsahu. Při~dalším spuštění potom načítá statický obsah, což~ušetří výkon na~straně \emph{serveru} i~\emph{klienta}.
 
@@ -538,13 +542,24 @@ const App = () => {
 
             \textbf{Klient} je~aplikace na~zařízení uživatele (webový prohlížeč), který služby \emph{serveru} využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje HTML stránku. V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě~\cite{ClientServer}.
 
-        \section{Webová služba, webový server}
+        \section{Webová služba}
             Webová služba je~program, který běží na~\emph{serveru} a~poskytuje data \emph{klientovi}. Na \emph{serveru} může běžet více \emph{webových služeb}, rozlišují se \emph{portem} na~kterém běží a~přijímají instrukce a~data. Např.~webová služba \emph{HTTP}, která poskytuje webová data a~soubory poběží na~\emph{portu}~80, resp.~v~dnešní době zejména~443 (\emph{HTTPS}). Další služby mohou být např.~emailová služba \textbf{SMTP} (\textbf{Simple Mail Transfer Protocol}).
             
             Služby \textbf{naslouchají} na svých \emph{portech} a~přijímají požadavky od~klientů. K~serverům na~internetu se~přistupuje pomocí \emph{IP~adresy} a~ke~službám pak~pomocí portu, na~kterém běží~\cite{webserver:mdn}.
 
-        \section{DNS~--~Domain Name Server}
-            \textbf{DNS} je~zkratka pro~\emph{Domain Name Server}, někdy \emph{Domain Name System}. Je~to~systém, který překládá doménová jména na~IP adresy. To~umožňuje, aby~uživatelé používali lidem čitelná doménová jména namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
+        \section{Webový server}
+            \emph{Webový server} se~stará o~odpovědi na požadavky, přicházející většinou na~port \emph{443} nebo \emph{80}. Server dostane požadavek ve~formě \acrdefprint{URL}{Uniform Resource Locator}, někdy \acrdefprint{URI}{Uniform Resource Identifier}, obsahující cestu k~požadovanému zdroji (souboru/službě).
+
+            Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \emph{PHP}) a~vloží se~do~něj aktuální data, nebo před odesláním provést \emph{kompresi dat}, což uspoří mobilní data a~klient, který používá k~přístupu mobilní data za~to~bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
+
+            \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\textbf{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci)~\cite{webserver:mdn}.
+
+            Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
+
+            \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}) resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
+
+        \section{Domain Name Server}
+            \acrdefprint{DNS}{Domain Name Server}, někdy také \emph{Domain Name System}, je~systém, který překládá doménová jména na~IP adresy. To~umožňuje, uživatelům používat lidem čitelná \emph{doménová jména} namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
             
             Bez~služby \emph{DNS} by~se~např.~oblíbený český vyhledávač \texttt{Seznam.cz} proměnil ve~směsici čísel \texttt{77.75.79.222}, což~by~uživatel jistě neocenil. Něco~podobného by~platilo i~pro~ostatní weby.
 
@@ -574,24 +589,13 @@ const App = () => {
 
             Když~je do~prohlížeče zadáno doménové jméno, prohlížeč se~pokusí najít \emph{IP~adresu} ve~vlastní \emph{DNS cache}, kam si~ukládá již navštívené weby. Pokud adresu nenajde, připojí~se k~nejbližšímu DNS serveru a~požádá o~poskytnutí překladu jej a~uloží si~\emph{IP adresu} do~\emph{cache}. Pokud \emph{DNS server} adresu nemá, zeptá se~nadřazeného \emph{DNS serveru}~atd.
             
-            Nejbližší \emph{DNS} bývá poskytovatel (\textbf{ISP, Internet Service Provider}) internetu, který má~uloženy \emph{IP} adresy serverů, na~které v~minulosti zákazníci přistupovali. Pokud~záznamy ještě nemá, zeptá se~prohlížeč nadřazeného \emph{DNS serveru}, resp.~zašle požadavek na~adresu nastaveného \emph{DNS serveru}. Postupně~se tedy zeptá \emph{ISP}, správce národní domény (\emph{CZ.NIC}) a~\emph{kořenového DNS serveru} (\emph{Root DNS server}), který má~uloženy všechny \emph{IP adresy} serverů, které jsou~na~internetu.
+            Nejbližší \emph{DNS} bývá poskytovatel připojení k~internetu (\acrdefprint{ISP}{Internet Service Provider}), který má~uloženy \emph{IP} adresy serverů, na~které v~minulosti zákazníci přistupovali. Pokud~záznamy ještě nemá, zeptá se~prohlížeč nadřazeného \emph{DNS serveru}, resp.~zašle požadavek na~adresu nastaveného \emph{DNS serveru}. Postupně~se tedy zeptá \emph{ISP}, správce národní domény (\emph{CZ.NIC}) a~\emph{kořenového DNS serveru} (\emph{Root DNS server}), který má~uloženy všechny \emph{IP adresy} serverů, které jsou~na~internetu.
 
             \textbf{DNS Záznamy} může upravovat vlastník domény prostřednictvím \textbf{doménového registrátora}. To~umožňuje přesměrovat doménu na~jiný server, nebo~přidat další záznamy, jako např.~\emph{MX} záznamy, které používá e-mailová služba pro doručování e-mailů.\cite{dns:mdn}
-
-        \section{Webový server}
-            \emph{Webový server} se~stará o~odpovědi na požadavky, přicházející většinou na~port \emph{443} nebo \emph{80}. Server dostane požadavek ve~formě \textbf{URL} (\emph{Uniform Resource Locator}, někdy \emph{Uniform Resource Identifier}), která obsahuje cestu k~požadovanému zdroji (souboru/službě).
-
-            Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \emph{PHP}) a~vloží se~do~něj aktuální data, nebo před odesláním provést \emph{kompresi dat}, což uspoří mobilní data a~klient, který používá k~přístupu mobilní data za~to~bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
-
-            \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\textbf{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci)~\cite{webserver:mdn}.
-
-            Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
-
-            \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}) resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
         
-        \section{MVC -- Model View Controller}
+        \section{Model View Controller}
         \label{MVC}
-            Nejvýznamnějším bodem vývoje aplikací je~rozšíření architektury \emph{MVC}. \textbf{MVC} je~zkratka pro~\textbf{Model View Controller}. Tato architektura odděluje \textbf{logiku aplikace} od~jejího \textbf{zobrazení}. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím \emph{zobrazení}.
+            Nejvýznamnějším bodem vývoje aplikací je~rozšíření architektury \acrdefprint{MVC}{Model View Controller} Tato architektura odděluje \textbf{logiku aplikace} od~jejího \textbf{zobrazení}. To~umožňuje vývoj funkční části aplikace nezávisle na~jejím \emph{zobrazení}.
 
             Podle modelu \emph{MVC} má~aplikace 3~složky. \textbf{Model}, který se~stará o~úschovu a~manipulaci s~daty, \textbf{Controller}, který zprostředkuje komunikaci mezi \emph{modelem} a \emph{zobrazením}, a~\textbf{View}, který se~stará o~výsledné zobrazení dat.
             
@@ -600,28 +604,28 @@ const App = () => {
             Moderní aplikace díky tomu mohou snížit zátěž na~server, jelikož část aplikace, která se~stará o~zobrazení, běží na~straně klienta a~mezi nimi probíhá pouze výměna dat~\cite{MVC}.
 
         \section{Frontend, Backend}
-            Dnešní aplikace se~díky architektuře \emph{MVC} běžně dělí na~\emph{frontend} a~\emph{backend}, které pracují spolu, ale jsou oddělené.
+            Dnešní aplikace je~možné díky architektuře \emph{MVC} rozdělit na~\emph{frontend} a~\emph{backend}, které spolu komunikují a~plní funkce aplikace ale jinak zůstávají oddělené.
 
             Díky \emph{MVC} je~takto možné vývoj aplikace rozdělit mezi tým~vývojářů, kde každý může pracovat na~jiné části aplikace a~každá část aplikace má~své rozhraní, takže mohou pracovat téměř nezávisle na~sobě.
 
-            \textbf{Frontend} je~část aplikace, kterou vidí uživatel, např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\emph{View}) a~interakci s~uživatelem (\emph{Controller}) a~komunikuje s~\emph{backendem}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
+            \acrdefprint{BE}{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \emph{FE}. Spolupracuje s~databází (\emph{Modelem}), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \emph{Backend} může být~napsán v~různých jazycích~\cite{Dorman:webmappingajax, Zimmerman2023:howtowritebetter}, např.~PHP, Java, C\#, Go, Javascript, C++\dots
 
-            \textbf{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \emph{frontendu}. Spolupracuje s~databází (\emph{Modelem}), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \emph{Backend} může být~napsán v~různých jazycích~\cite{Dorman:webmappingajax, Zimmerman2023:howtowritebetter}, např.~PHP, Java, C\#, Go, Javascript, C++\dots
+            \acrdefprint{FE}{Frontend} je~část aplikace, kterou vidí uživatel, např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\emph{View}) a~interakci s~uživatelem (\emph{Controller}) a~komunikuje s~\emph{BE}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~HTML, CSS a~Javascriptu.
 
-        \section{JSON~--~Javascript Object Notation}
-            \textbf{JSON}~je~formát pro~uložení strukturovaných dat. Je~to~textový formát čitelný pro~člověka i~pro~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát \emph{XML} (\emph{Extended Markup Language}, který je~podobný struktuře \emph{HTML}. Ostatně \emph{XML} stále používá spousta aplikací, zejména aplikace státní správy.
+        \section{Javascript Object Notation}
+            \acrdefprint{JSON}{Javascript Object Notation}~je~formát pro~uložení strukturovaných dat. Je~to~textový formát čitelný pro~člověka i~pro~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát \emph{XML} (\emph{Extended Markup Language}, který je~podobný struktuře \emph{HTML}. Ostatně \emph{XML} stále používá spousta aplikací, zejména aplikace státní správy.
 
             Formát \emph{JSON} je~podobný zápisu objektů v~\emph{Javascriptu}. Obsahuje dvojice \emph{klíč-hodnota}, které jsou odděleny dvojtečkou. Klíčem je~řetězec, který obvykle popisuje, jaká data jsou v~něm uložena, a~hodnota může být číselná, textová, logická hodnota, pole nebo další vnořená struktura dat.
             
             Práce s~formátem \emph{JSON} je~pohodlnější než s~formátem XML, protože je~jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně \emph{serveru}, tak na~straně klienta. Jde~celkově o~úspornější formát pro~přenos dat~\cite{Dorman:webmappingajax}.
 
-        \section{AJAX~--~Asynchronous Javascript Request}
-            \textbf{AJAX} je~technologie, která umožňuje \emph{asynchronní} komunikaci, např.~mezi \emph{frontendem} a~\emph{backendem}. To~znamená, že~při~každém požadavku na~\emph{server} se~stránka nemusí znovu načítat, ale použije se~\emph{AJAX}, jsou~načtena požadovaná data ze~serveru a~změní se~ve~stránce.
+        \section{Asynchronous Javascript Request}
+            \acrdefprint{AJAX}{Asynchronous Javascript Request} je~technologie, která umožňuje \emph{asynchronní} komunikaci, např.~mezi \emph{frontendem} a~\emph{backendem}. To~znamená, že~při~každém požadavku na~\emph{server} se~stránka nemusí znovu načítat, ale použije se~\emph{AJAX}, jsou~načtena požadovaná data ze~serveru a~změní se~ve~stránce.
 
             Funkce \emph{Javascriptu} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. \emph{AJAX} využívá různé \emph{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\cite{ajax:mdn, Dorman:webmappingajax}
 
-        \section{API~--~Application Interface}
-            \emph{API} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi \emph{frontendem} a~\emph{backendem}. Některá \emph{rozhrání} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
+        \section{Application Interface}
+            \acrdefprint{API}{Application Interface} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi \emph{frontendem} a~\emph{backendem}. Některá \emph{rozhrání} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
             
             Někerá \emph{API} jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~\emph{API} Google Firebase, Microsoft Azure nebo Amazon Web Services umožňují tvorbu tzv.~Serverless aplikací, kde~vývojář tvoří pouze \emph{frontend} a~o~zbytek se~stará externí služba. To~umožňuje vývojářům se~soustředit na~vývoj aplikace a~nemusí se~starat o~infrastrukturu, která je~potřeba pro~běh aplikace.
 
@@ -631,8 +635,8 @@ const App = () => {
             
             Výhodou \emph{gRPC} je, že autor aplikace pouze definuje služby a~jejich rozhraní a~\emph{gRPC} vygeneruje veškerý potřebný kód pro~jazyk, který používáme. Také je~díky efektivnější komunikaci rychlejší než~jiné~přístupy. Bohužel je~k~jeho použití nutné se~naučit novému přístupu k~přenosu~dat a~jazyku definice služeb \emph{protobuf}~\cite{thenewstackBuildRealWorld}.
 
-        \section{REST~--~Representational state transfer}
-            \textbf{REST} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
+        \section{Representational state transfer}
+            \acrdefprint{REST}{Representational State Transfer} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
             
             \emph{REST} je~bezstavový, což~znamená, že~každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi. To~umožňuje jednodušší testování a~ladění aplikace a~trochu snižuje zátěž serveru. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je~sice při~tvorbě \emph{REST API} doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \texttt{Cookies} nebo \texttt{Session} je~v~případě potřeby možné využívat.
             
@@ -686,21 +690,12 @@ const App = () => {
                 
                 Je~potřeba zkontrolovat vlastnictví nebo~přidělená oprávnění (\uv{může uživatel článek jen zobrazit nebo i~upravovat?}). Např.~pokud je~uživatel autorem příladu, může s~ním libovolně manipulovat. Pokud příklad vytvořil někdo jiný, musí k~úpravě dostat oprávnění~\cite{graham2021ethical}.
 
-            \subsection{JWT~--~JSON Web Token}
-                Hojně používaná metoda zabezpečení je~\textbf{JWT}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak ověřit, že~požadavek přichází z~naší aplikace a~nejde o~nepovolený přístup.
+            \subsection{JSON Web Token}
+                Hojně používaná metoda zabezpečení je~\acrdefprint{JWT}{JSON Web Token}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak ověřit, že~požadavek přichází z~naší aplikace a~nejde o~nepovolený přístup.
                 
                 Při~\emph{autentizaci} se~vygeneruje \emph{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou kódována ve~formátu \textbf{base64} a~podepsána šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit, protože jakákoliv změna v~datech znamená změnu \emph{podpisu}. Do~tokenu se~přidávají data, která je~potřeba uchovat nebo jsou~využita k~dodatečné kontrole. Je~důležité do \emph{tokenu} neukládat žádná citlivá data, jelikož formát \emph{base64} není šifrovaný. 
                 
-                V~případě změny nebo~nepřesnosti v~datech \emph{tokenu} se~díky podpisu \emph{token} stává neplatným, což~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech \emph{tokenu} je~možné mít informace o~aktuálně přihlášeném uživateli, a~další kontrolní informace, jako~délka platnosti \emph{tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~jeho~vytvoření prvně odeslán.
-
-                Funkci \emph{JWT} v~praxi lze~vidět na~schématu \ref{model-jwt}.
-
-                \begin{figure}
-                    \centering
-                    \includegraphics[width=.9\linewidth]{./files/img/jwt.jpg}
-                    \caption{Použití JWT v~praxi}
-                    \label{model-jwt}
-                \end{figure}
+                V~případě změny nebo~nepřesnosti v~datech \emph{tokenu} se~díky podpisu \emph{token} stává neplatným, což~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech \emph{tokenu} je~možné mít informace o~aktuálně přihlášeném uživateli, a~další kontrolní informace, jako~délka platnosti \emph{tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~jeho~vytvoření prvně odeslán.\\
 
                 \emph{JWT} sestává ze~tří částí, které jsou odděleny tečkou.
                 
@@ -712,14 +707,23 @@ const App = () => {
 
                 Všechny tři~části jsou zakódovány pomocí metody \emph{Base64} a~odděleny tečkou. Výsledný token je~také textový řetězec, který je~možné přenášet v~hlavičce \emph{HTTP~požadavku}.
 
-                Jednou z~výhod \emph{JWT} je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který má k~dispozici daný klíč (\cite{ieee:jwt}). Je~možné tak např.~umožnit jednotné přihlášení v~rámci několika služeb. \emph{JWT}~není vázán na~symetrické šifrování a~kvůli přenositelnosti se~často využívá \emph{asymetrické šifrování}, kde hlavní server má~tzv.~\textbf{privátní klíč} a~ostatní mají svůj~vlastní \textbf{veřejný klíč}, odvozený od~privátního, kterým ověřují, že~byl~token vytvořen na~správném serveru~\cite{miguelgrinbergJSONTokens}.
+                Funkci \emph{JWT} v~praxi lze~vidět na~schématu \ref{model-jwt}.
+
+                \begin{figure}
+                    \centering
+                    \includegraphics[width=.9\linewidth]{./files/img/jwt.jpg}
+                    \caption{Použití JWT v~praxi}
+                    \label{model-jwt}
+                \end{figure}
+
+                Jednou z~výhod \emph{JWT} je~možnost přenositelnosti. Token může být~vytvořen na~jednom serveru a~ověřen na~jiném, který má k~dispozici daný klíč (\cite{ieee:jwt}). Je~možné tak např.~umožnit jednotné přihlášení v~rámci několika služeb. \emph{JWT}~není vázán na~symetrické šifrování a~kvůli přenositelnosti se~často využívá \emph{asymetrické šifrování}, kde hlavní server má~tzv.~\textbf{privátní klíč} (\textbf{private key}) a~další účastnící mají svůj~vlastní \textbf{veřejný klíč} (\textbf{public key}), odvozený od~privátního, kterým ověřují, že~byl~token vytvořen na~správném serveru~\cite{miguelgrinbergJSONTokens}.
                 
                 Díky \emph{asymetrickému šifrování} je~možné vytvořit více \emph{veřejných klíčů} a~přidělit je~různým službám, které je~pak mohou používat pro~ověření \emph{tokenu} z~původního \emph{serveru}.
 
                 Formát \emph{Base64} je~kódování, které se~používá pro~přenos dat, nikoliv pro~zabezpečení. Bezpečnost \emph{JWT} je~zajištěna pouze podpisem, který zaručuje integritu dat. Data ale~může přečíst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \emph{JWT} vznikly navazující standardy\,--\,\emph{JWE}, \emph{JWS}, \emph{JWA} nebo~\emph{JWK}.~\cite{jwtesak, graham2021ethical}
 
-            \subsection{SQL -- Structured Query Language}
-            \textbf{SQL} je~jazyk, používány pro~manipulaci s~daty uloženými v~rámci relačních databází. \emph{SQL} je~deklarativní jazyk, což~znamená, že~při~vytvoření dotazu popíšeme, jaká data je~potřeba získat, a~ne jakým způsobem. \emph{SQL} je~standardizovaný jazyk, který je~podporován většinou relačních databází. Pomocí \emph{SQL} se~zapisují tzv.~\textbf{SQL dotazy} (\textbf{SQL Query}), které mohou ukládat, načítat, upravovat nebo~mazat data v~databázi~\cite{laurencik2018sql}.
+            \subsection{Structured Query Language}
+            \acrdefprint{SQL}{Structured Query Language} je~jazyk, používány pro~manipulaci s~daty uloženými v~rámci relačních databází. \emph{SQL} je~deklarativní jazyk, což~znamená, že~při~vytvoření dotazu popíšeme, jaká data je~potřeba získat, a~ne jakým způsobem. \emph{SQL} je~standardizovaný jazyk, který je~podporován většinou relačních databází. Pomocí \emph{SQL} se~zapisují tzv.~\textbf{SQL dotazy} (\textbf{SQL Query}), které mohou ukládat, načítat, upravovat nebo~mazat data v~databázi~\cite{laurencik2018sql}.
 
             \subsection{SQL Injection}
                 \emph{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus~\emph{SQL dotazu} do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~místo zpracování vykonán společně se~zbytkem dotazu. To~může vést k~získání citlivých dat, jejich změně nebo~smazání. Může např.~dojít ke~změně hesla administrátorského účtu a~tím získání přístupu ke~chráněným datům.
@@ -766,15 +770,15 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze. To~už ale~je na~uvážení autora konkrétní aplikace. \cite{w3s:SQLInjection, itnetwork:SQLInjection}
 
             \subsection{Cross Site Scripting}
-                \emph{XSS} je~útok, při~kterém útočník vloží do~uživatelského vstupu kód, který se~při~načtení stránky spustí. To~může vést k~získání citlivých dat, přesměrování na~jinou stránku nebo~k~jiným nežádoucím akcím.
-
-                Jelikož v~projektu používám React, který využívá \emph{JSX}, je~tento typ útoku téměř vyloučen. \emph{JSX} totiž neumožňuje vkládat do~\emph{HTML} kód, ale~pouze textové řetězce, které se~při~načtení stránky zobrazí.
-
-                Existují ale výjimky, to~je~použití \texttt{eval}, která umožňuje spustit \emph{Javascript} kód z~řetězce, a~přímé vkládání neošetřeného vstupu pomocí \texttt{dangerouslySetInnerHTML} nebo~jiných vlastností, které se přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod.
+                \acrdefprint{XSS}{Cross Site Scripting} je~typ útoku, při~kterém útočník vloží do~uživatelského vstupu kód, který se~při~načtení stránky spustí. To~může vést k~získání citlivých dat, přesměrování na~jinou stránku nebo~k~jiným nežádoucím akcím.
 
                 Možnou ochranou před tímto typem útoku je~nahrazení znaků, které~mohou způsobit problémy, za~jejich \emph{HTML entity}, kde~je~potřeba např.~znaky jako~\texttt{<} nahradit za~\texttt{\&lt;}, \texttt{>} za~\texttt{\&gt;}, \texttt{\&} za~\texttt{\&amp;}~apod. Takové \emph{HTML entity} prohlížeč vykreslí uživateli a~nezpracovává je~jako~funkční kód.
                 
                 Možností je~také využít specializované knihovny, které toto ošetření provedou samy, a~není nutné řešit otázky, které znaky je~nebo~není potřeba ošetřovat, např.~\emph{DOMPurify} nebo~\emph{sanitize-html}~\cite{medium:XSS}.
+
+                Jelikož v~projektu používám \emph{React}, který využívá \emph{JSX}, je~tento typ útoku téměř vyloučen. \emph{JSX} totiž neumožňuje vkládat přímo \emph{HTML} kód, ale~pouze textové řetězce, které se~při~načtení stránky zobrazí.
+
+                Existují ale výjimky a~to~použití funkce \texttt{eval}, která umožňuje spustit \emph{Javascript} kód z~řetězce (textové proměnné), a~přímé vkládání neošetřeného vstupu pomocí vlastnosti \texttt{dangerouslySetInnerHTML} nebo~jí podobných, které se~přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod. Tyto vlastnosti ale~vývojáři používají s~vědomím rizika~\cite{reactJSX}.
 
         \section{Testování}
             Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí co~nejvíce možných scénářů, které mohou nastat.
@@ -796,31 +800,44 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Pro~testování frontendu budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
 
         \section{Continous Integration a Continuous Delivery}
-            \textbf{CI/CD} je souhrnný pojem, který označuje průběžnou integraci (\emph{Continuous Integration}, CI) a~průběžné doručení nebo nasazování (\emph{Continuous Deployment/Delivery}, CD), dvě klíčové praktiky v automatizaci procesů vývoje softwaru.
+            \textbf{CI/CD} je souhrnný pojem, který označuje průběžnou integraci \acrdefprint{CI}{Continuous Integration} a~průběžné doručení nebo nasazování \acrdefprint{CD}{Continuous Deployment/Delivery}, dvě klíčové praktiky v automatizaci procesů vývoje softwaru.
 
             \textbf{CI} zahrnuje automatické spouštění sady testů po každé změně kódu v repozitáři, aby se ověřila jeho funkčnost a kompatibilita. Cílem je rychle identifikovat a opravit chyby, což vede k udržení vysoké kvality softwaru. Po úspěšném provedení testů dochází k automatickému sestavení aplikace. Pokud testy selžou, proces CI informuje vývojáře o potřebě oprav a zastaví další postup.
 
             \textbf{CD} rozšiřuje \emph{CI} tím, že po~úspěšném sestavení aplikace automaticky provede její nasazení na~server. To~umožňuje rychlou dostupnost aktualizované aplikace uživatelům bez~manuálního zásahu, což~zvyšuje efektivitu vývojového procesu a~umožňuje rychlejší reakci na~požadavky trhu~\cite{graham2021ethical}.
+	
+        \section{Verzovací systém GIT}
+            \emph{GIT} vytvořil autor Linuxu \emph{Linus Torvalds} v~roce 2005. Je~to~\textbf{distribuovaný verzovací systém}, tj.~každý vývojář má~lokální kopii celého projektu, tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
+            
+            Základní funkcí \emph{GITu} je~ukládání změn. Neukládají se~celé soubory pouze změny, které se~udály. Díky tomu je~možné spravovat i~větší projekty, kde spolupracuje více vývojářů zároveň a~po~dokončení části práce a~její~kontrole ji~připojí ke~zbytku kódu, který je~označen za~finální verzi (tzv.~\textbf{release}) aplikace nebo je~na~něm~možné dále pracovat.
+            
+            Díky verzování je~také možné se~kdykoliv vrátit k~předchozím verzím projektu a~pokračovat ve~vývoji nebo~pracovat na~několika různých problémech zároveň díky \textbf{větvím}. Práci je~možné v~jakémkoliv bodě označit pomocí tagů a~tím~umožnit používat označené místo ve~vývoji.
+
+            Existují služby, které poskytují prostor pro~ukládání \emph{GIT} projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\emph{GitHub}, \emph{GitLab} nebo~\emph{Bitbucket}. Mimo zmíněné funkce nabízejí možnost vytvářet \textbf{Issues}, pokud narazí na~chybu nebo~má~nápad na~vylepšení. Tímto způsobem může sdělit svůj nápad nebo~chybu v~aplikaci a~případně se~k~ní vrátit později. \emph{Issues} je~také možné přiřadit konkrétnímu vývojáři, který chybu nebo~nápad dostane na~starost nebo~automaticky vytvořit \emph{větev}, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní \emph{větve} projektu. Je~také možné jednoduše zobrazit rozdíly mezi hlavní \emph{větví} a~tou, na~které vývojář pracuje~\cite{gitscmBook}.
+            
+            \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj.
+            
+            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatizaci testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}, viz~sekce o~\emph{testování aplikací}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů nebo nechtějí svůj kód~ukládat na~cizích serverech~\cite{gitlab:panek2019optimalizace, gitlab:CICD, gitlab:actions}.
 
             \subsection{Git hooks}
-                \emph{Git hooks} jsou~skripty, které se~spouští při~určité události v~\emph{Gitu}. Je~možné např.~automaticky spustit testy před~každým nahráním změn v~kódu do~repozitáře~\cite{gitscmBook}.
+                \textbf{Git hooks} jsou~skripty, které se~spouští při~určité události v~\emph{Gitu}. Je~možné např.~automaticky spustit testy před~každým nahráním změn v~kódu do~repozitáře~\cite{gitscmBook}.
 
             \subsection{Gitlab Actions}
-                \emph{Gitlab Actions} jsou~součástí \emph{Gitlabu} a~umožňují vytvořit sadu procesů (\emph{workflow}), které se~spustí při~určité události, např.~při~nahrání nového kódu do~repozitáře.
+                \emph{Gitlab Actions} jsou~součástí \emph{Gitlabu} a~umožňují vytvořit sadu procesů (tzv.~\textbf{workflow}), které se~spustí při~určité události, např.~při~nahrání nového kódu do~repozitáře.
                 
                 \emph{Workflow} se~spouští ve~virtualizačním prostředí (\emph{kontejneru}), který je~vytvořený na~základě \emph{Dockerfile} a~obsahuje prostředí, potřebné pro~sestavení a~spuštění aplikace a~testů. Celý proces se~automaticky spouští na~\emph{virtuálním serveru}, např.~po~nahrání projektu na~\emph{Gitlab} a~nastavuje se~pomocí konfiguračního souboru \emph{.yml}.
 
                 Během procesu se~spustí \emph{kontejner}, ve~kterém se~aplikace sestaví a~spustí se~přednastavené testy. Pokud vše proběhne v~pořádku, aplikace se~automaticky nasadí na~server. Použitím \emph{CI/CD} procesů se~zjednoduší nasazování aplikace a~zrychlí proces~vývoje~\cite{gitlab:actions}.
 
         \section{Pravidla přístupnosti webu}
-                Webové aplikace je~nutné vytvářet přístupné pro~všechny uživatele. Tato pravidla jsou~definována v~\textbf{WCAG} (\textbf{Web Content Accessibility Guidelines}), které jsou~vydávány organizací \emph{W3C} (\emph{World Wide Web Consortium}).
+                Webové aplikace je~nutné vytvářet přístupné pro~všechny uživatele. Tato pravidla jsou~definována v~\acrdefprint{WCAG}{Web Content Accessibility Guidelines}, které jsou~vydávány organizací \acrdefprint{W3C}{World Wide Web Consortium}.
 
                 V~ČR je~přístupnost webu upravena zákonem č.~99/2019 Sb., o~přístupnosti internetových stránek a~mobilních aplikací veřejného sektoru a~o~změně zákona č.~365/2000 Sb., o~informačních systémech veřejné správy a~o~změně některých dalších zákonů (zákon o~přístupnosti).
 
                 \textbf{Pravidla přístupnosti} zahrnují optimalizaci (přizpůsobení) aplikace pro~hladké použití aplikace osobami se~zrakovými nebo sluchovými vadami, poruchami pohybu~ap. Mají např.~zjednodušit navigaci ve~stránce pomocí klávesnice, či~s~použitím programů na~čtení displeje, zmiňují kontrast prvků ve~stránce pro~lepší čitelnost a~správné použití \textbf{semantických} (\textbf{významových}) prvků \emph{HTML} jako~\texttt{<nav>}, \texttt{<header>}, \texttt{<article>}, správně použité úrovně nadpisů a~další~\cite{w3WCAGOverview}.
 
-        \section{SEO - optimalizace pro vyhledávače}
-                Důležitou součástí, která souvisí i~s~přístupností je~optimalizace webu pro~vyhledávače. Při~\textbf{indexaci} (načtení strukturovaných dat ze~stránky a~jejich zařazení do~vyhledávání). Vyhledávač musí -- stejně jako např.~software pro~čtení obrazovky -- načítat surová data, která si~ukládá do~své~databáze. V~případě, že~jsou data špatně strukturovaná, nebo~nejsou dostatečně popsaná, může dojít k~jejich špatnému zařazení, nebo~k~jejich nezařazení do~vyhledávání. To~může mít~za~následek, že~stránka nebude v~hledání nalezena, nebo~bude nalezena až~na~pozdějších pozicích~\cite{dover2012seo}.
+        \section{Optimalizace pro vyhledávače}
+                Důležitou součástí, která souvisí i~s~přístupností je~\acrdefprint{optimalizace webu pro~vyhledávače}{SEO}. Při~\textbf{indexaci} (načtení strukturovaných dat ze~stránky a~jejich zařazení do~vyhledávání). Vyhledávač musí -- stejně jako např.~software pro~čtení obrazovky -- načítat surová data, která si~ukládá do~své~databáze. V~případě, že~jsou data špatně strukturovaná, nebo~nejsou dostatečně popsaná, může dojít k~jejich špatnému zařazení, nebo~k~jejich nezařazení do~vyhledávání. To~může mít~za~následek, že~stránka nebude v~hledání nalezena, nebo~bude nalezena až~na~pozdějších pozicích~\cite{dover2012seo}.
 
                 Důležitými faktory jsou~také zabezpečení webu (\emph{HTTPS}) a~optimalizace pro~mobilní zařízení, nebo správná struktura webu, např.~oddělení navigace od~obsahu (\texttt{<nav><article>}~ap.). Vyhledávače (i~sociální sítě~ap.), např.~\emph{Google} bodují splnění různých kategorií a~podle vlastního algoritmu potom řadí výsledky ve~vyhledávání. Viz~aktualizace algoritmu~\cite{hladis2016aktualizace}.
 
@@ -828,14 +845,14 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
             Tedy jde o nejdelší část životního cyklu aplikace. V~této části je~potřeba aplikaci testovat a~opravovat chyby, které se~vyskytnou.
             
-            \subsection{SDLC~--~Životní cyklus vývoje software (Software Development Life Cycle)}
-                \textbf{SDLC} (\textbf{Software Development LifeCycle}) je~životní cyklus vývoje softwaru. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru. Tyto procesy se~opakují v~kolech, které se~nazývají iterace. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována. Vývojáři se~také mohou v~každé iteraci vrátit k~předchozí části a~upravit ji~podle potřeby, případně do~vývoje zapojit zákazníka.
+            \subsection{Životní cyklus vývoje software}
+                \acrdefprint{SDLC}{Software Development Lifecycle} je~označení pro~životní cyklus  software. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru. Tyto procesy se~opakují v~kolech, které se~nazývají iterace. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována. Vývojáři se~také mohou v~každé iteraci vrátit k~předchozí části a~upravit ji~podle potřeby, případně do~vývoje zapojit zákazníka.
 
                 Ve~většině případů jde~o~opakující se~proces, který se~opakuje až~do~dokončení aplikace. Různé týmy mohou mít~různé požadavky na~vývoj aplikace a~používat jiné modely (metodiky) vývoje, kterých existuje několik;
                 
-                Nejčastěji se~používá \textbf{Agilní} (\textbf{Agile}) model, který je~založen na~iteracích a~pravidelné komunikaci se~zákazníkem. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
+                Nejčastěji je~používán \textbf{Agilní} (\textbf{Agile}) model, který je~založen na~iteracích a~pravidelné komunikaci se~zákazníkem. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
                 
-                Existují ale i~jiné modely vývoje, jako např.~\emph{Vodopádový}, který je~založen na~jedné iteraci. V~té se~vyvíjí celá aplikace a~až poté se~testuje a~nasazuje. V~případě chyby je~potřeba se~vrátit na~začátek, opravit chybu a~aplikaci znovu vyvíjet~\cite{sdlc:kadlec2004agilni}.
+                Existují ale i~jiné modely vývoje, jako např.~Vodopádový, W-model a další~\cite{sdlc:kadlec2004agilni}.
 
             \subsection{Sledování chyb nahlášených uživateli}
                 Pokud uživatel narazí na~chyby v~aplikaci, měl~by~je~mít~možnost nahlásit. Vývojář má~potom lepší možnost tyto chyby sledovat a~opravit~je.
@@ -862,19 +879,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Díky tomu má~vývojář k~dispozici spoustu informací, které potřebuje k~nalezení, vyvolání a~opravě chyby. \emph{Sentry} také umožňuje přímo vytvářet \emph{úkoly}, na kterých mohou vývojáři pracovat. To~umožňuje vývojářům efektivněji rozdělovat práci na~opravách chyb, které \emph{Sentry} zachytí.
 
                 Informace navíc zůstanou uloženy v~\emph{Sentry} a vývojáři se~k~nim mohou kdykoliv vrátit. \emph{Sentry} je možno integrovat do~různých komunikačních nástrojů, jako např.~\textbf{Slack}, \textbf{Telegram}, \textbf{Whatsapp} nebo~\textbf{Discord}, které se~běžně používají ke~komunikaci ve~vývojových týmech a~upomínka v~případě chyby se~objeví přímo v~komunikačním kanálu týmu.
-	
-        \section{Verzovací systém GIT}
-            \emph{GIT} vytvořil autor Linuxu \emph{Linus Torvalds} v~roce 2005. Je~to~distribuovaný verzovací systém. To znamená, že~každý vývojář má~lokální kopii celého projektu, tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
-            
-            Základní funkcí \emph{GITu} je~ukládání změn. Neukládají se~celé soubory ale pouze změny, které se~udály. Díky tomu je~možné spravovat i~velké projekty s~více vývojáři, kteří na~projektu pracují zároveň a~po~dokončení části práce ji~zkontrolovat a~spojit do~jednoho celku, který je~označen za~hotovou aplikaci nebo se~na něm dále pracuje. Díky verzování je~také možné se~kdykoliv vrátit k~předchozím verzím projektu a~pokračovat ve~vývoji nebo~pracovat na~několika různých problémech zároveň díky \textbf{větvím}. Práci je~možné v~jakémkoliv bodě označit pomocí tagů a~tím~umožnit používat označené místo ve~vývoji.
 
-            Existují služby, které poskytují prostor pro~ukládání \emph{GIT} projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\emph{GitHub}, \emph{GitLab} nebo~\emph{Bitbucket}. Mimo zmíněné funkce nabízejí možnost vytvářet \textbf{Issues}, pokud narazí na~chybu nebo~má~nápad na~vylepšení. Tímto způsobem může sdělit svůj nápad nebo~chybu v~aplikaci a~případně se~k~ní vrátit později. \emph{Issues} je~také možné přiřadit konkrétnímu vývojáři, který chybu nebo~nápad dostane na~starost nebo~automaticky vytvořit \emph{větev}, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní \emph{větve} projektu. Je~také možné jednoduše zobrazit rozdíly mezi hlavní \emph{větví} a~tou, na~které vývojář pracuje~\cite{gitscmBook}.
-            
-            \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj.
-            
-            \emph{Gitlab} je~open--source nástroj pro~správu a~udržování \emph{GIT repozitářů} na~serveru. Podobně jako \emph{Github} nabízí možnosti, jak~kompletně spravovat projekty. Kromě toho je~často používán k~automatizaci testování a~publikaci aplikace na~produkční server (\emph{CI/CD pipeline}, viz~sekce o~\emph{testování aplikací}). Je~možné jej~nainstalovat na~vlastní server a~mít~tak~plnou kontrolu nad~svými daty, čehož~využívá spousta společností, pokud např.~mají více projektů nebo nechtějí svůj kód~ukládat na~cizích serverech~\cite{gitlab:panek2019optimalizace, gitlab:CICD, gitlab:actions}.
-
-        \section{Linux a příkazová řádka, WSL2}
+        \section{Linux a příkazová řádka, Windows Subsystem for Linux}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint, \dots)
             
             Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android \emph{open--source} project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních~\cite{AOSP:linux}.
@@ -886,11 +892,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Kvůli zvyšujícímu~se počtu vývojářů pracujících na~Linuxu přidala firma Microsoft do~svého operačního systému Windows možnost spouštět aplikace a~příkazy Linuxu pomocí nástroje~\textbf{WSL2 (Windows Subsystem for Linux)}. Jedná se~o~virtuální stroj, který běží na~pozadí a~umožní uživateli Windows používat výhody, které nabízí Linux, např.~má~vývojové nástroje na~jednom místě, místo několika oken, které musí mít~otevřené při~normálním vývoji na~Windows~\cite{WSL2Winning2023}.
 
         \section{Integrated Development Environment a nástroje pro psaní kódu}
-            \textbf{Integrated Development Environment} (zkráceně \textbf{IDE}) jsou~integrovaná vývojová prostředí, která umožňují vývojářům psát kód, spouštět aplikaci a~ladit (\textbf{debugovat}) ji~v~jednom prostředí. To~umožňuje vývojářům pracovat efektivněji a~rychleji. V~jednom editoru mají~všechny nástroje, které potřebují k~vývoji aplikace. V~dnešní době existuje spousta IDE, které se~liší podporovanými jazyky, funkcemi a~vzhledem. Funkcionalitu je~možné doplňovat o~nové funkce pomocí pluginů.
+            \acrdefprint{IDE}{Integrated Development Environment} (\textbf{integrované vývojové prostředí}) jsou programy, které umožňují vývojářům psát spouštět a~ladit (tzv.~\textbf{debugovat}) ji~v~jednom prostředí. To~umožňuje vývojářům pracovat efektivněji a~rychleji. V~jednom editoru mají~všechny nástroje, které potřebují k~vývoji aplikace. V~dnešní době existuje spousta \emph{IDE}, které se~liší podporovanými jazyky, funkcemi a~vzhledem. Funkcionalitu lze~většinou doplňovat i~o~nové funkce pomocí pluginů.
             
-            Mezi nejznámější \emph{IDE} patří \emph{Visual Studio Code}, \emph{IntelliJ IDEA}, \emph{Google Atom}, \emph{Netbeans} nebo \emph{Sublime Text}. Jako \emph{IDE} je~možné při~vhodném nastavení označit také konzolový editor \emph{Vim}.
-            
-            Důležitými funkcemi jsou zvýrazňování syntaxe, automatické formátování kódu, možnost spouštět aplikaci přímo z~\emph{IDE}, odchytávat a~ladit ji~v~něm~\cite{IDE}.
+            Mezi nejznámější \emph{IDE} patří \emph{Visual Studio Code}, \emph{IntelliJ IDEA}, \emph{Google Atom}, \emph{Netbeans} nebo~\emph{Sublime Text}. Jako \emph{IDE} je~možné při~vhodném nastavení označit také konzolový editor \emph{Vim}~\cite{IDE}.
             
             S~pokrokem \emph{umělé inteligence} (\emph{AI}) se~objevují nástroje, které dokáží automaticky opravovat chyby v~kódu, nebo~dokonce přímo na~základě formálního popisu běžným jazykem psát kód za~vývojáře, viz~\cite{pasek:generovanizdroju}. To~ale zatím není možné v~každém jazyce a~je~nutné kód osobně zkontrolovat, protože generativní nástroje mohou vytvořit kód, který je~sice funkční, ale~neefektivní nebo~nečitelný.
 
@@ -902,12 +906,12 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \emph{AI} nástroje typu \emph{ChatGPT} ale poslední dobou ztrácí na~přesnosti. Je~to~díky tomu, že~k~dalšímu učení využívají data přístupná z~internetu, a~to~často i~data generovaná jinými \emph{AI}. Výsledky je~tedy nutné posuzovat kriticky~\cite{computerworld:AI}.
 
-        \section{I18n~--~Mezinárodní lokalizace}
-            \textbf{I18n} (\textbf{Internationalization}) je~proces přizpůsobení aplikace pro~daný jazyk a~kulturu, kromě překladu např.~formát data, měny nebo jednotky. Standard \emph{I18n} zahrnuje i~různé formy slov, např.~pro~různá množství~\cite{w3Internationalization}.
+        \section{Mezinárodní lokalizace}
+            \acrdefprint{I18n}{Internationalization} je~proces přizpůsobení aplikace pro~různé jazyky a~kultury. To~zahrnuje mimo překlad např.~formát data, měny nebo~jednotky. Standard \emph{I18n} zahrnuje i~různé formy slov, např.~pro~různá množství~\cite{w3Internationalization}.
 
             Každý znak je~v~počítači reprezentován číslem. V~minulosti používaly počítače k~ukládání znaků kódování \emph{ASCII}, které (z~historických důvodů) obsahovalo pouze 128~znaků (7 bitů v~rozsahu $0$ až $2^7 - 1$). To~znamená, že~bylo možné zobrazit pouze anglické texty a~některá interpunkční znaménka. 
             
-            V~dnešní době se~většinově používá kódování Unicode (UTF), které k~původním 7~bitům (\emph{ASCII}) přidává další, který říká, zda daný znak pokračuje dalším \emph{bajtem}. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač potřebuje více času na~zpracování každého znaku.
+            V~dnešní době se~většinově používá kódování \acrdefprint{UTF}{Unicode}, které k~původním 7~bitům (\emph{ASCII}) přidává další, značící, zda daný znak pokračuje dalším \textbf{bajtem}. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a~tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač také pracuje déle na~zpracování každého znaku.
             
             Proto je~vhodné všechny~zdrojové kódy a~aplikace psát v~Anglickém jazyce, který využívá základní \emph{ASCII} znaky, a~aplikaci pro~uživatele do~jeho~jazyka překládat (\textbf{lokalizovat}). Anglický jazyk je~navíc považován za~mezinárodní jazyk, který je~známý většině uživatelů a~aplikace je~tak~jednodušeji přístupná širší skupině uživatelů.
             
@@ -917,8 +921,8 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             V~rámci \emph{backendu} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. Na~\emph{frontendu} pak~celé \emph{uživatelské rozhrání (UI)}, které bude uživatel používat.
 
-        \section{UML~--~Unified Modeling Language}
-            \emph{UML} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů. Základem \emph{UML} je~\emph{UML diagram}, který slouží k~vizualizaci návrhu aplikace. Výhoda použití \emph{UML} je mmj.~v~tom, že~k~modelování není použitý konkrétní jazyk, takže jej~může vytvořit \emph{softwarový návrhář} a~\emph{programátor} aplikaci pouze implementuje podle požadavků.
+        \section{Unified Modeling Language}
+            \acrdefprint{UML}{Unified Modeling Language} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů. Základem \emph{UML} je~\emph{UML diagram}, který slouží k~vizualizaci návrhu aplikace. Výhoda použití \emph{UML} je mmj.~v~tom, že~k~modelování není použitý konkrétní jazyk, takže jej~může vytvořit \emph{softwarový návrhář} a~\emph{programátor} aplikaci pouze implementuje podle požadavků.
             
             Specifikace definuje základní dva typy diagramů:
             \begin{description}
@@ -926,12 +930,12 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \item[Diagramy chování] popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram,~ap.
             \end{description}
 
-            Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{ULM} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
+            Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{UML} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
 
             Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}~ap. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
 
-            \subsection{UCD~--~Use Case Diagram}
-                \emph{UCD} je~diagram ze~standardu \emph{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
+            \subsection{Use Case Diagram}
+                \acrdefprint{UCD}{Use Case Diagram} je~diagram ze~standardu \emph{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
 
                 To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \emph{endpointy} bude~potřeba vytvořit, aby~bylo možné akce provést. Také je~možné ověřit správnost návrhu a~zjistit, zda~nemyla některá funkcionalita nevynechána, protože na~diagramu jsou případné nedostatky vidět lépe. Tvorba \emph{UCD} vychází ze~specifikace funkčních požadavků aplikace~\cite{uml:usecase}.
 
@@ -946,7 +950,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 V~aplikaci modeluji tyto základní aktéry~--~\textbf{návštěvník}, \textbf{uživatel}, \textbf{administrátor} a~\textbf{systém}. \emph{Uživatel} je~osoba, která se~do~aplikace přihlásí a~má~možnost vytvářet, upravovat a~mazat příklady a~testy. \emph{Návštěvník} je~osoba, která se~do~aplikace nepřihlásí, ale~může si~prohlížet vygenerovaná zadání. A~\emph{systém} je~samotná aplikace, která pravidelně provádí nějaké akce.
 
-                Aktéři a~jejich akce do~\emph{use case diagramu}:
+                Aktéři a~jejich akce v~\emph{usecase diagramu}:
 
                 \begin{description}
                     \item[Návštěvník] může zobrazit vygenerovaný příklad/test, registrace, přihlášení
@@ -962,15 +966,17 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 \emph{Metoda} třídy je~funkce, která je~přiřazena k~třídě. Může mít~parametry a~výstupní hodnotu. Např.~třída \texttt{Auto} může mít~metodu \texttt{drive}, která bude mít~parametr \texttt{speed} k~určení, jakou rychlostí má~auto jet.
                 
-                Třída je v~diagramu~tříd zobrazena jako obdélník rozdělený na tři části. V~první části je~název třídy, ve~druhé jsou vlastnosti a~ve~třetí metody. \emph{Veřejné} vlastnosti a~metody mají na~začátku názvu \texttt{+}, \emph{chráněné} \texttt{\#}, \emph{privátní} \texttt{-} a~\emph{statické} \texttt{\_}.
-                
-                \emph{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu je~může zobrazit či~změnit. Vlastnosti a~metody mají na~začátku názvu \texttt{+}.
+                Třída je v~diagramu~tříd zobrazena jako obdélník rozdělený na tři části. V~první části je~název třídy, ve~druhé jsou vlastnosti a~ve~třetí metody. \textbf{Veřejné} vlastnosti a~metody mají na~začátku názvu \texttt{+}, \textbf{chráněné} \texttt{\#}, \textbf{privátní} \texttt{-} a~\emph{statické} \texttt{\_}.
 
-                \emph{Chráněné (protected)} vlastnosti a~metody jsou přístupné jen třídám, které dědí vlastnosti z~třídy, ze~které dědí. Na~začátku názvu je~\texttt{\#}.
+                \begin{description}
+                    \item{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu je~může zobrazit či~změnit. Vlastnosti a~metody mají na~začátku názvu \texttt{+}.
+
+                    \item{Chráněné (protected)} vlastnosti a~metody jsou přístupné jen třídám, které dědí vlastnosti z~třídy, ze~které dědí. Na~začátku názvu je~\texttt{\#}.
                 
-                \emph{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat. Na~začátku názvu je~znak~\texttt{-}.
+                    \item{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat. Na~začátku názvu je~znak~\texttt{-}.
                 
-                \emph{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Je~označován pomocí \texttt{\textunderscore}.
+                    \item{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Je~označován pomocí \texttt{\textunderscore}.
+                \end{description}
                 
                 Vztahy \emph{include} a~\emph{extend} jsou v~diagramu tříd, podobně jako u~\emph{use case diagramu}, zobrazeny spojnicemi a~šipkami.
 
