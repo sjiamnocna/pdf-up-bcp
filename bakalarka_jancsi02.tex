@@ -52,6 +52,11 @@
     pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
 }
 
+\newcommand{\acrdefprint}[3]{
+    \newacronym{#1}{#2}{#3}
+    \textbf{\acrshort{#1}}
+}
+
 \newcommand{\emptypage}{
     \newpage
     \null
@@ -220,9 +225,7 @@
         \section{Základní statická HTML stránka}
             V~roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}.
             
-\newacronym{html}{HTML}{Hypertext Markup Language}
-
-            \textbf{\acrshort{html}} (česky \textbf{Hypertextový značkovací jazyk}) je~strukturovaný jazyk, obsahující textový obsah a~hiearchicky strukturované \emph{HTML} značky, které určují význam jednotlivých částí dokumentu.
+            \acrdefprint{html}{HTML}{Hypertext Markup Language} (česky \textbf{Hypertextový značkovací jazyk}) je~strukturovaný jazyk, obsahující textový obsah a~hiearchicky strukturované \emph{HTML} značky, které určují význam jednotlivých částí dokumentu.
             
             Jednotlivé soubory na~různých adresách v~síti lze~také propojit pomocí \textbf{hypertextových odkazů}, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
