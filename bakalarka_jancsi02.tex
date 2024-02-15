@@ -135,9 +135,9 @@
     
     \begin{singletonpage}{Prohlášení}
     
-        Potvrzuji, že~práce je~výsledkem mého samostatného úsilí za dodržení akademických etických principů.
+        Potvrzuji, že~práce je~výsledkem mého samostatného úsilí za~dodržení akademických etických principů.
         
-        Některé části práce jsem konzultoval s~umělou inteligencí (ChatGPT, Bard) pro~doplnění kontextu nebo~kontrolu, ta~však není autorem tohoto textu jako celku.
+        Pro~lepší pochopení byly~některé části práce konzultovány s~umělou inteligencí (ChatGPT, Bard), texty v~této práci jsou~však výsledkem samostatné práce.
 
         Šimon Janča, v~Olomouci \today
     \end{singletonpage}
@@ -214,14 +214,18 @@
         Obvykle není nutné tvořit aplikaci od~začátku (tzv.~\uv{na~zelené louce}). \uv{Pro frontend i~backend aplikace existuje na~webu velké množství použitelných materiálů. Ať~už~jsou to~různé grafické prvky nebo~serverové komponenty, to~vše je už~někde nejspíše hotové.}~\cite{itnetworkBestPractices}
 
         \section{Základní statická HTML stránka}
-            V@roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}. \emph{HTML} je~zkratka pro~HyperText Markup Language (Hypertextový značkovací jazyk). Základem je~HTML stránka~--~soubor, který obsahuje textový obsah a~HTML značky, které určují význam jednotlivých částí obsahu. Navíc lze jednotlivé soubory propojit pomocí hypertextových odkazů, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
+            V@roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}. \textbf{HTML} je~zkratka pro~\textbf{Hypertext Markup Language (Hypertextový značkovací jazyk)}. Základem je~{HTML} soubor, který obsahuje textový obsah a~strukturované \emph{HTML} značky, které určují význam jednotlivých částí.
+            
+            Jednotlivé soubory lze~také propojit pomocí \textbf{hypertextových odkazů}, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
-            Jednotlivé \emph{HTML} stránky se~skládají z~\emph{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~JavaScript, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře~\cite{berners:1989:proposal}.
+            Jednotlivé \emph{HTML} stránky se~skládají z~\emph{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~skriptovací jazyk \emph{JavaScript}, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře~\cite{berners:1989:proposal}.
 
-            Jednotlivé prvky je možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít prvek více a~jedna třída může být~použita vícekrát, identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti~\cite{jpw:tridy}.
+            Jednotlivé prvky je~možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít~prvek více a~jednu třídu je~možné použít vícekrát, týž~identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti~\cite{jpw:tridy}.
 
         \section{HTML s dynamickým obsahem}
-            HTML stránky mohou mít i~dynamický obsah. To~znamená, že~se~obsah může~měnit podle toho, jak se~stránkou uživatel pracuje. Na~úrovni serveru se~může generovat \emph{HTML} stránka, která obsahuje dynamický obsah. V~dnešní době je~oblíbený přístup generovat výslednou stránku na~serveru a~pomocí \emph{javascriptu} si~při~změnách od~\emph{serveru} vyžádat pouze data, nicméně v minulosti se~dynamický obsah generoval převážně na~serveru pomocí technologií jako~\emph{PHP (HyperText Preprocessor)}, \emph{ASP.NET}, které na~serveru vygenerovaly kompletní \emph{HTML kód} stránky i~s~načtenými daty.
+            \emph{HTML} stránky mohou mít i~dynamický obsah. To~znamená, že~se~obsah může~měnit podle toho, jak se~stránkou uživatel pracuje. Na~úrovni serveru je~možné vygenerovat \emph{HTML} stránku, která obsahuje dynamický obsah např.~data z~databáze.
+            
+            V~dnešní době je~oblíbený přístup generovat výslednou stránku na~serveru a~pomocí \emph{javascriptu} si~při~změnách od~\emph{serveru} vyžádat pouze data, nicméně v minulosti se~dynamický obsah generoval převážně na~serveru pomocí technologií jako~\emph{PHP (HyperText Preprocessor)}, \emph{ASP.NET}, které na~serveru vygenerovaly kompletní \emph{HTML kód} stránky i~s~načtenými daty~\cite{kantor_javascript, uc:ssrandssg}.
 
             To samozřejmě znamenalo, že~při~každé změně obsahu bylo~potřeba znovu kontaktovat server a~stránku znovu načíst do~prohlížeče. Také byla veškerá komunikace omezená na~požadavek od~klienta, server pouze obsluhoval požadavky a~neměl možnost samostatně zaslat zprávu klientovi. Tento problém právě adresuje Javascript. Odesílá požadavky na~server a~na~základě odpovědi mění obsah celé nebo části stránky. Díky metodám, jako je~\emph{AJAX (Asynchronous Javascript And XML)}~\cite{ajax:mdn} je~možné komunikovat se~serverem i~bez~načítání celé stránky.
 
