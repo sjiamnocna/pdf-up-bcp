@@ -51,11 +51,25 @@
     colorlinks=false,% hyperlinks will be black
     pdfborderstyle={/S/U/W .5}% border style will be underline of width 1pt
 }
+\usepackage{ifthen} % Needed for conditional statements
 
-\newcommand{\acrdefprint}[3]{
-    \newacronym{#1}{#2}{#3}
-    \textbf{\acrshort{#1}}
+% Define the command with two mandatory arguments and one optional argument
+% #1: acronym key
+% #2: acronym definition
+% #3: optional, specifies abbreviation format (short, long, full). Default is long.
+\newcommand{\acrdefprint}[3][full]{%
+    \newacronym{#2}{#2}{#3}%
+    \ifthenelse{\equal{#1}{short}}{%
+        \textbf{\acrshort{#2}}%
+    }{%
+        \ifthenelse{\equal{#1}{long}}{%
+            \textbf{\acrlong{#2}}%
+        }{%
+            \textbf{\acrfull{#2}}%
+        }%
+    }%
 }
+
 
 \newcommand{\emptypage}{
     \newpage
@@ -183,10 +197,10 @@
             Řešení takových úloh je~náročnější, jak pro~žáka, který musí odpověď vymyslet, tak pro~učitele, který musí při~hodnocení brát v~potaz různé možnosti odpovědí. Na~druhou stranu to~umožní ocenit i~částečně správné odpovědi nebo vlastní invenci při~řešení, což by~u~uzavřených úloh nebylo možné~\cite{rozhlasOUtazky}.
 
         \section{Tvorba testů}
-            Na začátku tvorby testu je nutné uvažovat o~jeho rozsahu. Jde~o~obecný test, ověřující schopnosti žáka, nebo pouze konkrétního výřezu učiva daného předmětu?
+            Na~začátku tvorby testu je~nutné uvažovat o~jeho rozsahu. Jde~o~obecný test, ověřující schopnosti žáka, nebo~pouze konkrétního výřezu učiva daného předmětu?
             Zároveň je~ale~potřeba při~tvorbě myslet na~žáky.
 
-            \uv{\emph{Otázky} by~měly být~pestré, pokrývající co~nejširší spektrum prověřovaného učiva, a~to z~různých úhlů pohledu. Proto je~nutné použít \emph{otázky}, které zjišťují schopnost žáka pracovat s~fakty (značky a~jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů~atd.)}~\cite{Suchoradsky:testy}.
+            \uv{Otázky by~měly být~pestré, pokrývající co~nejširší spektrum prověřovaného učiva, a~to z~různých úhlů pohledu. Proto je~nutné použít otázky, které zjišťují schopnost žáka pracovat s~fakty (značky a~jednotky fyzikálních veličin, matematické vyjádření fyzikálních zákonů~atd.)}~\cite{Suchoradsky:testy}.
 
             Zároveň je~potřeba myslet na~to, že~žáci mají různé schopnosti a~znalosti a~ne pro všechny je~test stejně náročný. Proto je~potřeba k~dosažení spolehlivého ověření znalostí kombinovat testy s~jinými metodami ověřování znalostí a~dávat důraz na~získané schopnosti a~jejich aplikaci, nikoliv na~to, co~si~žák dokázal doslovně zapamatovat. Důležitá je i~práce s~chybou a~individuální přístup k~žákům. \cite{chraska:testy, Berkley2017LearningFromErrors}
             
@@ -225,7 +239,7 @@
         \section{Základní statická HTML stránka}
             V~roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \emph{HTML}.
             
-            \acrdefprint{html}{HTML}{Hypertext Markup Language} (česky \textbf{Hypertextový značkovací jazyk}) je~strukturovaný jazyk, obsahující textový obsah a~hiearchicky strukturované \emph{HTML} značky, které určují význam jednotlivých částí dokumentu.
+            \acrdefprint{HTML}{Hypertext Markup Language}, česky \textbf{Hypertextový značkovací jazyk}, je~strukturovaný jazyk, obsahující textový obsah a~hiearchicky strukturované \emph{HTML} značky, které určují význam jednotlivých částí dokumentu.
             
             Jednotlivé soubory na~různých adresách v~síti lze~také propojit pomocí \textbf{hypertextových odkazů}, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
@@ -1326,8 +1340,6 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
         Aplikace \emph{Písemkomat} je~dostupná také pomocí~\emph{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}. Dokumentace k~\emph{API} je~k~dispozici~ve~veřejné části webu.
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
-
-        \acrfull{gcd}
 
     \newpage
     \printglossary[type=\acronymtype]
