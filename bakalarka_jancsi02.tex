@@ -60,18 +60,19 @@
 \newcommand{\acrdefprint}[3][full]{%
     \newacronym{#2}{#2}{#3}%
     \ifthenelse{\equal{#1}{short}}{%
-        \textbf{\acrshort{#2}}%
+        \textbf{\acrshort*{#2}}%
     }{%
         \ifthenelse{\equal{#1}{long}}{%
-            \textbf{\acrlong{#2}}%
+            \textbf{\acrlong*{#2}}%
         }{%
-            \textbf{\acrfull{#2}}%
+            \textbf{\acrfull*{#2}}%
         }%
     }%
 }
 \let\oldacrshort\acrshort
 
-\renewcommand{\acrshort}[1]{\emph{\oldacrshort{#1}}}
+% automatically make short acronyms italic as its at least once used term
+\renewcommand{\acrshort}[1]{\emph{\oldacrshort*{#1}}}
 
 
 \newcommand{\emptypage}{
@@ -269,7 +270,7 @@
             \textbf{Statické SPA} jsou vygenerovány na~serveru a~obsahují všechny potřebné zdroje. Jde~o~\emph{statickou webovou stránku}, která je~vytvořena pomocí \emph{HTML}, \emph{CSS} a~\emph{JavaScriptu}.
         
         \section{Kompilátor a interpret}
-            Pro~lepší pochopení programování aplikací je~potřeba si~ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem. Souvisí to~se~způsobem, jakým se~programy vykonávají.
+            Pro~lepší pochopení programování aplikací je~potřeba ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem. Souvisí to~se~způsobem, jakým se~programy vykonávají.
 
             \textbf{Kompilovaný} jazyk je~jazyk, který se~pomocí tzv.~\textbf{překladače} (\textbf{kompilátoru}) překládá do~binárního souboru, který obsahuje přímo instrukce pro~procesor, ten~nazýváme \textbf{program}. Při~každém spuštění se~potom do~paměti načte program s~instrukcemi a~procesor je~vykonává.
             
@@ -292,11 +293,74 @@
             \emph{Překladače} i~\emph{interprety} pracují v~několika fázích:
             \begin{description}
                 \item[Lexikální analýza] \emph{kompilátor} čte zdrojový kód znak po~znaku a~rozděluje~jej na~jednotlivé \emph{tokeny} a~určuje jejich typ (slova, čísla, operátory\dots). Při~tom kontroluje správnost zápisu a~případné chyby vypíše. Výstupem je~seznam tokenů.
-                \item[Syntaktická analýza] kontroluje, jestli jsou jednotlivé \emph{tokeny} správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \textbf{abstraktní syntaktický strom (AST = Abstract Syntax Tree)}, který reprezentuje strukturu programu.
+                \item[Syntaktická analýza] kontroluje, jestli jsou jednotlivé \emph{tokeny} správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \acrdefprint{AST}{Abstraktní Syntaktický Strom}, anglicky \textbf{Abstract Syntax Tree}, který reprezentuje stromovou strukturu programu a~umožňuje tak~další zpracování.
                 \item[Sémantická analýza] kontroluje správnost použití jednotlivých \emph{tokenů} a~jejich význam. Generuje tabulku symbolů, která obsahuje informace o~proměnných a~funkcích, dostupných v~programu.
-                \item[Optimalizace] v~této fázi probíhá optimalizace kódu, aby byl ve~výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a~může být~prováděna několikrát v~různých fázích překladu (a~nemusí být prováděna vůbec).
-                \item[Generování kódu] Z~\emph{AST}, je~možné generovat výslednou podobu programu nebo dat v~požadované formě~--~binární soubor programu, optimalizovaný bytecode pro spouštění pomocí interpretu, program zapsaný v~jiném jazyce nebo interpretuje jako~jinou formu dat.~\cite{baeldungCompilersWork, compilers}
+                \item[Optimalizace] v~této fázi probíhá \textbf{optimalizace} kódu, aby byl ve~výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a~může být~prováděna několikrát v~různých fázích překladu (a~nemusí být prováděna vůbec).
+                \item[Generování kódu] Z~\emph{AST}, je~možné generovat výslednou podobu programu nebo dat v~požadované formě~--~binární soubor programu, optimalizovaný \textbf{bytecode} pro~rychlejší spouštění interpretem, program zapsaný v~jiném jazyce nebo~interpretuje jako~jinou formu dat.~\cite{baeldungCompilersWork, compilers}
             \end{description}
+
+            \emph{Překladač} umožňuje k~optimalizaci používat výrazy, které jsou vyhodnoceny během překladu a~nezatěžují tolik aplikaci při~běhu. Může~jít o~různá \textbf{makra}, která jsou~provedena již~během překladu nebo použití konstantních výrazů, které jsou v~kódu přímo nahrazeny. Některé jazyky (např.~Zig) umožňují i~přímé vyhodnocení kódu. 
+
+            V~kontextu \textbf{kompilátorů} a~\textbf{optimalizace} kódu jsou tzv.~\textbf{bytové masky} a~další práce s~bitovou reprezentací čísel na~nejnižší úrovni. Použití přímých instrukcí v~\acrdefprint{ASM}{Assembleru} pro~bitové maskování umožňuje vývojářům přesně specifikovat, jaké operace s~pamětí se~mají vykonat, což~vede ke~zvýšení výkonu a~efektivity programu.
+
+            V~jazyce \emph{Go} je~možné využít koncept \texttt{\textbf{iota konstant}}, což~je obdoba \textbf{výčtových typů} v~jiných jazycích, viz \ref{code:iota}.a. Díky němu je~možné vytvořit řady číselných konstant, kde je~každému prvku automaticky přiřazena následující číselná hodnota. Díky \texttt{iota} je~možné také udržovat násobky čísel nebo \textbf{bitový posun} hodnot. Počítač navíc rychleji pracuje s~čísly než~s~řetězci nebo~jinými typy. Díky použití konstant \emph{iota} je~možné číselné identifikátory v~kódu označit textově a~při~\emph{kompilaci} budou nahrazeny příslušnými čísly.
+
+            To~využívá např.~systém Linux při~určování práv k~souborům, viz \ref{code:iota}.b.
+
+            \begin{code}
+                \centering
+                % First column for code sample
+                \begin{minipage}{.48\textwidth}
+                    \begin{minted}{go}
+const (
+    A = iota + 2 // 2 // začína číslem 2
+    B // 3
+    C // 4
+)
+
+const (
+    D = iota * 2 // 0
+    E // 2
+    F // 4
+)
+
+const (
+    G = iota * 3 + 1 // 1
+    H // 4
+    I // 7
+)
+                    \end{minted}
+                    \subcaption{Různé možnosti použití \emph{Iota}}
+                \end{minipage}
+                \hfill % Space between the two minipages
+                % Second column for code sample
+                \begin{minipage}{.48\textwidth}
+                    \begin{minted}{go}
+const (
+    ReadPermission = 1 << iota // 1 << 0 == 1
+    WritePermission            // 1 << 1 == 2
+    ExecutePermission          // 1 << 2 == 4
+)
+
+func main(){
+    // bitový součet (1 + 4 = 5), tj. 00000101
+    UP := ReadPermission | ExecutePermission
+    
+    // bitová maska 00000001
+    if (UP & ReadPermission) > 0 {
+        fmt.Println("Uživatel může zobrazit soubor")
+    }
+}
+                    \end{minted}
+                    \subcaption{Bitová maska s~použitím \texttt{<< iota}}
+                \end{minipage}
+                \caption{Příklady využití \emph{iota} číselníků}
+                \label{code:iota}
+            \end{code}
+
+            Tato technika je~často používaná pro definici \emph{bitových masek}, které jsou poté využívány k~testování, nastavování nebo~odstranění specifických \emph{bitů}. Použití \emph{iota} v~kombinaci s~operátorem \texttt{<<} umožňuje posunovat číslo o~bit, tedy navýší mocninu čísla 2.
+            
+            Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Význam \emph{iota} a~operací s~bitovými maskami tak~přesahuje jen~oblast kompilátorů, ale~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
 
         \section{Procedurální a~objektově orientované programování}
             \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.\textbf{Návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} pouze vykoná své~instrukce.
@@ -393,21 +457,16 @@ type Cat struct {
 }
 
 // Constructor-like function to create an instance of AnimalBase
-func NewAnimalBase(name string) *AnimalBase {
+func NewAnimalBase(name, sound string) *AnimalBase {
     return &AnimalBase{
         name: name,
+        sound: sound,
     }
 }
 
 // Metoda zděděná všemi odvozenými objekty
 func (a *AnimalBase) makeSound() {
     fmt.Printf("My name is %s and I go %s\n", a.name, a.sound)
-}
-
-// NewCat je konstruktor objektu Cat, vytvoří strukturu s konkrétními daty o kočce
-func NewCat(name string) *Cat {
-    cat := 
-    return cat
 }
 
 // a musí implementovat rozhrání (interface) Animal
@@ -417,15 +476,13 @@ func animalMakeSound(a Animal) {
 
 func main() {
     a := &Dog{
-        AnimalBase: *NewAnimalBase("Alík"),
+        AnimalBase: *NewAnimalBase("Alík", "haf"),
     }
-    dog.sound = "Haf"
     animalMakeSound(a)
 
     b := &Cat{
-        AnimalBase: *NewAnimalBase("Micka"),
+        AnimalBase: *NewAnimalBase("Micka", "mňau"),
     }
-    cat.sound = "Mňau"
     animalMakeSound(b)
 }
                     \end{minted}
@@ -455,7 +512,7 @@ func main() {
             \emph{Typescript} je~po~kontrole přeložen (transpilován) zpět do~vybrané verze \emph{Javascriptu}. \cite[Get started/TypeScript for the New Programmer]{TypeScript}
 
         \section{Document Object Model}
-            \emph{DOM} je~\emph{objektový model dokumentu}, který vytváří prohlížeč na~základě \emph{HTML kódu} stránky. Jednotlivé \emph{HTML} prvky jsou reprezentovány objekty, tzv.~\emph{uzly}. Před~vykreslením stránky v~prohlížeči, se~nejprve vytvoří \emph{DOM}, který obsahuje všechny \emph{objekty} (\emph{HTML prvky}), které se~mají zobrazit. K~nim pak~prohlížeč přiřadí \emph{CSS~styly} a~prohlížečové jádro je~vykreslí na~obrazovku. K~DOMu je~potom možné přistupovat \emph{Javascriptem} pomocí globálních objektů \texttt{document} a~\texttt{window}, pomocí kterých je~možné aktivně měnit obsah stránky včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.\cite[2.1.01]{kantor_javascript}
+            \acrdefprint{DOM}{Document Object Model} je~\emph{objektový model dokumentu}, který vytváří prohlížeč na~základě \emph{HTML kódu} stránky. Jednotlivé \emph{HTML} prvky jsou reprezentovány objekty, tzv.~\emph{uzly}. Před~vykreslením stránky v~prohlížeči, se~nejprve vytvoří \emph{DOM}, který obsahuje všechny \emph{objekty} (\emph{HTML prvky}), které se~mají zobrazit. K~nim pak~prohlížeč přiřadí \emph{CSS~styly} a~prohlížečové jádro je~vykreslí na~obrazovku. K~DOMu je~potom možné přistupovat \emph{Javascriptem} pomocí globálních objektů \texttt{document} a~\texttt{window}, pomocí kterých je~možné aktivně měnit obsah stránky včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.\cite[2.1.01]{kantor_javascript}
         
         \section{React}
             \emph{React} je~oblíbená knihovna pro~tvorbu \emph{uživatelského rozhraní}. Je~vyvíjena společností \emph{Facebook} a~je~používána při~vývoji mnoha webových aplikací. Je~oblíbená pro~svou jednoduchost a~rychlost. Je~také dobře dokumentovaná a~má~velkou komunitu, která ji~podporuje.
@@ -554,7 +611,14 @@ const App = () => {
 
             \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\textbf{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci)~\cite{webserver:mdn}.
 
-            Příkladem \emph{webových serverů} mohou být~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo \emph{IIS}\dots
+            \emph{Webové servery} mohou být~např.~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo~\emph{IIS}\dots
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=16cm, height=6cm]{files/img/server-client.png}
+                \caption{Schéma komunikace client-server}
+                \label{fig:enter-label}
+            \end{figure}
 
             \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}) resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
 
@@ -665,13 +729,13 @@ const App = () => {
             To~znamená, že~je~potřeba zabezpečit \emph{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby je potřeba mít veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí \textbf{firewallu}. K~ostatním službám, ke~kterým je~potřeba mít soukromý přístup potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical, Dorman:webmappingajax}.
             
             \subsection{Hashování}
-                \textbf{Hashing} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~se~používá např.~při~ukládání hesel, kdy heslo uživatele není uloženo v~původní čitelné podobě, ale jako \textbf{hash}. Při~přihlášení pak~stejnou \emph{hashovací} funkcí~zadané heslo ověří s~uloženým \emph{hashem}, jelikož \emph{hashovací funkce} pro~dva~stejné vstupy vrací totožné výsledné \emph{hashe}. Pokud se~shodují, uživatel byl~úspěšně ověřen a~tedy přihlášen.
+                \textbf{Hashování} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~se~používá např.~při~ukládání hesel, kdy heslo uživatele není uloženo v~původní čitelné podobě, ale jako \textbf{hash}. Při~přihlášení pak~stejnou \emph{hashovací} funkcí~zadané heslo ověří s~uloženým \emph{hashem}, jelikož \emph{hashovací funkce} pro~dva~stejné vstupy vrací totožné výsledné \emph{hashe}. Pokud se~shodují, uživatel byl~úspěšně ověřen a~tedy přihlášen.
                 
                 Pokud se~někomu podaří z~\emph{hashe} získat původní data (heslo), nebo dokáže najít způsob, jak z~různých dat vygenerovat stejný \emph{hash}, považuje~se algoritmus za~prolomený a~měl~by se~přestat používat.
                 
                 K~\emph{hashování} hesel se~navíc používá tzv.~\textbf{salt (sůl)}, což~je~náhodně vygenerovaný řetězec uložený s~heslem (ve~formě \emph{hashe}) v~databázi, který se~přidává k~heslu před \emph{hashováním}. Protože pro~každou kombinaci by~měl algoritmus generovat jiný \emph{hash}, je takto ztíženo zjištění původního hesla i~v~případě úniku \emph{hashe} na~veřejnost~\cite{graham2021ethical}.
         
-            \subsection{Šifrování)}
+            \subsection{Šifrování}
                 Při~\textbf{šifrování} je~naopak potřeba získat původní data z~\textbf{šifrovaného textu} (\textbf{ciphertext}). K~šifrovacímu algoritmu je~potřeba vygenerovat klíč, kterým se~šifrují i~dešifrují data. Algoritmus za~pomocí klíče data zašifruje. Při~dešifrování týž algoritmus pomocí klíče \emph{šifrovaný text} dešifruje do~původní podoby.
 
                 Z~hlediska zabezpečení webové aplikace pak~existují dva základní procesy. \emph{Autentizace} a~\emph{autorizace}~\cite{graham2021ethical}.
@@ -1344,9 +1408,9 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~Gitlabu (\url{https://gitlab.com/pisemkomat}).
 
-        Bohužel jsem po~mnoha pokusech s~pluginy a~konfiguracemi pro~\emph{I18n} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy} přesměrování. Z~tohoto důvodu bude řešení problému realizováno mimo rámec této práce a~aplikace je~zpřístupněna v~anglickém jazyce.
+        Bohužel jsem po~mnoha pokusech s~pluginy a~konfiguracemi pro~\emph{I18n} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy} přesměrování. Z~tohoto důvodu bude řešení problému překladů realizováno mimo~rámec této práce a~aplikace je~dočasně zpřístupněna pouze v~anglickém jazyce.
 
-        Aplikace \emph{Písemkomat} je~dostupná také pomocí~\emph{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\textbf{CMS} systémů jako~\textbf{Wordpress} nebo~\textbf{Drupal}. Dokumentace k~\emph{API} je~k~dispozici~ve~veřejné části webu.
+        Aplikace \emph{Písemkomat} je~dostupná také pomocí~\emph{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\acrdefprint{CMS}{Content Management System} jako~např.~\textbf{Wordpress}. Dokumentace k~\emph{API} je~k~dispozici~ve~veřejné části webu.
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
