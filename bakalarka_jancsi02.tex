@@ -1196,7 +1196,6 @@ class dataLoader extends Endpoints{
         });
     }
 }
-
                     \end{minted}
                     \subcaption{Např. v PHP je potřeba další kontroly}
                 \end{minipage}
@@ -1274,7 +1273,7 @@ class dataLoader extends Endpoints{
             
             Funkce \emph{init} použiju k~nastavení připojení k~databázi prostřednictvím \emph{ORM systému} (\href{https://gorm.io/}{\texttt{go-gorm/gorm}}). V~rámci \emph{initu} spouštím migraci databáze, aby \emph{GORM} vytvořil databázové tabulky nebo jejich~podobu aktualizoval. Jednotlivé modely dat jsou vidět ve~zdrojovém kódu aplikace.
 
-            K~připojení do~databáze použiju tzv.~\textbf{DSN} (Data Source Name). Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Obsahuje \emph{adresu} databáze, \emph{port}, na~kterém běží, \emph{název databáze}, \emph{jméno uživatele} a~\emph{heslo}. Ty~si~načítám z~prostředí systému, tedy \emph{Dockeru}, který si~je~načte ze souboru \texttt{.env}.
+            K~připojení do~databáze je~používán tzv.~\acrdefprint{DSN}{Data Source Name}. Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Obsahuje \emph{adresu} databáze, \emph{port}, na~kterém běží, \emph{název databáze}, \emph{jméno uživatele} a~\emph{heslo}. Ty~si~načítám z~prostředí systému, tedy \emph{Dockeru}, který si~je~načte ze souboru \texttt{.env}.
 
             Ve~funkci \emph{init} také přípravuju šablony. Při~použití modulu \texttt{html/template} pro~zpracování šablon s~proměnnými, je~lepší si~šablony připravit do~paměti a~v~místě použití jen~dodat příslušná data. To~zajistí rychlejší odezvu aplikace. Šablony slouží zejména pro~vytváření e-mailů, které budou odesílány uživatelům a~k~tvorbě případných chybových hlášek.
 
@@ -1285,20 +1284,65 @@ class dataLoader extends Endpoints{
 
             Důležitou součástí aplikace \emph{GINu} je~tzv.~\textbf{Router}, který z~příchozího požadavku zjistí, jaký \emph{koncový bod} je~volán a~předá volání~příslušnému \emph{handleru}. \emph{Router} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~\emph{URL} adresy a~které mohou sdílet část logiky. To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. \emph{Router} funguje podobně i~pro obsluhování požadavků na~\emph{Frontendu}.
 
-            \emph{Endpointy} budou umístěny v~adresáři \texttt{Endpoints}, kde~bude mít~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech budou jejich \emph{handlery}. \emph{Handler} dostane jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje \emph{handleru} s~ním pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují, např.;
+            Obsluha jednotlivých požadavků probíhá v~\textbf{Gorutinách} (\textbf{Goroutines}), což~znamená, že~každý požadavek může být~obsluhován paralelně (zároveň), což~umožňuje obsloužit více požadavků najednou~\cite{effective_go}.
+
+            \emph{Endpointy} jsou umístěny v~adresáři \texttt{Endpoints}, kde~má~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech jsou jejich \emph{handlery}. \emph{Handler} dostává při~obsluze \emph{požadavku} jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním \emph{handleru} pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují, např.;
             \begin{description}
                 \item[/api/user]~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
                 \item[/api/category]~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
-                \item[/api/exam]~--~\emph{CRUD} akce spojené s~testy, umožňují přidávat otázky, pojmenovat a~vyhledat a~vygenerovat výsledek, resp.~získat na~něj odkaz.
-                \item[/api/app]~--~zajistí manipulaci s~aplikací, jako je~nastavení a~jiné nespecifikované akce.
+                \item Další \emph{endpointy} viz dokumentace \acrshort{API} v~repozitáři na Gitlabu.
             \end{description}
+
+            Při~implementaci načtení dat z~požadavků bylo nutné použít jiný způsob zpracování některých vlastních struktur, jelikož pracuji se~\emph{staticky typovaným} jazykem a~\emph{Gin} nedokázal automaticky zpracovat všechny struktury. Proto načítám danou vlastnost jako textový řetězec a~dále zpracovávám.
+            
+            Ukázka funkce pro~zpracování struktury dat odpovědí z~\emph{JSON} řetězce na~otázku je~vidět v~kódu~\ref{go:unmarshallanswers};
+
+            \begin{code}
+                \begin{minted}{go}
+                    // unmarshall data from JSON request byte string
+                    func UnmarshallAnswerSlice(raw []byte) ([]generator.Answer, error) {
+                    	// single string representation of answer
+                    	var answers []struct {
+                    		Content  string `json:"Content" binding:"required"`
+                    		Correct  bool   `json:"Correct,omitempty"`
+                    		MathMode bool   `json:"MathMode,omitempty"`
+                    		Generate uint8  `json:"Generate,omitempty"`
+                    		Final    bool   `json:"Final,omitempty"`
+                    	}
+                    
+                    	err := json.Unmarshal(raw, &answers)
+                    
+                    	if err != nil {
+                    		return nil, errors.New("wrong format of answers")
+                    	}
+                    
+                    	var res []generator.Answer
+                    
+                    	// map answers from JSON
+                    	for _, ans := range answers {
+                    		res = append(res, generator.Answer{
+                    			ResultAnswer: generator.ResultAnswer{
+                    				Content: ans.Content,
+                    				Correct: ans.Correct,
+                    			},
+                    			Final:    ans.Final,
+                    			Generate: ans.Generate,
+                    		})
+                    	}
+                    
+                    	return res, nil
+                    }
+                \end{minted}
+                \caption{Načtení dat odpovědí a jejich namapování pro ukládání do databáze}
+                \label{go:unmarshallanswers}
+            \end{code}
 
         \subsection{Generátor}
             Zásadní funkci při~tvorbě výsledné podoby zadání bude~mít \emph{generátor}.
             
             Generátor bude postupně nahrazovat hodnoty použitých proměnných a~funkcí ke~generování čísel a~dalších prvků. K~tomuto účelu slouží modul správce proměnných, který nahrazuje proměnné a~funkce jejich hodnotami. Mimo to~zajistí náhodné seřazení a~splnění dalších bodů, které si~uživatel vyžádá. Konečné nahrazení hodnotami proměnných v~zadání proběhne pomocí modulu \texttt{text/template}, který umožňuje jednoduché využití šablon s~proměnnými.
             
-            Proměnné budou při~definici i~v~zadání používat stejný zápis (\texttt{\{\{.jméno\}\}}). V~zadání pak~bude~možné využít i~filtry, které nabízí \emph{text/template} pomocí zápisu \texttt{\{\{.jméno|filtr\}\}}. Filtry je~možné použít např.~k~zaokrouhlení čísel, převodu na~velká nebo malá písmena~apod.
+            Proměnné budou při~definici i~v~zadání používat stejný zápis jak definuje balík \texttt{template/html}, tedy \texttt{\{\{.jméno\}\}}.
 
             K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}. U~každé části pak~určí, zda je~platná a~případně ji~nahradí její nalezenou/vypočítanou hodnotou.
             
@@ -1343,33 +1387,33 @@ class dataLoader extends Endpoints{
             
             \begin{code}
                 \begin{minted}{js}
-// node.js environment
-const fs = require('fs');
-const os = require('os');
-
-// truncate the file and write new env vars into it
-const f = fs.open('env_vars.js', 'w', function(err, fd) {
-    if (err) {
-        throw 'could not open file: ' + err;
-    }
-
-    // now one by one write the env vars into the file
-    for (const i in process.env){
-        if (!i.startsWith("NEXT_PUBLIC")){
-            continue;
-        }
-
-        const content = `export const ${i} = '${process.env[i]}'${os.EOL}`
-        fs.appendFile(fd, content, function(err) {
-            if (err) throw 'error appending file: ' + err;
-        });        
-    }
-
-    // close the file
-    fs.close(fd, function() {
-        console.log('wrote the file successfully');
-    });
-});
+                    // node.js environment
+                    const fs = require('fs');
+                    const os = require('os');
+                    
+                    // truncate the file and write new env vars into it
+                    const f = fs.open('env_vars.js', 'w', function(err, fd) {
+                        if (err) {
+                            throw 'could not open file: ' + err;
+                        }
+                    
+                        // now one by one write the env vars into the file
+                        for (const i in process.env){
+                            if (!i.startsWith("NEXT_PUBLIC")){
+                                continue;
+                            }
+                    
+                            const content = `export const ${i} = '${process.env[i]}'${os.EOL}`
+                            fs.appendFile(fd, content, function(err) {
+                                if (err) throw 'error appending file: ' + err;
+                            });        
+                        }
+                    
+                        // close the file
+                        fs.close(fd, function() {
+                            console.log('wrote the file successfully');
+                        });
+                    });
                 \end{minted}
                 \caption{Přepis \textbf{env proměnných} na~konstanty pomocí \emph{Node.js} kódu.}
                 \label{js:env}
@@ -1404,7 +1448,7 @@ const f = fs.open('env_vars.js', 'w', function(err, fd) {
         
         V~práci jsem použil aktuální technologie a~postupy a~snažil se~držet základních pouček pro~vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód s~důrazem na~rychlost a~optimalizaci kódu, aby v~budoucnu dokázala obsloužit co~největší počet požadavků. Informační technologie se~ale neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, protože v~době této publikace již~mohou být~některé postupy překonané. Většina principů ale zůstane platná a~je~možné na~nich~stavět.
         
-        Je~ale potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace. Např.~kdybych generátor a~jiné kritické části napsal v~\emph{Go} a~veřejnou část celou pomocí \emph{NextJS}, ušetřil bych nějakou práci navíc.
+        Je~ale potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace. V~této implementaci jsem se~soustředil na~vysoký výkon a~ukázku funkce \emph{MVC} s~programem v~jazyce \emph{Go}, nicméně bylo by možné celou aplikaci napsat jednodušeji např.~v~\emph{NextJS}.
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~Gitlabu (\url{https://gitlab.com/pisemkomat}).
 
