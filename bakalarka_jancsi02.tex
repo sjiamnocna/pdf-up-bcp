@@ -336,20 +336,26 @@ const (
                 % Second column for code sample
                 \begin{minipage}{.48\textwidth}
                     \begin{minted}{go}
+// Custom type for permission bits, add more bits if more than 8
+type Permissions uint8
+
+// Define constants for permission types
 const (
-    ReadPermission = 1 << iota // 1 << 0 == 1
-    WritePermission            // 1 << 1 == 2
-    ExecutePermission          // 1 << 2 == 4
+	EditSomeoneElseQuestions Permissions = 1 << iota
+	EditSomeoneElseCategory
+	ReadSomeoneElseQuestions
 )
 
-func main(){
-    // bitový součet (1 + 4 = 5), tj. 00000101
-    UP := ReadPermission | ExecutePermission
-    
-    // bitová maska 00000001
-    if (UP & ReadPermission) > 0 {
-        fmt.Println("Uživatel může zobrazit soubor")
-    }
+// If specified user is allowed to do specific operation defined in Permissions enum
+//
+// "currentUser.UserCan(EditSomeoneElseQuestions | EditSomeoneElseCategory)"
+//
+// # return
+//
+// bool - true if user has all required permission
+func (u *User) UserCan(p Permissions) bool {
+	// we need to check if all relevant bits are set
+	return u.Permission&p == p
 }
                     \end{minted}
                     \subcaption{Bitová maska s~použitím \texttt{<< iota}}
@@ -360,7 +366,7 @@ func main(){
 
             Tato technika je~často používaná pro definici \emph{bitových masek}, které jsou poté využívány k~testování, nastavování nebo~odstranění specifických \emph{bitů}. Použití \emph{iota} v~kombinaci s~operátorem \texttt{<<} umožňuje posunovat číslo o~bit, tedy navýší mocninu čísla 2.
             
-            Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Význam \emph{iota} a~operací s~bitovými maskami tak~přesahuje jen~oblast kompilátorů, ale~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
+            Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Pokud je~navíc potřeba zkontrolovat více oprávnění, použijeme bitový součet, který je při~překladu nahrazen konečným číslem, čímž se~sníží počet operací potřebných ke~kontrole. Význam \emph{iota} a~operací s~bitovými maskami tak~přesahuje jen~oblast kompilátorů, ale~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
 
         \section{Procedurální a~objektově orientované programování}
             \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.\textbf{Návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} pouze vykoná své~instrukce.
@@ -1277,20 +1283,53 @@ class dataLoader extends Endpoints{
 
             Ve~funkci \emph{init} také přípravuju šablony. Při~použití modulu \texttt{html/template} pro~zpracování šablon s~proměnnými, je~lepší si~šablony připravit do~paměti a~v~místě použití jen~dodat příslušná data. To~zajistí rychlejší odezvu aplikace. Šablony slouží zejména pro~vytváření e-mailů, které budou odesílány uživatelům a~k~tvorbě případných chybových hlášek.
 
-        \subsection{Funkce Main}
-            V~hlavní funkci \emph{main} je~hlavní logika aplikace. Spouštím \emph{HTTP server}, který čeká na~požadavky od~\emph{klienta}. K~tomu slouží funkce~\texttt{Run} z~modulu \texttt{gin-gonic/gin}, prostřednictvím mého~dříve vytvořeného modulu \href{https://gitlab.com/sjiamnocna/goethe}{\texttt{sjiamnocna/goethe}}, který zjednodušuje~udržování \emph{JWT tokenu}~--~ověří, načte a~aplikaci zpřístupní informace, které jsou v~tokenu uloženy. Při~každé změně dat změní a~v~odpovědi zašle nový~\emph{token}.
+        \subsection{Router}
+            Ve~funkci \emph{main} je~hlavní logika aplikace. Spouštím zde~\emph{HTTP server}, který čeká na~požadavky od~\emph{klienta}. K~tomu slouží funkce~\texttt{Run} z~modulu \texttt{gin-gonic/gin}, prostřednictvím mého~dříve vytvořeného modulu \href{https://gitlab.com/sjiamnocna/goethe}{\texttt{sjiamnocna/goethe}}, který zjednodušuje~udržování \emph{JWT tokenu}~--~ověří, načte a~aplikaci zpřístupní informace, které jsou v~tokenu uloženy. Při~každé změně dat změní a~v~odpovědi zašle nový~\emph{token}.
             
-            Při~každém volání zkontroluju a~do~požadavku načtu informace o~aktuálním uživateli. S~těmito daty pak~mohou pracovat další \emph{handlery}.
+            Při~každém volání zkontroluju a~do~požadavku načtu informace o~aktuálním uživateli. S~těmito daty pak~mohou pracovat další \emph{handlery}. Spuštění \emph{Gin} serveru (routeru), nastavení \emph{callbacků} a~vytvoření skupin \emph{endpointů} je~vidět v~kódu~\ref{go:enginerun}.
 
             Důležitou součástí aplikace \emph{GINu} je~tzv.~\textbf{Router}, který z~příchozího požadavku zjistí, jaký \emph{koncový bod} je~volán a~předá volání~příslušnému \emph{handleru}. \emph{Router} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~\emph{URL} adresy a~které mohou sdílet část logiky. To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. \emph{Router} funguje podobně i~pro obsluhování požadavků na~\emph{Frontendu}.
 
+
             Obsluha jednotlivých požadavků probíhá v~\textbf{Gorutinách} (\textbf{Goroutines}), což~znamená, že~každý požadavek může být~obsluhován paralelně (zároveň), což~umožňuje obsloužit více požadavků najednou~\cite{effective_go}.
+
+            \begin{code}
+                \begin{minted}{go}
+                    func main() {
+                    	// create gin engine
+                    	goethe.Callbacks = &goethe.GCallbacks{
+                    		// issueJWT with custom claims
+                    		BeforeIssueJWT: callbacks.BeforeIssueJWT,
+                    		// verify Service Name and Key
+                    		OnVerifyCredentials: callbacks.OnVerifyAPICredentials,
+                    		// verify custom JWT claims (e.g. API session)
+                    		OnVerifyClaims: callbacks.OnVerifyCustomClaims,
+                    	}
+                    
+                    	engine := goethe.GoetheEntry()
+                    
+                    	// attach gin-sentry middleware
+                    	engine.Use(sentrygin.New(sentrygin.Options{}))
+                    
+                    	{
+                    		// define endpoint groups
+                    		categoriesGroup := engine.Group("/Cat", goethe.RequireAuthLevel(goethe.AUTH_USER_LOGGED_IN))
+                    		eapp.RegisterCatsGroup(categoriesGroup)
+                      
+                            //...
+                    	}
+                    
+                    	engine.Run() // listen and serve on 8080
+                    }
+                \end{minted}
+                \caption{Spuštění serveru a definice skupin endpointů}
+                \label{go:enginerun}
+            \end{code}
 
             \emph{Endpointy} jsou umístěny v~adresáři \texttt{Endpoints}, kde~má~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech jsou jejich \emph{handlery}. \emph{Handler} dostává při~obsluze \emph{požadavku} jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním \emph{handleru} pracovat. Komunikace \emph{frontendu} a~\emph{backendu} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují, např.;
             \begin{description}
                 \item[/api/user]~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
-                \item[/api/category]~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů, ale také pro~identifikaci předmětů, které učitel učí.
-                \item Další \emph{endpointy} viz dokumentace \acrshort{API} v~repozitáři na Gitlabu.
+                \item[/api/cat]~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů nebo~specifikaci konkrétního oboru uživatelem.
             \end{description}
 
             Při~implementaci načtení dat z~požadavků bylo nutné použít jiný způsob zpracování některých vlastních struktur, jelikož pracuji se~\emph{staticky typovaným} jazykem a~\emph{Gin} nedokázal automaticky zpracovat všechny struktury. Proto načítám danou vlastnost jako textový řetězec a~dále zpracovávám.
@@ -1369,7 +1408,7 @@ class dataLoader extends Endpoints{
             \begin{enumerate}
                 \item Uživatel se~přihlásí k~\emph{frontendu} pomocí \textbf{Firebase Authentication}.
                 \item \emph{Frontend} vygeneruje \emph{JWT} pomocí uživatelských údajů získaných z~\emph{Firebase} a~odešle jej~na~\emph{backend}.
-                \item \emph{Backend} (\emph{Go}) ověří \emph{JWT} a~pravost pomocí údaju z~\emph{Firebase}.
+                \item \emph{Backend} (\emph{Go}) ověří \emph{JWT} pomocí údaju z~\emph{Firebase}.
                 \item \emph{Backend} najde uživatele v~databázi podle \emph{e-mailové adresy} a~pokud neexistuje, vytvoří nového uživatele.
                 \item \emph{Backend} provede ověření požadavkem na~\emph{Firebase} jménem uživatele a~ověří přihlášení.
                 \item \emph{Backend} vytvoří nový \emph{JWT} token a~zašle jej na~\emph{frontend}.
@@ -1431,7 +1470,7 @@ class dataLoader extends Endpoints{
             
             \textbf{UI (User Interface)} (\textbf{uživatelské rozhrání}) bude~vytvořeno s~použitím \textbf{Tailwind CSS}. \emph{Tailwind} je~\textbf{utility-first} knihovna -- soustředí~se na~poskytnutí jednoduchých prvků, které je~možné ke~komponentám přidávat jako třídy. Skládáním těchto tříd je~možné vytvořit vzhled, který je~potřeba. \emph{Tailwind} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace~\cite{Rappin2022ModernCSSTailwind}.
 
-            K~tvorbě \emph{UI} je~samozřejmě možné použít i~knihovny jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize CSS} nebo \textbf{CSS-in-JS} a~další přístupy.
+            K~tvorbě \emph{UI} je~samozřejmě možné použít i~knihovny jako \textbf{Bootstrap}, \textbf{Foundation} nebo~jiné přístupy ke~stylování.
 
         \section{Testování}
             Nemá význam testovat celý \emph{backend}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje, protože selže tvorba \emph{Docker} kontejneru, a~zůstává v~původní funkční verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\emph{frontendu}, případně \emph{čistých funkcí}.
@@ -1458,9 +1497,8 @@ class dataLoader extends Endpoints{
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
-    % prepared for another work
-    %\addcontentsline{toc}{chapter}{Seznam použitých zkratek}
-    %\printglossary[type=\acronymtype, title={\chapter*{Seznam použitých zkratek}}]
+    \addcontentsline{toc}{chapter}{Seznam použitých zkratek}
+    \printglossary[type=\acronymtype, title={\chapter*{Seznam použitých zkratek}}]
     \clearpage
     
     \addcontentsline{toc}{chapter}{Použitá literatura}
