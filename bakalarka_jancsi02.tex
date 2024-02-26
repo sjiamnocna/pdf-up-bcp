@@ -14,8 +14,7 @@
 \usepackage{newfloat}
 
 \usepackage[acronym]{glossaries}
-
-% \makeglossaries
+%makeglossaries
 
 % Define a new float type for code listings
 \DeclareFloatingEnvironment[
@@ -1141,13 +1140,15 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             \textbf{Indexace} sloupců znamená optimalizaci dat v~daném sloupci pro~rychlejší třídění, spojování tabulek a~vyhledávání v~nich. \emph{Indexy} se~vytváří na~sloupcích představujících \emph{primární klíč} nebo \emph{unikátní} hodnoty, které se~v~tabulce nesmí vyskytnout opakovaně a~slouží k~jednoznačné identifikaci záznamu, nebo sloupců, které jsou~v~\emph{SQL} dotazech často využívány k~třídění a~vyhledávání. \emph{Indexy} je~možné připodobnit k~lékařské kartotéce, kde~jsou karty pacientů seřazeny abecedně, zdravotní sestra pak~při vyhledávání pacientů aplikuje metodu \textbf{binárního vyhledávání}, čímž~najde kartu dříve než~kdyby karty nebyly seřazeny. \cite{interval:normalniformydb, laurencik2018sql}
 
         \section{Výběr technologií}
-            Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které budou dostatečně výkonné a~zároveň budou přívětivé pro vývojáře, aby vývoj nebyl zbytečně časově náročný. Je~dobré také myslet na~budoucí podporu a~rozšiřitelnost aplikace.
+            Výběr technologií je~důležitý krok. Je nutné vybírat efektivní technologie, které jsou dostatečně výkonné a~zároveň přívětivé pro~vývojáře, aby~vývoj nebyl zbytečně časově náročný. Myslet je~potřeba také na~budoucí údržbu a~rozšiřitelnost aplikace.
 
             \textbf{React} použiji pro tvorbu \emph{Frontendu}. Umožní mi efektivní tvorbu uživatelského rozhrání, (\emph{User Interface, UI}).
 
             \textbf{Typescript} samozřejmě použiji i~při vývoji aplikace v~Reactu. \emph{Facebook} s~tím~počítá a~vydává mimo \emph{React} také balíček s~příslušnými datovými typy, pro~použití v~Typescriptu. Typescript podporuje i~\emph{JSX} pomocí souborů \texttt{*.TSX}. \cite[Refeerence/Handbook/JSX]{TypeScript}
 
-            \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci poslouží jako prostředník mezi šablonou testu a~příkladů a~generovaným \texttt{*.PDF} souborem, čímž~zajistí jednodušší možnost úpravy a~výběr šablon testů. Pokročilí uživatelé budou moci vytvářet vlastní šablony.
+            \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci využiju formát zápisu matematických výrazů z~\LaTeX{u}
+            
+            \textbf{Mathjax} (\url{https://www.mathjax.org}), je nástroj, který umožňuje zobrazit na~webu matematické zápisy mmj.~ve~formátu \LaTeX zápisu. Použiji jej~tedy pro~zobrazení matematických výrazů v~textu příkladů.
 
             \textbf{Go} je~\emph{staticky typovaný}, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Pro~správu paměti využívá tzv.~\textbf{Garbage collector}, který automaticky přiděluje a~uvolňuje pamět, pokud již není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite[7.5]{compilers}.
 
@@ -1497,9 +1498,9 @@ class dataLoader extends Endpoints{
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
-    \addcontentsline{toc}{chapter}{Seznam použitých zkratek}
-    \printglossary[type=\acronymtype, title={\chapter*{Seznam použitých zkratek}}]
-    \clearpage
+    %\addcontentsline{toc}{chapter}{Seznam použitých zkratek}
+    %\printglossary[type=\acronymtype, title={\textbf{Seznam použitých zkratek}}]{}
+    %\clearpage
     
     \addcontentsline{toc}{chapter}{Použitá literatura}
     \printbibliography[title={Použitá literatura}]
