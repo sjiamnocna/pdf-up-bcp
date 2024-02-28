@@ -59,7 +59,7 @@
 \newcommand{\acrdefprint}[3][full]{%
     \newacronym{#2}{#2}{#3}%
     \ifthenelse{\equal{#1}{short}}{%
-        \textbf{\acrshort*{#2}}%
+        \textbf{\acrshort{#2}}%
     }{%
         \ifthenelse{\equal{#1}{long}}{%
             \textbf{\acrlong*{#2}}%
@@ -71,7 +71,7 @@
 \let\oldacrshort\acrshort
 
 % automatically make short acronyms italic as its at least once used term
-\renewcommand{\acrshort}[1]{\emph{\oldacrshort*{#1}}}
+\renewcommand{\acrshort}[1]{\emph{\oldacrshort{#1}}}
 
 
 \newcommand{\emptypage}{
@@ -174,7 +174,7 @@
     \clearpage % End the ToC and start a new page    
 	
 	\chapter{Úvod}
-        Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem pro~zhodnocení nabytých znalostí a~dovedností. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~studentům předložen k~vyplnění.
+        Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem ke~zhodnocení nabytých znalostí a~dovedností a~také důležitou součástí reflexe výuky, díky které učitelé vědí, na~kterou látku se~zaměřit při~navazující výuce. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~studentům předložen k~vyplnění.
 
         Testy umožňují učitelům zjistit, jak~dobře žáci porozuměli učivu a~jaké jsou~jejich silné a~slabé stránky. Žákům poskytnou informace o~tom, které znalosti je~potřeba ještě zlepšovat. Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici~ap. Kromě toho jsou výsledky různých testů použity jako parametr přijímání na~vysoké školy nebo k~udělování stipendií. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby.
         
@@ -250,6 +250,11 @@
 
             Jednotlivé prvky je~možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít~prvek více a~jednu třídu je~možné použít vícekrát, týž~identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti~\cite{jpw:tridy}.
 
+        \section{Markdown}
+            \acrdefprint{MD}{Markdown} je~textový formát, umožňující jednoduché formátování textu. Byl~vytvořen v~roce 2004 \textbf{Johnem Gruberem} ve~spolupráci s~\textbf{Aaronem Swartzem} s~cílem být co~nejčitelnější a~snadno převoditelný do~\emph{HTML}.
+            
+            \emph{Markdown} používá formátování pomocí znaků, jako jsou hvězdičky (tučný text) nebo~podtržítka pro kurzívu. Je~oblíbený mezi~programátory a~dalšími uživateli webu pro~jeho jednoduchost a~čitelnost. \emph{Markdown} je~často používán na~platformách jako GitHub, Reddit, webových fórech nebo~blogovacích platformách, kde~umožňuje uživatelům snadno formátovat jejich texty~\cite{mdguide}.
+
         \section{HTML s dynamickým obsahem}
             \emph{HTML} stránky mohou mít i~dynamický obsah. To~znamená, že~se~obsah může~měnit podle toho, jak se~stránkou uživatel pracuje. Na~úrovni serveru je~možné vygenerovat \emph{HTML} stránku, která obsahuje dynamický obsah např.~data z~databáze.
             
@@ -259,8 +264,7 @@
 
             To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze se~načtou data ze~serveru a~na~stránce se~upraví~obsah. To~je~rychlejší a~příjemnější pro~uživatele.
 
-            Server může~--~samozřejmě po~povolení ze~strany uživatele~--~zasílat zprávy na~klientské zařízení a~vyžádat si~nějakou akci, díky \emph{Server-Sent Events}~\cite{sse:mdn} nebo udržovat spojení pomocí \emph{WebSockets}. Příkladem použití \emph{WebSockets} mohou být živý přenos videa, online hry, internetové hovory nebo jiné prvky na~webu, kde~využijeme oboustranou komunikaci.~\cite{websocket:mdn}
-
+            Server může~--~samozřejmě po~povolení ze~strany uživatele~--~zasílat zprávy na~klientské zařízení a~vyžádat si~reakci klienta díky \acrdefprint{SSE}{Server Sent Events}~\cite{whatwg_sse, sse:mdn} nebo udržovat obousměrné spojení pomocí \emph{WebSockets}, čehož využívají např.~aplikace pro~přímý přenos videa (livestream), online hry nebo~internetové hovory~\cite{websocket:mdn}.
         \section{Single Page Application}
             \acrdefprint{SPA}{Single Page Application} je~aplikace, která se~načte pouze jednou a~poté pouze aktualizujeme její obsah pomocí \emph{AJAXu}. Většinou k~práci s~daty využívá nějaké \emph{API}.
 
@@ -610,19 +614,21 @@ const App = () => {
             Služby \textbf{naslouchají} na svých \emph{portech} a~přijímají požadavky od~klientů. K~serverům na~internetu se~přistupuje pomocí \emph{IP~adresy} a~ke~službám pak~pomocí portu, na~kterém běží~\cite{webserver:mdn}.
 
         \section{Webový server}
-            \emph{Webový server} se~stará o~odpovědi na požadavky, přicházející většinou na~port \emph{443} nebo \emph{80}. Server dostane požadavek ve~formě \acrdefprint{URL}{Uniform Resource Locator}, někdy \acrdefprint{URI}{Uniform Resource Identifier}, obsahující cestu k~požadovanému zdroji (souboru/službě).
+            \emph{Webový server} se~stará o~odpovědi na požadavky, přicházející většinou na~port \texttt{443} nebo~\texttt{80}. Server dostane požadavek ve~formě \acrdefprint{URL}{Uniform Resource Locator}, někdy~\acrdefprint{URI}{Uniform Resource Identifier}, obsahující cestu k~požadovanému zdroji (souboru/službě).
 
-            Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \emph{PHP}) a~vloží se~do~něj aktuální data, nebo před odesláním provést \emph{kompresi dat}, což uspoří mobilní data a~klient, který používá k~přístupu mobilní data za~to~bude vděčný. Na~straně klienta se~pak data rozbalí a~zobrazí.
+            Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \emph{PHP}) a~vloží se~do~něj aktuální data nebo před~odesláním provede \textbf{kompresi dat} (snížení objemu dat matematickým zjednodušením souboru~\cite{Scott2019:programmingpragmatics}), což~může klientovi ušetřit čerpání mobilních dat. Na~straně klienta se~pak data \emph{dekomprimují} a~zobrazí.
 
-            \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více webových služeb na~různých doménách. Pomocí metody~\textbf{Proxy~pass} je~možné přesměrovat celý provoz domény na~jiný port (např.~na~naši aplikaci)~\cite{webserver:mdn}.
+            \textbf{Proxy} v~kontextu počítačových sítí jde~o~\emph{server} nebo~software, který působí jako~prostředník pro~požadavky mezi~klienty a~jinými servery nebo~aplikacemi např.~pomocí přesměrování portů nebo~volání externího serveru.
 
-            \emph{Webové servery} mohou být~např.~\emph{Apache}, \emph{Nginx}, \emph{Lighttpd}, \emph{Caddy} nebo~\emph{IIS}\dots
+            \emph{Webový server} je~také zodpovědný za~\emph{směrování doménových jmen} ke~konkrétním datům nebo~aplikacím na~daném serveru. To~znamená, že~na~jednom serveru může běžet více~webových služeb na~různých doménách. Metoda~\textbf{proxy~pass} (viz \emph{proxy}) je~používána k~přesměrování celého požadavku na~jiný \emph{port} (aplikaci)~\cite{webserver:mdn}.
+
+            \emph{Webové servery} mohou být~např.~\textbf{Apache}, \textbf{Nginx}, \textbf{Lighttpd}, \textbf{Caddy} nebo~\textbf{IIS}\dots
 
             \begin{figure}
                 \centering
                 \includegraphics[width=16cm, height=6cm]{files/img/server-client.png}
                 \caption{Schéma komunikace client-server}
-                \label{fig:enter-label}
+                \label{fig:client-server}
             \end{figure}
 
             \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}) resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
@@ -630,7 +636,7 @@ const App = () => {
         \section{Domain Name Server}
             \acrdefprint{DNS}{Domain Name Server}, někdy také \emph{Domain Name System}, je~systém, který překládá doménová jména na~IP adresy. To~umožňuje, uživatelům používat lidem čitelná \emph{doménová jména} namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
             
-            Bez~služby \emph{DNS} by~se~např.~oblíbený český vyhledávač \texttt{Seznam.cz} proměnil ve~směsici čísel \texttt{77.75.79.222}, což~by~uživatel jistě neocenil. Něco~podobného by~platilo i~pro~ostatní weby.
+            Díky \acrshort{DNS} např.~oblíbený český vyhledávač namísto \emph{IP~adresy} \texttt{77.75.79.222} najdeme na~čitelné adrese \texttt{Seznam.cz}.
 
             \textbf{Doménové jméno} je~složeno ze~tří částí. První část je~\emph{subdoména}, která je~volitelná. Druhou částí je~\emph{doména} (2.\,řádu), která je~povinná a~třetí část je~\emph{doménová přípona} (TLD, doména nejvyššího řádu), která je~také povinná. TLD mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. Doménové jméno je~v~procesu \emph{DNS resolve} přeloženo zpět na \emph{IP adresu}~\cite{tld:mdn}.
         
@@ -691,7 +697,9 @@ const App = () => {
         \section{Asynchronous Javascript Request}
             \acrdefprint{AJAX}{Asynchronous Javascript Request} je~technologie, která umožňuje \emph{asynchronní} komunikaci, např.~mezi \emph{frontendem} a~\emph{backendem}. To~znamená, že~při~každém požadavku na~\emph{server} se~stránka nemusí znovu načítat, ale použije se~\emph{AJAX}, jsou~načtena požadovaná data ze~serveru a~změní se~ve~stránce.
 
-            Funkce \emph{Javascriptu} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. \emph{AJAX} využívá různé \emph{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.\cite{ajax:mdn, Dorman:webmappingajax}
+            Funkce \emph{Javascriptu} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \texttt{fetch} a~\texttt{XMLHttpRequest}. \emph{AJAX} využívá různé \emph{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.~\cite{ajax:mdn, Dorman:webmappingajax}.
+            
+            Je~také možné využít komunikaci přes~\emph{web socket} nebo nově \acrshort{SSE}~\cite{whatwg_sse, sse:mdn}
 
         \section{Application Interface}
             \acrdefprint{API}{Application Interface} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi nebo~i~s~hardware. V~případě webových aplikací se~jedná o~rozhraní mezi \emph{frontendem} a~\emph{backendem}. Některá \emph{rozhrání} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
@@ -856,17 +864,19 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména se~testují tzv.~\emph{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
             
-            V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \emph{Javascriptu} to~jsou~\emph{Jest}, \emph{Mocha}, \emph{Chai} nebo~\emph{Jasmine}. Go~má~vestavěný nástroj pro~automatické~testování~\emph{Go~test}.
+            V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \emph{Javascriptu} to~jsou~např.~\textbf{Jest} nebo~\textbf{Mocha}. Jazyk \emph{Go}~má~vestavěný nástroj pro~automatické~testování, který se~nazývá \textbf{go~test}.
             
             Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování backendu potom zmíněný \emph{Go~test}~\cite{jestjsTestingReact}.
             
             \subsection{Testování API}
-                Pro~testování \emph{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \emph{frontendovou} část. Mezi nejznámější patří \emph{Postman}, \emph{Insomnia} nebo~\emph{Swagger}. Některé navíc nabízejí možnost vytvořit si~sadu automatických testů, které je~možné spouštět při~sestavování aplikace a~ověřit si~tak, že~\emph{API} stále funguje správně.
+                Pro~testování \emph{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \emph{frontendovou} část. Mezi nejznámější patří \textbf{Postman} nebo~\textbf{Insomnia} atd.
+                
+                Tyto~nástroje navíc většinou nabízejí možnost vytvořit si~sadu automatických testů, které je~možné spouštět při~sestavování aplikace v~\emph{Dockeru} a~ověřit si~tak, že~\emph{API} stále funguje správně - např.~jsou dostupné všechny \emph{endpointy}.
 
-                K~tomuto účelu využiju \emph{Postman}. S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \emph{backend}, bez~omezení bezpečnostních opatření.
+                K~tomuto účelu použiji nástroj \emph{Insomnia}. S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \emph{backend}, bez~omezení bezpečnostních opatření.
 
             \subsection{Testování frontendu}
-                Pro~testování frontendu budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
+                Pro~testování \emph{frontendu} budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
 
         \section{Continous Integration a Continuous Delivery}
             \textbf{CI/CD} je souhrnný pojem, který označuje průběžnou integraci \acrdefprint{CI}{Continuous Integration} a~průběžné doručení nebo nasazování \acrdefprint{CD}{Continuous Deployment/Delivery}, dvě klíčové praktiky v automatizaci procesů vývoje softwaru.
@@ -1148,7 +1158,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci využiju formát zápisu matematických výrazů z~\LaTeX{u}
             
-            \textbf{Mathjax} (\url{https://www.mathjax.org}), je nástroj, který umožňuje zobrazit na~webu matematické zápisy mmj.~ve~formátu \LaTeX zápisu. Použiji jej~tedy pro~zobrazení matematických výrazů v~textu příkladů.
+            \textbf{Mathjax} (\url{https://www.mathjax.org}), je~knihovna, která umožňuje zobrazit na~webu matematické zápisy mmj.~ve~formátu \LaTeX zápisu. Použiji jej~tedy pro~zobrazení matematických výrazů v~textu příkladů.
+
+            Pro~formátování textu uživatelům umožním využít formát \acrshort{MD}. Výsledek generování zobrazím jako~webovou stránku a~vyvolám \textbf{tisk do~souboru}, kde~je~umožněn i~tisk do~souboru PDF.
 
             \textbf{Go} je~\emph{staticky typovaný}, kompilovaný jazyk vyvinutý společností Google v~roce 2007. Je to~jazyk, který je~velice rychlý a~jednoduchý na~psaní. Protože jde~o~kompilovaný jazyk, výsledný program~je~rychlý a~efektivní. Pro~správu paměti využívá tzv.~\textbf{Garbage collector}, který automaticky přiděluje a~uvolňuje pamět, pokud již není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite[7.5]{compilers}.
 
@@ -1224,9 +1236,9 @@ class dataLoader extends Endpoints{
             
             Jednotlivé \emph{databáze}~--~někdy používáme název \emph{schéma}~--~fyzicky na~disku reprezentují adresáře s~názvem konkrétní \emph{databáze}. Jednotlivé~\emph{tabulky} potom tvoří binární soubory s~příponou podle databázového \emph{enginu}, který používáme. V~tomto případě je~to~\emph{engine} \emph{InnoDB}, který ukládá strukturu a~data v~souborech \texttt{*.ibd}~\cite{MySQLInnoDB}.
             
-            \textbf{GORM} je~ORM (ORM~--~Object-relational mapper) pro~jazyk \emph{Go}. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \emph{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhrání k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
+            \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \emph{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \emph{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhrání k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
 
-            Pokud je~potřeba nějaké složitější operace, samozřejmě je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
+            Pokud je~potřeba nějaké složitější operace, je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
 
             \textbf{Vite} je~nástroj zjednodušující tvorbu \emph{javascript frontendových aplikací} v~různých knihovnách. Je~velice rychlý a~jednoduchý na~použití. Bude použit pro~vytvoření \emph{Frontendu} aplikace. Prostřednictvím \emph{proxy} serveru bude komunikovat s~\emph{backendem}.
 
@@ -1240,16 +1252,16 @@ class dataLoader extends Endpoints{
             
             \emph{Nginx} je~ve~srovnání s~jinými servery, jako např.~Apache, považován za~velmi rychlý. Zejména pak~při~obsluze požadavků na~statické soubory. Je~napsán v~jazyce~C a~je~dostupný pro~většinu operačních systémů~\cite{WhatNGINX}.
 
-            \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu}, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje, nicméně jde~o~plnohodnotný systém a~je~možné jej~použít jako hlavní systém. Celková velikost distribuce po~instalaci je~pouze 5~MB, což je~velice málo.
+            \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu} zaměřená na~jednoduchost, zabezpečení a~efektivní využití prostoru na~disku, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~uložiště a~zdroje. Jde~nicméně o~plnohodnotný systém, který je~možné použít i~na~serveru nebo~jiném stroji. Celková velikost distribuce v~kontejneru je~jen kolem 8\,MB (cca. 130\,MB v~plné verzi pro~počítač), což~je~velice málo~\cite{alpinelinuxAbout}.
 
-            Na~\textbf{VPS} (Virtual Private Server) se~systémem \textbf{Debian} poběží pouze \emph{Nginx}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které nechci vystavovat na~veřejnost.
+            Na~\acrdefprint{VPS}{Virtual Private Server} se~systémem \textbf{Debian} poběží \emph{Nginx} a~\emph{Firewall}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které je~potřeba skrýt před~veřejností.
 
             Kombinací těchto technologií bych rád dosáhnul co~možná~nejlepšího poměru výkonu a~bezpečnosti.
 	
 	\chapter{Postup implementace}
-        Prvně je~potřeba vytvořit základní strukturu aplikace. Pro~lepší automatizaci a~konzistenci prostředí, kdekoliv aplikaci spustím, budou \emph{vývojové} i~\emph{produkční} prostředí tvořit \emph{Docker kontejnery}.
+        Jako první jsem vytvořil základní strukturu aplikace. Pro~lepší automatizaci a~konzistenci prostředí, kdekoliv aplikaci spustím, budou \emph{vývojové} i~\emph{produkční} prostředí tvořit \emph{Docker kontejnery}.
 
-        Při~vývojí v~\emph{NextJS} využiju nastavení tzv.~\emph{proxy}. Požadavky, jejichž \emph{URI query} začíná \texttt{/api/\dots} nasměruje na~\emph{backend} aplikace.
+        Při~vývojí v~\emph{NextJS} využiji nastavení tzv.~\emph{proxy}. Požadavky, jejichž \emph{URI query} začíná \texttt{/api/\dots} nasměruje na~\emph{backend} aplikace.
         
         \textbf{Vývojová verze} budou kontejnery pro~\emph{React}, \emph{Go} a~\emph{databázi}. \emph{Go}~kontejner bude~obsahovat nástroj \emph{Air}, který umožní automatické \emph{sestavení} a~znovuspuštění aplikace při~změně zdrojového kódu. \emph{Frontend} bude spuštěný ve~vývojové verzi \emph{NextJS}, která již~má funkci (\textbf{Hot reload}), která při~změně automaticky přenačte stránku v~prohlížeči.
 
@@ -1392,20 +1404,20 @@ class dataLoader extends Endpoints{
             
             Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu. Pro~snížení počtu operací toto provedu při~prvním použití proměnné v~jiné proměnné nebo~v~zadání příkladu.
 
-            Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou potřebujeme nahradit, jde o~chybu. Pokud závislá proměnná není zpracovaná, zpracuji ji~voláním téže funkce nad~danou funkcí (tzv.~\textbf{rekurzivní volání}). Do~zásobníku vložím název proměnné a~pokud zpracovávaná proměnná již~v~zásobníku je, jde o~chybu, která by způsobila nekonečné cyklické zpracování týchž proměnných (\textbf{deadlock}).
+            Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou potřebujeme nahradit, jde o~chybu. Pokud závislá proměnná není zpracovaná, zpracuji ji~voláním téže funkce nad~danou funkcí (tzv.~\textbf{rekurzivní volání}). Do~seznamu vložím název proměnné a~pokud zpracovávaná proměnná již~v~seznamu je, jde o~chybu, která by způsobila nekonečné cyklické zpracování týchž proměnných (\textbf{deadlock}).
             
             Proměnné tak~budou nahrazeny ve~správném pořadí a~pokud k~nahrazení nedode, znamená to, že~neexistuje, nebo~má~\emph{cyklickou závislost}.
 
-            V~matematickém režimu je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která nevyužívá závorky ani~prioritu operátorů a~operátory jsou zapsány za~operandy. Výraz je~zapsán jako~posloupnost \textbf{operandů} (\textbf{hodnot}) a~\emph{operátorů}, např.~klasický infixový zápis $19 + ( 26 + 1 )$ je~převeden do~\emph{postfixového} jako $19\:26\:1\:+\:+$. Dvojice \emph{operandů} jsou zpracovávány operátorem a~tedy je~jednodušší~zpracování pomocí funkcí (např.\,\texttt{sum(a, b)}) v~programovacích jazycích. Pro~názornost algoritmu vyčíslení pomocí struktury \emph{zásobníku} je~možné využít \href{https://www.free-online-calculator-use.com/postfix-evaluator.html#}{vizualizaci na~tomto odkaze}~\cite{postfixnotation}.
+            V~matematickém režimu je~potřeba~vyčíslit hodnotu výrazu zapsanou v~\emph{tokenech}, např.~\texttt{randInt(0,42) + 1} pro~náhodné liché číslo. To~realizuju pomocí algoritmu podobnému tzv.~\textbf{Postfixové notaci} (\textbf{Reverzní polská notace}), která nevyužívá závorky ani~prioritu operátorů a~operátory jsou zapsány za~operandy. Výraz je~zapsán jako~posloupnost \textbf{operandů} (\textbf{hodnot}) a~\emph{operátorů}, např.~klasický infixový zápis $19 + ( 26 + 1 )$ je~převeden do~\emph{postfixového} jako $19\:26\:1\:+\:+$. Dvojice \emph{operandů} jsou zpracovávány operátorem a~tedy je~jednodušší~zpracování pomocí funkcí (např.\,\texttt{sum(a, b)}) v~programovacích jazycích. Pro~názornost algoritmu převodu a~vyčíslení pomocí struktury \emph{zásobníku} (struktura typu \acrdefprint{LIFO}{Last In First Out}~\cite{Scott2019:programmingpragmatics}) je~možné využít vizualizaci~\href{https://www.free-online-calculator-use.com/postfix-evaluator.html#}{www.free-online-calculator-use.com/postfix-evaluator.html}~\cite{postfixnotation}.
 
-            Protože pracuju s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat zobrazení (generátoru \emph{PDF} nebo~\emph{JSON} pro~použití na~webu). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo prostor pro~odpověď s~případným výčtem možností.
+            Protože pracuji s~jazykem \emph{Go}, obdrží \emph{generátor} data ve~formě \emph{struktury} definující příklad a~výsledkem bude~struktura obsahující zpracované zadání a~možnosti s~nahrazenými a~vyčíslenými hodnotami, aby bylo možné hodnoty předat \emph{zobrazení} (ve~smyslu \acrshort{MVC}). Výsledná data budou obsahovat zadání otázky, možnosti odpovědí a~informaci o~tom, která možnost je~správné řešení. Na~místě zobrazení uživatelského vstupu bude vložen \emph{placeholder}, který bude~zpracován až~podle~volby~zobrazení jako vstupní pole nebo~prostor pro~odpověď s~případným výčtem možností.
             
             \emph{Generátor} samotný nemá přístup k~databázi, proto manipulaci se~zadáním a~uložení vygenerovaných hodnot zajistí aplikace v~rámci konkrétního \emph{endpointu}, hodnoty si~načte ze~struktury, kterou obdrží z~generátoru. Konkrétní hodnoty uloží do~databáze vygenerovaných příkladů s~jednoznačným identifikátorem, který předá uživateli, který zároveň bude mít k~dispozici seznam dříve vygenerovaných verzí příkladu a~odkazy na~k~jejich~editaci.
 
         \subsection{Autentizace uživatelů}
             Registrace a~přihlášení do~aplikace bude možná více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé budou moci k~používání aplikace použít kombinaci \emph{e-mailové adresy a~hesla}, ale také \emph{Google} účet, díky použití \emph{Firebase}. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
             
-            Na~\emph{frontendu} použiju nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí různých webových služeb. Průběh přihlášení pomocí \emph{Firebase} bude následující:
+            Na~\emph{frontendu} použiju nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí účtu u~společnosti Google. Přihlášení pomocí \emph{Firebase} proběhne takto:
             \begin{enumerate}
                 \item Uživatel se~přihlásí k~\emph{frontendu} pomocí \textbf{Firebase Authentication}.
                 \item \emph{Frontend} vygeneruje \emph{JWT} pomocí uživatelských údajů získaných z~\emph{Firebase} a~odešle jej~na~\emph{backend}.
@@ -1416,7 +1428,7 @@ class dataLoader extends Endpoints{
                 \item \emph{Frontend} si~uloží nový \emph{JWT} a~uživatele přesměruje do~aplikace.
             \end{enumerate}
             
-            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\emph{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~i~vzdálené odhlášení v~případě podezřelého přístupu k~účtu. Jakékoliv akce s~účtem budou navíc zapsány do~tabulky akcí, aby uživatel měl lepší přehled o~přihlašování a~dění na~účtu.
+            Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\emph{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~načíst data uživatele do~paměti programu a~vzdálené odhlášení v~případě podezřelého přístupu k~účtu.
 
         \section{Frontend}
             \emph{Frontend} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \emph{Typescript}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro lepší přístupnost a~aplikace znevýhodněmým a~pro~lepší \emph{SEO} využiju k~tvorbě komponent některý z~\emph{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~nějakou optimalizací přístupnosti, což~zjednoduší práci při~tvorbě uživatelského rozhrání.
@@ -1484,19 +1496,21 @@ class dataLoader extends Endpoints{
     \chapter{Závěr}
         Cíl práce byl dosažen, podařilo se~vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit, nicméně aplikace je~již k~dispozici k~použití.
         
-        Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, kterou budou moci využívat učitelé i~žáci k~tvorbě testů a~procvičování příkladů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
+        Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, která bude moci být~používána k~tvorbě testů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
-        V~práci jsem použil aktuální technologie a~postupy a~snažil se~držet základních pouček pro~vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód s~důrazem na~rychlost a~optimalizaci kódu, aby v~budoucnu dokázala obsloužit co~největší počet požadavků. Informační technologie se~ale neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, protože v~době této publikace již~mohou být~některé postupy překonané. Většina principů ale zůstane platná a~je~možné na~nich~stavět.
+        V~práci jsem použil aktuální technologie a~postupy a~snažil se~držet základních pouček pro~vývoj aplikací a~psát čitelný, dokumentovaný a~rozšiřitelný kód s~důrazem na~rychlost a~optimalizaci kódu, aby v~budoucnu dokázala obsloužit co~největší počet požadavků.
         
-        Je~ale potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace. V~této implementaci jsem se~soustředil na~vysoký výkon a~ukázku funkce \emph{MVC} s~programem v~jazyce \emph{Go}, nicméně bylo by možné celou aplikaci napsat jednodušeji např.~v~\emph{NextJS}.
+        Je~potřeba vzít v~potaz, že~popsané postupy v~praxi nemusejí být~ideálním řešením a~může~se lišit v~závislosti na~potřebách konkrétní aplikace. V~této implementaci jsem se~soustředil na~vysoký výkon a~ukázku funkce \emph{MVC} s~programem v~jazyce \emph{Go}, nicméně bylo by možné celou aplikaci napsat jednodušeji např.~v~\emph{NextJS}.
+        
+        Informační technologie se~také neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů ale~zůstane platná.
         
         Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~Gitlabu (\url{https://gitlab.com/pisemkomat}).
 
         Bohužel jsem po~mnoha pokusech s~pluginy a~konfiguracemi pro~\emph{I18n} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy} přesměrování. Z~tohoto důvodu bude řešení problému překladů realizováno mimo~rámec této práce a~aplikace je~dočasně zpřístupněna pouze v~anglickém jazyce.
 
-        Aplikace \emph{Písemkomat} je~dostupná také pomocí~\emph{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\acrdefprint{CMS}{Content Management System} jako~např.~\textbf{Wordpress}. Dokumentace k~\emph{API} je~k~dispozici~ve~veřejné části webu.
+        Aplikace \emph{Písemkomat} je~dostupná také pomocí~\acrshort{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\acrdefprint{CMS}{Content Management System} jako~např.~\textbf{Wordpress}. Dokumentace k~\acrshort{API} je~k~dispozici~ve~veřejné části webu.
         
-        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/sjiamnocna/gormrest}{\texttt{sjiamnocna/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
+        Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/gormrest}{\texttt{gitlab.com/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
     %\addcontentsline{toc}{chapter}{Seznam použitých zkratek}
     %\printglossary[type=\acronymtype, title={\textbf{Seznam použitých zkratek}}]{}
