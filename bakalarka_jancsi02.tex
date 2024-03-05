@@ -3,6 +3,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage[paper=a4paper, margin=1.5cm]{geometry}
 
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]   
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}   
+\titlespacing*{\chapter}{0pt}{-15pt}{10pt}
+
 % FA icons
 \usepackage{hyperref}
 \usepackage{url}
@@ -16,7 +22,6 @@
 
 \usepackage{nomencl}
 \makenomenclature
-
 \usepackage[acronym]{glossaries}
 \makeglossaries
 
@@ -598,13 +603,17 @@ const App = () => {
             \emph{Vite} (i \emph{CRA}) zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\emph{hot reload}, což znamená, že~se~při~každé změně kódu \acrshort{FE} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem~\cite{vitejs}.
 
         \section{Server Side Rendering a Static Site Generation}
-            Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \acrshort{HTML} obsah a~prohlížeč stránku vykreslí (\emph{Client Side Rendering~--~CSR})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \emph{Static Site Generation (SSG)} a~\emph{Server Side Rendering (SSR)}, 
+            \textbf{Render} (\textbf{vykreslování}) se~v~kontextu počítačů používá k~popisu procesu vykreslování obrazu z~dat za~účelem jejich~zobrazení uživateli. Tato data mohou být např.~ve~formě 3D~modelů, obrázků nebo~třeba interaktivních webových prvků při~vykreslování webu prohlížečovým jádrem~\cite{renderbook2}.
 
-            \acrdefprint{SSG}{Static Site Generator} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \acrshort{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby~běžela další \emph{služba/aplikace}.
+            V~kontextu knihovny \emph{React} se~slovo \emph{render} používá k~popisu procesu vytváření \acrshort{HTML} a~\acrshort{CSS} kódu ze~struktury \acrshort{JSX}~komponent.
+            
+            Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \acrshort{HTML} obsah a~prohlížeč stránku vykreslí (\acrdefprint{CSR}{Client Side Rendering})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \acrdefprint{SSG}{Static Site Generation} a~\acrdefprint{SSR}{Server Side Rendering}, 
+
+            \acrshort{SSG} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \acrshort{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby~běžela další \emph{služba/aplikace}.
             
             To~samozřejmě nevylučuje použít \acrshort{AJAX}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \acrshort{JS}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
 
-            \acrdefprint{SSR}{Server Side Rendering} je~koncept podobný \acrshort{SSG}, pouze na~straně serveru běží aplikace, která průběžně sleduje data a~aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \acrshort{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\acrshort{BE} aplikace používá \acrshort{JS}~\cite{uc:ssrandssg}.
+            \acrshort{SSR} je~koncept podobný \acrshort{SSG}, pouze na~straně serveru běží aplikace, která průběžně sleduje data a~aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \acrshort{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\acrshort{BE} aplikace používá \acrshort{JS}~\cite{uc:ssrandssg}.
 
             Takto systém vygeneruje \emph{HTML kód} (se~skripty~ap.) pro~každou stránku pouze v~případě změny obsahu. Při~dalším spuštění potom načítá statický obsah, což~ušetří výkon na~straně \emph{serveru} i~\emph{klienta}.
 
@@ -1159,17 +1168,21 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Výběr technologií}
             Výběr technologií je~důležitý krok. Je~nutné vybírat efektivní technologie, které jsou~dostatečně výkonné a~zároveň přívětivé pro~vývojáře, aby~vývoj nebyl příliš časově náročný. Myslet je~potřeba také na~budoucí údržbu a~rozšiřitelnost aplikace a~zda jsou vybrané nástroje pravidelně opravovány a~aktalizovány. Také je~potřeba zvážit aktivní komunitu a~uživatelskou podporu daných technologií v~případě problémů.
 
-            Pro~tvorbu \acrshort{FE} použiji knihovnu~\textbf{React}. Umožní mi~tvorbu efektivního \textbf{uživatelského rozhrání}~--~\acrdefprint{UI}{User Interface}.
+            Pro~tvorbu \acrshort{FE} použiji knihovnu~\textbf{React}. Umožní mi~efektivní tvorbu \textbf{uživatelského rozhrání}~(\acrdefprint[short]{UI}{User Interface}).
 
-            Při~vývoji aplikace v~Reactu použiji i~\acrshort{TS}. \emph{Facebook} s~použitím~\acrshort{TS} počítá a~vydává mimo~\emph{React} také~balíček s~příslušnými datovými typy. \acrshort{TS} podporuje i~\acrshort{JSX} pomocí souborů s~příponou \texttt{*.TSX}. \cite[Refeerence/Handbook/JSX]{TypeScript}
+            Při~vývoji aplikace v~Reactu použiji i~\acrshort{TS}. \emph{Facebook} s~použitím~\acrshort{TS} počítá a~vydává mimo~\emph{React} také~balíček s~příslušnými datovými typy. \acrshort{TS} podporuje i~\acrshort{JSX} pomocí souborů s~příponou \texttt{*.TSX}~\cite{TypeScript}.
 
             \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci využiju formát zápisu matematických výrazů z~\LaTeX{u}. \LaTeX~má~mnoho dalších využití a~byl~použit při~tvorbě písemné části této~práce.
             
             \textbf{Mathjax} (\url{https://www.mathjax.org}), je~knihovna, která umožňuje zobrazit na~webu matematické zápisy mmj.~ve~formátu \LaTeX zápisu. Použiji jej~tedy pro~zobrazení matematických výrazů v~textu příkladů.
 
-            Pro~formátování textu uživatelům umožním využít formát \acrshort{MD}. Výsledek generování zobrazím jako~webovou stránku a~vyvolám \textbf{tisk do~souboru}, kde~je~umožněn i~tisk do~souboru \acrdefprint{PDF}{Portable Document Format}.
+            Pro~formátování textu uživatelům umožním využít formát \acrshort{MD}. Výsledek generování zobrazím jako~webovou stránku a~vyvolám \textbf{tisk do~souboru}, kde~je~umožněn i~tisk do~souboru \acrdefprint[short]{PDF}{Portable Document Format}.
 
-            \textbf{Go} je~\emph{staticky typovaný}, kompilovaný jazyk vyvinutý společností Google v~roce~2007. \emph{Go}~je~kompilovaný jazyk. Zároveň je~pro~vývojáře přívětivý na~psaní. Výsledný \emph{program}~je~rychlý a~efektivní. Pro~správu paměti využívá tzv.~\acrdefprint{GC}{Garbage Collector}, který automaticky přiděluje paměť programu a~uvolňuje ji, pokud již~není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite[7.5]{compilers}.
+            \textbf{Go} je~\emph{staticky typovaný} kompilovaný jazyk vyvinutý společností Google v~roce~2007. \emph{Go}~je~kompilovaný jazyk. Zároveň je~pro~vývojáře přívětivý na~psaní. Výsledný \emph{program}~je~rychlý a~efektivní. Pro~správu paměti využívá  tzv.~\acrdefprint{GC}{Garbage Collector}, který automaticky přiděluje paměť programu a~uvolňuje~ji pro~použití jinými procesy, pokud již~není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite{compilers}.
+
+            Pro~\textbf{časově kritické aplikace} operující v~reálném čase, např.~řízení auta, kde~by \textbf{režijní zátěž} z~provozu \acrshort{GC} mohla způsobit opožděné spuštění jiných důležitých procesů, je~vhodné zvolit jazyk s~menší \emph{režijní zátěží}, např.~\textbf{Rust} nebo~\emph{Zig}.
+
+            Pro~aplikace jako je~webový server, je~\emph{Go}~dobrá volba. \emph{Go} navíc automaticky formátuje kód, což~zjednodušuje práci s~ním a~umožňuje lepší spolupráci v~týmu, jelikož není~nutné hledat jednotný \textbf{codestyle}, který by~nejlépe vyhovoval potřebám vývoje.
 
             V~\emph{Go}~jsou také k~dispozici tzv.~\textbf{metadata položek struktur} (\textbf{struct tags}), díky kterým je~možné ke~každému členu (údaji) dané struktury přidat doplňující parametry, sloužící např.~k~definici přesného datového typu v~\acrshort{SQL} tabulce vytvořené podle \emph{modelu} nebo~k~automatické kontrole dat při~přijetí požadavku ve~formátu \acrshort{JSON}. To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka, viz~\ref{go:structuretags}.
 
@@ -1230,8 +1243,6 @@ class dataLoader extends Endpoints{
             \end{code}
 
             Během vývoje v~\emph{Go} není potřeba celý program kompilovat, stačí jej~spustit příkazem \texttt{go run}. Při~publikaci programu je~potřeba program \emph{zkompilovat} pomocí \texttt{go build}, čímž~\emph{Go} vytvoří optimalizovaný spustitelný binární soubor. Nástroj \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}} navíc automaticky restartuje server, pokud se~změní některý ze~zdrojových souborů. To~zjednoduší a~zrychlí vývoj \acrshort{BE}.
-            
-            Pro~aplikace jako je~webový server, je~\emph{Go}~dobrá volba. \emph{Go} navíc automaticky formátuje kód, což~zjednodušuje práci s~ním a~zpříjěmňuje spolupráci v~týmu.
 
             \textbf{Gin gonic} je~webový framework pro~jazyk \emph{Go}. Umožňuje vytvářet webové aplikace a~\acrshort{API}. Základní součást webových frameworků je~tzv.~\emph{Router}, který umožňuje definovat \emph{koncové body} (\emph{endpointy}) a~typy požadavků, které je~možné využít pro~práci s~nimi.
             
@@ -1239,15 +1250,24 @@ class dataLoader extends Endpoints{
             
             \emph{Gin} umožňuje také vytvářet skupiny \emph{koncových bodů}, které mají společný základ~\emph{URL} adresy a~které mohou mít společný \emph{handler}. To~umožňuje vytvářet přehlednější kód aplikace.
             
-            \textbf{MySQL} je~relační \textbf{databáze}, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. Největší jednotkou je~\emph{databáze}, která obsahuje \emph{tabulky}. Jednotlivé sloupce \emph{tabulek} určují \emph{typ dat} a~jejich název. Každý \emph{řádek} je~jeden záznam v~dané tabulce.\cite{databases21}
+            \textbf{MySQL} je~relační \textbf{databáze}, která je~dnes jednou z~nejpoužívanějších databází. Je~dostatečně rychlá a~spolehlivá. Největší jednotkou je~\emph{databáze}, která obsahuje \emph{tabulky}. Jednotlivé sloupce \emph{tabulek} určují \emph{typ dat} a~jejich název. Každý \emph{řádek} je~jeden záznam v~dané tabulce~\cite{databases21}.
             
-            Jednotlivé \emph{databáze}~--~někdy používáme název \emph{schéma}~--~fyzicky na~disku reprezentují adresáře s~názvem konkrétní \emph{databáze}. Jednotlivé~\emph{tabulky} potom tvoří binární soubory s~příponou podle databázového \emph{enginu}, který používáme. V~tomto případě je~to~\emph{engine} \emph{InnoDB}, který ukládá strukturu a~data v~souborech \texttt{*.ibd}~\cite{MySQLInnoDB}.
+            Jednotlivé \emph{databáze}~--~někdy používáme název \emph{schéma}~--~jsou~na~disku fyzicky reprezentovány adresáři s~názvem konkrétní \emph{databáze}. Jednotlivé~\emph{tabulky} jsou~tvořeny binárními soubory s~příponou podle databázového \emph{enginu}, který používáme, umístěné v~daném adresáři.
+            
+            V~mém~případě jde~o~\emph{MySQL} \emph{engine} \textbf{InnoDB}, který ukládá strukturu a~data v~souborech s~příponou~\texttt{*.ibd}~\cite{MySQLInnoDB}.
             
             \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \acrshort{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \acrshort{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhrání k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
 
             Pokud je~potřeba nějaké složitější operace, je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
 
-            \textbf{Vite} je~nástroj zjednodušující tvorbu \emph{javascript frontendových aplikací} v~různých knihovnách. Je~velice rychlý a~jednoduchý na~použití. Bude použit pro~vytvoření \acrshort{FE} aplikace. Prostřednictvím \emph{proxy} serveru bude komunikovat s~\acrshort{BE}.
+            \textbf{Next.js} mi~jedoduše umožní využít výhody~\acrshort{SSR} aplikace. \emph{Next.js} nabízí širokou škálu funkcí, které usnadňují vývoj moderních aplikací, včetně~např.:
+
+            \begin{description}
+                \item[Automatický adresářový router] \emph{Next.js} automaticky vydává a~obsluhuje adresy~\acrshort{URI} v~aplikaci na~základě adresářové struktury.
+                \item[Server-side rendering] \emph{Next.js} umožňuje \emph{renderovat} aplikace na~serveru, čímž se~zlepšuje jejich výkon a~\acrshort{SEO}.
+                \item[Statické stránky] \emph{Next.js} umožňuje generovat statické stránky, které se rychle načítají a snižují zátěž serveru.
+                \item[Optimalizace pro SEO] Next.js automaticky generuje meta tagy a další informace důležité pro SEO.
+            \end{description}
 
             \textbf{Docker, docker-compose} jsou nástroje, které umožňují vytvářet \textbf{kontejnery}, někdy jim říkáme i~\textbf{instance}, ve~kterých může běžet nějaká aplikace. Použití \emph{kontejnerů} při~vývoji je~výhodné zejména při~spolupráci v~týmu, jelikož ihned po~stažení a~spuštění, máme jistotu, že~aplikace běží v~přizpůsobeném prostředí. To~umožňuje jednodušší zapojení dalších lidí do~vývoje a~nasazení aplikace na~různých platformách (např~.\emph{Windows}, \emph{Linux} i~\emph{MacOS}).
 
@@ -1266,27 +1286,28 @@ class dataLoader extends Endpoints{
             Kombinací těchto technologií bych rád dosáhnul co~možná~nejlepšího poměru výkonu a~bezpečnosti.
 	
 	\chapter{Postup implementace}
-        Jako první jsem~vytvořil základní adresářovou strukturu aplikace. Pro~lepší automatizaci a~konzistenci prostředí, kdekoliv aplikaci spustím budou \emph{vývojové} i~\emph{produkční} prostředí tvořit \emph{Docker kontejnery}.
+        Jako první jsem~vytvořil základní adresářovou strukturu aplikace. Pro~lepší automatizaci a~konzistenci prostředí, kdekoliv aplikaci spustím, budou \emph{vývojové} i~\emph{produkční} prostředí v~\emph{Docker kontejnerech}.
 
-        V~produkčním dojde k~přepnutí vývojového na~produkční prostředí a~dojde ke~spuštění testů a~následně \emph{kompilaci}. Spuštěná výsledná služba tak~bude~lépe optimalizována.
+        V~produkčním prostředí dojde ke~změně z~vývojového na~produkční prostředí, čímž~dojde k~překladu a~optimalizaci kódu. Před~tím dojde také~ke~spuštění testů. Spuštěná výsledná služba tak~bude~lépe optimalizována a~automatickými testy bude zaručeno, že~je~plně funkční.
         
-        Při~vývojí v~\emph{NextJS} využiji nastavení tzv.~\emph{proxy}. Požadavky, jejichž \emph{URI query} začíná \texttt{/api/\dots} nasměruje na~\acrshort{BE} aplikace.
+        Při~vývojí \acrshort{FE} využiji nastavení \emph{proxy}, které \emph{NextJS} nabízí. Požadavky, jejichž \emph{URI query} začíná \texttt{/api/\dots} nasměruji na~kontejner, obsahující \acrshort{BE} aplikace.
         
-        \textbf{Vývojová verze} budou kontejnery pro~\emph{React}, \emph{Go} a~\emph{databázi}. \emph{Go}~kontejner bude~obsahovat nástroj \emph{Air}, který umožní automatické \emph{sestavení} a~znovuspuštění aplikace při~změně zdrojového kódu. \acrshort{FE} bude spuštěný ve~vývojové verzi \emph{NextJS}, která již~má funkci (\textbf{Hot reload}), která při~změně automaticky přenačte stránku v~prohlížeči.
+        \textbf{Vývojová verze} budou kontejnery pro~\emph{React}, \emph{Go} a~\emph{databázi}. \emph{Go}~kontejner obsahuje nástroj \emph{Air}. \acrshort{FE} bude spuštěný ve~vývojové verzi \emph{NextJS}, která již~má funkci (\textbf{Hot reload}), která při~změně automaticky přenačte stránku v~prohlížeči.
 
         \textbf{Produkční verze}, tedy ta~výsledná, se~kterou bude pracovat \emph{koncový uživatel}, bude obsahovat stejné kontejnery bez~nástrojů pro~vývoj. Při tvorbě kontejnerů se~\acrshort{BE} zkompiluje a~spustí se~pouze optimalizovaný binární soubor. \acrshort{FE} (\emph{React}) bude~optimalizován podobným způsobem a~poběží s~použitím \emph{NextJS}. \emph{NextJS} bude obsluhovat webové požadavky a~požadavky na~\acrshort{API} přesměruje na~kontejner s~\acrshort{BE}. Přesměrování ze~serveru na~kontejnery zajistí \emph{Nginx}, který běží v~prostředí \emph{VPS} serveru a~obsluhuje i~další aplikace.
 
-        Kód pro~\acrshort{BE} bude v~adresáři \texttt{goapp} a~kód pro~\acrshort{FE} v~adresáři \texttt{vite}. Všechny kontejnery budou mít své~úložiště v~adresáři \texttt{data}, kde budou trvalá data, která se~zachovají při~restartu kontejneru. To~zjednoduší zálohování dat a~případný přesun na~jiný server.
+        Kód pro~\acrshort{BE} bude v~adresáři \texttt{goapp} a~kód pro~\acrshort{FE} v~adresáři \texttt{frontend-next}. Všechny kontejnery budou mít své~úložiště v~adresáři \texttt{data}, kam~budou ukládat trvalá data, která se~zachovají i~po~restartu kontejneru. To~zjednoduší zálohování dat a~případný přesun na~jiný server.
 
-        Konfigurace pro~vytvoření kontejnerů budou v~adresáři `docker` a~v~souborech \texttt{docker-compose.yml} v~kořenovém adresáři. K~dispozici budou dvě verze, \emph{vývojová} bude připravena pro~vývoj na~lokálním počítači a~optimalizovaná, verze (\emph{produkční}) pro~nasazení na~server.
+        Konfigurace pro~vytvoření kontejnerů budou v~adresáři \texttt{docker} a~v~souborech \texttt{docker-compose.yml} v~kořenovém adresáři. K~dispozici budou dvě verze, \emph{vývojová} bude připravena pro~vývoj na~lokálním počítači a~optimalizovaná, produkční verze pro~nasazení aplikace na~server.
         
         \section{Backend}
-            Na~\acrshort{BE} bude~program v~jazyce \emph{Go}, který bude zpracovávat požadavky od~klienta. Je~dobrou praxí rozdělit kód na~více funkčních celků, tj.~\emph{moduly}. \emph{Moduly} umožňují mmj.~využít veřejně dostupný kód jiných projektů, pokud to dovoluje zadání od~zákazníka i~licence daného modulu. Tím~je~možné ušetřit čas, který správa takového modulu zahrnuje~\cite{Zimmerman2023:howtowritebetter}.
+            Na~\acrshort{BE} bude~program v~jazyce \emph{Go}, který zpracovává požadavky od~klienta. Je~dobrou praxí rozdělit kód na~více funkčních celků, tj.~\emph{moduly}. \emph{Moduly} umožňují mmj.~využít veřejně dostupný kód jiných projektů, pokud to dovoluje zadání od~zákazníka i~licence daného \emph{modulu}. Tím~je~možné ušetřit čas, který správa takového modulu zahrnuje~\cite{Zimmerman2023:howtowritebetter}. \emph{Moduly} v~\emph{Go} je~možné používat přímo použitím veřejného odkazu na~zdrojový kód (např.~kód z~\emph{Gitlabu}), čímž~výrazně zjednodušuje práci s~nimi.
+            
             Pro~obsluhu požadavků využiji \href{https://github.com/gin-gonic/gin}{\emph{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~autentizaci požadavku a~kontrolu a~správu \acrshort{JWT} \href{https://gitlab.com/sjiamnocna/goethe}{\emph{sjiamnocna/goethe}}.
 
-            Při~vývoji využiju nástroj \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}}, který automaticky restartuje aplikaci při~každé změně kódu, čímž vývoj aplikace zrychlí, jelikož se~zbavím nutnosti manuálního spouštění aplikace.
+            Při~vývoji využiju nástroj \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}}, který automaticky restartuje aplikaci při~každé změně kódu, čímž vývoj aplikace zrychlí, jelikož nebude~nutné manuální spouštění aplikace.
 
-            \acrshort{BE} bude~tvořen dvěmi částmi, aby~byl~lépe testovatelný a~rozšiřitelný. Půjde o~\emph{webový server}, který bude přijímat požadavky a~zpracovávat uživatelská data, a~\emph{generátor}, který přijme požadavky a~vygeneruje části příkladu podle zadání. Ty~předá ve~strukturované podobě výslednému zobrazení (ve~smyslu \emph{MVC}). V~případě nalezených chyb (např. nekompatibilní nastavení, závislost na~neexistující proměnné\dots), vedoucí k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně chyby odstranit.
+            \acrshort{BE} tvoří dvě části, aby~byl~lépe testovatelný a~rozšiřitelný. Jsou to~\emph{webový server}, který bude přijímat požadavky a~zpracovávat uživatelská data, a~\emph{generátor}, který přijme požadavky a~vygeneruje části příkladu podle zadání. Ty~předá ve~strukturované podobě výslednému zobrazení (ve~smyslu \emph{MVC}). V~případě nalezených chyb (např. nekompatibilní nastavení, závislost na~neexistující proměnné\dots), vedoucí k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně chyby odstranit.
 
             Základním prvkem aplikací je~registrace a~přihlašování uživatelů. Při~registraci je~potřeba ověřit uživatele pomocí e-mailové adresy. Také je potřeba zamezit duplicitním účtům kontrolou existence uživatele před registrací a~uživateli sdělit, že~se pokouší registrovat podruhé, ještě před~odesláním formuláře. Uživatel~se přihlašuje pomocí jména a~hesla nebo~některého \emph{externího poskytovatele ověření identity}.
             
@@ -1521,6 +1542,7 @@ class dataLoader extends Endpoints{
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/gormrest}{\texttt{gitlab.com/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
+    \clearpage
     \addcontentsline{toc}{chapter}{Seznam použitých zkratek}
     \printglossary[type=\acronymtype, title={\textbf{Seznam použitých zkratek}}]{}
     \clearpage
