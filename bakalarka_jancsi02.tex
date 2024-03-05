@@ -1,4 +1,5 @@
 \documentclass[11pt,a4paper]{report}
+
 \usepackage[utf8]{inputenc}
 \usepackage[paper=a4paper, margin=1.5cm]{geometry}
 
@@ -12,6 +13,9 @@
 \usepackage{minted}
 \usepackage{pdfpages}
 \usepackage{newfloat}
+
+\usepackage{nomencl}
+\makenomenclature
 
 \usepackage[acronym]{glossaries}
 \makeglossaries
@@ -96,8 +100,7 @@
 % citace a jazyk
 \usepackage[main=czech, english]{babel}
 \usepackage{csquotes}
-\usepackage{biblatex}
-\addbibresource{zdroje.bib}
+\usepackage[numbers]{natbib}
 
 \begin{document}
 	\begin{titlepage}
@@ -1523,5 +1526,8 @@ class dataLoader extends Endpoints{
     \clearpage
     
     \addcontentsline{toc}{chapter}{Použitá literatura}
-    \printbibliography[title={Použitá literatura}]
+
+    \renewcommand\bibname{Použitá literatura}
+    \bibliographystyle{czechiso}
+    \bibliography{zdroje}
 \end{document}
