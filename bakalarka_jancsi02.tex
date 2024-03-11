@@ -5,9 +5,13 @@
 
 
 \usepackage{titlesec}
-\titleformat{\chapter}[display]   
-{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}   
-\titlespacing*{\chapter}{0pt}{-15pt}{10pt}
+\titleformat{\chapter}[display]
+% space between "chapter x." and title
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{10pt}{\Huge}   
+% 1. left margin
+% 2. space before "chapter x."
+% 3. after title
+\titlespacing*{\chapter}{2pt}{-5pt}{20pt}
 
 % FA icons
 \usepackage{hyperref}
@@ -155,25 +159,25 @@
 
         This thesis explores the~use of~information technology when~creating written exam questions, examining current methods for~creating exams and~introducing a~web application that enables teachers to~efficiently construct tests with parameter-specified tasks. The~application supports both closed and~open tasks and~offers the~capability to~generate tests in~format using templates. The~work emphasizes the~significance of~technology in~the~educational process and~contributes to~modernizing the~approach to~student assessment.
     \end{singletonpage}
-
-    \begin{singletonpage}{Poděkování}
-    
-        Chtěl bych v~této části poděkovat všem, kteří mi~asistovali při~návrhu, tvorbě nebo~korektuře práce, sbírání dat a~zdrojů nebo~upřesňování návrhu aplikace. Děkuji také blízkým za~psychickou podporu a~povzbuzení.
-        
-        Speciální dík patří vedoucímu práce panu {doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.
-        
-        Děkuji také~Pedagogické fakultě univerzity Palackého v~Olomouci za~příspěvek ve~formě stipendia na~pilotní provoz aplikace.
-
-        Děkuji.
-    \end{singletonpage}
     
     \begin{singletonpage}{Prohlášení}
     
         Potvrzuji, že~práce je~výsledkem mého samostatného úsilí za~dodržení akademických etických principů.
         
-        Pro~lepší pochopení kontextu byly~některé části práce konzultovány s~umělou inteligencí (ChatGPT, Bard), texty v~této práci jsou~však výsledkem samostatné práce.
+        Pro~lepší pochopení kontextu byly~některé části práce konzultovány s~umělou inteligencí (ChatGPT, Bard), texty v~této práci jsou~však výsledkem samostatné práce za~použití uvedených zdrojů.
 
         Šimon Janča, v~Olomouci \today
+    \end{singletonpage}
+
+    \begin{singletonpage}{Poděkování}
+    
+        Chtěl bych touto cestou poděkovat všem, kteří mi~pomohli při~návrhu, tvorbě a~korektuře práce, sběru dat nebo~upřesnění návrhu aplikace. Děkuji také blízkým za~vlídné slovo a~povzbuzení.
+        
+        Speciální dík patří vedoucímu práce panu {doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.
+        
+        Děkuji také~Univerzitě Palackého v~Olomouci za~příspěvek ve~formě stipendia na~pilotní provoz aplikace.
+
+        Děkuji.
     \end{singletonpage}
     
     \setcounter{page}{1} % Reset page numbering to start after ToC
@@ -182,9 +186,9 @@
     \clearpage % End the ToC and start a new page    
 	
 	\chapter{Úvod}
-        Ověření výsledků je~důležitou součástí vzdělávání. Školní testy jsou nástrojem ke~zhodnocení nabytých znalostí a~dovedností a~také důležitou součástí reflexe výuky, díky které učitelé vědí, na~kterou látku se~zaměřit při~navazující výuce. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~studentům předložen k~vyplnění.
+        Ověření výsledků výuky je~důležitou součástí vzdělávání. Školní testy jsou nástrojem ke~zhodnocení nabytých znalostí a~dovedností a~také důležitou součástí reflexe výuky, díky které učitelé vědí, na~kterou látku se~zaměřit při~navazující výuce. Vznikají tak, že~učitelé nebo~vzdělávací instituce vytvářejí otázky a~úkoly (problémy, podle~\cite{zhouf:tvorbamatproblemu}), které jsou zaměřeny na~konkrétní téma nebo~oblast učiva. Tyto \emph{otázky} a~úkoly jsou poté zařazeny do~testu, který je~žákům či~studentům předložen k~vyplnění.
 
-        Testy umožňují učitelům zjistit, jak~dobře žáci porozuměli učivu a~jaké jsou~jejich silné a~slabé stránky. Žákům poskytnou informace o~tom, které znalosti je~potřeba ještě zlepšovat. Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici~ap. Kromě toho jsou výsledky různých testů použity jako parametr přijímání na~vysoké školy nebo k~udělování stipendií. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby.
+        Testy umožňují učitelům zjistit, jak~dobře žáci porozuměli učivu a~jaké jsou~jejich silné a~slabé stránky. Žákům poskytnou informace o~tom, které znalosti je~potřeba ještě zlepšovat. Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici~ap. Kromě toho jsou výsledky různých testů použity jako parametr přijímání na~vysoké školy nebo k~udělování stipendií. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby nebo~ověření znalostí kandidáta~při~pracovních pohovorech.
         
         V~této práci popíšu náležitosti testů a~některé postupy, jakými je~možné postupovat při~tvorbě jejich zadání a definuji potřeby, které v~této souvislosti mohou nastat. Zabývat se~budu především písemnými testy, které jsou~používány na~základních a~středních školách, nicméně většina z~popisovaných pojmů bude použitelná i~pro~další typy testů. Testy vědomostí nejsou pouze záležitostí vzdělávání, využívají je~firmy a~další instituce a~jsou důležitým prvkem při~výběru zaměstnanců nebo~při~přijímacích zkouškách nebo v~autoškolách. Od~doby pandemie Covidu se~začaly používat i~v~online prostředí.
         
@@ -217,9 +221,9 @@
             
             Důležitý aspekt je~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek s~výběrem z~nabídnutých možností. Pokud je~naším cílem dobře ověřit znalosti, pak~je~nutné tvořit \emph{otázky} tak, aby nesprávné odpovědi vypadaly věrohodně. Také nesmíme zapomenout na to, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
 
-            V~příkladu se~zaměřím na matematiku, zejména proto, že je to můj~druhý obor. Pokud budeme testovat např.~znalosti \emph{lineárních rovnic}, pravděpodobně necháme otázku s~otevřenou odpovědí, abychom zjistili, zda je~student schopný odpověď vypočítat a~jak~při~tom postupuje. Ale může nastat situace, že~je~potřeba ověřit rychlý úsudek studenta na~základě daného učiva a~pak mu nabídneme možnosti. V~tomto případě je~potřeba, aby~nesprávné možnosti vypadaly věrohodně a aby student nemohl jednoduše uhodnout správnou odpověď, ale k~odpovědi využil své~znalosti.
+            V~příkladu se~zaměřím na matematiku, zejména proto, že je to můj~druhý obor. Pokud budeme testovat např.~znalosti \emph{lineárních rovnic}, pravděpodobně necháme otázku s~otevřenou odpovědí, abychom zjistili, zda je~testovaný schopný odpověď vypočítat a~jak~při~tom postupuje. Ale může nastat situace, že~je~potřeba ověřit rychlý úsudek testovaného na~základě určité části učiva a~potom jsou mu nabídnuty možnosti. V~tomto případě je~potřeba, aby~nesprávné možnosti vypadaly věrohodně a~aby~testovaný nemohl jednoduše odhadnout správnou odpověď ale~k~odpovědi využil znalosti tématu.
 
-            Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti je~možné definovat výpočtem z~koeficientů. Nebo~řekněme, že~budeme chtít, aby~výsledek odpovídal některému z~číselných oborů. Pro~žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud je~potřeba ověřit znalost postupu pro~výpočet kořenů kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~odpovědích obsáhnout i~imaginární složku~\cite{zhouf:tvorbamatproblemu}.
+            Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti je~možné definovat výpočtem z~koeficientů. Nebo~řekněme, že~budeme chtít, aby~výsledek odpovídal některému z~číselných oborů. Pro~žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud je~potřeba ověřit znalost postupu pro~výpočet kořenů kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~v~odpovědích obsáhnout i~imaginární složku~\cite{zhouf:tvorbamatproblemu}.
 
         \section{Nástroje k tvorbě testů}
             V~současnosti je~pro~účely tvorby testů používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
@@ -230,13 +234,15 @@
 
             Pokud si~učitel chce test vytvořit svépomocí, může používat klasické \emph{tabulkové procesory}, jako je~např.~\emph{Microsoft Excel}, \emph{LibreOffice Calc} nebo~\emph{Google Sheets}, anebo~\emph{textové procesory}, jako je~např.~\emph{Microsoft Word}, \emph{LibreOffice Writer} nebo \emph{Google Docs}. Grafické zadání je~potom možné vložit do~těchto souborů ve~formě obrázků.
 
-            V~současnosti se~přímo nabízí do~tvorby otázek nebo i~celých testů zapojit \textbf{umělou inteligenci} (\emph{AI}). Pokud tedy \emph{ChatGPT}, \emph{Google Bard} nebo~jinému jazykovému modelu zadáme vytvoření testových otázek na~konkrétní téma, ochotně nám~je~připraví. Nicméně tyto otázky nejsou vždy~přesné a~mohou obsahovat chyby a~nebudu se~touto možností v~práci dále zabývat.
+            V~současnosti se~přímo nabízí do~tvorby otázek nebo i~celých testů zapojit \textbf{umělou inteligenci} (\acrdefprint[short]{AI}{Artificial Intelligence}). Pokud je~tedy~\emph{ChatGPT}, \emph{Google Gemini} (dřive \textbf{Bard}) nebo~jinému generativnímu jazykovému modelu zadáno vytvoření testových otázek na~konkrétní téma, ochotně je~připraví. Nicméně pokud uživatel neumí správně vytvářet dotazy (\textbf{prompty}~\cite{fapiPromptyChatGPT}), takto připravené otázky mohou být~nepřesné a~mohou obsahovat výrazné chyby. Proto se~nebudu touto možností v~této práci dále zabývat.
 
-            Je~také zajímavé (nejen pro~učitele) proces otočit a~nechat děti úlohy vytvořit. To~je přímo zapojí do~tvorby testů a~umožní jim lépe pochopit a~motivovat se~ke~zvládnutí učiva~\cite{hedlovam:chybavresenim}.
+            Je~také zajímavé (nejen pro~učitele) proces testování otočit a~nechat děti úlohy vytvořit. To~je přímo zapojí do~tvorby testů a~umožní jim~lépe pochopit a~motivovat ke~zvládnutí učiva~\cite{hedlovam:chybavresenim}.
 
-            Je~možné otázky zadat např.~do~systému \emph{Moodle} a~využít jeho možností. \emph{Moodle} je~\emph{open--source} systém pro~správu vzdělávacích kurzů. Obsahuje mnoho funkcí, např.~možnost vytvářet různé typy testů~\cite{drlik2013moodle}.
+            Je~možné otázky zadat např.~do~systému \emph{Moodle} a~využít jeho možností. \emph{Moodle} je~\emph{open--source} systém pro~správu vzdělávacích kurzů. Obsahuje mnoho funkcí, např.~možnost vytvářet různé typy testů, vygenerovaných z~předpřipravených statických otázek~\cite{drlik2013moodle}.
 
-            Přestože je~možné všechny tyto nástroje využívat, nejsou přímo určeny pro~tvorbu testů nebo mají každá jinou množinu těchto funkcionalit, mohou vyžadovat speciální instalaci a~mohou být pro~učitele příliš složité. Proto tvořím aplikaci přímo zaměřenou na~správu a~generování otázek a~testů, kterou bude možné jednoduše integrovat do~dalších systémů.
+            Přestože je~možné všechny tyto nástroje využívat, nejsou přímo určeny pro~tvorbu testů nebo~mají každý jinou množinu těchto funkcionalit, mohou vyžadovat speciální instalaci nebo mohou být pro~učitele příliš složité.
+            
+            I~proto tvořím aplikaci přímo zaměřenou na~správu a~generování otázek a~testů, kterou bude možné jednoduše integrovat do~dalších systémů pomocí~\acrshort{API}.
 
     \chapter{Technologie a principy vývoje webových aplikací}
         V~dnešní době je~webová aplikace první volbou pro~většinu vývojářů, zejména protože~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu přes~webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji~instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
@@ -341,32 +347,27 @@ const (
     I // 7
 )
                     \end{minted}
-                    \subcaption{Různé možnosti použití \emph{Iota}}
+                    \subcaption{Různé možnosti použití číselníků \emph{Iota}}
                 \end{minipage}
                 \hfill % Space between the two minipages
                 % Second column for code sample
                 \begin{minipage}{.48\textwidth}
                     \begin{minted}{go}
-// Custom type for permission bits, add more bits if more than 8
+// Permission types
 type Permissions uint8
-
-// Define constants for permission types
 const (
-	EditSomeoneElseQuestions Permissions = 1 << iota
-	EditSomeoneElseCategory
-	ReadSomeoneElseQuestions
+    ReadAllQuestions Permissions = 1 << iota // 2^0
+    EditAllQuestions // 2^1 = 2
+    EditAllCategories // 2^2 = 4
 )
 
-// If specified user is allowed to do specific operation defined in Permissions enum
+// Check if user has all of given permissions
 //
-// "currentUser.UserCan(EditSomeoneElseQuestions | EditSomeoneElseCategory)"
-//
-// # return
-//
-// bool - true if user has all required permission
+// "user.UserCan(EditAllQuestions | EditAllCategories)"
+// ...
 func (u *User) UserCan(p Permissions) bool {
-	// we need to check if all relevant bits are set
-	return u.Permission&p == p
+    // check if all relevant bits are present
+    return u.Permission&p == p
 }
                     \end{minted}
                     \subcaption{Bitová maska s~použitím \texttt{<< iota}}
@@ -375,7 +376,7 @@ func (u *User) UserCan(p Permissions) bool {
                 \label{code:iota}
             \end{code}
 
-            Tato technika je~často používaná pro definici \emph{bitových masek}, které jsou poté využívány k~testování, nastavování nebo~odstranění specifických \emph{bitů}. Použití \emph{iota} v~kombinaci s~operátorem \texttt{<<} umožňuje posunovat číslo o~bit, tedy navýší mocninu čísla 2.
+            Tato technika je~často používaná pro definici \textbf{bitových masek}, které jsou poté využívány k~testování, nastavování nebo~odstranění specifických \emph{bitů}. Tyto~operace jsou navíc velmi rychlé, jelikož \textbf{bitové operace} jsou~elementární instrukce procesoru. Použití \emph{iota} v~kombinaci s~\textbf{operátorem} \texttt{<<} umožňuje posunovat číslo o~bit, tedy navýší mocninu čísla 2.
             
             Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Pokud je~navíc potřeba zkontrolovat více oprávnění, použijeme bitový součet, který je při~překladu nahrazen konečným číslem, čímž se~sníží počet operací potřebných ke~kontrole. Význam \emph{iota} a~operací s~bitovými maskami tak~přesahuje jen~oblast kompilátorů, ale~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
 
@@ -885,11 +886,13 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování backendu potom zmíněný \emph{Go~test}~\cite{jestjsTestingReact}.
             
             \subsection{Testování API}
-                Pro~testování \acrshort{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \emph{frontendovou} část. Mezi nejznámější patří \textbf{Postman} nebo~\textbf{Insomnia} atd.
+                Pro~testování \acrshort{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \acrshort{FE} část. Mezi nejznámější patří \textbf{Postman} nebo~\textbf{Insomnia} atd.
                 
-                Tyto~nástroje navíc většinou nabízejí možnost vytvořit si~sadu automatických testů, které je~možné spouštět při~sestavování aplikace v~\emph{Dockeru} a~ověřit si~tak, že~\acrshort{API} stále funguje správně - např.~jsou dostupné všechny \emph{endpointy}.
+                Tyto~nástroje navíc většinou nabízejí možnost vytvořit si~sadu automatických testů, které je~možné spouštět při~sestavování aplikace v~\emph{Dockeru} a~automaticky si~tak~před~kompilací celého programu ověřit, že~jednotlivé součásti \acrshort{API} stále funguje správně, např.~jsou dostupné všechny \emph{endpointy}.
 
-                K~tomuto účelu použiji nástroj \emph{Insomnia}. S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \acrshort{BE}, bez~omezení bezpečnostních opatření.
+                K~tomuto účelu použiji nástroj \emph{Postman}, jelikož v~době psaní této práce nástroj \emph{Insomnia} neumožňuje přímé psaní testovacích skriptů. 
+                
+                S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \acrshort{BE}, bez~omezení bezpečnostních opatření.
 
             \subsection{Testování frontendu}
                 Pro~testování \acrshort{FE} budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
@@ -1100,7 +1103,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají~\cite{bctynovsky:specifikacepozadavku}.
 
         \section{Případ použití aplikace}
-            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet.
+            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
             
             Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
@@ -1116,11 +1119,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \$D &= \$C + \$B = 4 + 5 = 9
             \end{align*}
 
-            Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými hodnotami (čísly, výrazy nebo funkčními prvky). Po vygenerování příkladu bude potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby bylo možné identifikovat přesnou verzi příkladu. Pokud se~v~příkladě nevyskytují žádné proměnné nebo není potřeba nic generovat, potom není potřeba hodnoty ukládát.
+            Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými hodnotami (čísly, výrazy nebo funkčními prvky). Po~vygenerování příkladu bude~potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby~bylo možné identifikovat přesnou verzi příkladu. Pokud se~v~příkladě nevyskytují žádné proměnné nebo v~případě, že není potřeba nic generovat, potom není potřeba hodnoty ukládát.
 
-            Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Učitel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
+            Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Uživatel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
 
-            Učitel bude mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může také využít proměnné, které si~vytvořil dříve. V~obou případech bude moci zapsat vzorec, ze~kterého může~být~vygenerováno několik možností výběru, vč.~správné odpovědi. Pokud učitel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu budou~v~možnostech výběru proměnné nahrazeny a~vyčísleny, pokud nebude přepínači určeno jinak.
+            Uživatel bude mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo~uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může také využít proměnné, které si~vytvořil dříve. V~obou případech bude moci zapsat vzorec, ze~kterého může~být~vygenerováno několik možností výběru, vč.~správné odpovědi. Pokud uživatel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu budou~v~možnostech výběru proměnné nahrazeny a~vyčísleny, pokud nebude přepínači určeno jinak.
 
             Vzorový příklad na~výpočet kořenů jednoduché rovnice může vypadat např.~takto:
             \begin{align*}
@@ -1146,7 +1149,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Vstupní políčka se~ve~výsledné práci vykreslí jako prázdné nebo podtržené místo o~velikosti určené při~zadávání proměnné. V~případě otázky s~možnostmi výběru se~na~místě vykreslí všechny možnosti nebo pole pro~výběr ve~webové aplikaci, aby~žák mohl vybrat správnou možnost kroužkováním nebo jinak, jak učitel určí.
             
-            To umožní systém používat např.~pro jazykové předměty, kde student doplňuje slova do~textu nebo~vybírá vhodné písmeno. Umožní to~také použití jak~pro~tisk, tak pro~webový dotazník.
+            To~umožní systém používat např.~pro jazykové předměty, kde~testovaný doplňuje slova do~textu nebo~vybírá vhodné písmeno. Umožní to~také použití jak~pro~tisk, tak pro~webový dotazník.
 
             Některá nastavení bude možné ovlivnit (měnit velikosti, počty možností, vybrat šablonu, zapnout/vypnout náhodné řazení otázek nebo odpovědí) i~na úrovni celých testů.
 
@@ -1180,9 +1183,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \textbf{Go} je~\emph{staticky typovaný} kompilovaný jazyk vyvinutý společností Google v~roce~2007. \emph{Go}~je~kompilovaný jazyk. Zároveň je~pro~vývojáře přívětivý na~psaní. Výsledný \emph{program}~je~rychlý a~efektivní. Pro~správu paměti využívá  tzv.~\acrdefprint{GC}{Garbage Collector}, který automaticky přiděluje paměť programu a~uvolňuje~ji pro~použití jinými procesy, pokud již~není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite{compilers}.
 
-            Pro~\textbf{časově kritické aplikace} operující v~reálném čase, např.~řízení auta, kde~by \textbf{režijní zátěž} z~provozu \acrshort{GC} mohla způsobit opožděné spuštění jiných důležitých procesů, je~vhodné zvolit jazyk s~menší \emph{režijní zátěží}, např.~\textbf{Rust} nebo~\emph{Zig}.
+            Pro~\textbf{časově kritické aplikace} operující v~reálném čase, např.~řízení auta, kde~by \textbf{režijní zátěž} z~provozu \acrshort{GC} mohla způsobit opožděné spuštění jiných důležitých procesů, je~vhodné zvolit jazyk s~nižší \emph{režijní zátěží}, např.~\textbf{Rust} nebo~\emph{Zig}.
 
-            Pro~aplikace jako je~webový server, je~\emph{Go}~dobrá volba. \emph{Go} navíc automaticky formátuje kód, což~zjednodušuje práci s~ním a~umožňuje lepší spolupráci v~týmu, jelikož není~nutné hledat jednotný \textbf{codestyle}, který by~nejlépe vyhovoval potřebám vývoje.
+            Pro~aplikace jako je~webový server, je~ale~\emph{Go}~dobrá volba. \emph{Go} navíc automaticky formátuje kód, což~zjednodušuje práci s~ním a~umožňuje lepší spolupráci v~týmu, jelikož není~nutné hledat jednotný \textbf{codestyle}, který by~nejlépe vyhovoval potřebám vývoje.
 
             V~\emph{Go}~jsou také k~dispozici tzv.~\textbf{metadata položek struktur} (\textbf{struct tags}), díky kterým je~možné ke~každému členu (údaji) dané struktury přidat doplňující parametry, sloužící např.~k~definici přesného datového typu v~\acrshort{SQL} tabulce vytvořené podle \emph{modelu} nebo~k~automatické kontrole dat při~přijetí požadavku ve~formátu \acrshort{JSON}. To~vývojáři výrazně zjednoduší práci a~zpřehlední kód. Krátká ukázka, viz~\ref{go:structuretags}.
 
@@ -1260,7 +1263,7 @@ class dataLoader extends Endpoints{
 
             Pokud je~potřeba nějaké složitější operace, je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
 
-            \textbf{Next.js} mi~jedoduše umožní využít výhody~\acrshort{SSR} aplikace. \emph{Next.js} nabízí širokou škálu funkcí, které usnadňují vývoj moderních aplikací, včetně~např.:
+            \textbf{Next.js} mi~jedoduše umožní využít výhody~\acrshort{SSR} aplikace. \emph{Next.js} řeší několik problémů, což~usnadňuje vývoj aplikací. Jsou~to~např.:
 
             \begin{description}
                 \item[Automatický adresářový router] \emph{Next.js} automaticky vydává a~obsluhuje adresy~\acrshort{URI} v~aplikaci na~základě adresářové struktury.
@@ -1299,6 +1302,15 @@ class dataLoader extends Endpoints{
         Kód pro~\acrshort{BE} bude v~adresáři \texttt{goapp} a~kód pro~\acrshort{FE} v~adresáři \texttt{frontend-next}. Všechny kontejnery budou mít své~úložiště v~adresáři \texttt{data}, kam~budou ukládat trvalá data, která se~zachovají i~po~restartu kontejneru. To~zjednoduší zálohování dat a~případný přesun na~jiný server.
 
         Konfigurace pro~vytvoření kontejnerů budou v~adresáři \texttt{docker} a~v~souborech \texttt{docker-compose.yml} v~kořenovém adresáři. K~dispozici budou dvě verze, \emph{vývojová} bude připravena pro~vývoj na~lokálním počítači a~optimalizovaná, produkční verze pro~nasazení aplikace na~server.
+
+        Přibližné schéma je~možné vidět na~diagramu~\ref{fig:appschema}
+        
+        \begin{figure}
+            \centering
+            \includegraphics[width=16cm]{files/img/server_scheme.png}
+            \caption{Schéma služeb aplikace (AJ)}
+            \label{fig:appschema}
+        \end{figure}
         
         \section{Backend}
             Na~\acrshort{BE} bude~program v~jazyce \emph{Go}, který zpracovává požadavky od~klienta. Je~dobrou praxí rozdělit kód na~více funkčních celků, tj.~\emph{moduly}. \emph{Moduly} umožňují mmj.~využít veřejně dostupný kód jiných projektů, pokud to dovoluje zadání od~zákazníka i~licence daného \emph{modulu}. Tím~je~možné ušetřit čas, který správa takového modulu zahrnuje~\cite{Zimmerman2023:howtowritebetter}. \emph{Moduly} v~\emph{Go} je~možné používat přímo použitím veřejného odkazu na~zdrojový kód (např.~kód z~\emph{Gitlabu}), čímž~výrazně zjednodušuje práci s~nimi.
@@ -1415,7 +1427,7 @@ class dataLoader extends Endpoints{
                     	return res, nil
                     }
                 \end{minted}
-                \caption{Načtení dat odpovědí a jejich namapování pro ukládání do databáze}
+                \caption{Načtení dat odpovědí a jejich převod před uložením do databáze}
                 \label{go:unmarshallanswers}
             \end{code}
 
@@ -1432,7 +1444,7 @@ class dataLoader extends Endpoints{
             
             Např.~pokud za~znakem \{ bude tečka, vím, že~jde o~proměnnou. Pokud je~tam~identifikátor (řetězec znaků) a~závorky s~argumenty pro~funkci, jde o~funkci. Po~zpracování proměnných a~funkcí bude~možné určit zbytek jako~mnohočleny, zlomky~apod.
             
-            Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných. Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu. Pro~snížení počtu operací toto provedu při~prvním použití proměnné v~jiné proměnné nebo~v~zadání příkladu.
+            Při~řešení proměnných musí nejdříve proběhnout spuštění funkcí ve~všech proměnných, na~kterých je~právě řešená proměnná závislá (všechny na~které se~odkazuje). Tím~jsou vygenerovány náhodné nebo~vypočítané hodnoty a~pokud je~proměnná použita na~více místech, bude mít všude stejnou hodnotu. Pro~snížení počtu operací toto provedu při~prvním použití proměnné v~jiné proměnné nebo~v~zadání příkladu.
 
             Potom je~možné provést nahrazení proměnných, vložením \emph{tokenů} z~proměnné na~místo určení. Pokud je~závislá proměnná definována dříve než~ta~kterou potřebujeme nahradit, jde o~chybu. Pokud závislá proměnná není zpracovaná, zpracuji ji~voláním téže funkce nad~danou funkcí (tzv.~\textbf{rekurzivní volání}). Do~seznamu vložím název proměnné a~pokud zpracovávaná proměnná již~v~seznamu je, jde o~chybu, která by způsobila nekonečné cyklické zpracování týchž proměnných (\textbf{deadlock}).
             
@@ -1518,9 +1530,14 @@ class dataLoader extends Endpoints{
         \section{Testování}
             Nemá význam testovat celý \acrshort{BE}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje, protože selže tvorba \emph{Docker} kontejneru, a~zůstává v~původní funkční verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\acrshort{FE}, případně \emph{čistých funkcí}.
 
-            Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány~--~např. nahrazení proměnných a~spuštění funkcí, vyčíslení jednoduchých výrazů. Náhodné řazení nelze testovat, protože výsledek je~náhodný a~nelze vyloučit, že~nebudou vygenerovány několikrát stejné hodnoty.
+            Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány~--~např. nahrazení proměnných a~spuštění funkcí, vyčíslení jednoduchých výrazů. Náhodné řazení nelze testovat, protože výsledek je~náhodný a~nelze vyloučit, že~nebudou vygenerovány několikrát stejné hodnoty. Totéž platí pro~náhodné pořadí odpovědí.
 
-            Na~\acrshort{FE} budu testovat funkčnost \emph{komponent}. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy. Díky \emph{Sentry} budu mít informace o~chybě z~\acrshort{FE} i~\acrshort{BE}.
+            Na~\acrshort{FE} budu testovat funkčnost \emph{komponent}. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy. Díky \emph{Sentry} budu mít informace o~chybě z~\acrshort{FE} i~\acrshort{BE} na~jednom místě a~budu na~ni~včas upozorněn.
+
+        \section{Zálohy}
+            \textbf{Zálohování} je~jednodušší díky požití kontejnerů s~\textbf{trvalým úložištěm} (\textbf{volume}), kde~jsou uložena veškerá data, která se~zachovávají i~po~zastavení kontejneru.
+            
+            Není tedy potřeba zavádět složitý skript pro~zálohování databáze a~všech komponent, pouze pravidelně kopírovat, komprimovat a~na~záložním serveru uschovat data \emph{trvalých úložišť}. Zbytek dat tvoří zdrojový kód, který má~již~zálohu v~podobě \emph{GIT repozitáře}.
         
             
     \chapter{Závěr}
