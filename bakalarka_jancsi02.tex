@@ -296,13 +296,13 @@
             
             \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme \textbf{interpret}. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. \emph{Interpret} je~program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~ty~kompilované. Kód v~takovém jazyce nazýváme \textbf{skript}.
 
-            \acrdefprint{JIT}{Just In Time} \textbf{překladač} zrychluje běh interpretovaného kódu překladem do~\textbf{bytecode}, který uloží do~paměti a~v~příštím běhu vykonává instrukce rychleji.
-
             Takové jazyky jsou většinou také \textbf{dynamicky typované}, tedy jazyky provádí kontrolu typů proměnných a~jejich použití až~při~vykonávání programu a~často umožňují i~změnu typu proměnné za~běhu programu, což~zavádí nutnost dalších kontrol a~zvyšuje nároky na~procesor. Proto vznikl např.~jazyk \acrdefprint{TS}{Typescript}, který v~\acrshort{JS} umožňuje používat statické typování a~následně se~\emph{transpiluje} zpět do~\acrshort{JS}.
             
             Interpretování ale~přináší některé výhody, zejména pro~vývojáře. Například je~možné příkazy vykonávat ihned, bez~nutnosti překladu a~není potřeba obstarávat správu paměti. Do~této kategorie patří např.~\acrshort{JS}, \acrshort{PHP}, \textbf{Python} nebo~\textbf{Perl}. Tyto jazyky můžeme zařadit do~\textbf{vysokoúrovňových jazyků}~\cite{ueda:compiled}.
 
             \textbf{Transpilací} nazýváme proces podobný \emph{kompilaci}, kde~mezi sebou překládáme \emph{vysokoúrovňové jazyky}. Např.~z~jazyka \acrshort{TS} do~\acrshort{JS}~\cite{fuertes:Transpilers}.
+
+            \uv{\acrdefprint{JIT}{Just In Time} \textbf{překlad} je způsob, jakým interprety urychlují běh skriptů tím, že dynamicky během provádění programu překládají často prováděné části kódu (tzv. hot paths) do strojového kódu. Tento proces začíná interpretací skriptu, identifikací hot paths a~jejich následným překladem do~optimalizovaného strojového kódu, který je~ukládán do~cache. Díky tomu může v~příštím běhu programu interpret spouštět tyto části kódu přímo, což~významně urychluje jejich provádění a zvyšuje celkový výkon aplikace}~\cite{RamananJIT}.
         
         \section{Kompilátor}
             \textbf{Překladač} je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
@@ -521,7 +521,7 @@ func main() {
 
             Zpracování \acrshort{JS} je~rozděleno do~dvou částí;
             
-            První částí je~\emph{Javascriptový engine}, který zpracovává Javascriptový kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\textbf{Web APIs}, které umožňují využívat funkce prohlížeče, systému a~další {asynchronní} operace. Jde~o~instrukce, poskytované nikoliv Javascriptovým enginem, ale prohlížečem nebo systémem. Jde~např.~o~přístupu k~\emph{DOMu}, kameře, mikrofonu nebo veškeré asynchronní operace, jako je~načítání dat ze~serveru. Jde převážně o~asynchronní operace a~služby systému, jako např.~použití mikrofonu nebo přístup k~souborovému systému~\cite{kantor_javascript}.
+            První částí je~\textbf{\acrshort{JS} engine} (\textbf{běhové prostředí}), které zpracovává \acrshort{JS} kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\textbf{Web APIs}, které umožňují využívat funkce prohlížeče, systému a~další {asynchronní} operace. Jde~o~instrukce, poskytované nikoliv \acrshort{JS} enginem ale~webovým prohlížečem nebo~operačním systémem. Jde~např.~o~přístupu k~\emph{DOMu}, kameře, mikrofonu nebo veškeré asynchronní operace, jako je~načítání dat ze~serveru. Jde~převážně o~asynchronní operace a~služby systému, jako~např.~použití mikrofonu nebo~přístup k~souborovému systému~\cite{kantor_javascript}.
 
         \section{Typescript}
             Jednou z~nevýhod \acrshort{JS} je, že~není typově bezpečný. To~znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné a~funkce použity správně a~jednotlivé typy je~dokonce možné za~běhu měnit. To~může vést k~chybám, které se~projeví až~při~spuštění programu, což~je~pro~větší projekty nežádoucí a~proto se~používají nástroje, které typově bezpečné jsou a~po~kontrole jsou přeloženy (\emph{transpilovány}) zpět do~\acrshort{JS}. Jedním z~těchto nástrojů je~jazyk~\acrshort{TS}. Kromě typové kontroly přináší \acrshort{TS} i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují její~výkon.
@@ -592,7 +592,7 @@ const App = () => {
                 \label{JSXcomponent}
             \end{code}
 
-            \textbf{NextJS} je~\emph{framework} pro~\emph{React}, který umožňuje vytvářet \emph{SSR} aplikace. \emph{NextJS} je~vyvíjen společností \emph{Vercel}, která je~autorem \emph{serverless} řešení pro~\emph{Node.js} aplikace.
+            \textbf{NextJS} je~\emph{framework} pro~\emph{React}, který umožňuje vytvářet \emph{SSR} aplikace. \emph{NextJS} je~vyvíjen společností \emph{Vercel}, která je~autorem \emph{serverless} řešení pro~aplikace běžící v~prostředí \textbf{Node.js}.
 
             V~základním nastavení umožňuje využívat \emph{SSR} i~\acrshort{SSG}, čímž jsou~aplikace v~\emph{Nextu} velmi~rychlé a~přitom poskytují všechny výhody \emph{Reactu} a~je~možné použít i~většinu balíčků pro~\emph{React}.
 
@@ -607,7 +607,7 @@ const App = () => {
 
             V~kontextu knihovny \emph{React} se~slovo \emph{render} používá k~popisu procesu vytváření \acrshort{HTML} a~\acrshort{CSS} kódu ze~struktury \acrshort{JSX}~komponent.
             
-            Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \emph{Vanilla Javascriptu}, zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \acrshort{HTML} obsah a~prohlížeč stránku vykreslí (\acrdefprint{CSR}{Client Side Rendering})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \acrdefprint{SSG}{Static Site Generation} a~\acrdefprint{SSR}{Server Side Rendering}, 
+            Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \acrshort{JS} (tzv.~\textbf{Vanilla}), zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \acrshort{HTML} obsah a~prohlížeč stránku vykreslí (\acrdefprint{CSR}{Client Side Rendering})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \acrdefprint{SSG}{Static Site Generation} a~\acrdefprint{SSR}{Server Side Rendering}, 
 
             \acrshort{SSG} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \acrshort{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby~běžela další \emph{služba/aplikace}.
             
@@ -699,21 +699,21 @@ const App = () => {
 
             Díky \acrshort{MVC} je~takto možné vývoj aplikace rozdělit mezi tým~vývojářů, kde každý může pracovat na~jiné části aplikace a~každá část aplikace má~své rozhraní, takže mohou pracovat téměř nezávisle na~sobě.
 
-            \acrdefprint{BE}{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \acrshort{FE}. Spolupracuje s~databází (\emph{Modelem}), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \acrshort{BE} může být~napsán v~různých jazycích~\cite{Dorman:webmappingajax, Zimmerman2023:howtowritebetter}, např.~PHP, Java, C\#, Go, Javascript, C++\dots
+            \acrdefprint{BE}{Backend} je~část aplikace, která běží na~serveru a~zpracovává nebo~poskytuje data \acrshort{FE}. Spolupracuje s~databází (\emph{Modelem}), souborovým systémem a~dalšími službami, které jsou potřeba pro~fungování aplikace. \acrshort{BE} může být~napsán v~různých jazycích~\cite{Dorman:webmappingajax, Zimmerman2023:howtowritebetter}, např.~PHP, Java, C\#, Go, \acrshort{JS}, C++\dots
 
             \acrdefprint{FE}{Frontend} je~část aplikace, kterou vidí uživatel, např.~prostřednictvím prohlížeče. Stará se~o zobrazení (\emph{view}) a~interakci s~uživatelem (\emph{controller}) a~komunikuje s~\acrshort{BE}, zejména pomocí asynchronních požadavků na~server. Je~napsán většinou v~\acrshort{HTML}, \acrshort{CSS} a~\acrshort{JS}.
 
         \section{Javascript Object Notation}
             \acrdefprint{JSON}{Javascript Object Notation}~je~formát pro~uložení strukturovaných dat. Je~to~textový formát čitelný pro~člověka i~pro~stroj. Používá se~ke~strukturovanému ukládání a~přenosu dat. Dříve byl~hojně využíván formát \acrdefprint{XML}{Extended Markup Language}, který vznikl v~r.~1998 jako formát pro jednoduchou výměnu dat a~který je~podobný struktuře \acrshort{HTML}. Ostatně \acrshort{XML} stále používá spousta aplikací, zejména aplikace státní správy.
 
-            Formát \emph{JSON} je~podobný zápisu objektů v~\emph{Javascriptu}. Obsahuje dvojice \emph{klíč-hodnota}, které jsou odděleny dvojtečkou. Klíčem je~řetězec, který obvykle popisuje, jaká data jsou v~něm uložena, a~hodnota může být číselná, textová, logická hodnota, pole nebo další vnořená struktura dat.
+            Formát \emph{JSON} je~podobný zápisu objektů v~\acrshort{JS}. Obsahuje dvojice \emph{klíč-hodnota}, které jsou odděleny dvojtečkou. Klíčem je~řetězec, který obvykle popisuje, jaká data jsou v~něm uložena, a~hodnota může být číselná, textová, logická hodnota, pole nebo další vnořená struktura dat.
             
             Práce s~formátem \emph{JSON} je~pohodlnější než s~formátem \acrshort{XML}, jelikož je~jednodušší a~čitelnější a~vyžaduje méně kódu, jak na~straně \emph{serveru}, tak na~straně klienta. Jde~tedy~celkově i~o~úspornější formát pro~zápis strukturovaných dat a~jejich~přenos~\cite{Dorman:webmappingajax}.
 
         \section{Asynchronous Javascript Request}
             \acrfull{AJAX} je~technologie, která umožňuje \emph{asynchronní} komunikaci, např.~mezi \acrshort{FE} a~\acrshort{BE}. To~znamená, že~při~každém požadavku na~\emph{server} se~stránka nemusí znovu načítat, ale použije se~\acrshort{AJAX}, jsou~načtena požadovaná data ze~serveru a~změní se~ve~stránce.
 
-            Metody \emph{Javascriptu} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \textbf{Fetch} a~\acrdefprint{XHR}{XMLHttpRequest}. \acrshort{AJAX} využívá různé \acrshort{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.~\cite{ajax:mdn, Dorman:webmappingajax}.
+            Metody \acrshort{JS} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \textbf{Fetch} a~\acrdefprint{XHR}{XMLHttpRequest}. \acrshort{AJAX} využívá různé \acrshort{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.~\cite{ajax:mdn, Dorman:webmappingajax}.
             
             Je~také možné využít komunikaci přes~\acrshort{WS} nebo~nedávno~přidané~\acrshort{SSE}~\cite{whatwg_sse, sse:mdn}
 
@@ -880,7 +880,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména se~testují tzv.~\textbf{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
             
-            V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \emph{Javascriptu} to~jsou~např.~\textbf{Jest} nebo~\textbf{Mocha}. Jazyk \emph{Go}~má~vestavěný nástroj pro~automatické~testování, který se~nazývá \textbf{go~test}.
+            V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \acrshort{JS} to~jsou~např.~\textbf{Jest} nebo~\textbf{Mocha}. Jazyk \emph{Go}~má~vestavěný nástroj pro~automatické~testování, který se~nazývá \textbf{go~test}.
             
             Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování backendu potom zmíněný \emph{Go~test}~\cite{jestjsTestingReact}.
             
@@ -969,9 +969,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Proto je~nutné aplikaci testovat, chyby zaznamenávat i~se~vstupními daty a~opravovat~je. To~je~důležitá část vývoje aplikace. Jeden z~nástrojů, které efektivní sledování chyb~umožňují, je~\emph{Sentry}.
 
             \subsection{Sentry}
-                \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~našem případě \emph{Javascript a Go}. Ale funguje i~v~dalších jazycích. Existuje~také modul pro~integraci s~frameworkem \emph{Gin}, což~umožňuje získat i~informace o~\acrshort{HTTP} požadavku a~stavu serveru, který chybě předcházel.
+                \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~našem případě \acrshort{JS} a Go}. Ale funguje i~v~dalších jazycích. Existuje~také modul pro~integraci s~frameworkem \emph{Gin}, což~umožňuje získat i~informace o~\acrshort{HTTP} požadavku a~stavu serveru, který chybě předcházel.
                 
-                V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb. Např.~v~případě \emph{Javascriptu} umožní sledovat akce, které uživatel provedl před tím, než došlo k~chybě. Chyby z~\acrshort{BE} i~\acrshort{FE} aplikace se~uloží na~jedno místo a~je~tak pro~celý tým jednodušší s~nimi pracovat.
+                V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb. Např.~v~případě \acrshort{JS} umožní sledovat akce, které uživatel provedl před tím, než došlo k~chybě. Chyby z~\acrshort{BE} i~\acrshort{FE} aplikace se~uloží na~jedno místo a~je~tak pro~celý tým jednodušší s~nimi pracovat.
 
                 Díky tomu má~vývojář k~dispozici spoustu informací, které potřebuje k~nalezení, vyvolání a~opravě chyby. \emph{Sentry} také umožňuje přímo vytvářet \emph{úkoly}, na kterých mohou vývojáři pracovat. To~umožňuje vývojářům efektivněji rozdělovat práci na~opravách chyb, které \emph{Sentry} zachytí.
 
