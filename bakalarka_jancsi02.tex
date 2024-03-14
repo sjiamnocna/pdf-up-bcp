@@ -124,7 +124,6 @@
             {
                 \LARGE
                 \textbf{Šimon Janča}\\
-                3.\,ročník\\[8mm]
                 Obor: Informační technologie a matematika pro vzdělávání
             }
 
@@ -155,16 +154,16 @@
 
     \begin{singletonpage}{Abstrakt / Abstract}
     
-        Tato práce se~zabývá využitím informačních technologií pro~generování zadání písemných testů. Zkoumá běžné metody tvorby testů a~představuje webovou aplikaci, která umožňuje učitelům efektivně vytvářet testy z~úloh s~parametricky zadanými vlastnostmi. Aplikace podporuje jak~uzavřené, tak~otevřené úlohy a~nabízí možnost generování testů ve~formátu pro~tisk. Práce zdůrazňuje význam technologií ve~vzdělávacím procesu a~přispívá k~modernizaci přístupu k~ověřování znalostí žáků.
+        Práce zdůrazňuje význam a~použití technologií ve~vzdělávacím procesu a~přispívá k~modernizaci přístupu k~ověřování znalostí žáků a~zabývá~se využitím informačních technologií pro~generování zadání písemných testů. Zkoumá běžné metody tvorby testů a~představuje webovou aplikaci, která umožňuje učitelům efektivně vytvářet testy z~úloh s~parametricky zadanými vlastnostmi. Aplikace podporuje jak~uzavřené, tak~otevřené úlohy a~nabízí možnost generování testů ve~formátu pro~tisk.
 
-        This thesis explores the~use of~information technology when~creating written exam questions, examining current methods for~creating exams and~introducing a~web application that enables teachers to~efficiently construct tests with parameter-specified tasks. The~application supports both closed and~open tasks and~offers the~capability to~generate tests in~format using templates. The~work emphasizes the~significance of~technology in~the~educational process and~contributes to~modernizing the~approach to~student assessment.
+        The thesis explores the~use of~information technology when~creating written exam questions, examining current methods for~creating exams and~introducing a~web application that enables teachers to~efficiently construct tests with parameter-specified tasks. The~application supports both closed and~open tasks and~offers the~capability to~generate tests in~format using templates. The~work emphasizes the~significance of~technology in~the~educational process and~contributes to~modernizing the~approach to~student assessment.
     \end{singletonpage}
     
     \begin{singletonpage}{Prohlášení}
     
         Prohlašuji, že~jsem tuto bakalářskou práci vypracoval samostatně s~využitím uvedených zdrojů.
 
-        Pro ucelenější pochopení kontextu problematiky a~rozšíření znalostí jsem v~rámci práce konzultoval některé otázky s~umělou inteligencí (ChatGPT, Gemini). Texty v~práci jsou však výsledkem mé~samostatné práce.
+        Pro ucelenější pochopení kontextu problematiky a~rozšíření znalostí jsem v~rámci práce konzultoval některé otázky s~umělou inteligencí (ChatGPT, Gemini). Texty v~práci jsou výsledkem mé~samostatné práce.
 
         Šimon Janča, v~Olomouci \today
     \end{singletonpage}
@@ -173,7 +172,7 @@
     
         Chtěl bych touto cestou poděkovat všem, kteří mi~byli nápomocni při~návrhu a~korektuře práce nebo~upřesnění návrhu aplikace. Děkuji také rodině a~blízkým za~vlídné slovo a~povzbuzení.
         
-        Veliký dík patří vedoucímu práce panu {doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D.} za~trpělivost a~ochotu pomoci při~její tvorbě.
+        Veliký dík patří vedoucímu práce doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D. za~trpělivost a~ochotu pomoci při~její tvorbě.
         
         Děkuji také~pedagogické fakultě univerzity Palackého v~Olomouci za~příspěvek na~pilotní provoz aplikace ve~formě stipendia.
     \end{singletonpage}
@@ -245,7 +244,7 @@
     \chapter{Technologie a principy vývoje webových aplikací}
         V~dnešní době je~webová aplikace první volbou pro~většinu vývojářů, zejména protože~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu přes~webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji~instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
         
-        Vývojáři se~také nemusí starat o~kompatibilitu, jelikož webový prohlížeč je~dostupný na~všech hlavních platformách. Webová aplikace je~také snadno škálovatelná, protože je~uložena na~serveru a~uživatelé se~k~ní připojují. Navíc je~možné z~jednoho zdrojového kódu jednoduše sestavit aplikaci ve~verzích pro~různé platformy (Windows, Linux, Android, IOS\dots).~\cite{adobe:webapp}
+        Vývojáři se~také nemusí starat o~kompatibilitu, jelikož webový prohlížeč je~dostupný na~všech hlavních platformách. Webová aplikace je~také snadno škálovatelná, protože je~uložena na~serveru a~uživatelé se~k~ní připojují. Navíc je~možné z~jednoho zdrojového kódu jednoduše sestavit aplikaci ve~verzích pro~různé platformy (Windows, Linux, Android, IOS,~\dots).~\cite{adobe:webapp}
 
         Většina dnešních projektů je~tedy vyvíjena jako~\emph{MVC} webová \emph{aplikace}. Tím~je~možné~oddělit logiku aplikace od~jejího zobrazení, což~umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části a~je~možné pracovat s~různými technologiemi.
         
@@ -295,7 +294,9 @@
             
             Kompilovaný program je~tím rychlejší, nicméně při~jeho tvorbě je~potřeba řešit některé problémy, např.~správu paměti. Jde např.~o~jazyky \textbf{C a C++}, \textbf{Rust} nebo~\textbf{Go}. Tyto jazyky jsou blíže ke~konkrétnímu \textbf{hardware} a~nazýváme je~\textbf{nízkoúrovňové}.
             
-            \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme interpret. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. \textbf{Interpret} je~program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~ty~kompilované. Kód v~takovém jazyce nazýváme \textbf{skript}.
+            \textbf{Interpretovaný} jazyk je~naopak vykonáván programem, kterému říkáme \textbf{interpret}. Ten~čte~příkazy a~přímo je~vykonává. To~znamená, že~při~každém spuštění se~příkazy překládají znovu. \emph{Interpret} je~program, který musí běžet, zatímco příkazy interpretuje, což~je~také jeden z~důvodů, proč bývají interpretované jazyky pomalejší a~náročnější na~využítí zdrojů, než~ty~kompilované. Kód v~takovém jazyce nazýváme \textbf{skript}.
+
+            \acrdefprint{JIT}{Just In Time} \textbf{překladač} zrychluje běh interpretovaného kódu překladem do~\textbf{bytecode}, který uloží do~paměti a~v~příštím běhu vykonává instrukce rychleji.
 
             Takové jazyky jsou většinou také \textbf{dynamicky typované}, tedy jazyky provádí kontrolu typů proměnných a~jejich použití až~při~vykonávání programu a~často umožňují i~změnu typu proměnné za~běhu programu, což~zavádí nutnost dalších kontrol a~zvyšuje nároky na~procesor. Proto vznikl např.~jazyk \acrdefprint{TS}{Typescript}, který v~\acrshort{JS} umožňuje používat statické typování a~následně se~\emph{transpiluje} zpět do~\acrshort{JS}.
             
@@ -379,7 +380,7 @@ func (u *User) UserCan(p Permissions) bool {
             Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Pokud je~navíc potřeba zkontrolovat více oprávnění, použijeme bitový součet, který je při~překladu nahrazen konečným číslem, čímž se~sníží počet operací potřebných ke~kontrole. Význam \emph{iota} a~operací s~bitovými maskami tak~přesahuje jen~oblast kompilátorů, ale~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
 
         \section{Procedurální a~objektově orientované programování}
-            \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.~\textbf{návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}).\emph{Procedura} je~pouze část kódu, která se~vkládá do~běhu programu a~pouze vykoná své~instrukce, nemá \emph{návratovou hodnotu}, může mít pouze \emph{vedlejší efekt}.
+            \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.~\textbf{návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} je~pouze část kódu, která se~vkládá do~běhu programu a~pouze vykoná své~instrukce, nemá \emph{návratovou hodnotu}, může mít pouze \emph{vedlejší efekt}.
 
             \emph{Procedury} i~\emph{funkce} mohou mít tzv.~\textbf{vedlejší efekty} (\textbf{side effects}), což~znamená, že~mohou ovlivnit chod programu~změnou \textbf{stavu aplikace}, např.~změnou hodnoty globální proměnné~\cite{Scott2019:programmingpragmatics}.
             
@@ -877,7 +878,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Zejména automatickým testováním je~možné ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které je~možné spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně. Pokud je~daný jazyk navíc \emph{dynamicky typovaný}, je dobré mít~nástroj na~kontrolu správnosti použití funkcí~\cite{compilers, itnetworkBestPractices}.
             
-            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména se~testují tzv.~\emph{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
+            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména se~testují tzv.~\textbf{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
             
             V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \emph{Javascriptu} to~jsou~např.~\textbf{Jest} nebo~\textbf{Mocha}. Jazyk \emph{Go}~má~vestavěný nástroj pro~automatické~testování, který se~nazývá \textbf{go~test}.
             
@@ -893,23 +894,23 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \acrshort{BE}, bez~omezení bezpečnostních opatření.
 
             \subsection{Testování frontendu}
-                Pro~testování \acrshort{FE} budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které umí~porovnat vykreslenou komponentu s~předchozí zapamatovanou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
+                Pro~testování \acrshort{FE} budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které porovnají vykreslenou komponentu s~předchozí vykreslenou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
 
         \section{Continous Integration a Continuous Delivery}
-            \textbf{CI/CD} je souhrnný pojem, který označuje průběžnou integraci \acrdefprint{CI}{Continuous Integration} a~průběžné doručení nebo nasazování \acrdefprint{CD}{Continuous Deployment/Delivery}, dvě klíčové praktiky v automatizaci procesů vývoje softwaru.
+            \textbf{CI/CD} je~souhrnný pojem, který označuje průběžnou integraci \acrdefprint{CI}{Continuous Integration} a~průběžné doručení nebo nasazování \acrdefprint{CD}{Continuous Deployment/Delivery}, dvě klíčové praktiky v~automatizaci procesů vývoje softwaru.
 
-            \textbf{CI} zahrnuje automatické spouštění sady testů po každé změně kódu v repozitáři, aby se ověřila jeho funkčnost a kompatibilita. Cílem je rychle identifikovat a opravit chyby, což vede k udržení vysoké kvality softwaru. Po úspěšném provedení testů dochází k automatickému sestavení aplikace. Pokud testy selžou, proces CI informuje vývojáře o potřebě oprav a zastaví další postup.
+            \acrshort{CI} zahrnuje automatické spouštění sady testů po~každé změně kódu v~\textbf{GIT}~repozitáři, aby byla~ověřena jeho funkčnost a~kompatibilita. Cílem je~rychle identifikovat a~opravit chyby, což~vede k~udržení kvality softwaru. Po~úspěšném provedení testů dochází k~automatickému sestavení aplikace. Pokud testy selžou, proces informuje vývojáře o~potřebě oprav a~zastaví další postup.
 
-            \textbf{CD} rozšiřuje \emph{CI} tím, že po~úspěšném sestavení aplikace automaticky provede její nasazení na~server. To~umožňuje rychlou dostupnost aktualizované aplikace uživatelům bez~manuálního zásahu, což~zvyšuje efektivitu vývojového procesu a~umožňuje rychlejší reakci na~požadavky trhu~\cite{graham2021ethical}.
+            \acrshort{CD} rozšiřuje \emph{CI} tím, že po~úspěšném sestavení aplikace automaticky provede její nasazení na~server. To~umožňuje rychlou dostupnost aktualizované aplikace uživatelům bez~manuálního zásahu, což~zvyšuje efektivitu vývojového procesu a~umožňuje rychlejší reakci na~požadavky trhu~\cite{graham2021ethical}.
 	
         \section{Verzovací systém GIT}
             \emph{GIT} vytvořil autor Linuxu \emph{Linus Torvalds} v~roce 2005. Je~to~\textbf{distribuovaný verzovací systém}, tj.~každý vývojář má~lokální kopii celého projektu, tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
             
-            Základní funkcí \emph{GITu} je~ukládání změn. Neukládají se~celé soubory pouze změny, které se~udály. Díky tomu je~možné spravovat i~větší projekty, kde spolupracuje více vývojářů zároveň a~po~dokončení části práce a~její~kontrole ji~připojí ke~zbytku kódu, který je~označen za~finální verzi (tzv.~\textbf{release}) aplikace nebo je~na~něm~možné dále pracovat.
+            Základní funkcí \emph{GITu} je~ukládání změn. Neukládá celé soubory ale pouze změny, které se~udály. Díky tomu je~možné procházet historií změn a~vracet se~k~různým verzím kódu. To~umožňuje spravovat větší projekty, na~kterých paralelně spolupracuje více vývojářů zároveň a~po~dokončení části práce a~její~kontrole výsledek~připojit ke~zbytku kódu. Potom je~možné označit schválenou a~otestovanou verzi kódu jako~finální verzi (tzv.~\textbf{release}) nebo je~na~kódu~možné dále pracovat.
             
-            Díky verzování je~také možné se~kdykoliv vrátit k~předchozím verzím projektu a~pokračovat ve~vývoji nebo~pracovat na~několika různých problémech zároveň díky \textbf{větvím}. Práci je~možné v~jakémkoliv bodě označit pomocí tagů a~tím~umožnit používat označené místo ve~vývoji.
+            Je~také možné pracovat na~několika různých problémech zároveň díky \textbf{větvím} nebo na~různé verze~možné v~jakémkoliv odkazovat pomocí tagů a~tím~umožnit používat označené místo ve~vývoji např.~číslem verze software.
 
-            Existují služby, které poskytují prostor pro~ukládání \emph{GIT} projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\emph{GitHub}, \emph{GitLab} nebo~\emph{Bitbucket}. Mimo zmíněné funkce nabízejí možnost vytvářet \textbf{Issues}, pokud narazí na~chybu nebo~má~nápad na~vylepšení. Tímto způsobem může sdělit svůj nápad nebo~chybu v~aplikaci a~případně se~k~ní vrátit později. \emph{Issues} je~také možné přiřadit konkrétnímu vývojáři, který chybu nebo~nápad dostane na~starost nebo~automaticky vytvořit \emph{větev}, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní \emph{větve} projektu. Je~také možné jednoduše zobrazit rozdíly mezi hlavní \emph{větví} a~tou, na~které vývojář pracuje~\cite{gitscmBook}.
+            Existují služby, které poskytují prostor pro~ukládání \emph{GIT} projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\textbf{GitHub}, \textbf{GitLab} nebo~\textbf{Bitbucket}. Mimo zmíněné funkce jsou~zde tzv.~\textbf{Issues}, které umožňují sledovat stav jednotlivých právě probíhající úkoly a~hlásit chyby k~opravě. Tímto způsobem může (pokud je~\emph{repozitář} veřejný) např.~uživatel sdělit svůj nápad nebo~ohlásit chybu v~aplikaci a~případně se~k~ní vrátit později. \emph{Issues} je~také možné přiřadit konkrétnímu vývojáři, který chybu nebo~návrh ke~zlepšení dostane za~úkol a~automaticky vytvořit \emph{větev}, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní \emph{větve} projektu. Je~také možné jednoduše zobrazit rozdíly mezi hlavní \emph{větví} a~tou, na~které vývojář pracuje~\cite{gitscmBook}.
             
             \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj.
             
@@ -1181,7 +1182,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \textbf{Go} je~\emph{staticky typovaný} kompilovaný jazyk vyvinutý společností Google v~roce~2007. \emph{Go}~je~kompilovaný jazyk. Zároveň je~pro~vývojáře přívětivý na~psaní. Výsledný \emph{program}~je~rychlý a~efektivní. Pro~správu paměti využívá  tzv.~\acrdefprint{GC}{Garbage Collector}, který automaticky přiděluje paměť programu a~uvolňuje~ji pro~použití jinými procesy, pokud již~není potřeba. To~samozřejmě během chodu programu nepatrně zatěžuje zdroje, nicméně díky tomu nemusím správu paměti řešit, což~je~velká výhoda~\cite{compilers}.
 
-            Pro~\textbf{časově kritické aplikace} operující v~reálném čase, např.~řízení auta, kde~by \textbf{režijní zátěž} z~provozu \acrshort{GC} mohla způsobit opožděné spuštění jiných důležitých procesů, je~vhodné zvolit jazyk s~nižší \emph{režijní zátěží}, např.~\textbf{Rust} nebo~\emph{Zig}.
+            Pro~\textbf{časově kritické aplikace} operující v~reálném čase, např.~řízení auta, kde~by \textbf{režijní zátěž} z~provozu \acrshort{GC} mohla způsobit opožděné spuštění jiných důležitých procesů, je~vhodné zvolit jazyk s~nižší \emph{režijní zátěží}, např.~\textbf{Rust} nebo~\textbf{Zig}.
 
             Pro~aplikace jako je~webový server, je~ale~\emph{Go}~dobrá volba. \emph{Go} navíc automaticky formátuje kód, což~zjednodušuje práci s~ním a~umožňuje lepší spolupráci v~týmu, jelikož není~nutné hledat jednotný \textbf{codestyle}, který by~nejlépe vyhovoval potřebám vývoje.
 
@@ -1471,11 +1472,13 @@ class dataLoader extends Endpoints{
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\acrshort{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~načíst data uživatele do~paměti programu a~vzdálené odhlášení v~případě podezřelého přístupu k~účtu.
 
         \section{Frontend}
-            \acrshort{FE} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \acrshort{TS}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro~lepší přístupnost a~aplikace znevýhodněmým a~pro~lepší \emph{SEO} využiju k~tvorbě komponent některý z~\emph{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~nějakou optimalizací přístupnosti, což~zjednoduší práci při~tvorbě uživatelského rozhrání.
+            \acrshort{FE} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \acrshort{TS}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro~lepší přístupnost aplikace a~\acrshort{SEO}, využiju k~tvorbě komponent některý z~\acrshort{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~myšlenkou přístupnosti pro~slabozraké či~využívající čtecí zařízení, což~zjednoduší práci při~tvorbě uživatelského rozhrání.
+
+            Ke~kontrole přístupnosti využiji rozšíření \textbf{Wave} (\url{https://wave.webaim.org/extension/})
 
             Pro~komunikaci s~backendem budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \acrshort{JWT} a~tedy~zjednoduší komunikaci \acrshort{FE} s~\acrshort{BE}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
 
-            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv, kdo~má přístup k~používanému verzovacímu systému, a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \acrshort{BE} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\emph{Javascriptového} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\emph{Javascriptu} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\emph{Javascriptového} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz~\ref{js:env}.
+            Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv, kdo~má přístup k~používanému verzovacímu systému, a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \acrshort{BE} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\acrshort{JS} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\acrshort{JS} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\acrshort{JS} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz~\ref{js:env}.
             
             \begin{code}
                 \begin{minted}{js}
@@ -1507,26 +1510,28 @@ class dataLoader extends Endpoints{
                         });
                     });
                 \end{minted}
-                \caption{Přepis \textbf{env proměnných} na~konstanty pomocí \emph{Node.js} kódu.}
+                \caption{Přepis \textbf{proměnných z prostředí} na~\acrshort{JS} konstanty pomocí \emph{Node.js} kódu.}
                 \label{js:env}
             \end{code}
 
-            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiju modul \texttt{next-intl}, který slibuje nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
+            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiju modul \texttt{next-intl}, na~jehož webu je~uvedeno, že~má~nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
-            \textbf{Router} v~případě \acrshort{FE} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \emph{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
+            \textbf{Router} v~případě \acrshort{FE} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \acrshort{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
-            \emph{React} po~spuštění aplikace normálně načte celou zobrazenou aplikaci naráz, včetně obrázků, obsahu~ap. To~může vyústit ve~zbytečné načítání velkého objemu dat a~ke~snížení celkové rychlosti aplikace, nehledě na~zátěž na~připojení.
+            \emph{React} po~spuštění aplikace za~normálních okolností načítá celou aplikaci najednou, a~to~včetně obrázků, obsahu~ap. To~může vyústit ve~zbytečné načítání velkého objemu dat a~ke~snížení celkové rychlosti aplikace, nehledě na~zátěž na~připojení a~výkon na~straně \emph{klienta}.
 
-            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě potřeby. Typicky rozdělujeme funkční komponenty tak, jak~jsou~v~aplikaci použity a~podle toho jsou~postupně načítány. V~této aplikaci budu~používat \emph{lazy loading} pro~načítání stránek, které jsou dostupné pouze přihlášeným uživatelům. V~případě, že~uživatel není přihlášen, bude mu~zobrazena stránka s~přihlašovacím formulářem. V~případě přihlášení uživatele pak~indikuji načítání aplikace a~při~úspěšném načtení zobrazím kontrolní prvky~\cite{lazyload}.
+            \textbf{Lazy loading} je~technika, umožňující načíst pouze \emph{komponenty}, které jsou potřeba, a~zbytek načítat dodatečně pouze v~případě, že~jsou~zapotřebí. Typicky rozdělujeme funkční komponenty tak, jak~jsou~v~aplikaci použity a~podle toho jsou~postupně načítány. V~této aplikaci budu~používat \emph{lazy loading} pro~načítání stránek, které jsou dostupné pouze přihlášeným uživatelům. V~případě, že~uživatel není přihlášen, bude~přesměrován na~stránku s~přihlašovacím formulářem. V~případě úspěšného přihlášení uživatele pak~zobrazím příslušnou část aplikace s~kontrolními prvky~\cite{lazyload}.
 
-            \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě je~nutné uživatele informovat, že~došlo k~chybě a~případně mu~doporučit, co~může dělat dál. A~zaznamenat chybu do~logů~--~tj.~\emph{zalogovat}.
+            \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě je~nutné uživatele informovat, že~došlo k~chybě a~případně mu~doporučit, co~může dělat dál a~zaznamenat chybu do~logů (tzv.~\emph{zalogovat}).
             
-            \textbf{UI (User Interface)} (\textbf{uživatelské rozhrání}) bude~vytvořeno s~použitím \textbf{Tailwind CSS}. \emph{Tailwind} je~\textbf{utility-first} knihovna -- soustředí~se na~poskytnutí jednoduchých prvků, které je~možné ke~komponentám přidávat jako třídy. Skládáním těchto tříd je~možné vytvořit vzhled, který je~potřeba. \emph{Tailwind} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace~\cite{Rappin2022ModernCSSTailwind}.
+            \acrdefprint{UI}{User Interface} (\textbf{uživatelské rozhrání}) bude~vytvořeno s~použitím knihovny \acrdefprint{TW}{Tailwind CSS}. \acrshort{TW} je~\textbf{utility-first} knihovna. Soustředí~se na~poskytnutí jednoduchých prvků prostřednictvím \acrshort{CSS} tříd, které je~možné ke~komponentám přidávat. Skládáním těchto tříd je~možné vytvořit potřebný vzhled komponent. \acrshort{TW} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. Pro~výslednou podobu aplikace potom \acrshort{TW} vytvoří \acrshort{CSS} kód pouze z~použitých tříd, čímž ještě omezí množství dat, které jsou přenášeny v~podobě stylů~\cite{Rappin2022ModernCSSTailwind}.
 
-            K~tvorbě \emph{UI} je~samozřejmě možné použít i~knihovny jako \textbf{Bootstrap}, \textbf{Foundation} nebo~jiné přístupy ke~stylování.
+            K~tvorbě \emph{UI} je~samozřejmě možné použít i~\textbf{frameworky} jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize~CSS} nebo~jiné přístupy ke~stylování.
 
         \section{Testování}
-            Nemá význam testovat celý \acrshort{BE}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě překladu aplikace vůbec nenastartuje, protože selže tvorba \emph{Docker} kontejneru, a~zůstává v~původní funkční verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}. Postupem času budu testovací scénáře přidávat a~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\acrshort{FE}, případně \emph{čistých funkcí}.
+            Nemá význam testovat celý \acrshort{BE}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě, která by~nastala při~překladu, aplikace vůbec nenastartuje a~selže spuštění \emph{Docker} kontejneru, a~zůstává v~původně spuštěné verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}.
+            
+            Testovací scénáře budu~postupně rozšiřovat ale~z~počátku se~budu věnovat testování pouze u~\emph{generátoru} a~\emph{čistých funkcí}.
 
             Testovány budou všechny scénáře, které jsou od~\emph{generátoru} požadovány~--~např. nahrazení proměnných a~spuštění funkcí, vyčíslení jednoduchých výrazů. Náhodné řazení nelze testovat, protože výsledek je~náhodný a~nelze vyloučit, že~nebudou vygenerovány několikrát stejné hodnoty. Totéž platí pro~náhodné pořadí odpovědí.
 
@@ -1539,7 +1544,7 @@ class dataLoader extends Endpoints{
         
             
     \chapter{Závěr}
-        Cíl práce byl dosažen, podařilo se~vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit, nicméně aplikace je~již k~dispozici k~použití.
+        Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit, nicméně aplikace je~již k~dispozici k~použití.
         
         Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, která bude moci být~používána k~tvorbě testů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
