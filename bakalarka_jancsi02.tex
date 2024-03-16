@@ -872,6 +872,18 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Jelikož v~projektu používám \emph{React}, který využívá \emph{JSX}, je~tento typ útoku téměř vyloučen. \emph{JSX} totiž neumožňuje vkládat přímo \acrshort{HTML} kód, ale~pouze textové řetězce, které se~při~načtení stránky zobrazí.
 
                 Existují ale výjimky a~to~použití funkce \texttt{eval}, která umožňuje spustit \acrshort{JS} kód z~řetězce (textové proměnné), a~přímé vkládání neošetřeného vstupu pomocí vlastnosti \texttt{dangerouslySetInnerHTML} nebo~jí podobných, které se~přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod. Tyto vlastnosti ale~vývojáři používají s~vědomím rizika~\cite{reactJSX}.
+        \section{42}
+            Číslo \uv{\textbf{42}}~(\cite{adams1979hitchhikers}) někteří vývojáři používají jako~nenápadný odkaz na~zábavní rádiový pořad a~knihu Stopařův průvodce po~galaxií britského autora Douglese Adamse, vydávaný od~r.~1979. Jde o~způsob, jak~lidé z~\acrshort{IT} a~jiných oborů vyjadřují svůj smysl pro~humor~\cite{knuth1992art}.
+
+            \emph{42}~je číslo, které v~příběhu dal velký počítač \textbf{Hlubina myšlení} (\textbf{Deep thought}) po~dlouhém počítání na~otázku "života, vesmíru a~vůbec", myšleno na~jakoukoliv otázku ve~vesmíru.
+            
+            V~různých oborech má~však~\emph{42} reálný význam. Existují studie, zamýšlející~se nad~významem a~důkazy reálného významu tohoto čísla. Jde např.~o~jedno z~nejdéle řešených parametrů v~rozsahu od~0 do~100 \textbf{kubické diofantovské rovnice} $x^3 + y^3 + z^3 = k$~\cite{mit2019answerlife}, který počítače po~celém světě řešily přes~milion hodin. To~je~v~kontextu knihy zajímavé, jelikož v~knize superpočítač \emph{Hlubina myšlení} odpovídá na~otázku neúměrně dlouho~\cite{adams1979hitchhikers}.
+            
+            V~\acrdefprint[short]{ASCII}{American Standard Code for Information Interchange} tabulce (viz~\url{https://www.ascii-code.com/}) je~\emph{42} znak hvězdička (asterisk). V~různých implementacích nahrazuje jeden libovolný znak (tzv.~\textbf(wildcard)) nebo~v~\textbf{regulárních výrazech} libovolné množství znaků z~určené množiny znaků.
+            
+            Číslo \emph{42} je~také součástí několika významných algoritmů, např.~\textbf{SHA-1} nebo~\textbf{MD5}, které se~používají pro~\emph{hashování} hesel nebo~\emph{kontrolní součet} souborů. V~\emph{ASCII} tabulce je~\emph{42} znak \textbf{asterisk} (\textbf{*}), který se~používá jako~\emph{wildcard} v~\emph{regulárních výrazech} nebo~v~\emph{fulltextovém} vyhledávání~\cite{regular_expressions, sha1, md5}.
+
+            V~aplikaci jsem~se~rozhodl věnovat číslu~\emph{42} samostatný \emph{endpoint} \texttt{/theanswer}, jehož~účelem~je v~\acrshort{JSON} odpovědi vrátit odpověď na~otázku "života, vesmíru a~vůbec".
 
         \section{Testování}
             Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí co~nejvíce možných scénářů, které mohou nastat.
@@ -980,7 +992,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Linux a příkazová řádka, Windows Subsystem for Linux}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint, \dots)
             
-            Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android \emph{open--source} project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních~\cite{AOSP:linux}.
+            Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android open--source project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních~\cite{AOSP:linux}.
             
             Velikou výhodou je~otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům nahlížet a~navrhovat změny ke~zlepšení do~jádra \emph{Linuxu}. Výhodou je~také jeho bezpečnost a~svoboda. V~porovnání s~jinými operačními systémy je~bezpečnější a~méně náchylný ke~škodlivým programům, zejména díky pravidlům pro~přístupy k~souborům. V~Linuxu je~navíc za~soubor považováno všechno (konfigurace, procesy, síť i~periférie atd.), což~zabezpečení zjednodušuje - pokud jsou~správně nastavena přístupová oprávnění a~vlastnictví~\cite{medium:LinuxSecure}.
 
