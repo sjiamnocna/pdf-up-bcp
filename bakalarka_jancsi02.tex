@@ -216,7 +216,7 @@
 
             Zároveň je~potřeba myslet na~to, že~žáci mají různé schopnosti a~znalosti a~ne pro všechny je~test stejně náročný. Proto je~potřeba k~dosažení spolehlivého ověření znalostí kombinovat testy s~jinými metodami ověřování znalostí a~dávat důraz na~získané schopnosti a~jejich aplikaci, nikoliv na~to, co~si~žák dokázal doslovně zapamatovat. Důležitá je i~práce s~chybou a~individuální přístup k~žákům. \cite{chraska:testy, Berkley2017LearningFromErrors}
             
-            Důležitý aspekt je~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek s~výběrem z~nabídnutých možností. Pokud je~naším cílem dobře ověřit znalosti, pak~je~nutné tvořit \emph{otázky} tak, aby nesprávné odpovědi vypadaly věrohodně. Také nesmíme zapomenout na to, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
+            Důležitý aspekt je~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek s~výběrem z~nabídnutých možností. Pokud je~cílem dobře ověřit znalosti, pak~je~nutné tvořit \emph{otázky} tak, aby nesprávné odpovědi vypadaly věrohodně. Také nesmíme zapomenout na to, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
 
             V~příkladu se~zaměřím na matematiku, zejména proto, že je to můj~druhý obor. Pokud budeme testovat např.~znalosti \emph{lineárních rovnic}, pravděpodobně necháme otázku s~otevřenou odpovědí, abychom zjistili, zda je~testovaný schopný odpověď vypočítat a~jak~při~tom postupuje. Ale může nastat situace, že~je~potřeba ověřit rychlý úsudek testovaného na~základě určité části učiva a~potom jsou mu nabídnuty možnosti. V~tomto případě je~potřeba, aby~nesprávné možnosti vypadaly věrohodně a~aby~testovaný nemohl jednoduše odhadnout správnou odpověď ale~k~odpovědi využil znalosti tématu.
 
@@ -613,7 +613,7 @@ const App = () => {
             
             To~samozřejmě nevylučuje použít \acrshort{AJAX}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \acrshort{JS}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
 
-            \acrshort{SSR} je~koncept podobný \acrshort{SSG}, pouze na~straně serveru běží aplikace, která průběžně sleduje data a~aktualizuje obsah (při~změně v~datech) za~použití naší aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \acrshort{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\acrshort{BE} aplikace používá \acrshort{JS}~\cite{uc:ssrandssg}.
+            \acrshort{SSR} je~koncept podobný \acrshort{SSG}, pouze na~straně serveru běží aplikace, která průběžně sleduje data a~aktualizuje obsah (při~změně v~datech) za~použití dané aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \acrshort{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\acrshort{BE} aplikace používá \acrshort{JS}~\cite{uc:ssrandssg}.
 
             Takto systém vygeneruje \emph{HTML kód} (se~skripty~ap.) pro~každou stránku pouze v~případě změny obsahu. Při~dalším spuštění potom načítá statický obsah, což~ušetří výkon na~straně \emph{serveru} i~\emph{klienta}.
 
@@ -772,11 +772,11 @@ const App = () => {
             \subsection{Autentizace}
                 \emph{Autentizace} je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává. To~je~možné udělat pomocí hesla, certifikátu, který uživatel má, nebo pomocí externí služby, která identitu ověří a~potvrdí ji.
                 
-                V~případě \acrshort{API} se~jedná o~ověření, že~požadavek přišel z~naší aplikace a~ne z~jiného zdroje, např.~od~útočníka. Do~aplikace se~přidává tajný klíč, který slouží k~identifikaci aplikace a~při každém požadavku na~\acrshort{BE} si~ověřuje \emph{autenticitu} požadavku. Na~to~existují různé metody, např.~využití \acrshort{JWT}.
+                V~případě \acrshort{API} se~jedná o~ověření, že~požadavek opravdu přišel z~dané aplikace a~nikoliv z~jiného nepovoleného zdroje, např.~od~útočníka. Do~aplikace je~přidán tajný klíč, který slouží k~identifikaci aplikace a~při každém požadavku na~\acrshort{BE} si~ověřuje \emph{autenticitu} požadavku. Na~to~existují různé metody, např.~využití \acrshort{JWT}.
                 
                 Do~\acrshort{FE} aplikace je~obvykle vložena dvojici tajných klíčů, které backendu řeknou, že~jde skutečně o~autorizovanou aplikaci, která má~k~backendu povolený přístup. Také je~možné pro~větší bezpečnost přístup omezit pouze na~konkrétní IP~adresy, ze~kterých je~možné se~připojit a~\acrshort{URI}, ze~které lze požadavek odeslat.
 
-                Při~\emph{autentizaci} aplikace je~důležité kontrolovat také jestli byl~požadavek vytvořen naší aplikací na~našem webu a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\emph{token} nebyl změněn a~přichází stále ze~stejné aplikace a~stejné \emph{IP adresy}, jako při~první \emph{autentizaci}~\cite{graham2021ethical}.
+                Při~\emph{autentizaci} aplikace je~důležité kontrolovat také~jestli byl~požadavek vytvořen povolenou aplikací a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\emph{token} nebyl změněn a~přichází stále ze~stejné aplikace a~stejné \emph{IP adresy}, jako při~první \emph{autentizaci}~\cite{graham2021ethical}.
             
             \subsection{Autorizace}
                 Autorizace je~proces ověření oprávnění uživatele k~manipulaci s~konkrétním zdrojem. Ověřujeme, zda~má~uživatel oprávnění k~provedení určité akce, např.~úprava, resp.~smazání příkladu. Je~nutné vzít v~potaz \emph{uživatelskou roli} (tj.~administrátor, uživatel, návštěvník\dots), kterou uživatel má~ve~vztahu k~aplikaci a~k~danému zdroji.
@@ -784,9 +784,9 @@ const App = () => {
                 Je~potřeba zkontrolovat vlastnictví nebo~přidělená oprávnění (\uv{může uživatel článek jen zobrazit nebo i~upravovat?}). Např.~pokud je~uživatel autorem příladu, může s~ním libovolně manipulovat. Pokud příklad vytvořil někdo jiný, musí k~úpravě dostat oprávnění~\cite{graham2021ethical}.
 
             \subsection{JSON Web Token}
-                Hojně používaná metoda zabezpečení je~\acrdefprint{JWT}{JSON Web Token}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak ověřit, že~požadavek přichází z~naší aplikace a~nejde o~nepovolený přístup.
+                Hojně používaná metoda zabezpečení je~\acrdefprint{JWT}{JSON Web Token}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak požadavek \emph{autorizovat}.
                 
-                Při~\emph{autentizaci} se~vygeneruje \emph{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou kódována ve~formátu \textbf{base64} a~podepsána šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit, protože jakákoliv změna v~datech znamená změnu \emph{podpisu}. Do~tokenu se~přidávají data, která je~potřeba uchovat nebo jsou~využita k~dodatečné kontrole. Je~důležité do \emph{tokenu} neukládat žádná citlivá data, jelikož formát \emph{base64} není šifrovaný. 
+                Při~\emph{autentizaci} je~vygenerován \emph{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou kódována ve~formátu \textbf{base64} a~podepsána šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit, protože jakákoliv změna v~datech znamená změnu \emph{podpisu}. Do~tokenu se~přidávají data, která je~potřeba uchovat nebo jsou~využita k~dodatečné kontrole. Je~důležité do \emph{tokenu} neukládat žádná citlivá data, jelikož formát \emph{base64} není šifrovaný. 
                 
                 V~případě změny nebo~nepřesnosti v~datech \emph{tokenu} se~díky podpisu \emph{token} stává neplatným, což~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech \emph{tokenu} je~možné mít informace o~aktuálně přihlášeném uživateli, a~další kontrolní informace, jako~délka platnosti \emph{tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~jeho~vytvoření prvně odeslán.\\
 
@@ -873,7 +873,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Existují ale výjimky a~to~použití funkce \texttt{eval}, která umožňuje spustit \acrshort{JS} kód z~řetězce (textové proměnné), a~přímé vkládání neošetřeného vstupu pomocí vlastnosti \texttt{dangerouslySetInnerHTML} nebo~jí podobných, které se~přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod. Tyto vlastnosti ale~vývojáři používají s~vědomím rizika~\cite{reactJSX}.
         \section{42}
-            Číslo \uv{\textbf{42}}~(\cite{adams1979hitchhikers}) někteří vývojáři používají jako~nenápadný odkaz na~zábavní rádiový pořad a~knihu Stopařův průvodce po~galaxií britského autora Douglese Adamse, vydávaný od~r.~1979. Jde o~způsob, jak~lidé z~\acrshort{IT} a~jiných oborů vyjadřují svůj smysl pro~humor~\cite{knuth1992art}.
+            Číslo \uv{\textbf{42}}~(\cite{adams1979hitchhikers}) někteří vývojáři používají jako~nenápadný odkaz na~zábavní rádiový pořad a~knihu Stopařův průvodce po~galaxií britského autora Douglese Adamse, vydávaný od~r.~1979. Jde o~způsob, jak~lidé z~\emph{IT} a~jiných oborů vyjadřují svůj smysl pro~humor~\cite{knuth1992art}.
 
             \emph{42}~je číslo, které v~příběhu dal velký počítač \textbf{Hlubina myšlení} (\textbf{Deep thought}) po~dlouhém počítání na~otázku "života, vesmíru a~vůbec", myšleno na~jakoukoliv otázku ve~vesmíru.
             
@@ -981,7 +981,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Proto je~nutné aplikaci testovat, chyby zaznamenávat i~se~vstupními daty a~opravovat~je. To~je~důležitá část vývoje aplikace. Jeden z~nástrojů, které efektivní sledování chyb~umožňují, je~\emph{Sentry}.
 
             \subsection{Sentry}
-                \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~našem případě \acrshort{JS} a Go}. Ale funguje i~v~dalších jazycích. Existuje~také modul pro~integraci s~frameworkem \emph{Gin}, což~umožňuje získat i~informace o~\acrshort{HTTP} požadavku a~stavu serveru, který chybě předcházel.
+                \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~tomto případě \acrshort{JS} a \emph{Go}. Ale funguje i~v~dalších jazycích. Existuje~také modul pro~integraci s~frameworkem \emph{Gin}, což~umožňuje získat i~informace o~\acrshort{HTTP} požadavku a~stavu serveru, který chybě předcházel.
                 
                 V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb. Např.~v~případě \acrshort{JS} umožní sledovat akce, které uživatel provedl před tím, než došlo k~chybě. Chyby z~\acrshort{BE} i~\acrshort{FE} aplikace se~uloží na~jedno místo a~je~tak pro~celý tým jednodušší s~nimi pracovat.
 
@@ -1182,7 +1182,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Výběr technologií}
             Výběr technologií je~důležitý krok. Je~nutné vybírat efektivní technologie, které jsou~dostatečně výkonné a~zároveň přívětivé pro~vývojáře, aby~vývoj nebyl příliš časově náročný. Myslet je~potřeba také na~budoucí údržbu a~rozšiřitelnost aplikace a~zda jsou vybrané nástroje pravidelně opravovány a~aktalizovány. Také je~potřeba zvážit aktivní komunitu a~uživatelskou podporu daných technologií v~případě problémů.
 
-            Pro~tvorbu \acrshort{FE} použiji knihovnu~\textbf{React}. Umožní mi~efektivní tvorbu \textbf{uživatelského rozhrání}~(\acrdefprint[short]{UI}{User Interface}).
+            Pro~tvorbu \acrshort{FE} použiji knihovnu~\textbf{React}. Umožní mi~efektivní tvorbu \acrshort{UI}.
 
             Při~vývoji aplikace v~Reactu použiji i~\acrshort{TS}. \emph{Facebook} s~použitím~\acrshort{TS} počítá a~vydává mimo~\emph{React} také~balíček s~příslušnými datovými typy. \acrshort{TS} podporuje i~\acrshort{JSX} pomocí souborů s~příponou \texttt{*.TSX}~\cite{TypeScript}.
 
@@ -1451,7 +1451,7 @@ class dataLoader extends Endpoints{
 
             K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}. U~každé části pak~určí, zda je~platná a~případně ji~nahradí její nalezenou/vypočítanou hodnotou.
             
-            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory a~vyfiltruje \textbf{bílé znaky} (mezery, ukončení řádku~ap.). Nakonec~vrátí seznam \emph{tokenů}, které v~textu našel. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
+            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory a~vyfiltruje \textbf{bílé znaky} (mezery, ukončení řádku~ap.). Výsledkem je~seznam \emph{tokenů}, které byly v~textu rozpoznány. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
             
             Např.~pokud za~znakem \{ bude tečka, vím, že~jde o~proměnnou. Pokud je~tam~identifikátor (řetězec znaků) a~závorky s~argumenty pro~funkci, jde o~funkci. Po~zpracování proměnných a~funkcí bude~možné určit zbytek jako~mnohočleny, zlomky~apod.
             
@@ -1538,7 +1538,7 @@ class dataLoader extends Endpoints{
             
             \acrdefprint{UI}{User Interface} (\textbf{uživatelské rozhrání}) bude~vytvořeno s~použitím knihovny \acrdefprint{TW}{Tailwind CSS}. \acrshort{TW} je~\textbf{utility-first} knihovna. Soustředí~se na~poskytnutí jednoduchých prvků prostřednictvím \acrshort{CSS} tříd, které je~možné ke~komponentám přidávat. Skládáním těchto tříd je~možné vytvořit potřebný vzhled komponent. \acrshort{TW} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. Pro~výslednou podobu aplikace potom \acrshort{TW} vytvoří \acrshort{CSS} kód pouze z~použitých tříd, čímž ještě omezí množství dat, které jsou přenášeny v~podobě stylů~\cite{Rappin2022ModernCSSTailwind}.
 
-            K~tvorbě \emph{UI} je~samozřejmě možné použít i~\textbf{frameworky} jako \textbf{Bootstrap}, \textbf{Foundation}, \textbf{Materialize~CSS} nebo~jiné přístupy ke~stylování.
+            K~tvorbě \acrshort{UI} je~samozřejmě možné použít i~jiné knihovny stylů (např.~\textbf{Bootstrap}) nebo~různé přístupy ke~stylování.
 
         \section{Testování}
             Nemá význam testovat celý \acrshort{BE}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě, která by~nastala při~překladu, aplikace vůbec nenastartuje a~selže spuštění \emph{Docker} kontejneru, a~zůstává v~původně spuštěné verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}.
