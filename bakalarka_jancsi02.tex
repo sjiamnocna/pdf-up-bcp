@@ -149,8 +149,6 @@
 		\end{center}
 	\end{titlepage}
     
-    % zadání práce
-    \includepdf[pages={1}]{./files/temata_vskp_-_podklady_pro_zadani_vskp.pdf}
     \thispagestyle{empty} % This removes the page number on this page
     \null\vfill % This centers the content vertically
 
@@ -176,7 +174,7 @@
         
         Veliký dík patří vedoucímu práce doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D. za~trpělivost a~ochotu pomoci při~její tvorbě.
         
-        Děkuji také~pedagogické fakultě univerzity Palackého v~Olomouci za~příspěvek na~pilotní provoz aplikace ve~formě stipendia.
+        Děkuji také~Pedagogické fakultě Univerzity Palackého v~Olomouci za~příspěvek na~pilotní provoz aplikace ve~formě stipendia.
     \end{singletonpage}
     
     \setcounter{page}{1} % Reset page numbering to start after ToC
@@ -189,7 +187,7 @@
 
         Testy umožňují učitelům zjistit, jak~dobře žáci porozuměli učivu a~jaké jsou~jejich silné a~slabé stránky. Žákům poskytnou informace o~tom, které znalosti je~potřeba ještě zlepšovat. Součástí kvalitního zjišťování výsledků je~tvorba více verzí zadání, např.~pro~spolužáky, sedící v~jedné lavici~ap. Kromě toho jsou výsledky různých testů použity jako parametr přijímání na~vysoké školy nebo k~udělování stipendií. Testy jsou využívány v~mnoha případech i~mimo školy k~zajištění zpětné vazby nebo~ověření znalostí kandidáta~při~pracovních pohovorech.
         
-        V~této práci popíšu náležitosti testů a~některé postupy, jakými je~možné postupovat při~tvorbě jejich zadání a definuji potřeby, které v~této souvislosti mohou nastat. Zabývat se~budu především písemnými testy, které jsou~používány na~základních a~středních školách, nicméně většina z~popisovaných pojmů bude použitelná i~pro~další typy testů. Testy vědomostí nejsou pouze záležitostí vzdělávání, využívají je~firmy a~další instituce a~jsou důležitým prvkem při~výběru zaměstnanců nebo~při~přijímacích zkouškách nebo v~autoškolách. Od~doby pandemie Covidu se~začaly používat i~v~online prostředí.
+        V~této práci popíšu náležitosti testů a~některé postupy, jakými je~možné postupovat při~tvorbě jejich zadání a definuji potřeby, které v~této souvislosti mohou nastat. Zabývat se~budu především písemnými testy, které jsou~používány na~základních a~středních školách, nicméně většina z~popisovaných pojmů bude použitelná i~pro~další typy testů. Testy vědomostí nejsou pouze záležitostí vzdělávání, využívají je~firmy a~další instituce a~jsou důležitým prvkem při~výběru zaměstnanců nebo~při~přijímacích zkouškách nebo v~autoškolách. Od~doby pandemie Covidu~19 se~začaly používat i~v~online prostředí.
         
         Ve~druhé části popíšu a~vytvořím aplikaci, kterou bude možné použít ke~generování různých variant zadání školních testů. Popíšu základní prvky při~vývoji aplikace a~popíšu důvody k~jednotlivým rozhodnutím od~návrhu a~výběru technologií, přes plánování, až~k~její implementaci, provozu a~údržbě za~použití vybraných technologií. Vyhotovená aplikace bude následně veřejně dostupná jako webová služba.
 
@@ -200,7 +198,7 @@
             \textbf{Uzavřené úlohy} jsou~úlohy, které mají předem danou množinu odpovědí. Respondent si~při~vyplňování testu vybere jednu nebo více správných odpovědí (podle zadání) a~tím odpoví na~otázku. Může jít o~označení vyjmenovaných možností nebo z~obecně předpokládaných odpovědí: např.~na~otázku \uv{V~jakém městě bydlíte?} očekáváme v~odpovědi existující město, nikoliv několik popisných vět. Hodnocení probíhá pomocí bodování.
 
             Řešení uzavřených úloh může~být~oproti jiným typům méně náročné jak pro~žáka, který může jednodušeji určit (nebo uhodnout) správnou odpověď, tak pro~učitele, který nemusí při~hodnocení brát v~potaz různé možnosti odpovědí. 
-            Může jít~také o~doplnění písmen výběrem za~účelem procvičení správné gramatiky. Také je možné využít různé doplňovačky nebo výběr správného slova do textu, např.~v~cizích jazycích. V~matematice může jít~o~výběr správné hodnoty (nebo množinu hodnot). 
+            Může jít~také o~doplnění písmene výběrem z~možností za~účelem procvičení správné gramatiky. Také je možné využít různé doplňovačky nebo výběr správného slova do textu, např.~v~cizích jazycích. V~matematice může jít~o~výběr správné hodnoty (nebo množinu hodnot). 
             
             U~uzavřených testů, obsahujících možnosti výběru, lze~využít možnost zápisu do~odpovědních archů a~jejich vyhodnocení pomocí počítače.
             Bodování úloh může být jednoduché, kdy~za~každou správnou odpověď přičteme jeden bod, nebo může být složitější, kdy např.~za~každou správnou odpověď přičteme jeden bod, ale za~každou špatnou odpověď bod (nebo část bodu) odečteme, za~nevyplněnou odpověď většinou nepřičítáme ani~neodečítáme žádný bod.
@@ -218,39 +216,41 @@
 
             Zároveň je~potřeba myslet na~to, že~žáci mají různé schopnosti a~znalosti a~ne pro všechny je~test stejně náročný. Proto je~potřeba k~dosažení spolehlivého ověření znalostí kombinovat testy s~jinými metodami ověřování znalostí a~dávat důraz na~získané schopnosti a~jejich aplikaci, nikoliv na~to, co~si~žák dokázal doslovně zapamatovat. Důležitá je i~práce s~chybou a~individuální přístup k~žákům. \cite{chraska:testy, Berkley2017LearningFromErrors}
             
-            Důležitý aspekt je~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek s~výběrem z~nabídnutých možností. Pokud je~cílem dobře ověřit znalosti, pak~je~nutné tvořit \emph{otázky} tak, aby nesprávné odpovědi vypadaly věrohodně. Také nesmíme zapomenout na to, aby odpovědi obsahovaly správné řešení (může být specifikováni zadáním).
+            Důležitý aspekt je~tvorba správných a~nesprávných odpovědí při~tvorbě (\emph{uzavřených}) otázek s~výběrem z~nabídnutých možností. Pokud je~cílem dobře ověřit znalosti, pak~je~nutné tvořit \emph{otázky} tak, aby nesprávné odpovědi vypadaly věrohodně. Také nesmíme zapomenout na to, aby odpovědi obsahovaly jedno či~více správných řešení (podle povahy dané~úlohy).
 
-            V~příkladu se~zaměřím na matematiku, zejména proto, že je to můj~druhý obor. Pokud budeme testovat např.~znalosti \emph{lineárních rovnic}, pravděpodobně necháme otázku s~otevřenou odpovědí, abychom zjistili, zda je~testovaný schopný odpověď vypočítat a~jak~při~tom postupuje. Ale může nastat situace, že~je~potřeba ověřit rychlý úsudek testovaného na~základě určité části učiva a~potom jsou mu nabídnuty možnosti. V~tomto případě je~potřeba, aby~nesprávné možnosti vypadaly věrohodně a~aby~testovaný nemohl jednoduše odhadnout správnou odpověď ale~k~odpovědi využil znalosti tématu.
+            V~příkladu se~zaměřím na matematiku, zejména proto, že jde~o jeden z~mých studovaných oborů. Pokud je~potřeba otestovat např.~znalosti \emph{lineárních rovnic}, bude pro zjištění, zda je~testovaný schopný odpověď vypočítat a~jak~při~tom postupuje, pravděpodobně použita \emph{otevřená otázka}. Může ale~nastat situace, že~je~potřeba ověřit rychlý úsudek testovaného na~základě určité části učiva, a~v~tom~případě jsou mu~nabídnuty možnosti, ze~kterých správné řešení vybíra. V~tomto případě je~také potřeba, aby~nesprávné možnosti vypadaly věrohodně a~aby~testovaný nemohl jednoduše odhadnout správnou odpověď ale~k~odpovědi využil znalosti tématu.
 
-            Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti je~možné definovat výpočtem z~koeficientů. Nebo~řekněme, že~budeme chtít, aby~výsledek odpovídal některému z~číselných oborů. Pro~žáky, kteří neumí počítat se~zlomky budeme chtít rovnici s~celočíselným výsledkem. Naopak pokud je~potřeba ověřit znalost postupu pro~výpočet kořenů kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~v~odpovědích obsáhnout i~imaginární složku~\cite{zhouf:tvorbamatproblemu}.
+            Možnostmi pro~odpovědi k~řešení lineární rovnice budou výsledné hodnoty proměnné (např.~$x$). Různé možnosti je~možné definovat výpočtem z~koeficientů. Nebo~bude potřeba, aby~výsledek odpovídal některému z~číselných oborů. Pro~žáky, kteří nemají~znalost počítání se~zlomky, je~potřeba vytvořit rovnici s~celočíselným výsledkem. Naopak pokud je~potřeba ověřit znalost postupu pro~výpočet kořenů kvadratické rovnice s~komplexními čísly, budeme chtít v~rovnici a~v~odpovědích obsáhnout i~imaginární složku~\cite{zhouf:tvorbamatproblemu}.
 
         \section{Nástroje k tvorbě testů}
             V~současnosti je~pro~účely tvorby testů používáno několik nástrojů, které se~liší svými možnostmi a~způsobem použití.
             
-            Na~internetu je~možné nalézt připravené sady otázek ke~stažení, které učitel jen~vytiskne. Další možností jsou jednotlivé příklady, ze~kterých učitel test sestaví, např.~pomocí textového procesoru. Pokud je~potřeba procvičovat test k~přijímacím zkouškám, materiál je~možné nalézt na~oficiálních webech společností \emph{CERMAT} nebo~\emph{SCIO}. Existují také různě obsáhlé sbírky úloh a~testů, které jsou vydávány jako~samostatné knihy pro~různé obory a~obtížnost učiva.
+            Na~internetu je~možné nalézt připravené sady otázek ke~stažení, které učitel jen~vytiskne. Další možností jsou jednotlivé příklady, ze~kterých učitel test sestaví, např.~pomocí textového procesoru. Při~tvorbě testů mohou učitelé také spolupracovat mezi~sebou a~otázky sdílet, osobně či~přes~internet např.~pomocí~sociálních sítí, fór, atp.
+            
+            Pokud je~potřeba procvičovat test k~přijímacím zkouškám, materiál je~možné nalézt na~oficiálních webech společností \emph{CERMAT} nebo~\emph{SCIO}. Existují také různě obsáhlé sbírky úloh a~testů, které jsou vydávány jako~samostatné knihy pro~různé obory a~obtížnost učiva.
 
-            Některé učebnice, které jsou používány ve~školách, mohou v~rámci verze pro~učitele obsahovat didaktické přílohy ve~kterých jsou testy k~použití připravené. Je~možné použít i~některá cvičení z~pracovních listů.
+            Některé učebnice, které jsou používány ve~školách, mohou v~rámci verze pro~učitele obsahovat didaktické přílohy, ve~kterých jsou testy k~použití připravené. Je~možné použít i~některá cvičení z~pracovních listů.
 
             Pokud si~učitel chce test vytvořit svépomocí, může používat klasické \emph{tabulkové procesory}, jako je~např.~\emph{Microsoft Excel}, \emph{LibreOffice Calc} nebo~\emph{Google Sheets}, anebo~\emph{textové procesory}, jako je~např.~\emph{Microsoft Word}, \emph{LibreOffice Writer} nebo \emph{Google Docs}. Grafické zadání je~potom možné vložit do~těchto souborů ve~formě obrázků.
 
             V~současnosti se~přímo nabízí do~tvorby otázek nebo i~celých testů zapojit \textbf{umělou inteligenci} (\acrdefprint[short]{AI}{Artificial Intelligence}). Pokud je~tedy~\emph{ChatGPT}, \emph{Google Gemini} (dřive \textbf{Bard}) nebo~jinému generativnímu jazykovému modelu zadáno vytvoření testových otázek na~konkrétní téma, ochotně je~připraví. Nicméně pokud uživatel neumí správně vytvářet dotazy (\textbf{prompty}~\cite{fapiPromptyChatGPT}), takto připravené otázky mohou být~nepřesné a~mohou obsahovat výrazné chyby. Proto se~nebudu touto možností v~této práci dále zabývat.
 
-            Je~také zajímavé (nejen pro~učitele) proces testování otočit a~nechat děti úlohy vytvořit. To~je přímo zapojí do~tvorby testů a~umožní jim~lépe pochopit a~motivovat ke~zvládnutí učiva~\cite{hedlovam:chybavresenim}.
+            Je~také zajímavé (nejen pro~učitele) proces testování otočit a~nechat děti úlohy vytvořit. To~je přímo zapojí do~tvorby testů a~umožní jim~učivo lépe pochopit a~motivovat~je ke~zvládnutí učiva~\cite{hedlovam:chybavresenim}.
 
             Je~možné otázky zadat např.~do~systému \emph{Moodle} a~využít jeho možností. \emph{Moodle} je~\emph{open--source} systém pro~správu vzdělávacích kurzů. Obsahuje mnoho funkcí, např.~možnost vytvářet různé typy testů, vygenerovaných z~předpřipravených statických otázek~\cite{drlik2013moodle}.
 
-            Přestože je~možné všechny tyto nástroje využívat, nejsou přímo určeny pro~tvorbu testů nebo~mají každý jinou množinu těchto funkcionalit, mohou vyžadovat speciální instalaci nebo mohou být pro~učitele příliš složité.
+            Přestože je~možné všechny tyto nástroje využívat, nejsou přímo určeny pro~tvorbu testů nebo~mají každý jinou množinu těchto funkcionalit, mohou vyžadovat speciální instalaci nebo~být pro~učitele příliš složité.
             
             I~proto tvořím aplikaci přímo zaměřenou na~správu a~generování otázek a~testů, kterou bude možné jednoduše integrovat do~dalších systémů pomocí~\acrshort{API}.
 
     \chapter{Technologie a principy vývoje webových aplikací}
-        V~dnešní době je~webová aplikace první volbou pro~většinu vývojářů, zejména protože~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu přes~webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji~instalovat na~každém zařízení zvlášť, stačí pouze otevřít prohlížeč na~dané adrese.
+        V~dnešní době je~webová aplikace první volbou pro~většinu vývojářů, zejména protože~webová aplikace je~dostupná z~jakéhokoliv zařízení, které má~přístup k~internetu přes~webový prohlížeč. Webová aplikace je~také snadno aktualizovatelná a~není potřeba ji~instalovat na~každém zařízení zvlášť, stačí pouze do~webového prohlížeče zadat adresu aplikace.
         
-        Vývojáři se~také nemusí starat o~kompatibilitu, jelikož webový prohlížeč je~dostupný na~všech hlavních platformách. Webová aplikace je~také snadno škálovatelná, protože je~uložena na~serveru a~uživatelé se~k~ní připojují. Navíc je~možné z~jednoho zdrojového kódu jednoduše sestavit aplikaci ve~verzích pro~různé platformy (Windows, Linux, Android, IOS,~\dots).~\cite{adobe:webapp}
+        Vývojáři se~také nemusí příliš starat o~kompatibilitu, jelikož webový prohlížeč je~dostupný na~všech hlavních platformách a~webové technologie jsou od~roku~1994 ve~většině hlavních prohlížečů standardizovány~(viz \url{https://www.w3.org/standards/}). Webová aplikace je~také snadno škálovatelná, protože je~uložena na~serveru a~uživatelé se~k~ní připojují. Navíc je~možné z~jednoho zdrojového kódu (např.~v~\acrshort{JS}) nechat jednoduše sestavit nativní\footnote{Aplikace sestavená a~spustitelná na~konkrétní platformě} aplikaci ve~verzích pro~různé platformy (Desktop, Android, IOS,~\dots).~\cite{adobe:webapp}
 
         Většina dnešních projektů je~tedy vyvíjena jako~\emph{MVC} webová \emph{aplikace}. Tím~je~možné~oddělit logiku aplikace od~jejího zobrazení, což~umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části a~je~možné pracovat s~různými technologiemi.
         
-        Obvykle není nutné tvořit aplikaci od~začátku (tzv.~\uv{na~zelené louce}). \uv{Pro frontend i~backend aplikace existuje na~webu velké množství použitelných materiálů. Ať~už~jsou to~různé grafické prvky nebo~serverové komponenty, to~vše je už~někde nejspíše hotové.}~\cite{itnetworkBestPractices}
+        Obvykle není nutné tvořit aplikaci od~začátku (tzv.~\textbf{na~zelené louce}). \uv{Pro~frontend i~backend aplikace existuje na~webu velké množství použitelných materiálů. Ať~už~jsou to~různé grafické prvky nebo~serverové komponenty, to~vše je už~někde nejspíše hotové.}~\cite{itnetworkBestPractices}
 
         \section{Základní statická HTML stránka}
             V~roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \acrshort{HTML}.
@@ -259,31 +259,31 @@
             
             Jednotlivé soubory na~různých adresách v~síti lze~také propojit pomocí \textbf{hypertextových odkazů}, které umožňují uživateli kliknutím přecházet z~jedné stránky na~druhou.
 
-            Jednotlivé \acrshort{HTML} stránky se~skládají z~\acrshort{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují jak má prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~skriptovací jazyk \acrshort{JS}, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře~\cite{berners:1989:proposal}.
+            Jednotlivé \acrshort{HTML} stránky se~skládají z~\acrshort{HTML} značek (\emph{prvků}), ale i~\emph{CSS} stylů, které určují, jak má~prohlížeč jednotlivé prvky stránky vykreslit uživateli. K~tomu se~přidává i~skriptovací jazyk \acrshort{JS}, který umožňuje přidat do~stránky dynamický obsah a~reagovat na~uživatelské akce jako kliknutí myši nebo~odeslání formuláře~\cite{berners:1989:proposal}.
 
-            Jednotlivé prvky je~možné také označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít~prvek více a~jednu třídu je~možné použít vícekrát, týž~identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti~\cite{jpw:tridy}.
+            Jednotlivé prvky je~také možné označit pomocí \emph{identifikátorů} a~\emph{tříd}, které se~používají pro~jejich identifikaci ve~stránce. Zatímco \emph{tříd} může mít~prvek více a~jednu třídu je~možné použít vícekrát, týž~identifikátor může být~použit v~dokumentu pouze jednou~--~měl by~být unikátní. \emph{Třídy} se~používají pro~označení skupiny prvků, které mají stejný vzhled nebo~funkcionalitu. Prvek může mít~více \emph{tříd} a~kombinovat tak jejich vlastnosti~\cite{jpw:tridy}.
 
         \section{Markdown}
             \acrdefprint{MD}{Markdown} je~textový formát, umožňující jednoduché formátování textu. Byl~vytvořen v~roce 2004 \textbf{Johnem Gruberem} ve~spolupráci s~\textbf{Aaronem Swartzem} s~cílem být co~nejčitelnější a~snadno převoditelný do~\acrshort{HTML}.
             
-            \acrshort{MD} používá formátování pomocí znaků, jako jsou hvězdičky (tučný text) nebo~podtržítka pro kurzívu. Je~oblíbený mezi~vývojáři a~dalšími uživateli webu pro~jeho jednoduchost a~čitelnost. \acrshort{MD} je~často používán na~platformách jako GitHub, Reddit, webových fórech nebo~blogovacích platformách, kde~umožňuje uživatelům snadno formátovat jejich texty~\cite{mdguide}.
+            \acrshort{MD} používá formátování pomocí znaků, jako jsou hvězdičky (tučný text) nebo~podtržítka pro kurzívu. Je~oblíbený mezi~vývojáři a~dalšími uživateli webu pro~jeho jednoduchost a~čitelnost. \acrshort{MD} je~často používán na~platformách jako Gitlab pro~psaní dokumentace ke~zdrojovým kódům nebo na~webových fórech nebo~blogovacích platformách, které~tak~umožňují uživatelům snadno formátovat jejich texty~\cite{mdguide}.
 
         \section{HTML s dynamickým obsahem}
-            \acrshort{HTML} stránky mohou mít i~dynamický obsah. To~znamená, že~se~obsah může~měnit podle toho, jak se~stránkou uživatel pracuje. Na~úrovni serveru je~možné vygenerovat \acrshort{HTML} stránku, která obsahuje dynamický obsah např.~data z~databáze.
+            \acrshort{HTML} stránky mohou mít i~dynamický obsah. To~znamená, že~je~obsah možné měnit podle toho, jak se~stránkou uživatel pracuje. Na~úrovni serveru je~možné vygenerovat~\acrshort{HTML} stránku, která obsahuje dynamický obsah např.~data z~databáze.
             
             V~dnešní době je~oblíbený přístup generovat výslednou stránku na~serveru a~pomocí \acrshort{JS} si~při~změnách od~\emph{serveru} vyžádat pouze data, nicméně v minulosti se~dynamický obsah generoval převážně na~serveru pomocí technologií jako~\acrdefprint{PHP}{Hypertext Preprocessor} nebo~\textbf{ASP.NET}, které na~serveru generují kompletní \acrshort{HTML} stránku i~s~načtenými daty~\cite{kantor_javascript, uc:ssrandssg}.
 
-            To~samozřejmě znamená, že~při~každé změně obsahu je~potřeba znovu kontaktovat server a~stránku znovu načíst do~prohlížeče. Také veškerá komunikace je~omezená na~požadavek od~klienta, na~který server pouze odpovídá a~nemá možnost samostatně zaslat zprávu (data) klientovi. Tento problém právě adresuje \acrshort{JS}. Dokáže zasílat požadavky na~server \textbf{asynchronně} a~na~základě odpovědi mění obsah celé stránky nebo její~části. Díky metodám, jako je~\acrdefprint{AJAX}{Asynchronous Javascript Requests} ~\cite{ajax:mdn} je~možné komunikovat se~serverem i~bez~načítání celé stránky.
+            To~samozřejmě znamená, že~při~každé změně obsahu je~nutné znovu kontaktovat server a~stránku znovu načíst do~prohlížeče a~celou vykreslit. Také je~veškerá komunikace omezená na~požadavek od~klienta a~odpověď serveru, který~nemá možnost samostatně zaslat zprávu (data) klientovi. Tento problém adresuje \acrshort{JS}. Dokáže zasílat požadavky na~server \textbf{asynchronně} a~na~základě odpovědi mění obsah celé stránky nebo její~části. Díky metodě~\acrdefprint{AJAX}{Asynchronous Javascript Requests}~\cite{ajax:mdn} je~možné komunikovat se~serverem i~bez~načítání celé stránky.
 
-            To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze se~načtou data ze~serveru a~na~stránce se~upraví~obsah. To~je~rychlejší a~příjemnější pro~uživatele.
+            To~znamená, že~když např.~uživatel klikne na~tlačítko, nemusí se~stránka znovu načítat celá, pouze jsou~odeslána data z~vyplněného formuláře a~ve~stránce je~zobrazena odpověď ze~serveru. To~je~rychlejší a~příjemnější pro~uživatele. Navíc to~snižuje zátěž na~vykreslování stránky na~straně serveru.
 
             Server může~--~samozřejmě po~povolení ze~strany uživatele~--~zasílat zprávy na~klientské zařízení a~vyžádat~si~reakci klienta díky \acrdefprint{SSE}{Server Sent Events}~\cite{whatwg_sse, sse:mdn} nebo~udržovat obousměrné spojení pomocí \acrdefprint{WS}{Web Socket}, čehož využívají např.~aplikace pro~přímý přenos videa (livestream), online hry nebo~platformy pro~internetové hovory a~chaty~\cite{websocket:mdn}.
         \section{Single Page Application}
-            \acrdefprint{SPA}{Single Page Application} je~aplikace, která se~načte pouze jednou a~poté pouze aktualizujeme její~obsah pomocí technologie \acrshort{AJAX}. Většinou k~práci s~daty využívá nějaké \acrshort{API}.
-
-            \textbf{Serverless aplikace} využívají k~zajištění některých (nebo všech) svých~funkcí již~připravené \acrshort{API} služeb třetích stran, např.~\textbf{Google Firebase} nebo \textbf{Amazon Web Services}, což~usnadňuje vývoj a~umožňuje vývojářům se~soustředit na~vývoj aplikace a~ne~na~správu serveru.
+            \acrdefprint{SPA}{Single Page Application} je~aplikace, která je~prohlížečem načtena pouze jednou a~poté pouze aktualizuje její~obsah pomocí technologie \acrshort{AJAX}. Většinou k~práci s~daty využívá nějaké \acrshort{API}.
             
             \textbf{Statické SPA} jsou vygenerovány na~serveru a~obsahují všechny potřebné zdroje. Jde~o~\emph{statickou webovou stránku}, která je~vytvořena pomocí \acrshort{HTML}, \acrshort{CSS} a~\acrshort{JS}.
+
+            \textbf{Serverless aplikace} využívají k~zajištění některých (nebo všech) svých~funkcí již~připravené \acrshort{API} služeb třetích stran, např.~\textbf{Google Firebase} nebo \textbf{Amazon Web Services}, což~usnadňuje vývoj a~umožňuje vývojářům soustředit~se na~vývoj aplikace, a~neřešit tolik správu serveru a~psaní \acrshort{BE}.
         
         \section{Kompilátor a interpret}
             Pro~lepší pochopení programování aplikací je~potřeba ujasnit rozdíl mezi kompilovaným a~interpretovaným jazykem. Souvisí to~se~způsobem, jakým se~programy vykonávají.
