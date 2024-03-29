@@ -317,13 +317,13 @@
                 \item[Generování kódu] Z~\acrshort{AST}, je~možné generovat výsledný \emph{program} nebo~požadovanou formu dat.~\cite{baeldungCompilersWork, compilers}
             \end{description}
 
-            \emph{Překladač} umožňuje k~optimalizaci používat výrazy, které jsou vyhodnoceny během překladu a~nezatěžují tolik aplikaci při~běhu. Může~jít o~různá \textbf{makra}, která jsou~provedena již~během překladu nebo použití konstantních výrazů, které jsou v~kódu přímo nahrazeny. Některé jazyky (např.~Zig) umožňují i~přímé vyhodnocení kódu. 
+            \emph{Překladač} umožňuje k~optimalizaci používat výrazy, které jsou vyhodnoceny během překladu a~nezatěžují tolik aplikaci při~běhu. Může~jít o~různá \textbf{makra}, která jsou~provedena již~během překladu, nebo použití konstantních výrazů, které jsou v~kódu přímo nahrazeny. Některé jazyky (např.~Zig pomocí \texttt{comptime}) umožňují i~přímé vyhodnocení kódu během kompilace. 
 
-            V~kontextu \textbf{kompilátorů} a~\textbf{optimalizace} kódu jsou tzv.~\textbf{bytové masky} a~další práce s~bitovou reprezentací čísel na~nejnižší úrovni. Použití instrukcí v~jazyce strojových instrukcí \acrdefprint{ASM}{Assembler} pro~bitové maskování umožňuje vývojářům přesně specifikovat, jaké operace s~pamětí mají být~vykonány, což~vede ke~zvýšení výkonu a~efektivity programu.
+            V~kontextu \textbf{kompilátorů} a~\textbf{optimalizace} kódu jsou tzv.~\textbf{bitové masky} a~další práce s~bitovou reprezentací čísel na~nejnižší úrovni výhodné. Použití instrukcí v~\acrdefprint{JSI}{Jazyce Strojových Instrukcí} (\acrdefprint{ASM}{Assembler}) pro~bitové maskování umožňuje vývojářům použít elementární instrukce procesoru pro~práci s~čísly (v~tomto případě převážně instrukce \texttt{AND}), což~vede ke~zvýšení výkonu a~efektivity programu.
 
             V~jazyce \emph{Go} je~možné využít koncept \texttt{\textbf{iota konstant}}, což~je obdoba \textbf{výčtových typů} v~jiných jazycích, viz \ref{code:iota}.a. Díky němu je~možné vytvořit řady číselných konstant, kde je~každému prvku automaticky přiřazena následující číselná hodnota. Díky \texttt{iota} je~možné také udržovat násobky čísel nebo~\textbf{bitový posun} hodnot. Počítač navíc rychleji pracuje s~čísly než~s~řetězci nebo~jinými typy. Díky použití konstant \emph{iota} je~možné číselné identifikátory v~kódu označit textově a~při~\emph{kompilaci} budou nahrazeny příslušnými čísly.
 
-            To~využívá např.~systém Linux při~určování práv k~souborům, viz \ref{code:iota}.b.
+            To~využívá např.~systém Linux při~určování práv k~souborům. Ukázka použití v~aplikaci pro generování testů je~vidět v~kódu~\ref{code:iota}.b.
 
             \begin{code}
                 \centering
@@ -379,7 +379,7 @@ func (u *User) UserCan(p Permissions) bool {
 
             Tato technika je~často používaná pro definici \textbf{bitových masek}, které jsou poté využívány k~testování, nastavování nebo~odstranění specifických \emph{bitů}. Tyto~operace jsou navíc velmi rychlé, jelikož \textbf{bitové operace} jsou~elementární instrukce procesoru. Použití \emph{iota} v~kombinaci s~\textbf{operátorem} \texttt{<<} umožňuje posunovat číslo o~bit, tedy navýší mocninu čísla 2.
             
-            Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Pokud je~navíc potřeba zkontrolovat více oprávnění, použijeme bitový součet, který je při~překladu nahrazen konečným číslem, čímž se~sníží počet operací potřebných ke~kontrole. Význam \emph{iota} a~operací s~bitovými maskami tak~přesahuje jen~oblast kompilátorů, ale~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
+            Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Pokud je~navíc potřeba zkontrolovat více oprávnění, použijeme bitový součet, který je při~překladu nahrazen konečným číslem, čímž se~sníží počet operací potřebných ke~kontrole. Význam \emph{iota} a~operací s~bitovými maskami tak~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
 
         \section{Procedurální a~objektově orientované programování}
             \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.~\textbf{návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} je~pouze část kódu, která se~vkládá do~běhu programu a~pouze vykoná své~instrukce, nemá \emph{návratovou hodnotu}, může mít pouze \emph{vedlejší efekt}.
@@ -390,21 +390,21 @@ func (u *User) UserCan(p Permissions) bool {
             
             \emph{OOP (objektově orientované programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~\emph{OOP} se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vznikají ze~tříd. Třída je~předpis, podle kterého je~vytvořen (\emph{inicializován}) konkrétní~objekt.
             
-            \emph{OOP} má~4~základní vlastnosti, které se~při vývoji využívají~\cite{Keogh:OOP}.
+            \emph{OOP} má~4~základní vlastnosti, které jsou~při vývoji využívány~\cite{Keogh:OOP}.
             \begin{description}
-                \item[Zapouzdření] objekty mohou své~vlastnosti a~metody, skrýt před~okolním světem. To~umožňuje měnit vnitřní strukturu objektu bez~nutnosti měnit ostatní části programu.
+                \item[Zapouzdření] objekty mohou své~vlastnosti a~metody skrýt před~zbytkem programu a~jinými objekty. To~umožňuje měnit vnitřní stav objektu bez~nutnosti měnit ostatní části programu.
                 \item[Dědičnost] objekty mohou dědit vlastnosti a~metody od~jiných objektů. To~umožňuje znovupoužití kódu a~zjednodušení programu.
                 \item[Polymorfismus] objekty mohou mít stejné~vlastnosti a~metody, ale mohou se~lišit v~implementaci. To~umožňuje vytvářet obecné~třídy, které mohou být použity pro~více konkrétních případů.
                 \item[Abstrakce] nemusí být~implementována plná funkcionalita třídy a~nelze ji~samostatně \emph{inicializovat}. To~umožňuje vytvářet obecné (tzv.\emph{bázové})~třídy, které mohou být použity jako vzor pro~odvození jiných konkrétních tříd, využívajících jejich vlastnosti a~metody.
             \end{description}
 
-            Jazyk~\emph{Go} (Golang) podporuje~\emph{OOP} nepřímo a~pouze~částečně. Jde o~jazyk \emph{strukturovaný}, nikoliv \emph{objektově orientovaný}. Některých vlastností \emph{OOP} ale~je~možné dosáhnout pomocí použití \emph{struktur} a~\textbf{rozhrání} (\textbf{interface}). Metody na~strukturách je~možné vytvořit za~pomocí tzv.~\textbf{funkcí na~struktuře} (\textbf{receiver function}) a~imitovat tím~běžnou funkcionalitu \emph{metod}~\cite{go:OOP, Scott2019:programmingpragmatics}.
+            Jazyk~\emph{Go} (Golang) podporuje~\emph{OOP} nepřímo a~pouze~částečně. Jde o~jazyk \emph{strukturovaný}, nikoliv \emph{objektově orientovaný}. Některých vlastností \emph{OOP} ale~je~možné dosáhnout pomocí použití \emph{struktur} a~\textbf{rozhraní}. Metody na~strukturách je~možné vytvořit za~pomocí tzv.~\textbf{funkcí na~struktuře} (\textbf{receiver function}) a~imitovat tím~běžnou funkcionalitu \emph{metod}~\cite{go:OOP, Scott2019:programmingpragmatics}.
 
-            Výraz \emph{rozhrání} běžně definuje komunikaci mezi objekty, viz~kapitola věnovaná~\acrshort{API}. V~případě \emph{OOP} definují vzor, podle kterého je~potřeba implementovat budoucí třídy~\cite{go:OOP}.
+            Výraz \emph{rozhraní} běžně definuje komunikaci mezi objekty, viz~kapitola věnovaná~\acrshort{API}. V~případě \emph{OOP} definují vzor, podle kterého je~potřeba implementovat budoucí třídy~\cite{go:OOP}.
             
-            \acrshort{JS} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze kterého vycházel a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript, Scott2019:programmingpragmatics}.
+            \acrshort{JS} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze kterého vychází, a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript, Scott2019:programmingpragmatics}.
             
-            V~příkladě \ref{code:classoop} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \acrshort{JS} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \emph{Interface} (rozhraní) zajišťují kontrolu, že~na~daném typu~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody a~je~možné jej~používat zamýšleným způsobem např.~ve~funkci.~\cite{go:OOP}
+            V~příkladě \ref{code:classoop} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \acrshort{JS} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \textbf{Rozhraní} (\textbf{interface}) zajišťují kontrolu, že~na~dané struktuře~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody, a~je~možné jej~používat zamýšleným způsobem, např.~v~parametru funkce. Je~také možné vytvořit více typů, které odpovídají stejnému rozhraní~\cite{go:OOP}.
 
             \begin{code}
                 \centering
@@ -488,7 +488,7 @@ func (a *AnimalBase) makeSound() {
     fmt.Printf("My name is %s and I go %s\n", a.name, a.sound)
 }
 
-// a musí implementovat rozhrání (interface) Animal
+// a musí implementovat rozhraní Animal
 func animalMakeSound(a Animal) {
     a.makeSound()
 }
@@ -515,27 +515,27 @@ func main() {
         \section{Javascript}
             \acrdefprint{JS}{Javascript} je~\emph{skriptovací} jazyk, který se~používá k~tvorbě interaktivních webových stránek. Dokáže reagovat na~uživatelské akce, jako je~kliknutí, a~tedy na~rozdíl od~statické podoby \acrshort{HTML} stránky dokáže měnit obsah podle toho, jak~uživatel se~stránkou pracuje bez~nutnosti nového požadavku na~server.
 
-            Vznikl v~roce 1995 a~jeho tvůrci jsou \emph{Brendan Eich} a~společnost \emph{Netscape}. \acrshort{JS} (resp.~\acrshort{TS}) je~podle~--~průzkumů síte \textbf{Stack Overflow}~--~v~současnosti nejpoužívanějším programovacím jazykem na~světě používaným nejen pro~tvorbu webových aplikací, ale i~pro~tvorbu \emph{nativních} a~dokonce některých \emph{embedded} aplikací, což jsou programy určené pro~konkrétní elektronická zařízení s~konkrétním účelem, např.~rozhrání pro~dotyková zařízení (GPS, televize, kontrolní panel v~autě~ap.).
+            Vznikl v~roce~1995 a~jeho tvůrci jsou \emph{Brendan Eich} a~společnost \emph{Netscape}. \acrshort{JS} (resp.~\acrshort{TS}) je~podle~--~průzkumů síte \textbf{Stack Overflow}~--~v~současnosti nejpoužívanějším programovacím jazykem na~světě používaným nejen pro~tvorbu webových aplikací, ale i~pro~tvorbu \emph{nativních} a~dokonce některých \emph{embedded} aplikací, což~jsou programy určené pro~konkrétní elektronická zařízení s~konkrétním účelem, např.~rozhraní pro~dotyková zařízení (GPS, televize, kontrolní panel v~autě~ap.).
 
-            Díky spouštěčům \acrshort{JS} (tzv.~\emph{enginy}), je~možné spouštět \acrshort{JS} na~různých platformách. V~prohlížeči ale i~na~serveru nebo i~na~mikrokontrolerech. Jeden jazyk tak~zvládne pokrýt většinu potřeb, které může autor aplikace při~vývoji pro~různé platformy mít.
+            Díky spouštěčům \acrshort{JS} (tzv.~\emph{enginy}), je~možné spouštět \acrshort{JS} na~různých platformách. V~prohlížeči, ale i~na~serveru nebo i~na~mikrokontrolerech. Jeden jazyk tak~zvládne pokrýt většinu potřeb, které může autor aplikace při~vývoji pro~různé platformy mít.
 
             \acrshort{JS} dokáže příkazy zpracovávat \emph{synchronně} (sekvenčně) i~\emph{asynchronně} (paralelně). \textbf{Synchronní} zpracování znamená, že~se~příkazy vykonávají postupně, tak, jak jsou zapsány ve~skriptu. \textbf{Asynchronní} zpracování naopak znamená, že~se~příkazy vykonávají nezávisle na~sobě, tedy spuštění dalšího příkazu nečeká na~dokončení předchozího. To~je~užitečné např.~při~načítání dat ze~serveru, které může trvat delší dobu. V~tomto případě je~možné spustit \emph{asynchronní akce} a~pokračovat ve~zpracování sekvence příkazů programu. Když dojde k~dokončení \emph{asynchronní akce}, vykoná~se příkaz, který na~její dokončení čeká. V~rámci \emph{asynchronní operace} je~možné čekat na~dokončení více akcí~\cite{ajax:mdn, Scott2019:programmingpragmatics}.
 
             Zpracování \acrshort{JS} je~rozděleno do~dvou částí;
             
-            První částí je~\textbf{\acrshort{JS} engine} (\textbf{běhové prostředí}), které zpracovává \acrshort{JS} kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\textbf{Web APIs}, které umožňují využívat funkce prohlížeče, systému a~další {asynchronní} operace. Jde~o~instrukce, poskytované nikoliv \acrshort{JS} enginem ale~webovým prohlížečem nebo~operačním systémem. Jde~např.~o~přístupu k~\emph{DOMu}, kameře, mikrofonu nebo veškeré asynchronní operace, jako je~načítání dat ze~serveru. Jde~převážně o~asynchronní operace a~služby systému, jako~např.~použití mikrofonu nebo~přístup k~souborovému systému~\cite{kantor_javascript}.
+            První částí je~\textbf{\acrshort{JS} engine} (\textbf{běhové prostředí}), které zpracovává \acrshort{JS} kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\textbf{Web APIs}, které umožňují využívat funkce prohlížeče, systému a~další {asynchronní} operace. Jde~o~instrukce, poskytované nikoliv \acrshort{JS} \emph{enginem}, ale~webovým prohlížečem nebo~operačním systémem. Jde~např.~o~přístup ke~struktuře~\acrshort{DOM}, kameře, mikrofonu nebo asynchronním operacím, jako je~načítání dat ze~serveru. Jde~převážně o~asynchronní operace a~služby systému, jako~např.~použití mikrofonu nebo~přístup k~souborovému systému~\cite{kantor_javascript}.
 
         \section{Typescript}
-            Jednou z~nevýhod \acrshort{JS} je, že~není typově bezpečný. To~znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné a~funkce použity správně a~jednotlivé typy je~dokonce možné za~běhu měnit. To~může vést k~chybám, které se~projeví až~při~spuštění programu, což~je~pro~větší projekty nežádoucí a~proto se~používají nástroje, které typově bezpečné jsou a~po~kontrole jsou přeloženy (\emph{transpilovány}) zpět do~\acrshort{JS}. Jedním z~těchto nástrojů je~jazyk~\acrshort{TS}. Kromě typové kontroly přináší \acrshort{TS} i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují její~výkon.
+            Jednou z~nevýhod \acrshort{JS} je, že~není typově bezpečný. To~znamená, že~není možné při~překladu zkontrolovat, zda~jsou všechny proměnné a~funkce použity správně, a~jednotlivé typy je~dokonce možné za~běhu měnit. To~může vést k~chybám, které se~projeví až~při~spuštění programu, což~je~pro~větší projekty nežádoucí, a~proto se~používají nástroje, které typově bezpečné jsou a~po~kontrole jsou přeloženy (\emph{transpilovány}) zpět do~\acrshort{JS}. Jedním z~těchto nástrojů je~jazyk~\acrshort{TS}. Kromě typové kontroly přináší \acrshort{TS} i~další výhody a~optimalizace, které zjednodušují vývoj a~zvyšují její~výkon, a~přidává další výhody oproti použití pouze~\acrshort{JS}.
 
-            \acrshort{TS} přidává do~\acrshort{JS} statickou kontrolu typů, což~znamená, že~proměnné mají přiřazený datový typ, který se~při~běhu aplikace nemění a~jejich použití \acrshort{TS} kontroluje během vývoje, což~by~v~\acrshort{JS} normálně neprobíhalo. Díky kontrole typů je~možné provést při~překladu kontrolu, zda~jsou všechny proměnné a~funkce použity správně, což~výrazně redukuje množství chyb a~výpadků během provozu aplikace. Navíc umožňuje bezpečně používat některé nové vlastnosti \acrshort{JS}, které ještě nejsou podporovány ve~všech prohlížečích tím, že~novou funkcionalitu přepíše pomocí nástrojů dostupných ve~starších standardech jazyka. Také umožňuje tvořit vlastní typy a~struktury, které pomohou v~rámci zpracování \acrshort{AJAX} požadavků. Díky tomu je~možné v~\acrshort{IDE} používat automatické doplňování vlastností objektů a~mít tak~lepší přehled o~konkrétních položkách ve~strukturách dat. Mmj.~je~eliminována možnost chyby v~zápisu názvu položky.
+            \acrshort{TS}~přidává do~\acrshort{JS} statickou kontrolu typů, což~znamená, že~proměnné mají přiřazený datový typ, který se~při~běhu aplikace nemění, a~jejich použití~\acrshort{TS} kontroluje během vývoje, což~by~v~\acrshort{JS} normálně neprobíhalo. Díky kontrole typů je~možné provést při~překladu kontrolu, zda~jsou všechny proměnné a~funkce použity správně, což~výrazně redukuje množství chyb a~výpadků během provozu aplikace. Navíc umožňuje bezpečně používat některé nové vlastnosti \acrshort{JS}, které ještě nejsou podporovány ve~všech prohlížečích tím, že~novou funkcionalitu přepíše pomocí nástrojů dostupných ve~starších standardech jazyka. Také umožňuje tvořit vlastní typy a~struktury, které pomohou v~rámci zpracování \acrshort{AJAX} požadavků. Díky tomu je~možné v~\acrshort{IDE} používat automatické doplňování vlastností objektů a~mít tak~lepší přehled o~konkrétních položkách ve~strukturách dat. Mmj.~je~eliminována možnost chyby v~zápisu názvu položky.
 
             \acrshort{TS} je~po~kontrole přeložen (\emph{transpilován}) zpět do~vybrané verze \acrshort{JS}. \cite[Get started/TypeScript for the New Programmer]{TypeScript}
 
         \section{Document Object Model}
             \acrdefprint{DOM}{Document Object Model} je~\emph{objektový model dokumentu}, který vytváří konkrétní prohlížeč na~základě \emph{HTML kódu} stránky před~samotným vykreslením stránky uživateli. Jednotlivé \acrshort{HTML} prvky jsou reprezentovány objekty, tzv.~\emph{uzly}. \acrshort{DOM} obsahuje \emph{objekty} (uzly) vytvořené z~jednotlivých prvků v~\acrshort{HTML} kódu. K~nim pak~prohlížeč přiřadí \acrdefprint[short]{CSS}{Cascading Style Sheet} styly a~nakonec \textbf{prohlížečové jádro} vykreslí stránku na~obrazovku uživatele~\cite{berman2014dom, MDN:DOM, w3c:DOM}.
             
-            K~DOMu je~potom možné přistupovat přes~\acrshort{JS} pomocí globálních objektů \texttt{document} a~\texttt{window}, pomocí kterých je~možné aktivně měnit obsah stránky včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce.\cite{kantor_javascript}
+            K~DOMu je~potom možné přistupovat přes~\acrshort{JS} pomocí globálních objektů \texttt{document} a~\texttt{window}, pomocí kterých je~možné aktivně měnit obsah stránky včetně stylů nebo sledovat uživatelské akce a~na~jejich základě spouštět vlastní funkce~\cite{kantor_javascript}.
         
         \section{React}
             \emph{React} je~oblíbená knihovna pro~tvorbu \emph{uživatelského rozhraní}. Je~vyvíjena společností \emph{Facebook} a~je~používána při~vývoji mnoha webových aplikací. Je~oblíbená pro~svou jednoduchost a~rychlost. Je~také dobře dokumentovaná a~má~velkou komunitu, která ji~podporuje.
@@ -546,7 +546,7 @@ func main() {
             
             Existuje mnoho nástrojů, které usnadňují vývoj aplikací v~\emph{Reactu}, jako např.~\textbf{Create React App} (zkráceně \textbf{CRA}), nebo komplexnější nástroje jako~\textbf{NextJS} a~\textbf{Vite}. Externí moduly je~možné v~aplikacích používat pomocí balíčkovacích systémů, např.~\textbf{yarn}.
 
-            Jednotlivé \emph{komponenty} mohou mít svůj vlastní \textbf{stav}, který se~může měnit, což~umožňuje vytvářet interaktivní aplikace. Komponenty mohou být \textbf{funkční} nebo \textbf{třídní}. \emph{Funkční} komponenty jsou jednodušší a~práce s~nimi je~rychlejší. \emph{Třídní komponenty} jsou mírně složitější ale nabízejí k~použití všechny výhody Reactu. \emph{Funkcionální} komponenty mohou k~dosažení podobné funkcionality jako \emph{třídní} využívat tzv.~\textbf{Hooks}. \emph{Hooks} jsou stále ve~vývoji a~vývojáři používají \emph{třídní} komponenty, pokud potřebují využít některé funkce, které \emph{Hooks} zatím nepodporují.
+            Jednotlivé \emph{komponenty} mohou mít svůj vlastní \textbf{stav}, který se~může měnit, což~umožňuje vytvářet interaktivní aplikace. Komponenty mohou být \textbf{funkční} nebo \textbf{třídní}. \emph{Funkční} komponenty jsou jednodušší a~práce s~nimi je~rychlejší. \emph{Třídní komponenty} jsou rozsáhlejší, ale nabízejí k~použití všechny výhody Reactu. \emph{Funkční} komponenty mohou k~dosažení podobné funkcionality jako~\emph{třídní} komponenty využívat tzv.~\textbf{hooks}. \emph{Hooks} jsou stále ve~vývoji a~vývojáři používají \emph{třídní} komponenty, pokud potřebují využít některé funkce, které \emph{Hooks} zatím nepodporují.
 
             \emph{Komponenty} mohou obsahovat další (\emph{vnořené}) komponenty. To~se~nazývá \emph{zanořování} (\emph{nesting}). To~umožňuje vytvářet složitější komponenty s~více vnořenými prvky. S~použitím \texttt{React.createElement} (\url{https://react.dev/reference/react/createElement}) pro~každý prvek by~ale~takový kód byl~složitě čitelný. Proto je k~dispozici zjednodušený zápis v~souborech~\emph{JSX}.
 
@@ -720,7 +720,7 @@ const App = () => {
             Je~také možné využít komunikaci přes~\acrshort{WS} nebo~nedávno~přidané~\acrshort{SSE}~\cite{whatwg_sse, sse:mdn}
 
         \section{Application Interface}
-            \acrdefprint{API}{Application Programming Interface} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi. V~případě webových aplikací se~jedná o~rozhraní mezi \acrshort{FE} a~\acrshort{BE}. Některá \emph{rozhrání} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
+            \acrdefprint{API}{Application Programming Interface} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi. V~případě webových aplikací se~jedná o~rozhraní mezi \acrshort{FE} a~\acrshort{BE}. Některá \emph{rozhraní} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
             
             Někerá \acrshort{API} jsou veřejná a~umožňují komunikaci s~aplikacemi třetích stran. Např.~\acrshort{API} Google Firebase, Microsoft Azure nebo Amazon Web Services umožňují tvorbu tzv.~Serverless aplikací, kde~vývojář tvoří pouze \acrshort{FE} a~o~zbytek se~stará externí služba. To~umožňuje vývojářům se~soustředit na~vývoj aplikace a~nemusí se~starat o~infrastrukturu, která je~potřeba pro~běh aplikace.
 
@@ -731,7 +731,7 @@ const App = () => {
             Výhodou \emph{gRPC} je, že autor aplikace pouze definuje služby a~jejich rozhraní a~\emph{gRPC} vygeneruje veškerý potřebný kód pro~jazyk, který používáme. Také je~díky efektivnější komunikaci rychlejší než~jiné~přístupy. Bohužel je~k~jeho použití nutné se~naučit novému přístupu k~přenosu~dat a~jazyku definice služeb \emph{protobuf}~\cite{thenewstackBuildRealWorld}.
 
         \section{Representational state transfer}
-            \acrdefprint{REST}{Representational State Transfer} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhrání. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
+            \acrdefprint{REST}{Representational State Transfer} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhraní. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
             
             \acrshort{REST} je~bezstavový, což~znamená, že~každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi. To~umožňuje jednodušší testování a~ladění aplikace a~trochu snižuje zátěž serveru. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je~sice při~tvorbě \acrshort{REST}~\acrshort{API} doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \textbf{Cookies} nebo \textbf{Session} je~v~případě potřeby možné využívat.
             
@@ -968,7 +968,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             \subsection{Sledování chyb nahlášených uživateli}
                 Pokud uživatel narazí na~chyby v~aplikaci, měl~by~je~mít~možnost nahlásit. Vývojář má~potom lepší možnost tyto chyby sledovat a~opravit~je.
 
-                Podobný je~i~případ požadavků na~nové funkce. Uživatel by~měl mít~možnost požádat o~novou funkci nebo zlepšení stávajících,
+                Podobný je~i~případ požadavků na~nové funkce. Uživatel by~měl mít~možnost požádat o~novou funkci nebo~zlepšení stávajících,
                 aby~vývojář mohl aplikaci dále rozvíjet.
 
             \subsection{Běhové a kompilační chyby}
@@ -983,7 +983,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 Proto je~nutné aplikaci testovat, chyby zaznamenávat i~se~vstupními daty a~opravovat~je. To~je~důležitá část vývoje aplikace. Jeden z~nástrojů, které efektivní sledování chyb~umožňují, je~\emph{Sentry}.
 
             \subsection{Sentry}
-                \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhrání potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~tomto případě \acrshort{JS} a \emph{Go}. Ale funguje i~v~dalších jazycích. Existuje~také modul pro~integraci s~frameworkem \emph{Gin}, což~umožňuje získat i~informace o~\acrshort{HTTP} požadavku a~stavu serveru, který chybě předcházel.
+                \emph{Sentry} je~nástroj, který umožňuje zachytávat chyby za~běhu aplikace. Pomocí webového rozhraní potom může vývojář (nebo jeho tým) sledovat chyby, které se~vyskytly za~chodu~aplikace. \emph{Sentry} umožňuje sledovat chyby v~různých jazycích, jako v~tomto případě \acrshort{JS} a \emph{Go}. Ale funguje i~v~dalších jazycích. Existuje~také modul pro~integraci s~frameworkem \emph{Gin}, což~umožňuje získat i~informace o~\acrshort{HTTP} požadavku a~stavu serveru, který chybě předcházel.
                 
                 V~každém z~těchto jazyků umožní \emph{Sentry} sledovat chyby specifické pro~daný jazyk a~tím zjednodušit opravu chyb. Např.~v~případě \acrshort{JS} umožní sledovat akce, které uživatel provedl před tím, než došlo k~chybě. Chyby z~\acrshort{BE} i~\acrshort{FE} aplikace se~uloží na~jedno místo a~je~tak pro~celý tým jednodušší s~nimi pracovat.
 
@@ -1030,7 +1030,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Pro překlad aplikace se~používají \emph{lokalizační soubory}, které obsahují překlady jednotlivých textů aplikace. Každý jazyk má~svůj soubor, který se~načítá při~spouštění aplikace. Pokud překlad není nalezen, použije se~původní text.
 
-            V~rámci \acrshort{BE} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. Na~\acrshort{FE} pak~celé \emph{uživatelské rozhrání (UI)}, které bude uživatel používat.
+            V~rámci \acrshort{BE} aplikace je~potřeba přeložit zejména e-mailové zprávy a~hlášky, které budou odesílány uživatelům. Na~\acrshort{FE} pak~celé \emph{uživatelské rozhraní (\acrshort{UI})}, které bude uživatel používat.
 
         \section{Unified Modeling Language}
             \acrdefprint{UML}{Unified Modeling Language} je~standardizovaný grafický jazyk pro~modelování softwarových systémů. První verze byla vydána v~roce 1997 a~od~té~doby se~stala standardem pro~modelování softwarových systémů. Základem \emph{UML} je~\emph{UML diagram}, který slouží k~vizualizaci návrhu aplikace. Výhoda použití \emph{UML} je mmj.~v~tom, že~k~modelování není použitý konkrétní jazyk, takže jej~může vytvořit \emph{softwarový návrhář} a~\emph{vývojář} následně aplikaci implementuje podle požadavků z~návrhu.
@@ -1272,7 +1272,7 @@ class dataLoader extends Endpoints{
             
             V~mém~případě jde~o~\emph{MySQL} \emph{engine} \textbf{InnoDB}, který ukládá strukturu a~data v~souborech s~příponou~\texttt{*.ibd}~\cite{MySQLInnoDB}.
             
-            \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \acrshort{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \acrshort{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhrání k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
+            \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \acrshort{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \acrshort{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhraní k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
 
             Pokud je~potřeba nějaké složitější operace, je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
 
@@ -1486,7 +1486,7 @@ class dataLoader extends Endpoints{
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\acrshort{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~načíst data uživatele do~paměti programu a~vzdálené odhlášení v~případě podezřelého přístupu k~účtu.
 
         \section{Frontend}
-            \acrshort{FE} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \acrshort{TS}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro~lepší přístupnost aplikace a~\acrshort{SEO}, využiju k~tvorbě komponent některý z~\acrshort{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~myšlenkou přístupnosti pro~slabozraké či~využívající čtecí zařízení, což~zjednoduší práci při~tvorbě uživatelského rozhrání.
+            \acrshort{FE} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \acrshort{TS}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro~lepší přístupnost aplikace a~\acrshort{SEO}, využiju k~tvorbě komponent některý z~\acrshort{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~myšlenkou přístupnosti pro~slabozraké či~využívající čtecí zařízení, což~zjednoduší práci při~tvorbě \acrshort{UI}.
 
             Ke~kontrole přístupnosti využiji rozšíření \textbf{Wave} (\url{https://wave.webaim.org/extension/})
 
@@ -1538,7 +1538,7 @@ class dataLoader extends Endpoints{
 
             \emph{Router} je~zodpovědný také za~zobrazení chybové hlášky v~případě, že~uživatel zadá neexistující adresu (\emph{HTTP chyba 404}) nebo~se~snaží k~přístupu ke~stránce, ke~které nemá oprávnění (\emph{HTTP chyba 403}). V~takovém případě je~nutné uživatele informovat, že~došlo k~chybě a~případně mu~doporučit, co~může dělat dál a~zaznamenat chybu do~logů (tzv.~\emph{zalogovat}).
             
-            \acrdefprint{UI}{User Interface} (\textbf{uživatelské rozhrání}) bude~vytvořeno s~použitím knihovny \acrdefprint{TW}{Tailwind CSS}. \acrshort{TW} je~\textbf{utility-first} knihovna. Soustředí~se na~poskytnutí jednoduchých prvků prostřednictvím \acrshort{CSS} tříd, které je~možné ke~komponentám přidávat. Skládáním těchto tříd je~možné vytvořit potřebný vzhled komponent. \acrshort{TW} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. Pro~výslednou podobu aplikace potom \acrshort{TW} vytvoří \acrshort{CSS} kód pouze z~použitých tříd, čímž ještě omezí množství dat, které jsou přenášeny v~podobě stylů~\cite{Rappin2022ModernCSSTailwind}.
+            \acrdefprint{UI}{User Interface} (\textbf{uživatelské rozhraní}) bude~vytvořeno s~použitím knihovny \acrdefprint{TW}{Tailwind CSS}. \acrshort{TW} je~\textbf{utility-first} knihovna. Soustředí~se na~poskytnutí jednoduchých prvků prostřednictvím \acrshort{CSS} tříd, které je~možné ke~komponentám přidávat. Skládáním těchto tříd je~možné vytvořit potřebný vzhled komponent. \acrshort{TW} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. Pro~výslednou podobu aplikace potom \acrshort{TW} vytvoří \acrshort{CSS} kód pouze z~použitých tříd, čímž ještě omezí množství dat, které jsou přenášeny v~podobě stylů~\cite{Rappin2022ModernCSSTailwind}.
 
             K~tvorbě \acrshort{UI} je~samozřejmě možné použít i~jiné knihovny stylů (např.~\textbf{Bootstrap}) nebo~různé přístupy ke~stylování.
 
