@@ -250,7 +250,7 @@
 
         Většina dnešních projektů je~tedy vyvíjena jako~\emph{MVC} webová \emph{aplikace}. Tím~je~možné~oddělit logiku aplikace od~jejího zobrazení, což~umožňuje vývoj funkční části aplikace nezávisle na~uživatelské části a~je~možné pracovat s~různými technologiemi.
         
-        Obvykle není nutné tvořit aplikaci od~začátku (tzv.~\textbf{na~zelené louce}). \uv{Pro~frontend i~backend aplikace existuje na~webu velké množství použitelných materiálů. Ať~už~jsou to~různé grafické prvky nebo~serverové komponenty, to~vše je už~někde nejspíše hotové.}~\cite{itnetworkBestPractices}
+        Obvykle není nutné tvořit aplikaci od~začátku (tzv.~\textbf{na~zelené louce}). \uv{Pro~\acrshort{FE} i~\acrshort{BE} aplikace existuje na~webu velké množství použitelných materiálů. Ať~už~jsou to~různé grafické prvky nebo~serverové komponenty, to~vše je už~někde nejspíše hotové.}~\cite{itnetworkBestPractices}
 
         \section{Základní statická HTML stránka}
             V~roce 1989 vytvořil Tim Berners-Lee první webový prohlížeč a~jazyk \acrshort{HTML}.
@@ -550,9 +550,9 @@ func main() {
 
             \emph{Komponenty} mohou obsahovat další (\emph{vnořené}) komponenty. To~se~nazývá \emph{zanořování} (\emph{nesting}). To~umožňuje vytvářet složitější komponenty s~více vnořenými prvky. S~použitím \texttt{React.createElement} (\url{https://react.dev/reference/react/createElement}) pro~každý prvek by~ale~takový kód byl~složitě čitelný. Proto je k~dispozici zjednodušený zápis v~souborech~\emph{JSX}.
 
-            Při~psaní \emph{stavové aplikace} (aplikace, která udržuje svůj vnitřní stav) v~\emph{Reactu} je~také důležité vědět, že~v~něm funguje tzv.~\emph{jednosměrný tok dat} (\emph{one directional data flow}). To~znamená, že~data se~předávají směrem z~\textbf{rodičovské} \emph{komponenty} \textbf{potomkům}, nikoliv naopak. To~umožňuje jednodušší kontrolu nad~daty, zároveň to~ale~přináší výzvy při~správě stavu celé aplikace.
+            Při~psaní \emph{stavové aplikace} (aplikace, která udržuje svůj vnitřní stav) v~\emph{Reactu} je~také důležité vědět, že~v~něm funguje tzv.~\textbf{jednosměrný tok dat} (\textbf{one directional data flow}). To~znamená, že~data se~předávají směrem z~\textbf{rodičovské~komponenty} \textbf{potomkům}, nikoliv naopak. To~umožňuje jednodušší kontrolu nad~daty, zároveň to~ale~přináší výzvy při~správě stavu celé aplikace.
             
-            Z~toho vyplývá problém zvaný \textbf{prop drilling} (\emph{rekurzivní předávání dat komponentami}), který spočívá v~tom, že~aby se~data dostala k~cílové komponentě, je~nutné je~předávat přes~několik vnořených komponent, které data vůbec nepotřebují. To~může vést k~tomu, že~se~v~\emph{komponentách} objeví nepotřebné kódy, které způsobují zbytečnou komplexitu a~snadněji se~do~kódu zavede nová chyba. Při~změně jedné proměnné, která je~předávána přes~několik komponent, je~kvůli tomu potřeba upravit kód všech \emph{komponent}, které tuto proměnnou používají a~jde často o~nepřehledný a~zdlouhavý proces. Při~změně dat dochází také ke~zbytečnému překreslení všech komponent, které data předávají, i~když se~změna viditelně projeví pouze v~jedné cílové komponentě, což je z~hlediska výkonu nežádoucí. Proto je~snaha vývojáře přesunout zdroj dat, se~kterým pracuje na~nejvyšší možnou úroveň, aby bylo~možné data předávat přímo \emph{komponentám}, které je~potřebují.
+            Z~toho vyplývá problém zvaný \textbf{prop drilling} (\emph{rekurzivní předávání dat komponentami}), který spočívá v~tom, že~aby se~data dostala k~cílové komponentě, je~nutné je~předávat přes~několik vnořených komponent, které data vůbec nepotřebují. To~může vést k~tomu, že~se~v~\emph{komponentách} objeví nepotřebné kódy, které způsobují zbytečnou komplexitu a~snadněji se~do~kódu zavede nová chyba. Při~změně jedné proměnné, která je~předávána přes~několik komponent, je~kvůli tomu potřeba upravit kód všech \emph{komponent}, které tuto proměnnou používají, a~jde často o~nepřehledný a~zdlouhavý proces. Při~změně dat dochází také ke~zbytečnému překreslení všech komponent, které data předávají, i~když se~změna viditelně projeví pouze v~jedné cílové komponentě, což je z~hlediska výkonu nežádoucí. Proto je~snaha vývojáře přesunout zdroj dat, se~kterým pracuje, na~nejvyšší možnou úroveň, aby bylo~možné data předávat přímo \emph{komponentám}, které je~potřebují.
 
             \emph{Prop drilling} se~řeší přesunem zdroje dat na~nejvyšší možnou úroveň a~na~změny jednotlivých dat upozorňovat pouze ty~komponenty, které to~potřebují. Tím se~zjednoduší kód a~zvýší se~přehlednost. Navíc se~sníží počet překreslení komponent, což sníží počet operací a~tím zvýší výkon aplikace.
             
@@ -598,11 +598,11 @@ const App = () => {
 
             V~základním nastavení umožňuje využívat \emph{SSR} i~\acrshort{SSG}, čímž jsou~aplikace v~\emph{Nextu} velmi~rychlé a~přitom poskytují všechny výhody \emph{Reactu} a~je~možné použít i~většinu balíčků pro~\emph{React}.
 
-            Díky tomu je~možné jednoduchým vytvořením \emph{NextJS} projektu začít pracovat na~\emph{SSR} aplikaci, a~to~jak na~\acrshort{FE}, tak~na~\acrshort{BE}, jelikož od~verze 9.3 je~možné využít také tzv.\textbf{API Routes}, které umožňují vytvořit \acrshort{REST}~\acrshort{API} na~jednom místě přímo v~\emph{NextJS} aplikaci. \cite{nextjs, nextjs-api-routes, nextjs-changelog-9-3}
+            Díky tomu je~možné jednoduchým vytvořením \emph{NextJS} projektu začít pracovat na~\emph{SSR} aplikaci, a~to~jak na~\acrshort{FE}, tak~na~\acrshort{BE}, jelikož od~verze 9.3 je~možné využít také tzv.\textbf{API Routes}, které umožňují vytvořit \acrshort{REST}~\acrshort{API} na~jednom místě přímo v~\emph{NextJS} aplikaci~\cite{nextjs, nextjs-api-routes, nextjs-changelog-9-3}.
 
-            \textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu ale i~ve~Vue a~\emph{Vanilla Javascriptu} nebo~\emph{Typescriptu}. Je~vyvíjen společností \texttt{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který podobně jako \emph{React} využívá \emph{virtuální DOM}.
+            \textbf{Vite} je~nástroj pro~rychlé nastartování projektu nejen v~Reactu, ale i~ve~Vue a~\emph{Vanilla Javascriptu} nebo~\emph{Typescriptu}. Je~vyvíjen společností \texttt{Vue.js}, která je~známá díky svému frameworku \emph{Vue.js}, který podobně jako \emph{React} využívá \emph{virtuální DOM}.
 
-            \emph{Vite} (i \emph{CRA}) zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\emph{hot reload}, což znamená, že~se~při~každé změně kódu \acrshort{FE} se~aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem~\cite{vitejs}.
+            \emph{Vite} (i~\emph{CRA}) zrychluje spouštění aplikace a~zjednodušuje práci díky tzv.~\emph{hot reload}, což~znamená, že~se~při~každé změně kódu \acrshort{FE} aplikace v~prohlížeči automaticky načte znovu s~novými změnami, bez~nutnosti manipulace s~prohlížečem~\cite{vitejs}.
 
         \section{Server Side Rendering a Static Site Generation}
             \textbf{Render} (\textbf{vykreslování}) se~v~kontextu počítačů používá k~popisu procesu vykreslování obrazu z~dat za~účelem jejich~zobrazení uživateli. Tato data mohou být např.~ve~formě 3D~modelů, obrázků nebo~třeba interaktivních webových prvků při~vykreslování webu prohlížečovým jádrem~\cite{renderbook2}.
@@ -611,7 +611,7 @@ const App = () => {
             
             Přestože je \emph{React} velmi rychlý oproti aplikaci v~čistém \acrshort{JS} (tzv.~\textbf{Vanilla}), zejména díky použití \emph{Virtuálního DOMu}, je~při~načítání aplikace v~prohlížeči stále nutné počkat, než se~stáhnou, načtou a~provedou skripty. Teprve potom se~vygeneruje výsledný \acrshort{HTML} obsah a~prohlížeč stránku vykreslí (\acrdefprint{CSR}{Client Side Rendering})\cite{mediumWhatCSR}. To~může být problém, pokud je~aplikace rozsáhlá a~obsahuje mnoho komponent, kde celý proces může trvat delší dobu a~uživatel musí na~vykreslení déle čekat, což~je~samozřejmě nežádoucí. To~je~možné řešit pomocí metod \acrdefprint{SSG}{Static Site Generation} a~\acrdefprint{SSR}{Server Side Rendering}, 
 
-            \acrshort{SSG} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \acrshort{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server} a~není nutné, aby~běžela další \emph{služba/aplikace}.
+            \acrshort{SSG} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \acrshort{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server}, a~není nutné, aby~běžela další \emph{služba/aplikace}.
             
             To~samozřejmě nevylučuje použít \acrshort{AJAX}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \acrshort{JS}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
 
@@ -627,14 +627,14 @@ const App = () => {
             \textbf{Klient} je~aplikace na~zařízení uživatele (webový prohlížeč), který služby \emph{serveru} využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje HTML stránku. V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě~\cite{ClientServer}.
 
         \section{Webová služba}
-            Webová služba je~program, který běží na~\emph{serveru} a~poskytuje data \emph{klientovi}. Na \emph{serveru} může běžet více \emph{webových služeb}, rozlišují se \emph{portem} na~kterém běží a~přijímají instrukce a~data. Např.~webová služba \acrdefprint{HTTP}{Hypertext Transfer Protocol}, která poskytuje webová data a~soubory poběží na~\emph{portu~80}, resp.~v~dnešní době zejména~443 (\acrdefprint{HTTPS}{Hypertext Transfer Protocol Secure}). Další služby mohou být např.~emailová služba \acrdefprint{SMTP}{Simple Mail Transfer Protocol}.
+            Webová služba je~program, který běží na~\emph{serveru} a~poskytuje data \emph{klientovi}. Na \emph{serveru} může běžet více \emph{webových služeb}, rozlišují se \emph{portem}, na~kterém běží a~přijímají instrukce a~data. Např.~webová služba \acrdefprint{HTTP}{Hypertext Transfer Protocol}, která poskytuje webová data a~soubory, poběží na~\emph{portu~80}, resp.~v~dnešní době zejména~\emph{443} (\acrdefprint{HTTPS}{Hypertext Transfer Protocol Secure}). Další služby mohou být např.~emailová služba \acrdefprint{SMTP}{Simple Mail Transfer Protocol}.
             
             Služby \textbf{naslouchají} na svých \emph{portech} a~přijímají požadavky od~klientů. K~serverům na~internetu se~přistupuje pomocí \emph{IP~adresy} a~ke~službám pak~pomocí portu, na~kterém běží~\cite{webserver:mdn, ietf-httpbis-messaging-03}.
 
         \section{Webový server}
             \emph{Webový server} se~stará o~odpovědi na požadavky, přicházející většinou na~port \texttt{443} nebo~\texttt{80}. Server dostane požadavek ve~formě \acrdefprint{URL}{Uniform Resource Locator}, někdy~\acrdefprint{URI}{Uniform Resource Identifier}, obsahující cestu k~požadovanému zdroji (souboru/službě).
 
-            Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \acrshort{PHP}) a~vloží se~do~něj aktuální data nebo před~odesláním provede \textbf{kompresi dat} (snížení objemu dat matematickým zjednodušením souboru~\cite{Scott2019:programmingpragmatics}), což~může klientovi ušetřit čerpání mobilních dat. Na~straně klienta se~pak data \emph{dekomprimují} a~zobrazí.
+            Neslouží pouze k~poskytování statických souborů, ale i~k~poskytování dynamických dat. Může zajistit, že~se~před odesláním soubor na~serveru zpracuje (např.~pomocí \acrshort{PHP}) a~vloží se~do~něj aktuální data, nebo před~odesláním provede \textbf{kompresi dat} (snížení objemu dat matematickým zjednodušením souboru~\cite{Scott2019:programmingpragmatics}), což~může klientovi ušetřit čerpání mobilních dat. Na~straně klienta se~pak data \emph{dekomprimují} a~zobrazí.
 
             \textbf{Proxy} v~kontextu počítačových sítí jde~o~\emph{server} nebo~software, který působí jako~prostředník pro~požadavky mezi~klienty a~jinými servery nebo~aplikacemi např.~pomocí přesměrování portů nebo~volání externího serveru.
 
@@ -649,14 +649,14 @@ const App = () => {
                 \label{fig:client-server}
             \end{figure}
 
-            \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}) resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
+            \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}), resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
 
         \section{Domain Name Server}
-            \acrdefprint{DNS}{Domain Name Server}, někdy také \emph{Domain Name System}, je~systém, který překládá doménová jména na~IP adresy. To~umožňuje, uživatelům používat lidem čitelná \emph{doménová jména} namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
+            \acrdefprint{DNS}{Domain Name Server}, někdy také \emph{Domain Name System}, je~systém, který překládá doménová jména na~IP adresy. To~umožňuje uživatelům používat lidem čitelná \emph{doménová jména} namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
             
             Díky \acrshort{DNS} např.~oblíbený český vyhledávač namísto \emph{IP~adresy} \texttt{77.75.79.222} najdeme na~čitelné adrese \texttt{Seznam.cz}.
 
-            \textbf{Doménové jméno} je~složeno ze~tří částí. První část je~\emph{subdoména}, která je~volitelná. Druhou částí je~\emph{doména} (2.\,řádu), která je~povinná a~třetí část je~\emph{doména nejvyššího řádu} (\acrdefprint{TLD}{Top Level Domain}{TLD}, která je~také povinná a~může jít např.~o~národní koncovky nebo~některou ze~specifických domén (např.~\texttt{.edu, .org}. \acrshort{TLD} mohou být např.~\texttt{.com}, \texttt{.cz}, \texttt{.eu}, \texttt{.org}. Doménové jméno je~v~procesu nazývaném \textbf{DNS resolve} přeloženo zpět na~\emph{IP adresu}~\cite{tld:mdn}.
+            \textbf{Doménové jméno} je~složeno ze~tří částí. První částí je~\emph{subdoména}, která je~volitelná. Druhou částí je~\emph{doména} (2.\,řádu) a~třetí část je~\emph{doména nejvyššího řádu} (\acrdefprint{TLD}{Top Level Domain}) a~může jít např.~o~národní koncovky (\texttt{.cz}, \texttt{.sk}, \ldots), některou ze~specifických domén (\texttt{.edu}, \texttt{.org}, \texttt{.app}, \ldots). Doména 2.~řádu a~\acrshort{TLD} jsou povinnou součástí adresy. Doménové jméno je~po~zadání do~prohlížeče v~procesu nazývaném \textbf{DNS resolve} přeloženo na~\emph{IP adresu}, která se~dále použije k~odeslání požadavku~\cite{tld:mdn}.
         
             \begin{figure}
                 \centering
@@ -697,7 +697,7 @@ const App = () => {
             Moderní aplikace díky tomu mohou snížit zátěž na~server, jelikož část aplikace, která se~stará o~zobrazení, běží na~straně klienta a~mezi nimi probíhá pouze výměna dat~\cite{MVC}.
 
         \section{Frontend, Backend}
-            Dnešní aplikace je~možné díky architektuře \emph{MVC} rozdělit na~\textbf{frontend} a~\textbf{backend}, které spolu komunikují a~plní funkce aplikace ale jinak zůstávají oddělené.
+            Dnešní aplikace je~možné díky architektuře \emph{MVC} rozdělit na~\textbf{frontend} a~\textbf{backend}, které spolu komunikují a~plní funkce aplikace, ale~jinak zůstávají oddělené.
 
             Díky \acrshort{MVC} je~takto možné vývoj aplikace rozdělit mezi tým~vývojářů, kde každý může pracovat na~jiné části aplikace a~každá část aplikace má~své rozhraní, takže mohou pracovat téměř nezávisle na~sobě.
 
@@ -717,7 +717,7 @@ const App = () => {
 
             Metody \acrshort{JS} (resp.~\emph{WEB APIs}), umožňující \emph{asynchronní} požadavky na~server, jsou \textbf{Fetch} a~\acrdefprint{XHR}{XMLHttpRequest}. \acrshort{AJAX} využívá různé \acrshort{HTTP} metody, jako GET, POST, PUT, DELETE, PATCH. Tyto metody se~používají pro~odlišení typu požadavku.~\cite{ajax:mdn, Dorman:webmappingajax}.
             
-            Je~také možné využít komunikaci přes~\acrshort{WS} nebo~nedávno~přidané~\acrshort{SSE}~\cite{whatwg_sse, sse:mdn}
+            Je~také možné využít komunikaci přes~\acrshort{WS} nebo~nedávno~přidané~\acrshort{SSE}~\cite{whatwg_sse, sse:mdn}.
 
         \section{Application Interface}
             \acrdefprint{API}{Application Programming Interface} je~rozhraní, které umožňuje komunikaci mezi~aplikacemi. V~případě webových aplikací se~jedná o~rozhraní mezi \acrshort{FE} a~\acrshort{BE}. Některá \emph{rozhraní} jsou určena ke~komunikaci mezi aplikacemi nebo~dokonce s~\emph{hardwarem}.
@@ -731,7 +731,7 @@ const App = () => {
             Výhodou \emph{gRPC} je, že autor aplikace pouze definuje služby a~jejich rozhraní a~\emph{gRPC} vygeneruje veškerý potřebný kód pro~jazyk, který používáme. Také je~díky efektivnější komunikaci rychlejší než~jiné~přístupy. Bohužel je~k~jeho použití nutné se~naučit novému přístupu k~přenosu~dat a~jazyku definice služeb \emph{protobuf}~\cite{thenewstackBuildRealWorld}.
 
         \section{Representational state transfer}
-            \acrdefprint{REST}{Representational State Transfer} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhraní. Každý zdroj, se~kterým pracujeme má~vlastní \emph{Endpoint} (vlastní adresu) a~akce, kterou je~potřeba provést, je~určena \emph{HTTP metodou}.
+            \acrdefprint{REST}{Representational State Transfer} je~standard, který definuje způsob komunikace mezi klientem a~serverem. V~dnešní době je~díky své~jednoduchosti a~rozšířenosti nejčastěji používanou architekturou pro~tvorbu webových rozhraní. Každý zdroj, se~kterým je~potřeba pracovat, má~vlastní adresu~(\emph{Endpoint}) a~akce, kterou je~s~ním~potřeba provést provést, je~určena \emph{HTTP metodou}, příp.~zaslanými daty.
             
             \acrshort{REST} je~bezstavový, což~znamená, že~každý požadavek je~nezávislý na~předchozím, server si~neukládá data v~závislosti na~připojeném klientovi. To~umožňuje jednodušší testování a~ladění aplikace a~trochu snižuje zátěž serveru. Také to~ale~přináší některé výzvy a~omezení, které je~potřeba řešit. Proto je~sice při~tvorbě \acrshort{REST}~\acrshort{API} doporučeno omezit využití ukládání dat vázaných na~konkrétní relaci, nicméně nástroje typu \textbf{Cookies} nebo \textbf{Session} je~v~případě potřeby možné využívat.
             
@@ -747,20 +747,20 @@ const App = () => {
 
             Souhrnně se~těmto operacím říká \emph{CRUD operace}. \textbf{CRUD} je~zkratka pro~\textbf{Create}, \textbf{Read}, \textbf{Update} a~\textbf{Delete}.
 
-            Kromě metod \emph{GET} a~\emph{DELETE} se~v~těle \emph{HTTP požadavku} mohou zasílat také data v~textové formě, např.~formátu~JSON. Během přenosu je~tělo požadavku zašifrováno. V~případě požadavku \emph{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají velikost limitovanou maximální délkou \emph{URL adresy}, který je~server schopen zpracovat. Specifikace \acrshort{HTTP} neuvádí žádnou maximální délku, ale v~praxi je~limitována prohlížeči a~serverem. \cite[3.2.1]{ietf-httpbis-messaging-03}
+            Kromě metod \emph{GET} a~\emph{DELETE} se~v~těle \emph{HTTP požadavku} mohou zasílat také data v~textové formě, např.~formátu~JSON. Během přenosu je~tělo požadavku zašifrováno. V~případě požadavku \emph{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají velikost limitovanou maximální délkou \emph{URL adresy}, kterou je~server schopen zpracovat. Specifikace \acrshort{HTTP} neuvádí žádnou maximální délku, ale v~praxi je~limitována prohlížeči a~serverem~\cite[3.2.1]{ietf-httpbis-messaging-03}.
 
         \section{GraphQL}
             Naproti \acrshort{REST}u má \textbf{GraphQL} pouze jeden \emph{endpoint}. \emph{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což~může být~výhodné, pokud na~zařízení je~pomalé připojení nebo~používá~mobilní data, kdy~je~potřeba stahovat co~nejméně dat a~snížit počet požadavků na~server.
 
-            Na~druhou stranu je~implementace \emph{GraphQL} složitější než~implementace \acrshort{REST}, protože je~potřeba implementovat \emph{GraphQL} server, umí zpracovat požadavky od~klienta. Každá položka, kterou je~potřeba zpřístupnit, navíc musí mít vlastní~\emph{resolver} v~\emph{GraphQL} schématu, který zpracuje požadavek a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože je~potřeba pro~každou položku spustit vlastní funkci a~to~je v~případě větších datových objektů a~přístupu do~databáze neefektivní~\cite{Herrera:restgraphql, Dorman:webmappingajax}.
+            Na~druhou stranu je~implementace \emph{GraphQL} složitější než~implementace \acrshort{REST}, protože je~potřeba implementovat \emph{GraphQL} server, který zpracuje požadavky od~klienta. Každá položka, kterou je~potřeba zpřístupnit, navíc musí mít vlastní~\textbf{resolver}, funkci, která zpracuje každou položku v~dotazu a~vrátí data. To~zároveň vytváří větší zátěž na~serveru, protože je~potřeba pro~každou položku spustit vlastní funkci (\emph{resolver}), a~to~je v~případě větších požadavků s~rozsáhlými daty a~přístupu do~databáze, neefektivní~\cite{Herrera:restgraphql, Dorman:webmappingajax}.
 
         \section{Zabezpečení}
-            Vystavením aplikace na~internetu se~\acrshort{API} vystavuje~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba v~aplikaci na~zabezpečení myslet a~v~žádném případě nespoléhat pouze na~sílu zabezpečení knihoven 3.\,stran, které používáme.
+            Vystavením aplikace na~internetu se~\acrshort{API} vystavuje~nebezpečí útoku a~prolomení zabezpečení. Proto je~potřeba v~aplikaci na~zabezpečení myslet a~v~žádném případě nespoléhat pouze na~sílu zabezpečení knihoven třetích~stran, používaných v~aplikaci.
             
-            To~znamená, že~je~potřeba zabezpečit \acrshort{API}, databázi a~další služby, které aplikace využívá. Je~nutné zvážit např.~jaké služby je potřeba mít veřejně dostupné a~ke~zbytku služeb zamezit přístup z~internetu pomocí \textbf{firewallu}. K~ostatním službám, ke~kterým je~potřeba mít soukromý přístup potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical, Dorman:webmappingajax}.
+            Tzn.~je~nutné zabezpečit \acrshort{API}, databázi a~další služby, které aplikace využívá. Je~nutné také~zvážit např.~jaké služby je~potřebné mít~veřejně dostupné, a~ke~zbytku služeb zamezit přístup z~internetu pomocí \textbf{firewallu}. K~ostatním službám, ke~kterým je~potřeba mít~soukromý přístup, potom přistupovat pomocí tzv.~\textbf{SSH tunelu}, ideálně za~použití \textbf{SSH klíče}, nikoliv uživatelského jména a~hesla. Navíc je~nutné udržovat systémy aktuální s~nejnovějšími bezpečnostními aktualizacemi~\cite{graham2021ethical, Dorman:webmappingajax}.
             
             \subsection{Hashování}
-                \textbf{Hashování} je~proces, při~kterém ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~se~používá např.~při~ukládání hesel, kdy heslo uživatele není uloženo v~původní čitelné podobě, ale jako \textbf{hash}. Při~přihlášení pak~stejnou \emph{hashovací} funkcí~zadané heslo ověří s~uloženým \emph{hashem}, jelikož \emph{hashovací funkce} pro~dva~stejné vstupy vrací totožné výsledné \emph{hashe}. Pokud se~shodují, uživatel byl~úspěšně ověřen a~tedy přihlášen.
+                \textbf{Hashování} je~proces, při~kterém se~ze~zadaných dat použitím určitého algoritmu vytvoří řetězec jiný, tak, že~z~něj nelze získat původní data. To~se~používá např.~při~ukládání hesel, kdy~heslo uživatele není uloženo v~původní čitelné podobě, ale~jako \textbf{hash}. Při~přihlášení pak~stejnou \emph{hashovací} funkcí~zadané heslo ověří s~uloženým \emph{hashem}, jelikož \emph{hashovací funkce} pro~dva~stejné vstupy vrací totožné výsledné \emph{hashe}. Pokud se~shodují, uživatel byl~úspěšně ověřen a~tedy přihlášen.
                 
                 Pokud se~někomu podaří z~\emph{hashe} získat původní data (heslo), nebo dokáže najít způsob, jak z~různých dat vygenerovat stejný \emph{hash}, považuje~se algoritmus za~prolomený a~měl~by se~přestat používat.
                 
@@ -774,23 +774,23 @@ const App = () => {
             \subsection{Autentizace}
                 \emph{Autentizace} je~proces ověření identity uživatele. To~znamená, že~uživatel musí dokázat, že~je~tím, za~koho se~vydává. To~je~možné udělat pomocí hesla, certifikátu, který uživatel má, nebo pomocí externí služby, která identitu ověří a~potvrdí ji.
                 
-                V~případě \acrshort{API} se~jedná o~ověření, že~požadavek opravdu přišel z~dané aplikace a~nikoliv z~jiného nepovoleného zdroje, např.~od~útočníka. Do~aplikace je~přidán tajný klíč, který slouží k~identifikaci aplikace a~při každém požadavku na~\acrshort{BE} si~ověřuje \emph{autenticitu} požadavku. Na~to~existují různé metody, např.~využití \acrshort{JWT}.
+                V~případě \acrshort{API} se~jedná o~ověření, že~požadavek opravdu přišel z~dané aplikace, a~nikoliv z~jiného nepovoleného zdroje, např.~od~útočníka. Do~aplikace je~přidán tajný klíč, který slouží k~identifikaci aplikace a~při každém požadavku na~\acrshort{BE} si~ověřuje \emph{autenticitu} požadavku. Na~to~existují různé metody, např.~využití \acrshort{JWT}.
                 
-                Do~\acrshort{FE} aplikace je~obvykle vložena dvojici tajných klíčů, které backendu řeknou, že~jde skutečně o~autorizovanou aplikaci, která má~k~backendu povolený přístup. Také je~možné pro~větší bezpečnost přístup omezit pouze na~konkrétní IP~adresy, ze~kterých je~možné se~připojit a~\acrshort{URI}, ze~které lze požadavek odeslat.
+                Do~\acrshort{FE} aplikace je~obvykle vložena dvojice tajných klíčů, které \acrshort{BE} řeknou, že~jde skutečně o~autorizovanou aplikaci, která má~k~\acrshort{BE} povolený přístup. Také je~možné pro~větší bezpečnost přístup omezit pouze na~konkrétní IP~adresy, ze~kterých je~možné se~připojit a~\acrshort{URI}, ze~které lze požadavek odeslat.
 
-                Při~\emph{autentizaci} aplikace je~důležité kontrolovat také~jestli byl~požadavek vytvořen povolenou aplikací a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\emph{token} nebyl změněn a~přichází stále ze~stejné aplikace a~stejné \emph{IP adresy}, jako při~první \emph{autentizaci}~\cite{graham2021ethical}.
+                Při~\emph{autentizaci} aplikace je~důležité kontrolovat také, zda~byl~požadavek vytvořen povolenou aplikací a~další informace, které by~mohly odhalit nepovolený přístup. Při~každém požadavku je~pak potřeba ověřit, že~\emph{token} nebyl změněn a~přichází stále ze~stejné aplikace a~stejné \emph{IP adresy}, jako při~první \emph{autentizaci}~\cite{graham2021ethical}.
             
             \subsection{Autorizace}
                 Autorizace je~proces ověření oprávnění uživatele k~manipulaci s~konkrétním zdrojem. Ověřujeme, zda~má~uživatel oprávnění k~provedení určité akce, např.~úprava, resp.~smazání příkladu. Je~nutné vzít v~potaz \emph{uživatelskou roli} (tj.~administrátor, uživatel, návštěvník\dots), kterou uživatel má~ve~vztahu k~aplikaci a~k~danému zdroji.
                 
-                Je~potřeba zkontrolovat vlastnictví nebo~přidělená oprávnění (\uv{může uživatel článek jen zobrazit nebo i~upravovat?}). Např.~pokud je~uživatel autorem příladu, může s~ním libovolně manipulovat. Pokud příklad vytvořil někdo jiný, musí k~úpravě dostat oprávnění~\cite{graham2021ethical}.
+                Je~potřeba zkontrolovat vlastnictví nebo~přidělená oprávnění (\uv{může uživatel článek jen zobrazit nebo i~upravovat?}). Např.~pokud je~uživatel autorem příkladu, může s~ním libovolně manipulovat. Pokud příklad vytvořil někdo jiný, musí k~úpravě dostat oprávnění~\cite{graham2021ethical}.
 
             \subsection{JSON Web Token}
                 Hojně používaná metoda zabezpečení je~\acrdefprint{JWT}{JSON Web Token}. Jedná se~o~formát \textbf{textového řetězce} (tzv.~\textbf{tokenu}), který obsahuje informace o~uživateli a~aktivním stavu aplikace ve~vztahu k~němu. \emph{Token}~se~při~každém požadavku posílá v~hlavičce požadavku a~umožňuje tak požadavek \emph{autorizovat}.
                 
                 Při~\emph{autentizaci} je~vygenerován \emph{token} (řetězec znaků), který se~při~každém požadavku na~server posílá v~hlavičce požadavku. Data v~tokenu jsou kódována ve~formátu \textbf{base64} a~podepsána šifrovacím klíčem, takže je~nelze, bez~znalosti klíče, změnit, protože jakákoliv změna v~datech znamená změnu \emph{podpisu}. Do~tokenu se~přidávají data, která je~potřeba uchovat nebo jsou~využita k~dodatečné kontrole. Je~důležité do \emph{tokenu} neukládat žádná citlivá data, jelikož formát \emph{base64} není šifrovaný. 
                 
-                V~případě změny nebo~nepřesnosti v~datech \emph{tokenu} se~díky podpisu \emph{token} stává neplatným, což~umožňuje ověřit, že~token byl vytvořen serverem a~ne někým jiným. Zároveň v~datech \emph{tokenu} je~možné mít informace o~aktuálně přihlášeném uživateli, a~další kontrolní informace, jako~délka platnosti \emph{tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~jeho~vytvoření prvně odeslán.\\
+                V~případě změny nebo~nepřesnosti v~datech \emph{tokenu} se~díky podpisu \emph{token} stává neplatným, což~umožňuje ověřit, že~byl token původně vytvořen \emph{serverem}, a~ne někým jiným. Zároveň je~možné mít v~datech \emph{tokenu} uloženy informace o~aktuálně přihlášeném uživateli a~další kontrolní informace, jako~délka platnosti \emph{tokenu}, \emph{IP~adresa požadavku}, \emph{typ zařízení} a~\emph{doména}, ze~které byl požadavek na~jeho~vytvoření prvně odeslán.\\
 
                 \acrshort{JWT} sestává ze~tří částí, které jsou odděleny tečkou.
                 
@@ -818,7 +818,7 @@ const App = () => {
                 Formát \emph{Base64} je~kódování, které se~používá pro~přenos dat, nikoliv pro~zabezpečení. Bezpečnost \acrshort{JWT} je~zajištěna pouze podpisem, který zaručuje integritu dat. Data ale~může přečíst kdokoliv, kdo získá~přístup k~tokenu. Proto je~důležité do~tokenu ukládat pouze data, která jsou nezbytně nutná a~neobsahují citlivé informace. K~šifrování dat a~ostatních částí \acrshort{JWT} vznikly navazující standardy\,--\,\textbf{JWE}, \textbf{JWS}, \textbf{JWA} nebo~\textbf{JWK}.~\cite{jwtesak, graham2021ethical}
 
             \subsection{Structured Query Language}
-            \acrdefprint{SQL}{Structured Query Language} je~jazyk, používány pro~manipulaci s~daty uloženými v~rámci relačních databází. \acrshort{SQL} je~deklarativní jazyk, což~znamená, že~při~vytvoření dotazu popíšeme, jaká data je~potřeba získat, a~ne jakým způsobem. \acrshort{SQL} je~standardizovaný jazyk, který je~podporován většinou relačních databází. Pomocí \acrshort{SQL} se~zapisují tzv.~\textbf{SQL dotazy} (\textbf{SQL Query}), které mohou ukládat, načítat, upravovat nebo~mazat data v~databázi~\cite{laurencik2018sql}.
+            \acrdefprint{SQL}{Structured Query Language} je~jazyk, používaný pro~manipulaci s~daty uloženými v~rámci relačních databází. \acrshort{SQL} je~deklarativní jazyk, což~znamená, že~dotaz popisuje, jaká data je~potřeba získat, a~ne jakým způsobem. \acrshort{SQL} je~standardizovaný jazyk, který je~podporován většinou relačních databází. V~jazyce~\acrshort{SQL} jsou~zapisovány tzv.~\textbf{SQL dotazy} (\textbf{SQL Query}), které mohou ukládat, načítat, upravovat, nebo~mazat data v~databázi~\cite{laurencik2018sql}.
 
             \subsection{SQL Injection}
                 \emph{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus~\emph{SQL dotazu} do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~místo zpracování vykonán společně se~zbytkem dotazu. To~může vést k~získání citlivých dat, jejich změně nebo~smazání. Může např.~dojít ke~změně hesla administrátorského účtu a~tím získání přístupu ke~chráněným datům.
@@ -860,9 +860,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \label{model-sql-injection}
                 \end{code}
 
-                Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Proto je~potřeba vstupní data v~aplikaci ošetřovat nejméně na~2~místech. Všechna vstupní data a~parametrizované dotazy. Také je~dobré zavést kontrolu~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož lze~jednoduše obcházet odeslání dat, tj.~kontrola na~straně uživatele je~především vizuální feedback a~pokyn pro~zadání správné formy dat uživatelem.
+                Samozřejmě v~příkladu není vstup nijak ošetřen a~k~přijetí takové hodnoty do~pole \texttt{email} by~nemělo vůbec dojít, jelikož nejde o~validní emailovou adresu. Vstupní data je~potřeba v~aplikaci ošetřovat nejméně na dvou~místech. Všechna vstupní data je~tedy nutné ošetřit v~rámci \acrshort{FE} i~\acrshort{BE} a~při~\acrshort{SQL} dotazech využívat parametrizované dotazy. Je~tedy potřeba kontrolu provést~před odesláním na~straně uživatele, nicméně na~to~nelze spoléhat, jelikož to~lze~jednoduše obejít. Kontrola na~straně uživatele je~především kvůli informaci pro~uživatele o~správnosti a~pokynech pro~zadání správných dat uživatelem. Podrobná kontrola probíhá po~přijetí dat na~serveru.
                 
-                Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze. To~už ale~je na~uvážení autora konkrétní aplikace. \cite{w3s:SQLInjection, itnetwork:SQLInjection}
+                Další kontroly vstupních dat mohou probíhat i~na~úrovni databáze, např.~při~indexaci. To~už ale~je na~uvážení autora konkrétní aplikace. \cite{w3s:SQLInjection, itnetwork:SQLInjection}
 
             \subsection{Cross Site Scripting}
                 \acrdefprint{XSS}{Cross Site Scripting} je~typ útoku, při~kterém útočník vloží do~uživatelského vstupu kód, který se~při~načtení stránky spustí. To~může vést k~získání citlivých dat, přesměrování na~jinou stránku nebo~k~jiným nežádoucím akcím.
@@ -873,7 +873,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Jelikož v~projektu používám \emph{React}, který využívá \emph{JSX}, je~tento typ útoku téměř vyloučen. \emph{JSX} totiž neumožňuje vkládat přímo \acrshort{HTML} kód, ale~pouze textové řetězce, které se~při~načtení stránky zobrazí.
 
-                Existují ale výjimky a~to~použití funkce \texttt{eval}, která umožňuje spustit \acrshort{JS} kód z~řetězce (textové proměnné), a~přímé vkládání neošetřeného vstupu pomocí vlastnosti \texttt{dangerouslySetInnerHTML} nebo~jí podobných, které se~přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod. Tyto vlastnosti ale~vývojáři používají s~vědomím rizika~\cite{reactJSX}.
+                Existují ale~výjimky, a~to~použití funkce \texttt{eval}, která umožňuje spustit \acrshort{JS} kód z~řetězce (textové proměnné), a~přímé vkládání neošetřeného vstupu pomocí vlastnosti \texttt{dangerouslySetInnerHTML} nebo~jí podobných, které se~přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod. Tyto vlastnosti ale~vývojáři používají s~vědomím rizika~\cite{reactJSX}.
         \section{42}
             Číslo \uv{\textbf{42}}~(\cite{adams1979hitchhikers}) někteří vývojáři používají jako~nenápadný odkaz na~zábavní rádiový pořad a~knihu Stopařův průvodce po~galaxií britského autora Douglese Adamse, vydávaný od~r.~1979. Jde o~způsob, jak~lidé z~\emph{IT} a~jiných oborů vyjadřují svůj smysl pro~humor~\cite{knuth1992art}.
 
@@ -883,20 +883,20 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             V~\acrdefprint[short]{ASCII}{American Standard Code for Information Interchange} tabulce (viz~\url{https://www.ascii-code.com/}) je~\emph{42} znak hvězdička (asterisk). V~různých implementacích nahrazuje jeden libovolný znak (tzv.~\textbf(wildcard)) nebo~v~\textbf{regulárních výrazech} libovolné množství znaků z~určené množiny znaků.
             
-            Číslo \emph{42} je~také součástí několika významných algoritmů, např.~\textbf{SHA-1} nebo~\textbf{MD5}, které se~používají pro~\emph{hashování} hesel nebo~\emph{kontrolní součet} souborů. V~\emph{ASCII} tabulce je~\emph{42} znak \textbf{asterisk} (\textbf{*}), který se~používá jako~\emph{wildcard} v~\emph{regulárních výrazech} nebo~v~\emph{fulltextovém} vyhledávání~\cite{regular_expressions, sha1, md5}.
+            Číslo \emph{42} je~také součástí několika významných algoritmů, např.~\textbf{SHA-1} nebo~\textbf{MD5}, které se~používají pro~\emph{hashování} hesel nebo~\emph{kontrolní součet} souborů. V~\emph{ASCII} tabulce je~\emph{42} znak \textbf{asterisk} (\textbf{*}), který se~používá jako~\emph{wildcard} v~\emph{regulárních výrazech} nebo~ve~\emph{fulltextovém} vyhledávání~\cite{regular_expressions, sha1, md5}.
 
             V~aplikaci jsem~se~rozhodl věnovat číslu~\emph{42} samostatný \emph{endpoint} \texttt{/theanswer}, jehož~účelem~je v~\acrshort{JSON} odpovědi vrátit odpověď na~otázku "života, vesmíru a~vůbec".
 
         \section{Testování}
             Testování je~důležitou součástí vývoje aplikace a~černé svědomí velké části vývojářů. Testování je~časově náročné a~vývojáři se~mu~často vyhýbají, protože je~potřeba vytvořit sadu testů, které pokryjí co~nejvíce možných scénářů, které mohou nastat.
             
-            Zejména automatickým testováním je~možné ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, které je~možné spustit při~každé změně aplikace a~ověřit si~tak, že~aplikace stále funguje správně. Pokud je~daný jazyk navíc \emph{dynamicky typovaný}, je dobré mít~nástroj na~kontrolu správnosti použití funkcí~\cite{compilers, itnetworkBestPractices}.
+            Zejména automatickým testováním je~možné ušetřit spoustu času, který bychom jinak strávili ručním testováním aplikace nebo při hledání chyb, které se~objevily po~změnách v~kódu aplikace. Automatické testování umožňuje vytvořit sadu testů, automaticky spouštěných při~každé změně v~kódu a~ověřit tak, že~aplikace stále funguje správně. Pokud je~daný jazyk navíc \emph{dynamicky typovaný}, je dobré mít~nástroj na~kontrolu správnosti použití funkcí a~proměnných~\cite{compilers, itnetworkBestPractices}.
             
-            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách fungují stále stejně. Zejména se~testují tzv.~\textbf{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
+            Např.~při~změnách základní funkcionality je~dobré otestovat, že~i~po~změnách aplikace funguje stále stejně. Zejména jsou~testovány tzv.~\textbf{čisté funkce} (\textbf{pure function}), což~jsou funkce, které nemají žádné \textbf{vedlejší efekty} (přímo neovlivňují výstupní data a~stav programu) a~pro~stejný vstup vždy poskytnou (vrací) stejný výsledek. Takové testování se~nazývá \emph{unit testing}.
             
-            V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. Např.~v~případě \acrshort{JS} to~jsou~např.~\textbf{Jest} nebo~\textbf{Mocha}. Jazyk \emph{Go}~má~vestavěný nástroj pro~automatické~testování, který se~nazývá \textbf{go~test}.
+            V~každém programovacím jazyce jsou potřeba nástroje pro~automatické testování. V~případě~\acrshort{JS} to~jsou~např.~\textbf{Jest} nebo~\textbf{Mocha}. Jazyk \emph{Go}~má~vestavěný nástroj pro~automatické~testování, který se~nazývá \textbf{go~test}.
             
-            Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování backendu potom zmíněný \emph{Go~test}~\cite{jestjsTestingReact}.
+            Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování \acrshort{BE} potom zmíněný \emph{Go~test}~\cite{jestjsTestingReact}.
             
             \subsection{Testování API}
                 Pro~testování \acrshort{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \acrshort{FE} část. Mezi nejznámější patří \textbf{Postman} nebo~\textbf{Insomnia} atd.
@@ -905,7 +905,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 K~tomuto účelu použiji nástroj \emph{Postman}, jelikož v~době psaní této práce nástroj \emph{Insomnia} neumožňuje přímé psaní testovacích skriptů. 
                 
-                S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \acrshort{BE}, bez~omezení bezpečnostních opatření.
+                S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \acrshort{BE} bez~omezení bezpečnostních opatření.
 
             \subsection{Testování frontendu}
                 Pro~testování \acrshort{FE} budu používat knihovnu \emph{Jest}, kterou na~testování používá např.~\emph{Facebook}. Testovat~bude potřeba \emph{čisté funkce}, ale také \emph{komponenty}. \emph{Komponenty} se~testují pomocí tzv.~\textbf{snapshotů}, které porovnají vykreslenou komponentu s~předchozí vykreslenou verzí. Pokud se~liší, test selže a~je~potřeba zkontrolovat, zda~je~změna v~pořádku nebo~\emph{snapshot} obnovit v~nové podobě \emph{komponenty}~\cite{jestjsTestingReact}.
@@ -920,11 +920,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Verzovací systém GIT}
             \emph{GIT} vytvořil autor Linuxu \emph{Linus Torvalds} v~roce 2005. Je~to~\textbf{distribuovaný verzovací systém}, tj.~každý vývojář má~lokální kopii celého projektu, tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
             
-            Základní funkcí \emph{GITu} je~ukládání změn. Neukládá celé soubory ale pouze změny, které se~udály. Díky tomu je~možné procházet historií změn a~vracet se~k~různým verzím kódu. To~umožňuje spravovat větší projekty, na~kterých paralelně spolupracuje více vývojářů zároveň a~po~dokončení části práce a~její~kontrole výsledek~připojit ke~zbytku kódu. Potom je~možné označit schválenou a~otestovanou verzi kódu jako~finální verzi (tzv.~\textbf{release}) nebo je~na~kódu~možné dále pracovat.
+            Základní funkcí \emph{GITu} je~ukládání změn. Neukládá celé soubory, pouze změny v~kódu. Díky tomu je~možné procházet historií změn a~vracet se~k~různým verzím kódu. To~umožňuje spravovat větší projekty, na~kterých paralelně spolupracuje více vývojářů zároveň, a~po~dokončení části práce a~její~kontrole výsledek~připojit ke~zbytku kódu. Potom je~možné označit schválenou a~otestovanou verzi kódu jako~finální verzi (tzv.~\textbf{release}) nebo je~na~kódu~možné dále pracovat.
             
             Je~také možné pracovat na~několika různých problémech zároveň díky \textbf{větvím} nebo na~různé verze~možné v~jakémkoliv odkazovat pomocí tagů a~tím~umožnit používat označené místo ve~vývoji např.~číslem verze software.
 
-            Existují služby, které poskytují prostor pro~ukládání \emph{GIT} projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\textbf{GitHub}, \textbf{GitLab} nebo~\textbf{Bitbucket}. Mimo zmíněné funkce jsou~zde tzv.~\textbf{Issues}, které umožňují sledovat stav jednotlivých právě probíhající úkoly a~hlásit chyby k~opravě. Tímto způsobem může (pokud je~\emph{repozitář} veřejný) např.~uživatel sdělit svůj nápad nebo~ohlásit chybu v~aplikaci a~případně se~k~ní vrátit později. \emph{Issues} je~také možné přiřadit konkrétnímu vývojáři, který chybu nebo~návrh ke~zlepšení dostane za~úkol a~automaticky vytvořit \emph{větev}, na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{Merge Request}, kde oznámi, jak problém řešil, a požádá o~sloučení nového kódu do~hlavní \emph{větve} projektu. Je~také možné jednoduše zobrazit rozdíly mezi hlavní \emph{větví} a~tou, na~které vývojář pracuje~\cite{gitscmBook}.
+            Existují služby, které poskytují prostor pro~ukládání \emph{GIT} projektů online, tak~aby~byly zálohované a~přístupné odkudkoliv, jako např.~\textbf{GitHub}, \textbf{GitLab} nebo~\textbf{Bitbucket}. Mimo zmíněné funkce jsou~zde tzv.~\textbf{Issues}, které umožňují sledovat stav jednotlivých právě probíhající úkoly a~hlásit chyby k~opravě. Tímto způsobem může (pokud je~\emph{repozitář} veřejný) např.~uživatel sdělit svůj nápad nebo~ohlásit chybu v~aplikaci a~případně se~k~ní vrátit později. \emph{Issues} je~také možné přiřadit konkrétnímu vývojáři, který chybu nebo~návrh na~vylepšení dostane za~úkol, a~automaticky vytvořit \textbf{větev} (\textbf{branch}), na~které bude práce probíhat. Na konci práce vývojář vytvoří tzv.~\textbf{merge request}, ve~kterém okomentuje, jak problém řešil, a~požádá o~sloučení nového kódu do~hlavní \emph{větve} projektu. Je~také možné jednoduše zobrazit rozdíly mezi hlavní \emph{větví} a~tou, na~které vývojář pracuje~\cite{gitscmBook}.
             
             \emph{GIT} je~pro~vývoj dnešních aplikací nepostradatelný nástroj.
             
@@ -936,9 +936,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             \subsection{Gitlab Actions}
                 \emph{Gitlab Actions} jsou~součástí \emph{Gitlabu} a~umožňují vytvořit sadu procesů (tzv.~\textbf{workflow}), které se~spustí při~určité události, např.~při~nahrání nového kódu do~repozitáře.
                 
-                \emph{Workflow} se~spouští ve~virtualizačním prostředí (\emph{kontejneru}), který je~vytvořený na~základě \emph{Dockerfile} a~obsahuje prostředí, potřebné pro~sestavení a~spuštění aplikace a~testů. Celý proces se~automaticky spouští na~\emph{virtuálním serveru}, např.~po~nahrání projektu na~\emph{Gitlab} a~nastavuje se~pomocí konfiguračního souboru \emph{.yml}.
+                \emph{Workflow} se~spouští ve~virtualizačním prostředí (\emph{kontejneru}), který je~vytvořený na~základě \emph{Dockerfile} a~obsahuje prostředí, potřebné pro~sestavení a~spuštění aplikace a~testů. Celý proces se~automaticky spouští na~\emph{virtuálním serveru}, např.~po~nahrání projektu na~\emph{Gitlab}, a~nastavuje se~pomocí konfiguračního souboru \emph{.yml}.
 
-                Během procesu se~spustí \emph{kontejner}, ve~kterém se~aplikace sestaví a~spustí se~přednastavené testy. Pokud vše proběhne v~pořádku, aplikace se~automaticky nasadí na~server. Použitím \emph{CI/CD} procesů se~zjednoduší nasazování aplikace a~zrychlí proces~vývoje~\cite{gitlab:actions}.
+                Během procesu je~sestaven \emph{kontejner}, ve~kterém se~spustí přednastavené testy a~poté je~aplikace sestavena. Pokud vše proběhne v~pořádku, aplikace je~automaticky nasazena na~produkční server. Použitím \emph{CI/CD} procesů je~zjednodušeno nasazování aplikace a~zrychluje se tak proces~vývoje~\cite{gitlab:actions}.
 
         \section{Pravidla přístupnosti webu}
                 Webové aplikace je~nutné vytvářet přístupné pro~všechny uživatele. Tato pravidla jsou~definována v~\acrdefprint{WCAG}{Web Content Accessibility Guidelines}, které jsou~vydávány organizací \acrdefprint{W3C}{World Wide Web Consortium}.
@@ -948,9 +948,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \textbf{Pravidla přístupnosti} zahrnují optimalizaci (přizpůsobení) aplikace pro~hladké použití aplikace osobami se~zrakovými nebo sluchovými vadami, poruchami pohybu~ap. Mají např.~zjednodušit navigaci ve~stránce pomocí klávesnice, či~s~použitím programů na~čtení displeje, zmiňují kontrast prvků ve~stránce pro~lepší čitelnost a~správné použití \textbf{semantických} (\textbf{významových}) prvků \acrshort{HTML} jako~\texttt{<nav>}, \texttt{<header>}, \texttt{<article>}, správně použité úrovně nadpisů a~další~\cite{w3WCAGOverview}.
 
         \section{Optimalizace pro vyhledávače}
-                Důležitou součástí, která souvisí i~s~přístupností je~\acrdefprint{SEO}{optimalizace webu pro~vyhledávače}. Při~\textbf{indexaci} (načtení strukturovaných dat ze~stránky a~jejich zařazení do~vyhledávání). Vyhledávač musí -- stejně jako např.~software pro~čtení obrazovky -- načítat surová data, která si~ukládá do~své~databáze. V~případě, že~jsou data špatně strukturovaná, nebo~nejsou dostatečně popsaná, může dojít k~jejich špatnému zařazení, nebo~k~jejich nezařazení do~vyhledávání. To~může mít~za~následek, že~stránka nebude v~hledání nalezena, nebo~bude nalezena až~na~pozdějších pozicích~\cite{dover2012seo}.
+                Důležitou součástí, která souvisí i~s~přístupností, je~\acrdefprint{SEO}{optimalizace webu pro~vyhledávače}. Při~\textbf{indexaci} (načtení strukturovaných dat ze~stránky a~jejich zařazení do~vyhledávání). Vyhledávač musí -- stejně jako např.~software pro~čtení obrazovky -- načítat surová data, která si~ukládá do~své~databáze. V~případě, že~jsou data špatně strukturovaná, nebo~nejsou dostatečně popsaná, může dojít k~jejich špatnému zařazení, nebo~k~jejich nezařazení do~vyhledávání. To~může mít~za~následek, že~stránka nebude v~hledání nalezena, nebo~bude nalezena až~na~pozdějších pozicích~\cite{dover2012seo}.
 
-                Důležitými faktory jsou~také zabezpečení webu (\emph{HTTPS}) a~optimalizace pro~mobilní zařízení, nebo správná struktura webu, např.~oddělení navigace od~obsahu (\texttt{<nav><article>}~ap.). Vyhledávače (i~sociální sítě~ap.), např.~\emph{Google} bodují splnění různých kategorií a~podle vlastního algoritmu potom řadí výsledky ve~vyhledávání. Viz~aktualizace algoritmu~\cite{hladis2016aktualizace}.
+                Důležitými faktory jsou~také zabezpečení webu (\emph{HTTPS}) a~optimalizace pro~mobilní zařízení, nebo správná struktura webu, např.~oddělení navigace od~obsahu (\texttt{<nav><article>}~ap.), nebo~hiearchie nadpisů. Vyhledávače (i~sociální sítě~ap.), např.~\emph{Google} bodují splnění různých kategorií a~podle vlastního algoritmu potom řadí výsledky ve~vyhledávání. Viz~aktualizace algoritmu~\cite{hladis2016aktualizace}.
 
         \section{Údržba aplikace}
             Údržba aplikace je~důležitá část vývoje. Je~potřeba aplikaci pravidelně aktualizovat a~opravovat chyby, které se~vyskytnou.
@@ -1490,7 +1490,7 @@ class dataLoader extends Endpoints{
 
             Ke~kontrole přístupnosti využiji rozšíření \textbf{Wave} (\url{https://wave.webaim.org/extension/})
 
-            Pro~komunikaci s~backendem budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \acrshort{JWT} a~tedy~zjednoduší komunikaci \acrshort{FE} s~\acrshort{BE}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
+            Pro~komunikaci s~\acrshort{BE} budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \acrshort{JWT} a~tedy~zjednoduší komunikaci \acrshort{FE} s~\acrshort{BE}. Při~každé důležité změně, jako přihlášení nebo~odhlášení uživatele se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
 
             Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv, kdo~má přístup k~používanému verzovacímu systému, a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \acrshort{BE} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\acrshort{JS} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\acrshort{JS} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\acrshort{JS} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz~\ref{js:env}.
             
