@@ -386,9 +386,9 @@ func (u *User) UserCan(p Permissions) bool {
 
             \emph{Procedury} i~\emph{funkce} mohou mít tzv.~\textbf{vedlejší efekty} (\textbf{side effects}), což~znamená, že~mohou ovlivnit chod programu~změnou \textbf{stavu aplikace}, např.~změnou hodnoty globální proměnné~\cite{Scott2019:programmingpragmatics}.
             
-            V~dnešní době se~častěji používá \acrdefprint{OOP}{Object Oriented Programming}, protože umožňuje vývojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují modely objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu, na~kterých mohou vývojáři pracovat paralelně.
+            V~dnešní době se~častěji používá \acrshort{OOP}, protože umožňuje vývojáři programovat v~abstraktnější rovině a~tím zjednodušit vývoj a~údržbu programu. Jednotlivé objekty představují modely objektů z~reálného světa, což~je~pro~člověka přirozenější způsob myšlení. Při~práci v~týmu je~také jednodušší rozdělit si~práci na~jednotlivé části programu, na~kterých mohou vývojáři pracovat paralelně.
             
-            \emph{OOP (objektově orientované programování)} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~\emph{OOP} se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vznikají ze~tříd. Třída je~předpis, podle kterého je~vytvořen (\emph{inicializován}) konkrétní~objekt.
+            \acrdefprint{OOP}{Objektově Orientované Programování} je~programovací paradigma, které se~snaží modelovat objekty z~reálného světa. V~\emph{OOP} se~program skládá z~objektů, které mají své~vlastnosti a~metody (funkce). \emph{Objekty} vznikají ze~tříd. Třída je~předpis, podle kterého je~vytvořen (\emph{inicializován}) konkrétní~objekt.
             
             \emph{OOP} má~4~základní vlastnosti, které jsou~při vývoji využívány~\cite{Keogh:OOP}.
             \begin{description}
@@ -613,7 +613,7 @@ const App = () => {
 
             \acrshort{SSG} (někdy~\emph{pre-rendering}) je~způsob zrychlení webů, kde se~generují \textbf{všechny} statické soubory z~dat načtených z~dynamického zdroje (např.~\emph{CMS~--~Content Management System (redakční systém)}). Data jsou načítána pluginem a~z~nich~jsou~--~podle předdefinované šablony~--~generovány statické soubory. Díky tomu, že~jde o~čistě statický obsah, bez~nutnosti \acrshort{AJAX} požadavků nebo dynamického generování, je~tento postup rychlostí na~stejné úrovni jako~poskytování statických souborů, které potom obsluhuje pouze \emph{Webový Server}, a~není nutné, aby~běžela další \emph{služba/aplikace}.
             
-            To~samozřejmě nevylučuje použít \acrshort{AJAX}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \acrshort{JS}, který by~HTML nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
+            To~samozřejmě nevylučuje použít \acrshort{AJAX}, pouze~je~použit na~uživatelské akce až~po~načtení aplikace, nikoliv k~načítání prvotního obsahu stránky. Uživateli je~poslán statický \emph{HTML~soubor}, který se~vykreslí mnohem rychleji a~před~zpracováním \acrshort{JS}, který by~\acrshort{HTML} nejdříve generoval a~tím~oddálil vykreslení prohlížečem. Následně se~na~vygenerované \emph{komponenty} aplikuje jejich logika a~akce. Tento proces se~nazývá \textbf{hydratace} (\textbf{Hydration}).
 
             \acrshort{SSR} je~koncept podobný \acrshort{SSG}, pouze na~straně serveru běží aplikace, která průběžně sleduje data a~aktualizuje obsah (při~změně v~datech) za~použití dané aplikační logiky a~uživateli zasílá statické soubory. Při~prvním požadavku na~aplikaci server zašle \acrshort{HTML} kód dané stránky a~po~provedení \emph{hydratace} aplikace začne fungovat normálním způsobem. To~umožňuje vytvořit aplikaci, která se~načte rychleji a~přitom neztrácí žádné výhody knihovny, kterou používáme (např.~\emph{React}). Při~každém dalším požadavku \emph{SSR} zašle uživateli kód pro~požadovanou část aplikace. Často se~používá v~případě, že~i~\acrshort{BE} aplikace používá \acrshort{JS}~\cite{uc:ssrandssg}.
 
@@ -624,7 +624,7 @@ const App = () => {
 
             \textbf{Server} je~počítač, který poskytuje služby klientovi. V~případě webové aplikace je~to~\emph{server}, který poskytuje \emph{HTML~stránku}, styly a~skripty. Na~\textbf{serveru} běží také další služby, které ukládají a~poskytují data nebo~zprostředkují další akce, které zajišťují funkčnost aplikace.
 
-            \textbf{Klient} je~aplikace na~zařízení uživatele (webový prohlížeč), který služby \emph{serveru} využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje HTML stránku. V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě~\cite{ClientServer}.
+            \textbf{Klient} je~aplikace na~zařízení uživatele (webový prohlížeč), který služby \emph{serveru} využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje \acrshort{HTML} stránku. V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě~\cite{ClientServer}.
 
         \section{Webová služba}
             Webová služba je~program, který běží na~\emph{serveru} a~poskytuje data \emph{klientovi}. Na \emph{serveru} může běžet více \emph{webových služeb}, rozlišují se \emph{portem}, na~kterém běží a~přijímají instrukce a~data. Např.~webová služba \acrdefprint{HTTP}{Hypertext Transfer Protocol}, která poskytuje webová data a~soubory, poběží na~\emph{portu~80}, resp.~v~dnešní době zejména~\emph{443} (\acrdefprint{HTTPS}{Hypertext Transfer Protocol Secure}). Další služby mohou být např.~emailová služba \acrdefprint{SMTP}{Simple Mail Transfer Protocol}.
@@ -652,11 +652,11 @@ const App = () => {
             \textbf{Hosting} je~služba, kterou poskytují \emph{hostingové společnosti}, které mají~\emph{webové servery} a~poskytují na~nich prostor pro~webové stránky (\textbf{Webhosting}), resp.~pro~další služby typu databáze, cloudové úložiště, vlastní aplikace nebo i~vlastní fyzický server (\textbf{Serverhosting})~\cite{dockernginxperformance}.
 
         \section{Domain Name Server}
-            \acrdefprint{DNS}{Domain Name Server}, někdy také \emph{Domain Name System}, je~systém, který překládá doménová jména na~IP adresy. To~umožňuje uživatelům používat lidem čitelná \emph{doménová jména} namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
+            \acrdefprint{DNS}{Domain Name Server}, někdy také \emph{Domain Name System}, je~systém, který překládá doménová jména na~\textbf{IP adresy}. To~umožňuje uživatelům používat lidem čitelná \emph{doménová jména} namísto \emph{IP~adres} cílového serveru, které jsou pro~uživatele těžko zapamatovatelné.
             
             Díky \acrshort{DNS} např.~oblíbený český vyhledávač namísto \emph{IP~adresy} \texttt{77.75.79.222} najdeme na~čitelné adrese \texttt{Seznam.cz}.
 
-            \textbf{Doménové jméno} je~složeno ze~tří částí. První částí je~\emph{subdoména}, která je~volitelná. Druhou částí je~\emph{doména} (2.\,řádu) a~třetí část je~\emph{doména nejvyššího řádu} (\acrdefprint{TLD}{Top Level Domain}) a~může jít např.~o~národní koncovky (\texttt{.cz}, \texttt{.sk}, \ldots), některou ze~specifických domén (\texttt{.edu}, \texttt{.org}, \texttt{.app}, \ldots). Doména 2.~řádu a~\acrshort{TLD} jsou povinnou součástí adresy. Doménové jméno je~po~zadání do~prohlížeče v~procesu nazývaném \textbf{DNS resolve} přeloženo na~\emph{IP adresu}, která se~dále použije k~odeslání požadavku~\cite{tld:mdn}.
+            \textbf{Doménové jméno} je~složeno ze~tří částí. První částí je~\emph{subdoména}, která je~volitelná. Druhou částí je~\emph{doména} (2.\,řádu) a~třetí část je~\emph{doména nejvyššího řádu} (\acrdefprint{TLD}{Top Level Domain}) a~může jít např.~o~národní koncovky (\texttt{.cz}, \texttt{.sk}, \ldots), některou ze~specifických domén (\texttt{.edu}, \texttt{.org}, \texttt{.app}, \ldots). Doména 2.~řádu a~\acrshort{TLD} jsou povinnou součástí adresy. Doménové jméno je~po~zadání do~prohlížeče v~procesu nazývaném \textbf{\acrshort{DNS} resolve} přeloženo na~\emph{IP adresu}, která se~dále použije k~odeslání požadavku~\cite{tld:mdn}.
         
             \begin{figure}
                 \centering
@@ -745,9 +745,9 @@ const App = () => {
                 \item[PATCH] potom pro~úpravu části dat na~serveru.
             \end{description}
 
-            Souhrnně se~těmto operacím říká \emph{CRUD operace}. \textbf{CRUD} je~zkratka pro~\textbf{Create}, \textbf{Read}, \textbf{Update} a~\textbf{Delete}.
+            Souhrnně se~těmto operacím říká \acrdefprint[short]{CRUD}{Create Read Update Delete} operace, což~je~zkratka pro~\textbf{Create}, \textbf{Read}, \textbf{Update} a~\textbf{Delete}.
 
-            Kromě metod \emph{GET} a~\emph{DELETE} se~v~těle \emph{HTTP požadavku} mohou zasílat také data v~textové formě, např.~formátu~JSON. Během přenosu je~tělo požadavku zašifrováno. V~případě požadavku \emph{GET} se~data vkládají do URL adresy, nejsou šifrována a~mají velikost limitovanou maximální délkou \emph{URL adresy}, kterou je~server schopen zpracovat. Specifikace \acrshort{HTTP} neuvádí žádnou maximální délku, ale v~praxi je~limitována prohlížeči a~serverem~\cite[3.2.1]{ietf-httpbis-messaging-03}.
+            Kromě metod \emph{GET} a~\emph{DELETE} se~v~těle \emph{HTTP požadavku} mohou zasílat také data v~textové formě, např.~formátu~JSON. Během přenosu je~tělo požadavku zašifrováno. V~případě požadavku \emph{GET} se~data vkládají do \acrshort{URL} adresy, nejsou šifrována a~mají velikost limitovanou maximální délkou \emph{URL adresy}, kterou je~server schopen zpracovat. Specifikace \acrshort{HTTP} neuvádí žádnou maximální délku, ale v~praxi je~limitována prohlížeči a~serverem~\cite[3.2.1]{ietf-httpbis-messaging-03}.
 
         \section{GraphQL}
             Naproti \acrshort{REST}u má \textbf{GraphQL} pouze jeden \emph{endpoint}. \emph{GraphQL} je~jazyk, který umožňuje klientovi specifikovat, jaká data chce klient získat. To~umožňuje získat všechna potřebná data v~jednom požadavku, což~může být~výhodné, pokud na~zařízení je~pomalé připojení nebo~používá~mobilní data, kdy~je~potřeba stahovat co~nejméně dat a~snížit počet požadavků na~server.
@@ -823,7 +823,7 @@ const App = () => {
             \subsection{SQL Injection}
                 \emph{SQL Injection} je~zřejmě nejčastější typ útoku, při~kterém útočník vloží kus~\emph{SQL dotazu} do~neošetřeného uživatelského vstupu (např.\,vstupní pole pro~email) a~pokud jej~autor aplikace neošetří, je~místo zpracování vykonán společně se~zbytkem dotazu. To~může vést k~získání citlivých dat, jejich změně nebo~smazání. Může např.~dojít ke~změně hesla administrátorského účtu a~tím získání přístupu ke~chráněným datům.
 
-                Proto je~nutné data od~uživatele vždy ošetřit a~v~ideálním případě použít navíc tzv.~\emph{Parametrizované dotazy} (\emph{Prepared statements}). Při~použití \emph{parametrizovaných dotazů} se~do~dotazu nevkládají přímo data, ale na~místo, kam~patří data je~vložený tzv.~\emph{Zástupný symbol} (\emph{placeholder}), který je~poté nahrazen ošetřenými (\emph{escapovanými}) daty tak, aby~nebylo možné případný vložený příkaz provést. Zástupný symbol v~SQL představuje otazník \uv{\texttt{?}} nebo v~případě pojmenovaných hodnot název proměnné za~dvojtečkou \uv{\texttt{:nazev}}~\cite{graham2021ethical}.
+                Proto je~nutné data od~uživatele vždy ošetřit a~v~ideálním případě použít navíc tzv.~\emph{Parametrizované dotazy} (\emph{Prepared statements}). Při~použití \emph{parametrizovaných dotazů} se~do~dotazu nevkládají přímo data, ale na~místo, kam~patří data je~vložený tzv.~\emph{Zástupný symbol} (\emph{placeholder}), který je~poté nahrazen ošetřenými (\emph{escapovanými}) daty tak, aby~nebylo možné případný vložený příkaz provést. Zástupný symbol v~\acrshort{SQL} představuje otazník \uv{\texttt{?}} nebo v~případě pojmenovaných hodnot název proměnné za~dvojtečkou \uv{\texttt{:nazev}}~\cite{graham2021ethical}.
                 
                 Např.~dotaz na~změnu emailové adresy, který by~v~případě neošetření umožnil útočníkovi získat administrátorský přístup do~aplikace, by~mohl vypadat, jako v~ukázce \ref{model-sql-injection}.:
                 \begin{code}
@@ -856,7 +856,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                         \end{minted}
                         \subcaption{Ošetření SQL injection pomocí prepared statement}
                     \end{minipage}
-                    \caption{SQL injection a jeho ošetření}
+                    \caption{\acrshort{SQL} injection a jeho ošetření}
                     \label{model-sql-injection}
                 \end{code}
 
@@ -994,7 +994,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Linux a příkazová řádka, Windows Subsystem for Linux}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint, \dots)
             
-            Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android open--source project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro OS Linux} přidává funkce pro~použití na~mobilních zařízeních~\cite{AOSP:linux}.
+            Je~to~také základ pro~mnoho dalších operačních systémů, jako např.~\emph{Android open--source project (\emph{AOSP})} od~společnosti \emph{Google}, který na~\emph{jádro \acrdefprint[short]{OS}{Operační Systém} Linux} přidává funkce pro~použití na~mobilních zařízeních~\cite{AOSP:linux}.
             
             Velikou výhodou je~otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům nahlížet a~navrhovat změny ke~zlepšení do~jádra \emph{Linuxu}. Výhodou je~také jeho bezpečnost a~svoboda. V~porovnání s~jinými operačními systémy je~bezpečnější a~méně náchylný ke~škodlivým programům, zejména díky pravidlům pro~přístupy k~souborům. V~Linuxu je~navíc za~soubor považováno všechno (konfigurace, procesy, síť i~periférie atd.), což~zabezpečení zjednodušuje - pokud jsou~správně nastavena přístupová oprávnění a~vlastnictví~\cite{medium:LinuxSecure}.
 
@@ -1292,7 +1292,7 @@ class dataLoader extends Endpoints{
             
             \emph{Nginx} je~ve~srovnání s~jinými servery, jako např.~Apache, považován za~velmi rychlý. Zejména pak~při~obsluze požadavků na~statické soubory. Je~napsán v~jazyce~C a~je~dostupný pro~většinu operačních systémů~\cite{WhatNGINX}.
 
-            \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu} zaměřená na~jednoduchost, zabezpečení a~efektivní využití prostoru na~disku, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~úložiště a~zdroje. Jde~nicméně o~plnohodnotný systém, který je~možné použít i~na~serveru nebo~jiném stroji. Celková velikost distribuce v~kontejneru je~jen kolem 8\,MB (cca. 130\,MB v~plné verzi pro~počítač), což~je~velice málo~\cite{alpinelinuxAbout}.
+            \textbf{Alpine Linux} je~odlehčená distribuce \emph{Linuxu} zaměřená na~jednoduchost, zabezpečení a~efektivní využití prostoru na~disku, určená zejména pro~nasazení v~kontejnerech, kde~očekáváme malou zátěž na~úložiště a~zdroje. Jde~nicméně o~plnohodnotný systém, který je~možné použít i~na~serveru nebo~jiném stroji. Celková velikost distribuce v~kontejneru je~jen kolem 8\,MB (cca. 130\,MB v~plné verzi pro~počítač s~grafickým rozhraním), což~je~velice málo~\cite{alpinelinuxAbout}.
 
             Na~\acrdefprint{VPS}{Virtual Private Server} se~systémem \textbf{Debian} poběží \emph{Nginx} a~\emph{Firewall}, který nasměruje požadavky na~správné porty, a~\emph{Firewall} (\texttt{UFW}), který zablokuje přístup k~portům, které je~potřeba skrýt před~veřejností.
 
@@ -1342,7 +1342,7 @@ class dataLoader extends Endpoints{
 
             Ve~chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \emph{init} a~poté hlavní část aplikace, funkce \emph{main}.
             
-            Funkce \emph{init} použiji k~nastavení připojení k~databázi prostřednictvím \emph{ORM systému} (\href{https://gorm.io/}{\texttt{go-gorm/gorm}}). V~rámci \emph{initu} spouštím migraci databáze, aby \emph{GORM} vytvořil databázové tabulky nebo jejich~podobu aktualizoval. Jednotlivé modely dat jsou vidět ve~zdrojovém kódu aplikace.
+            Funkce \emph{init} použiji k~nastavení připojení k~databázi prostřednictvím \acrshort{ORM}(\href{https://gorm.io/}{\texttt{go-gorm/gorm}}). V~rámci \emph{initu} spouštím migraci databáze, aby \emph{GORM} vytvořil databázové tabulky nebo jejich~podobu aktualizoval. Jednotlivé modely dat jsou vidět ve~zdrojovém kódu aplikace.
 
             K~připojení do~databáze je~používán tzv.~\acrdefprint{DSN}{Data Source Name}. Je~to~řetezec znaků, který obsahuje údaje k~připojení do~databáze. Obsahuje \emph{adresu} databáze, \emph{port}, na~kterém běží, \emph{název databáze}, \emph{jméno uživatele} a~\emph{heslo}. Ty~si~načítám z~prostředí systému, tedy \emph{Dockeru}, který si~je~načte ze souboru \texttt{.env}.
 
@@ -1487,7 +1487,7 @@ class dataLoader extends Endpoints{
 
             Ke~kontrole přístupnosti využiji rozšíření \textbf{Wave} (\url{https://wave.webaim.org/extension/}).
 
-            Pro~komunikaci s~\acrshort{BE} budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \acrshort{JWT} a~tedy~zjednoduší komunikaci \acrshort{FE} s~\acrshort{BE}. Při~každé důležité změně dat o~uživateli, jako je~přihlášení, odhlášení a~změna hesla, se~změní data a~s~nimi i~\emph{JWT token}, čímž se~redukuje riziko jeho zneužití.
+            Pro~komunikaci s~\acrshort{BE} budu používat dříve napsaný \emph{Typescript modul} \href{https://gitlab.com/sjiamnocna/renette-api}{\emph{sjiamnocna/renette-api}}, který je~napsaný k~udržování \acrshort{JWT} a~tedy~zjednoduší komunikaci \acrshort{FE} s~\acrshort{BE}. Při~každé důležité změně dat o~uživateli, jako je~přihlášení, odhlášení a~změna hesla, se~změní data a~s~nimi i~\acrshort{JWT}, čímž se~redukuje riziko jeho zneužití.
 
             Důležitým bodem při~vývoji je~neukládat citlivé údaje, jako např.~klíče nebo~soukromé údaje v~kódu (tzv.~\textbf{hardcoded}), kde k~nim bude mít~přístup téměř kdokoliv, kdo~má přístup k~používanému verzovacímu systému, a~vzniká tak~riziko zneužití údajů. Proto jsou takové údaje načítány do~systému jako~\textbf{proměnné prostředí} (\textbf{environment variable}). \emph{Docker} je schopný načíst a~zpřístupnit~kontejneru hodnoty, které jsou~uloženy v~souboru \texttt{.env}. \acrshort{BE} napsaný v~\emph{Go} umí~konstanty z~prostředí číst pomocí \texttt{os.Getenv("nazevpromenne")}. Nicméně \emph{NextJS} díky svému návrhu neumožňuje načtení \emph{env proměnných} do~veřejné části aplikace, budu je~při spuštění \emph{NextJS} aplikace pomocí skriptu z~prostředí přepisovat do~\acrshort{JS} souboru jako konstanty a~dále s~nimi jako s~běžnými z~\acrshort{JS} exportovanými \emph{konstantami} budu~pracovat. Přepis proměnných do~\acrshort{JS} souboru bude~prováděn pomocí \emph{Node.js} skriptu, viz~\ref{js:env}.
             
