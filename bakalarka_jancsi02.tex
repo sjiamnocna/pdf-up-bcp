@@ -972,7 +972,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 aby~vývojář mohl aplikaci dále rozvíjet.
 
             \subsection{Běhové a kompilační chyby}
-                \textbf{Kompilace} (\textbf{sestavení}) je~proces překladu zdrojového kódu do~binárního souboru, který je~přímo spustitelný na~procesoru. Při~kompilaci se~kontroluje správnost kódu, datových typů~ap. Případné chyby překladač oznámí vývojáři. Některé chyby může překladač opravit automaticky a~podle závažnosti chyby a~námi zavedených parametrů překlad proběhne v~pořádku nebo se~překlad zastaví a~je~potřeba chyby předem opravit.
+                \textbf{Kompilace} (\textbf{sestavení}) je~proces překladu zdrojového kódu do~binárního souboru, který je~přímo spustitelný na~procesoru. Při~kompilaci se~kontroluje správnost kódu, datových typů~ap. Případné chyby překladač oznámí vývojáři. Některé chyby může překladač opravit automaticky a~podle závažnosti chyby a~zavedených parametrů překlad proběhne v~pořádku nebo se~překlad zastaví a~je~potřeba chyby předem opravit.
 
                 Chyby se~ale mohou projevit až~při~běhu programu. To~jsou chyby, které např.~závisí na~datech, která se~do~programu načítají nebo je~zadává uživatel. Příkladem takové chyby může být špatná práce s~pamětí, která může vést k~přetečení paměti a~následnému pádu programu.
 
@@ -1108,18 +1108,18 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \end{description}
 
 	\chapter{Návrh aplikace}
-        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tzv.~\emph{funkční požadavky} na~výslednou aplikaci. Potom je~možné vytvořit \emph{UML modely}, které mohou pomoct blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
+        Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tzv.~\emph{funkční požadavky} na~výslednou aplikaci. Potom je~možné vytvořit \emph{UML modely}, které mohou pomoci blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
 
-        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám nebo~v~týmu a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají~\cite{bctynovsky:specifikacepozadavku}.
+        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám, nebo~v~týmu, a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají~\cite{bctynovsky:specifikacepozadavku}.
 
         \section{Případ použití aplikace}
-            Aplikace \emph{Písemkomat}, poskytne registrovaným uživatelům možnost vytvořit vytvořit si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
+            Aplikace \emph{Písemkomat} umožní registrovaným uživatelům vytvořit~si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude uživatel mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů, a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
             
             Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
-            Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho testu objevily všechny příklady z~dané kategorie nebo bude chtít zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu bude chtít~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou moci být~náhodně dosazené hodnoty. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Pomocí proměnných bude~možné dosadit náhodnou hodnotu z~určeného intervalu nebo vypočtenou z~ostatních proměnných. Uživatel si~také bude moci vytvořit vlastní proměnné, které bude moci využít v~dalších příkladech. 
+            Následně si~vytvoří test a~může si~vybrat, zda~chce, aby~se~v~jeho testu objevily všechny příklady z~dané kategorie, nebo bude chtít zkombinovat příklady z~růzých kategorií. Nakonec otázky v~testu bude chtít~nechat náhodně seřadit. Příklady jsou navíc zapsány obecně pomocí proměnných, takže v~každé verzi budou moci být~náhodně dosazené hodnoty. Jelikož některé hodnoty nemohou být~zcela náhodné, jinak by~to mohlo vést ke~složitě řešitelným nebo pro~danou úroveň zcela neřešitelným příkladům, bude možné vytvářet mezivýpočty v~rámci proměnných. Pomocí proměnných bude~možné dosadit náhodnou hodnotu z~určeného intervalu nebo vypočtenou z~ostatních proměnných. Uživatel si~také bude moci vytvořit vlastní proměnné, které bude moci využít v~dalších příkladech. 
 
-            Jako součást příkladu si~uživatel vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3\cdot{A}$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~uživatel nastavil a~pomocí zápisu proměnné \texttt{\{\{.A\}\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~uživatel nastaví. V~případě, že~zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit, kolik odpovědí chce~generovat. Aplikace pohlídá, že~uživatel označí alespoň jedno správné řešení. Příklady bude možné komentovat a~hodnotit, aby bylo jednodušší najít chyby v~zadání.
+            Jako součást příkladu si~uživatel vytvoří proměnné $A, B, C$ a $D$, kde $A, B$ definuje jako náhodná \emph{lichá} čísla od~1 do~10, $C = 4/3\cdot{A}$ a $D = C + B$. Řešený příklad se~vygeneruje podle předlohy, kterou si~uživatel vytvořil. Do~proměnných $A, B$ se~při~konečném generování příkladů uloží náhodné číslo z~intervalu, který~si~uživatel nastavil, a~pomocí zápisu proměnné \texttt{\{\{.A\}\}} se~vloží do~příkladu či~proměnných na~zadané místo. Proměnné budou vyčísleny, nebo zachovány jako původní nezpracovaný text. Funkční proměnné budou moci kromě generování čísel obsahovat také vstupní pole, jako např. výběr z~možností, nebo textové pole, které bude mít~za~úkol žák vyplnit. Při~generování se~proměnné doplní do~zadání, případně do~možností výběru, pokud je~uživatel nastaví. V~případě, že~zadá vzorec, ze~kterého bude možné možnosti vygenerovat, bude možné určit, kolik odpovědí chce~generovat. Aplikace pohlídá, že~uživatel označí alespoň jedno správné řešení. Příklady bude možné komentovat a~hodnotit, aby bylo jednodušší najít chyby v~zadání.
             
             Předpokládejme, že~budou vygenerována náhodná čísla $A = 3$ a~$B = 5$ a~hodnoty proměnných $C, D$ jsou~zadány jako obecné výpočty takto:
             \begin{align*}
@@ -1129,11 +1129,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                 \$D &= \$C + \$B = 4 + 5 = 9
             \end{align*}
 
-            Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými hodnotami (čísly, výrazy nebo funkčními prvky). Po~vygenerování příkladu bude~potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možností odpovědí, aby~bylo možné identifikovat přesnou verzi příkladu. Pokud se~v~příkladě nevyskytují žádné proměnné nebo v~případě, že není potřeba nic generovat, potom není potřeba hodnoty ukládát.
+            Proměnné se~při~generování výsledné podoby příkladu nahradí vygenerovanými hodnotami (čísly, výrazy nebo funkčními prvky). Po~vygenerování příkladu bude~potřeba uložit do~databáze konkrétní vygenerované hodnoty proměnných a~možnosti odpovědí, aby~bylo možné identifikovat přesnou verzi příkladu.
 
-            Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá a~varianta, kde~se~budou vyskytovat i~zlomky. Uživatel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
+            Proměnné bude možné shlukovat do~variant. To~umožní vytvořit více variant příkladů. Např.~varianta, kde~se~budou generovat čísla celá, a~varianta, kde~se~budou vyskytovat i~zlomky. Uživatel si~pak~při~tvorbě testu jen vybere, kterou variantu chce použít.
 
-            Uživatel bude mít~možnost zvolit~si, jestli chce~vytvořit otevřenou nebo~uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může také využít proměnné, které si~vytvořil dříve. V~obou případech bude moci zapsat vzorec, ze~kterého může~být~vygenerováno několik možností výběru, vč.~správné odpovědi. Pokud uživatel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu budou~v~možnostech výběru proměnné nahrazeny a~vyčísleny, pokud nebude přepínači určeno jinak.
+            Uživatel bude mít~možnost zvolit~si, zda chce~vytvořit otevřenou nebo~uzavřenou formu příkladu s~možnostmi výběru. V~tomto případě může také využít proměnné, které si~vytvořil dříve. V~obou případech bude moci zapsat vzorec, ze~kterého může~být~vygenerováno několik možností výběru, vč.~správné odpovědi. Pokud uživatel pro tvorbu možnosti využije vzorec, bude možné jich z~jedné možnosti vytvořit několik. Ve~výsledném příkladu budou~v~možnostech výběru proměnné nahrazeny a~vyčísleny, pokud nebude přepínači určeno jinak.
 
             Vzorový příklad na~výpočet kořenů jednoduché rovnice může vypadat např.~takto:
             \begin{align*}
@@ -1166,9 +1166,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Po~nasdílení trvalého odkazu na~daný~příklad/test bude umožněno zobrazit konkrétní nebo náhodně vygenerovanou variantu příkladu, případně si~příklad přidat a~upravit ve~vlastním účtu.
 
         \section{Návrh struktury databáze}
-            Pro~ukládání dat v~aplikaci použiju relační databázový systém \emph{MySQL}. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
+            Pro~ukládání dat v~aplikaci použiji relační databázový systém \emph{MySQL}. Databáze je~soubor dat, která jsou~uspořádána tak, aby~byla snadno vyhledatelná a~měla nějaký význam.
 
-            Při~plánování databáze využiju \emph{diagram tříd} k~odvození konkrétních tabulek a~vztahů mezi~nimi. \emph{UCD} zase pomůže zjistit, jaké \textbf{SQL~dotazy} (\textbf{SQL Query}) budou používány, což~umožní lepší promyšlení toho, které sloupce zařadím do~indexů a~které nikoliv.
+            Při~plánování databáze využiji \emph{diagram tříd} k~odvození konkrétních modelů a~vztahů mezi~nimi. \emph{Use case diagram} zase pomůže zjistit, jaké \textbf{SQL~dotazy} (\textbf{SQL Query}) budou používány, což~umožní lepší promyšlení indexaci jednotlivých sloupců v~\acrdefprint[short]{DB}{Databáze}.
 
             O~problematiku tvorby databázových tabulek se~postará \textbf{ORM} (\textbf{Object Relational Mapper}), který sám vytvoří tabulky z~modelů dat, které bude aplikace používat. Autor aplikace se~tak nemusí starat o~tvorbu tabulek a~jejich vztahů, ale~může se~soustředit na~tvorbu aplikace, nicméně by~měl pamatovat na~zásady indexování a~optimalizace databáze.
             
@@ -1185,7 +1185,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Při~vývoji aplikace v~Reactu použiji i~\acrshort{TS}. \emph{Facebook} s~použitím~\acrshort{TS} počítá a~vydává mimo~\emph{React} také~balíček s~příslušnými datovými typy. \acrshort{TS} podporuje i~\acrshort{JSX} pomocí souborů s~příponou \texttt{*.TSX}~\cite{TypeScript}.
 
-            \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci využiju formát zápisu matematických výrazů z~\LaTeX{u}. \LaTeX~má~mnoho dalších využití a~byl~použit při~tvorbě písemné části této~práce.
+            \LaTeX~je~profesionální nástroj pro~sazbu textů s~možnostmi matematických vzorců, který je~používán zejména v~akademickém prostředí~\cite{Rybicka2003:latex}. V~aplikaci využiji formát zápisu matematických výrazů z~\LaTeX{u}. \LaTeX~má~mnoho dalších využití a~byl~použit při~tvorbě písemné části této~práce.
             
             \textbf{Mathjax} (\url{https://www.mathjax.org}), je~knihovna, která umožňuje zobrazit na~webu matematické zápisy mmj.~ve~formátu \LaTeX zápisu. Použiji jej~tedy pro~zobrazení matematických výrazů v~textu příkladů.
 
@@ -1269,7 +1269,7 @@ class dataLoader extends Endpoints{
             
             V~mém~případě jde~o~\emph{MySQL} \emph{engine} \textbf{InnoDB}, který ukládá strukturu a~data v~souborech s~příponou~\texttt{*.ibd}~\cite{MySQLInnoDB}.
             
-            \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \acrshort{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \acrshort{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhraní k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají a~zjednodušují nám načítání konkrétních dat.
+            \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \acrshort{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \acrshort{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhraní k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají, a~zjednodušují načítání konkrétních dat.
 
             Pokud je~potřeba nějaké složitější operace, je~možné využít i~samostatně formulované \emph{SQL~dotazy}. \cite{gormGORM, freecodecamp:orm}
 
@@ -1327,7 +1327,7 @@ class dataLoader extends Endpoints{
             
             Pro~obsluhu požadavků využiji \href{https://github.com/gin-gonic/gin}{\emph{gin-gonic/gin}} s~vlastním dříve~vytvořeným rozšířením o~autentizaci požadavku a~kontrolu a~správu \acrshort{JWT} \href{https://gitlab.com/sjiamnocna/goethe}{\emph{sjiamnocna/goethe}}.
 
-            Při~vývoji využiju nástroj \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}}, který automaticky restartuje aplikaci při~každé změně kódu, čímž vývoj aplikace zrychlí, jelikož nebude~nutné manuální spouštění aplikace.
+            Při~vývoji využiji nástroj \href{https://github.com/cosmtrek/air}{\texttt{cosmtrek/Air}}, který automaticky restartuje aplikaci při~každé změně kódu, čímž vývoj aplikace zrychlí, jelikož nebude~nutné manuální spouštění aplikace.
 
             \acrshort{BE} tvoří dvě části, aby~byl~lépe testovatelný a~rozšiřitelný. Jsou to~\emph{webový server}, který bude přijímat požadavky a~zpracovávat uživatelská data, a~\emph{generátor}, který přijme požadavky a~vygeneruje části příkladu podle zadání. Ty~předá ve~strukturované podobě výslednému zobrazení (ve~smyslu \emph{MVC}). V~případě nalezených chyb (např. nekompatibilní nastavení, závislost na~neexistující proměnné\dots), vedoucí k~nevytvoření příkladu, sdělí chyby uživateli, případně se~pokusí, pokud je~to~možné, samostatně chyby odstranit.
 
@@ -1342,7 +1342,7 @@ class dataLoader extends Endpoints{
 
             Ve~chvíli, kdy spustíme aplikaci, se~nejdříve spustí funkce \emph{init} a~poté hlavní část aplikace, funkce \emph{main}.
             
-            Funkce \emph{init} použiju k~nastavení připojení k~databázi prostřednictvím \emph{ORM systému} (\href{https://gorm.io/}{\texttt{go-gorm/gorm}}). V~rámci \emph{initu} spouštím migraci databáze, aby \emph{GORM} vytvořil databázové tabulky nebo jejich~podobu aktualizoval. Jednotlivé modely dat jsou vidět ve~zdrojovém kódu aplikace.
+            Funkce \emph{init} použiji k~nastavení připojení k~databázi prostřednictvím \emph{ORM systému} (\href{https://gorm.io/}{\texttt{go-gorm/gorm}}). V~rámci \emph{initu} spouštím migraci databáze, aby \emph{GORM} vytvořil databázové tabulky nebo jejich~podobu aktualizoval. Jednotlivé modely dat jsou vidět ve~zdrojovém kódu aplikace.
 
             K~připojení do~databáze je~používán tzv.~\acrdefprint{DSN}{Data Source Name}. Je~to~řetezec znaků který obsahuje informace o~připojení do~databáze. Obsahuje \emph{adresu} databáze, \emph{port}, na~kterém běží, \emph{název databáze}, \emph{jméno uživatele} a~\emph{heslo}. Ty~si~načítám z~prostředí systému, tedy \emph{Dockeru}, který si~je~načte ze souboru \texttt{.env}.
 
@@ -1450,7 +1450,7 @@ class dataLoader extends Endpoints{
 
             K~identifikaci proměnných budou sloužit jejich jména. Jména pak~poslouží jako klíče, které na~sebe \textbf{namapují} (přiřadí) vlastnosti a~obsah proměnných. K~určení obsahu, spuštění funkcí, které vygenerují jejich hodnoty, a případnému vyčíslení (redukci) \emph{mnohočlenů} bude nutné vytvořit \textbf{parser}, což~je~program, který bude schopný rozdělit řetězec a~načíst jednotlivé částí, kterým přiřadí konkrétní význam. Podle celkové podoby pak určí, zda jde o~\emph{proměnnou}, \emph{funkci}, \emph{polynom} nebo \emph{operátor/závorku}. U~každé části pak~určí, zda je~platná a~případně ji~nahradí její nalezenou/vypočítanou hodnotou.
             
-            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiju modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory a~vyfiltruje \textbf{bílé znaky} (mezery, ukončení řádku~ap.). Výsledkem je~seznam \emph{tokenů}, které byly v~textu rozpoznány. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
+            \emph{Parser} musí rozložit zápisy hodnot proměnných na~jednotlivé \textbf{dílčí řetězce} (\textbf{tokeny}) a~identifikovat jejich typ. K~tomu použiji modul \href{github.com/bzick/tokenizer}{\texttt{bzick/tokenizer}}. Ten~ve~vstupním textu identifikuje základní typy jako~--~čísla, identifikátory a~vyfiltruje \textbf{bílé znaky} (mezery, ukončení řádku~ap.). Výsledkem je~seznam \emph{tokenů}, které byly v~textu rozpoznány. Podle kontextu (typů okolních \emph{tokenů}) potom určím jejich~význam v~aplikaci a~jak je~s~nimi potřeba pracovat.
             
             Např.~pokud za~znakem \{ bude tečka, vím, že~jde o~proměnnou. Pokud je~tam~identifikátor (řetězec znaků) a~závorky s~argumenty pro~funkci, jde o~funkci. Po~zpracování proměnných a~funkcí bude~možné určit zbytek jako~mnohočleny, zlomky~apod.
             
@@ -1469,7 +1469,7 @@ class dataLoader extends Endpoints{
         \subsection{Autentizace uživatelů}
             Registrace a~přihlášení do~aplikace bude možná více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé budou moci k~používání aplikace použít kombinaci \emph{e-mailové adresy a~hesla}, ale také \emph{Google} účet, díky použití \emph{Firebase}. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
             
-            Na~\acrshort{FE} použiju nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí účtu u~společnosti Google. Přihlášení pomocí \emph{Firebase} proběhne takto:
+            Na~\acrshort{FE} použiji nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí účtu u~společnosti Google. Přihlášení pomocí \emph{Firebase} proběhne takto:
             \begin{enumerate}
                 \item Uživatel se~přihlásí k~\acrshort{FE} pomocí \textbf{Firebase Authentication}.
                 \item \acrshort{FE} vygeneruje \acrshort{JWT} pomocí uživatelských údajů získaných z~\emph{Firebase} a~odešle jej~na~\acrshort{BE}.
@@ -1483,7 +1483,7 @@ class dataLoader extends Endpoints{
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\acrshort{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~načíst data uživatele do~paměti programu a~vzdálené odhlášení v~případě podezřelého přístupu k~účtu.
 
         \section{Frontend}
-            \acrshort{FE} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \acrshort{TS}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro~lepší přístupnost aplikace a~\acrshort{SEO}, využiju k~tvorbě komponent některý z~\acrshort{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~myšlenkou přístupnosti pro~slabozraké či~využívající čtecí zařízení, což~zjednoduší práci při~tvorbě \acrshort{UI}.
+            \acrshort{FE} bude vytvořen pomocí nástroje \emph{NextJS} v~jazyce \acrshort{TS}. \emph{NextJS} je~založen na~knihovně \emph{React} a~umožňuje využívat většinu jeho~výhod. Pro~lepší přístupnost aplikace a~\acrshort{SEO}, využiji k~tvorbě komponent některý z~\acrshort{CSS} nástrojů nebo hotových šablon, které jsou již~většinou připraveny s~myšlenkou přístupnosti pro~slabozraké či~využívající čtecí zařízení, což~zjednoduší práci při~tvorbě \acrshort{UI}.
 
             Ke~kontrole přístupnosti využiji rozšíření \textbf{Wave} (\url{https://wave.webaim.org/extension/})
 
@@ -1525,7 +1525,7 @@ class dataLoader extends Endpoints{
                 \label{js:env}
             \end{code}
 
-            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiju modul \texttt{next-intl}, na~jehož webu je~uvedeno, že~má~nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
+            Aplikace bude napsaná v~anglickém jazyce, do~ostatních jazyků (vč.~Češtiny) budu aplikaci překládat. K~tomu použiji modul \texttt{next-intl}, na~jehož webu je~uvedeno, že~má~nativní podporu přímo od~\textbf{Vercelu}. Překlady budou uloženy v~adresáři \texttt{locales} a~budou se~načítat dynamicky podle aktuálního jazyka. V~případě, že~překlad chybí, zobrazí se~anglický text. Překlady budou vytvořeny pomocí \emph{Google Translate} a~budou přeloženy ručně.
 
             \textbf{Router} v~případě \acrshort{FE} určuje, která stránka (resp.~\emph{komponenta}) bude na~základě \acrshort{URI} (adresy), \emph{query} parametrů a~stavu okna prohlížeče zobrazena. Veřejná prezentace aplikace bude definována v~hlavní části \emph{routeru}, stránky pro~přihlášené uživatele použijí tzv.~\emph{lazy loading}.
 
