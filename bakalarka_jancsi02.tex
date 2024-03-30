@@ -304,7 +304,7 @@
 
             \textbf{Transpilací} nazýváme proces podobný \emph{kompilaci}, kde~mezi sebou překládáme \emph{vysokoúrovňové jazyky}. Např.~z~jazyka \acrshort{TS} do~\acrshort{JS}~\cite{fuertes:Transpilers}.
 
-            \uv{\acrdefprint{JIT}{Just In Time} \textbf{překlad} je způsob, jakým interprety urychlují běh skriptů tím, že dynamicky během provádění programu překládají často prováděné části kódu (tzv. hot paths) do strojového kódu. Tento proces začíná interpretací skriptu, identifikací hot paths a~jejich následným překladem do~optimalizovaného strojového kódu, který je~ukládán do~cache. Díky tomu může v~příštím běhu programu interpret spouštět tyto části kódu přímo, což~významně urychluje jejich provádění a zvyšuje celkový výkon aplikace}~\cite{RamananJIT}.
+            \uv{\acrdefprint{JIT}{Just In Time} \textbf{kompilace} je způsob, jakým interprety urychlují běh skriptů tím, že dynamicky během provádění programu překládají často prováděné části kódu (tzv. \textbf{hot~paths}) do~strojového kódu. Tento proces začíná interpretací skriptu, identifikací \emph{hot~paths} a~jejich následným překladem do~optimalizovaného strojového kódu, který je~ukládán do~\emph{cache}. Díky tomu může v~příštím běhu programu interpret spouštět tyto části kódu přímo, což~významně urychluje jejich provádění a zvyšuje celkový výkon aplikace}~\cite{RamananJIT}.
         
         \section{Kompilátor}
             \textbf{Překladač} je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
@@ -521,7 +521,7 @@ func main() {
 
             \acrshort{JS} dokáže příkazy zpracovávat \emph{synchronně} (sekvenčně) i~\emph{asynchronně} (paralelně). \textbf{Synchronní} zpracování znamená, že~se~příkazy vykonávají postupně, tak, jak jsou zapsány ve~skriptu. \textbf{Asynchronní} zpracování naopak znamená, že~se~příkazy vykonávají nezávisle na~sobě, tedy spuštění dalšího příkazu nečeká na~dokončení předchozího. To~je~užitečné např.~při~načítání dat ze~serveru, které může trvat delší dobu. V~tomto případě je~možné spustit \emph{asynchronní akce} a~pokračovat ve~zpracování sekvence příkazů programu. Když dojde k~dokončení \emph{asynchronní akce}, vykoná~se příkaz, který na~její dokončení čeká. V~rámci \emph{asynchronní operace} je~možné čekat na~dokončení více akcí~\cite{ajax:mdn, Scott2019:programmingpragmatics}.
 
-            Zpracování \acrshort{JS} je~rozděleno do~dvou částí;
+            Zpracování \acrshort{JS} je~rozděleno do~dvou částí.
             
             První částí je~\textbf{\acrshort{JS} engine} (\textbf{běhové prostředí}), které zpracovává \acrshort{JS} kód a~podle toho spouští instrukce. Druhou částí jsou~tzv.~\textbf{Web APIs}, které umožňují využívat funkce prohlížeče, systému a~další {asynchronní} operace. Jde~o~instrukce, poskytované nikoliv \acrshort{JS} \emph{enginem}, ale~webovým prohlížečem nebo~operačním systémem. Jde~např.~o~přístup ke~struktuře~\acrshort{DOM}, kameře, mikrofonu nebo asynchronním operacím, jako je~načítání dat ze~serveru. Jde~převážně o~asynchronní operace a~služby systému, jako~např.~použití mikrofonu nebo~přístup k~souborovému systému~\cite{kantor_javascript}.
 
@@ -959,7 +959,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             \subsection{Životní cyklus vývoje software}
                 \acrdefprint{SDLC}{Software Development Lifecycle} je~označení pro~životní cyklus  software. Jedná se~o~soubor procesů, které se~používají při~vývoji softwaru. Tyto procesy se~opakují v~kolech, které se~nazývají iterace. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována. Vývojáři se~také mohou v~každé iteraci vrátit k~předchozí části a~upravit ji~podle potřeby, případně do~vývoje zapojit zákazníka.
 
-                Ve~většině případů jde~o~opakující se~proces, který se~opakuje až~do~dokončení aplikace. Různé týmy mohou mít~různé požadavky na~vývoj aplikace a~používat jiné modely (metodiky) vývoje, kterých existuje několik;
+                Ve~většině případů jde~o~opakující se~proces, který se~opakuje až~do~dokončení aplikace. Různé týmy mohou mít~různé požadavky na~vývoj aplikace a~používat jiné modely (metodiky) vývoje, kterých existuje několik.
                 
                 Nejčastěji je~používán \textbf{Agilní} (\textbf{Agile}) model, který je~založen na~iteracích a~pravidelné komunikaci se~zákazníkem. V~každé iteraci se~vyvíjí část aplikace, která je~následně testována.
                 
@@ -989,7 +989,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Díky tomu má~vývojář k~dispozici spoustu informací, které potřebuje k~nalezení, vyvolání a~opravě chyby. \emph{Sentry} také umožňuje přímo vytvářet \emph{úkoly}, na kterých mohou vývojáři pracovat. To~umožňuje vývojářům efektivněji rozdělovat práci na~opravách chyb, které \emph{Sentry} zachytí.
 
-                Informace navíc zůstanou uloženy v~\emph{Sentry} a vývojáři se~k~nim mohou kdykoliv vrátit. \emph{Sentry} je možno integrovat do~různých komunikačních nástrojů, jako např.~\textbf{Slack}, \textbf{Telegram}, \textbf{Whatsapp} nebo~\textbf{Discord}, které se~běžně používají ke~komunikaci ve~vývojových týmech a~upomínka v~případě chyby se~objeví přímo v~komunikačním kanálu týmu.
+                Informace navíc zůstanou uloženy v~\emph{Sentry} a vývojáři se~k~nim mohou kdykoliv vrátit. \emph{Sentry} je možno integrovat do~různých komunikačních nástrojů, jako např.~\textbf{Slack}, \textbf{Telegram}, \textbf{Whatsapp} nebo~\textbf{Discord}, které se~běžně používají ke~komunikaci ve~vývojových týmech, a~upomínka v~případě chyby se~objeví přímo v~komunikačním kanálu týmu.
 
         \section{Linux a příkazová řádka, Windows Subsystem for Linux}
             Linux je~operační systém, který vytvořil Linus Torvalds v~roce 1991. Jde~o~nejrozšířenější \emph{open--source} operační systém, používaný zejména na~serverech. Je~možné jej ale jednoduše použít také na~\emph{desktopových zařízeních} v~podobě mnoha distribucí (např. Ubuntu, Linux Mint, \dots)
@@ -998,7 +998,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             Velikou výhodou je~otevřenost a~možnost upravovat zdrojový kód. To~umožňuje vývojářům nahlížet a~navrhovat změny ke~zlepšení do~jádra \emph{Linuxu}. Výhodou je~také jeho bezpečnost a~svoboda. V~porovnání s~jinými operačními systémy je~bezpečnější a~méně náchylný ke~škodlivým programům, zejména díky pravidlům pro~přístupy k~souborům. V~Linuxu je~navíc za~soubor považováno všechno (konfigurace, procesy, síť i~periférie atd.), což~zabezpečení zjednodušuje - pokud jsou~správně nastavena přístupová oprávnění a~vlastnictví~\cite{medium:LinuxSecure}.
 
-            Nabízí mnoho grafických prostředí, takže si~uživatel může vybrat, jakým způsobem bude~systém používat a~je~možné téměř všechno nastavit tak, jak v~práci potřebuje. Navíc většina nástrojů pro~vývoj aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky vše nastavit jedním skriptem z~příkazové řádky. Není také nutné instalovat a~mít~zároveň spuštěno několik různých nástrojových oken, vše je~na~jednom místě.
+            Nabízí mnoho grafických prostředí, takže si~uživatel může vybrat, jakým způsobem bude~systém používat, a~je~možné téměř všechno nastavit tak, jak v~práci potřebuje. Navíc většina nástrojů pro~vývoj aplikací je~vyvíjena pro~Linux, takže je~možné je~používat bez~problémů a~automaticky vše nastavit jedním skriptem z~příkazové řádky. Není také nutné instalovat a~mít~zároveň spuštěno několik různých nástrojových oken, vše je~na~jednom místě.
 
             Kvůli zvyšujícímu~se počtu vývojářů pracujících na~Linuxu přidala firma Microsoft do~svého operačního systému Windows možnost spouštět aplikace a~příkazy Linuxu pomocí nástroje~\textbf{WSL2 (Windows Subsystem for Linux)}. Jedná se~o~virtuální stroj, který běží na~pozadí a~umožní uživateli Windows používat výhody, které nabízí Linux, např.~má~vývojové nástroje na~jednom místě, místo několika oken, které musí mít~otevřené při~normálním vývoji na~Windows~\cite{WSL2Winning2023}.
 
@@ -1024,7 +1024,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             V~dnešní době se~většinově používá kódování \acrdefprint{UTF}{Unicode}, které k~původním 7~bitům (\emph{ASCII}) přidává další, značící, zda daný znak pokračuje dalším \textbf{bajtem}. To~umožňuje zobrazit mnohem více znaků, vč.~např.~čínských znaků nebo~smajlíků, a~tedy překlad aplikace do~různých jazyků a~znakových sad. Na~druhou stranu každý další byte znamená více použité paměti, kterou text zabírá a~počítač také pracuje déle na~zpracování každého znaku.
             
-            Proto je~vhodné všechny~zdrojové kódy a~aplikace psát v~Anglickém jazyce, který využívá základní \emph{ASCII} znaky, a~aplikaci pro~uživatele do~jeho~jazyka překládat (\textbf{lokalizovat}). Anglický jazyk je~navíc považován za~mezinárodní jazyk, který je~známý většině uživatelů a~aplikace je~tak~jednodušeji přístupná širší skupině uživatelů.
+            Proto je~vhodné všechny~zdrojové kódy a~aplikace psát v~Anglickém jazyce, který využívá základní \emph{ASCII} znaky, a~aplikaci pro~uživatele do~jeho~jazyka překládat (\textbf{lokalizovat}). Anglický jazyk je~navíc považován za~mezinárodní jazyk, který je~známý většině uživatelů, a~aplikace je~tak~jednodušeji přístupná širší skupině uživatelů.
             
             Webový prohlížeč si~pamatuje preferenci jazyka uživatele a~při~požadavku na~aplikaci zašle i~informaci o~preferovaném jazyce. Webový server pak~zpřístupní uživateli aplikaci ve~vyžádaném jazyce.
 
@@ -1038,19 +1038,19 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Specifikace definuje základní dva typy diagramů:
             \begin{description}
                 \item[Strukturální diagramy] popisují strukturu systému, tedy jeho části a~vztahy mezi nimi. Může jít~např.~o~diagramy tříd, objektů, komponent, nebo~komunikace mezi~komponentami~ap.
-                \item[Diagramy chování] popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram,~ap.
+                \item[Diagramy chování] popisují chování systému, tedy jak se~jeho části chovají a~jak spolu komunikují. Např.~diagramy aktivit, stavový diagram~ap.
             \end{description}
 
             Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{UML} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
 
-            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}~ap. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
+            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje, je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
 
             \subsection{Use Case Diagram}
                 \acrdefprint{UCD}{Use Case Diagram} je~diagram ze~standardu \emph{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
 
-                To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \emph{endpointy} bude~potřeba vytvořit, aby~bylo možné akce provést. Také je~možné ověřit správnost návrhu a~zjistit, zda~nemyla některá funkcionalita nevynechána, protože na~diagramu jsou případné nedostatky vidět lépe. Tvorba \emph{UCD} vychází ze~specifikace funkčních požadavků aplikace~\cite{uml:usecase}.
+                To~umožní lépe si~představit, jak bude aplikace fungovat, jaké funkce bude mít a~jaké \emph{endpointy} bude~potřeba vytvořit, aby~bylo možné akce provést. Také je~možné ověřit správnost návrhu a~zjistit, zda~nebyla některá funkcionalita vynechána. Na~diagramu jsou případné nedostatky jednodušeji vidět. Tvorba \emph{UCD} vychází ze~specifikace funkčních požadavků aplikace~\cite{uml:usecase}.
 
-                Při~modelování pomocí \emph{UCD} se~používají symboly, které znázorňují jednotlivé části diagramu
+                Při~modelování pomocí \emph{UCD} jsou~používány symboly, které znázorňují jednotlivé části diagramu.
                 \begin{description}
                     \item[Aktér] je~osoba nebo systém, který používá aplikaci. Aktérem může být např.~uživatel, čas nebo~jiná aplikace. K~označení se~používají ikony lidí a~textový popisek.
                     \item[Případ užití] je~akce, kterou aplikace \emph{aktérovi} nabízí. Případ užití je~zobrazen jako elipsa, která je~připojena k~aktérovi čarou.
@@ -1059,39 +1059,36 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
                     \item[Zahrnutí] (include)~--~zahrnutí je~případ užití, který je~součástí jiného případu užití. Znázorňuje se~jako šipka, která vychází z~případu užití, který zahrnuje a~končí u~případu užití, který je~zahrnut.
                 \end{description}
 
-                V~aplikaci modeluji tyto základní aktéry~--~\textbf{návštěvník}, \textbf{uživatel}, \textbf{administrátor} a~\textbf{systém}. \emph{Uživatel} je~osoba, která se~do~aplikace přihlásí a~má~možnost vytvářet, upravovat a~mazat příklady a~testy. \emph{Návštěvník} je~osoba, která se~do~aplikace nepřihlásí, ale~může si~prohlížet vygenerovaná zadání. A~\emph{systém} je~samotná aplikace, která pravidelně provádí nějaké akce.
-
-                Aktéři a~jejich akce v~\emph{usecase diagramu}:
-
+                Zde~jsou základní aktéři a~některé jejich akce, které v~aplikaci modeluju:
                 \begin{description}
-                    \item[Návštěvník] může zobrazit vygenerovaný příklad/test, registrace, přihlášení
-                    \item[Uživatel] může vše, co \emph{návštěvník} + tvorba a~správa otázek, proměnných, testů, kategorií, přidělení práva ke~čtení/úpravě jiným uživatelů, zobrazit poslední/aktivní přihlášení, odhlášení, přidání přihlašovací metody, změna hesla, deaktivace účtu
-                    \item[Administrátor] může vše, co~\emph{uživatel} + správa ostatních uživatelů, nastavení aplikace, chat s~uživateli
-                    \item[Systém] navíc provádí pravidelné kontroly a~odstraňování neaktivních účtů, nevyužívaných proměnných, příkladů a~testů, přihlašovacích metod a přístupových tokenů
+                    \item[Návštěvník] je~osoba, která se~do~aplikace nepřihlásí, ale~může zobrazit zadání podle odkazu a~také procházet veřejnou část aplikace.
+                    \item[Uživatel] je~přihlášený návštěvník. Má~možnost vytvářet, upravovat a~mazat příklady a~testy, jak pomocí aplikace, tak pomocí \acrshort{API}. Může také sdílet příklady a~vygenerovat na~ně veřejný odkaz.
+                    \item[Administrátor] může dělat vše, co~\emph{uživatel}. Navíc může~provádět privilegované zásahy do~aplikace a~spravovat data jiných uživatelů za~účelem údržby aplikace.
+                    \item[Systém] je~\emph{pomocný aktér}, který provádí pravidelné automatické kontroly a~manipulace s~aplikací.
                 \end{description}
 
             \subsection{Class Diagram}
                 \emph{Class diagram} (\emph{Diagram tříd}) je~také součástí~standardu \emph{UML}. Zobrazuje třídy, jejich atributy a~metody a~vztahy mezi~nimi. Souvisí s~návrhem struktur uložených v~databázi a~modelů dat, se kterými pracuji v~aplikaci.
 
-                \emph{Vlastnost (atribut)} třídy je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva}, která bude mít~hodnotu \texttt{červená} a~vlastnost \texttt{maxSpeed}, která bude mít~hodnotu \texttt{200 km/h}.
+                \emph{Vlastnost (atribut)} třídy je~proměnná, která je~přiřazena k~třídě. Nese vlastnost, která dává~v~kontextu třídy smysl. Např.~třída \texttt{Auto} může mít~vlastnost \texttt{barva} s~hodnotou \texttt{červená} a~\texttt{maxSpeed} s~hodnotou \texttt{200\,km/h}.
 
                 \emph{Metoda} třídy je~funkce, která je~přiřazena k~třídě. Může mít~parametry a~výstupní hodnotu. Např.~třída \texttt{Auto} může mít~metodu \texttt{drive}, která bude mít~parametr \texttt{speed} k~určení, jakou rychlostí má~auto jet.
                 
                 Třída je v~diagramu~tříd zobrazena jako obdélník rozdělený na tři části. V~první části je~název třídy, ve~druhé jsou vlastnosti a~ve~třetí metody. \textbf{Veřejné} vlastnosti a~metody mají na~začátku názvu \texttt{+}, \textbf{chráněné} \texttt{\#}, \textbf{privátní} \texttt{-} a~\emph{statické} \texttt{\_}.
 
                 \begin{description}
-                    \item{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu je~může zobrazit či~změnit. Vlastnosti a~metody mají na~začátku názvu \texttt{+}.
+                    \item{Veřejné (public)} vlastnosti a~metody jsou přístupné ostatním třídám a~komukoliv, kdo~má~přístup k~objektu a~může je zobrazit či~změnit. Vlastnosti a~metody mají na~začátku názvu \texttt{+}.
 
                     \item{Chráněné (protected)} vlastnosti a~metody jsou přístupné jen třídám, které dědí vlastnosti z~třídy, ze~které dědí. Na~začátku názvu je~\texttt{\#}.
                 
-                    \item{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou definovány a~nikdo jiný s~nimi nemůže pracovat. Na~začátku názvu je~znak~\texttt{-}.
+                    \item{Privátní (private)} vlastnosti a~metody jsou přístupné jen třídě, ve~které jsou~definovány, a~nikdo jiný s~nimi nemůže pracovat. Na~začátku názvu je~znak~\texttt{-}.
                 
-                    \item{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Je~označován pomocí \texttt{\textunderscore}.
+                    \item{Statické (static)} jsou vlastnosti a~metody, které jsou společné pro~všechny instance třídy a~tedy nejsou přidružené žádnému objektu a~lze~je~používat i~bez inicializace objektu. Je~označován pomocí znaku~\texttt{\textunderscore}.
                 \end{description}
                 
                 Vztahy \emph{include} a~\emph{extend} jsou v~diagramu tříd, podobně jako u~\emph{use case diagramu}, zobrazeny spojnicemi a~šipkami.
 
-                \emph{Diagram tříd} přímo souvisí s~návrhem struktur a~dat uložených v databázi. Lépe si~uvědomíme, jaká data bude nutné uchovávat v~databázi a~jaká jsou dočasná, nebo tyto~závěry je~možné z~diagramu jednodušeji vyvodit. Tzv.~vypočítaná (závislá) data se~do~databáze nezapisuje.
+                \emph{Diagram tříd} přímo souvisí s~návrhem struktur a~dat uložených v databázi. Lépe si~uvědomíme, jaká data bude nutné uchovávat v~databázi a~jaká jsou dočasná, nebo tyto~závěry je~možné z~diagramu jednodušeji vyvodit. Tzv.~vypočítaná (\textbf{závislá}) data se~do~databáze nezapisují.
 
                 Je dobré udržovat \emph{diagram tříd} aktuální, protože se~může stát, že~se~v~průběhu vývoje změní návrh a~diagram tříd už~nebude odpovídat aktuálnímu stavu aplikace. Aktuální diagram může pomoci novému vývojáři k~rychlejšímu zorientování v~projektu~\cite{visualparadigmClassDiagram}.
 
@@ -1394,7 +1391,7 @@ class dataLoader extends Endpoints{
                 \label{go:enginerun}
             \end{code}
 
-            \emph{Endpointy} jsou umístěny v~adresáři \texttt{Endpoints}, kde~má~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech jsou jejich \emph{handlery}. \emph{Handler} dostává při~obsluze \emph{požadavku} jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním \emph{handleru} pracovat. Komunikace \acrshort{FE} a~\acrshort{BE} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují, např.;
+            \emph{Endpointy} jsou umístěny v~adresáři \texttt{Endpoints}, kde~má~každá skupina \emph{Endpointů} svůj vlastní adresář. V~těchto souborech jsou jejich \emph{handlery}. \emph{Handler} dostává při~obsluze \emph{požadavku} jako parametr \emph{gin.Context}, který obsahuje kontext aktuálního požadavku a~umožňuje s~ním \emph{handleru} pracovat. Komunikace \acrshort{FE} a~\acrshort{BE} bude probíhat pomocí \emph{JSON}u, případně \emph{HTTP stavovými kódy}. \emph{Endpointy} budou sdružovány podle zdroje se~kterým manipulují.
             \begin{description}
                 \item[/api/user]~--~\emph{CRUD} akce přihlášení, registrace a~správy uživatelských účtů, bez~kterých se~neobejde většina moderních aplikací.
                 \item[/api/cat]~--~\emph{CRUD} akce spojené s~kategoriemi. Kategorie jsou~určeny pro~zařazení úkolů a~testů nebo~specifikaci konkrétního oboru uživatelem.
@@ -1402,7 +1399,7 @@ class dataLoader extends Endpoints{
 
             Při~implementaci načtení dat z~požadavků bylo nutné použít jiný způsob zpracování některých vlastních struktur, jelikož pracuji se~\emph{staticky typovaným} jazykem a~\emph{Gin} nedokázal automaticky zpracovat všechny struktury. Proto načítám danou vlastnost jako textový řetězec a~dále zpracovávám.
             
-            Ukázka funkce pro~zpracování struktury dat odpovědí z~\emph{JSON} řetězce na~otázku je~vidět v~kódu~\ref{go:unmarshallanswers};
+            Ukázka funkce pro~zpracování struktury dat odpovědí z~\emph{JSON} řetězce na~otázku je~vidět v~kódu~\ref{go:unmarshallanswers}.
 
             \begin{code}
                 \begin{minted}{go}
