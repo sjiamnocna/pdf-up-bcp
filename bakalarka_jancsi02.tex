@@ -152,11 +152,10 @@
     \thispagestyle{empty} % This removes the page number on this page
     \null\vfill % This centers the content vertically
 
-    \begin{singletonpage}{Abstrakt / Abstract}
-    
-        Práce zdůrazňuje význam a~použití technologií ve~vzdělávacím procesu a~přispívá k~modernizaci přístupu k~ověřování znalostí žáků a~zabývá~se využitím informačních technologií pro~generování zadání písemných testů. Zkoumá běžné metody tvorby testů a~představuje webovou aplikaci, která umožňuje učitelům efektivně vytvářet testy z~úloh s~parametricky zadanými vlastnostmi. Aplikace podporuje jak~uzavřené, tak~otevřené úlohy a~nabízí možnost generování testů ve~formátu pro~tisk.
+    \begin{singletonpage}{Anotace / Annotation}
+        Práce zdůrazňuje využití \acrdefprint[short]{IT}{Informační Technologie} ve~vzdělávání a~zaměřuje~se na~jejich využití ke~generování písemných testů. Zkoumá existující metody tvorby testů a~jejich náležitosti a~představuje novou webovou aplikaci, která umožňuje učitelům efektivně vytvářet testy z~úloh s~parametricky zadanými vlastnostmi. Aplikace podporuje uzavřené i~otevřené úlohy a~bude integrovatelná s~jinými systémy pomocí~\acrshort{API}.
 
-        The thesis explores the~use of~information technology when~creating written exam questions, examining current methods for~creating exams and~introducing a~web application that enables teachers to~efficiently construct tests with parameter-specified tasks. The~application supports both closed and~open tasks and~offers the~capability to~generate tests in~format using templates. The~work emphasizes the~significance of~technology in~the~educational process and~contributes to~modernizing the~approach to~student assessment.
+        The~thesis emphasizes the~significance of~technology in~the~educational process and~contributes to~modernizing the~process of~preparing exams. Introduces the web application that allows users to~generate exams from~prepared questions with~parametrically defined properties. The~application will support both questions with options and~questions with~long~answers and will be integrable into other systems using~\acrshort{API}.
     \end{singletonpage}
     
     \begin{singletonpage}{Prohlášení}
@@ -173,6 +172,8 @@
         Chtěl bych touto cestou poděkovat všem, kteří mi~byli nápomocni při~návrhu a~korektuře práce nebo~upřesnění návrhu aplikace. Děkuji také rodině a~blízkým za~vlídné slovo a~povzbuzení.
         
         Veliký dík patří vedoucímu práce doc.\,RNDr.\,Petru~Šalounovi,\,Ph.D. za~trpělivost a~ochotu pomoci při~její tvorbě.
+
+        Děkuji Janu\,Sklepkovi za~zhotovení loga aplikace za~sponzorovanou cenu.
         
         Děkuji také~Pedagogické fakultě Univerzity Palackého v~Olomouci za~příspěvek na~pilotní provoz aplikace ve~formě stipendia.
     \end{singletonpage}
@@ -319,7 +320,7 @@
 
             \emph{Překladač} umožňuje k~optimalizaci používat výrazy, které jsou vyhodnoceny během překladu a~nezatěžují tolik aplikaci při~běhu. Může~jít o~různá \textbf{makra}, která jsou~provedena již~během překladu, nebo použití konstantních výrazů, které jsou v~kódu přímo nahrazeny. Některé jazyky (např.~Zig pomocí \texttt{comptime}) umožňují i~přímé vyhodnocení kódu během kompilace. 
 
-            V~kontextu \textbf{kompilátorů} a~\textbf{optimalizace} kódu jsou tzv.~\textbf{bitové masky} a~další práce s~bitovou reprezentací čísel na~nejnižší úrovni výhodné. Použití instrukcí v~\acrdefprint{JSI}{Jazyce Strojových Instrukcí} (\acrdefprint{ASM}{Assembler}) pro~bitové maskování umožňuje vývojářům použít elementární instrukce procesoru pro~práci s~čísly (v~tomto případě převážně instrukce \texttt{AND}), což~vede ke~zvýšení výkonu a~efektivity programu.
+            V~kontextu \textbf{kompilátorů} a~\textbf{optimalizace} kódu jsou tzv.~\textbf{bitové masky} a~další práce s~bitovou reprezentací čísel na~nejnižší úrovni výhodné. Použití instrukcí v~\acrdefprint{JSI}{Jazyce Strojových Instrukcí} (\acrdefprint{ASM}{Assembly}) pro~bitové maskování umožňuje vývojářům použít elementární instrukce procesoru pro~práci s~čísly (v~tomto případě převážně instrukce \texttt{AND}), což~vede ke~zvýšení výkonu a~efektivity programu.
 
             V~jazyce \emph{Go} je~možné využít koncept \texttt{\textbf{iota konstant}}, což~je obdoba \textbf{výčtových typů} v~jiných jazycích, viz \ref{code:iota}.a. Díky němu je~možné vytvořit řady číselných konstant, kde je~každému prvku automaticky přiřazena následující číselná hodnota. Díky \texttt{iota} je~možné také udržovat násobky čísel nebo~\textbf{bitový posun} hodnot. Počítač navíc rychleji pracuje s~čísly než~s~řetězci nebo~jinými typy. Díky použití konstant \emph{iota} je~možné číselné identifikátory v~kódu označit textově a~při~\emph{kompilaci} budou nahrazeny příslušnými čísly.
 
@@ -875,9 +876,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 Existují ale~výjimky, a~to~použití funkce \texttt{eval}, která umožňuje spustit \acrshort{JS} kód z~řetězce (textové proměnné), a~přímé vkládání neošetřeného vstupu pomocí vlastnosti \texttt{dangerouslySetInnerHTML} nebo~jí podobných, které se~přímo přepíšou do~kódu, např.~\texttt{href}, \texttt{OnClick}~apod. Tyto vlastnosti ale~vývojáři používají s~vědomím rizika~\cite{reactJSX}.
         \section{42}
-            Číslo \uv{\textbf{42}}~(\cite{adams1979hitchhikers}) někteří vývojáři používají jako~nenápadný odkaz na~zábavní rádiový pořad a~knihu Stopařův průvodce po~galaxií britského autora Douglese Adamse, vydávaný od~r.~1979. Jde o~způsob, jak~lidé z~\emph{IT} a~jiných oborů vyjadřují svůj smysl pro~humor~\cite{knuth1992art}.
+            Číslo \uv{\textbf{42}}~(\cite{adams1979hitchhikers}) někteří vývojáři používají jako~nenápadný odkaz na~zábavní rádiový pořad a~knihu Stopařův průvodce po~galaxii britského autora Douglase Adamse, vydávaný od~r.~1979. Jde o~způsob, jak~lidé z~\acrshort{IT} a~jiných oborů vyjadřují svůj smysl pro~humor~\cite{knuth1992art}.
 
-            \emph{42}~je číslo, které v~příběhu dal velký počítač \textbf{Hlubina myšlení} (\textbf{Deep thought}) po~dlouhém počítání na~otázku "života, vesmíru a~vůbec", myšleno na~jakoukoliv otázku ve~vesmíru.
+            \emph{42}~je číslo, které v~příběhu dal velký počítač \textbf{Hlubina myšlení} (\textbf{Deep thought}) po~dlouhém počítání na~otázku "života, vesmíru a~vůbec", myšleno na~jakoukoliv otázku ve~vesmíru. Vtipně se tak vyskytuje v~různých podobách, jako všeříkající poznámka k~dané problematice. V~\acrshort{IT} např.~v~komentářích, dokumentacích, nebo je~přímo použito v~kódu.
             
             V~různých oborech má~však~\emph{42} reálný význam. Existují studie, zamýšlející~se nad~významem a~důkazy reálného významu tohoto čísla. Jde např.~o~jedno z~nejdéle řešených parametrů v~rozsahu od~0 do~100 \textbf{kubické diofantovské rovnice} $x^3 + y^3 + z^3 = k$~\cite{mit2019answerlife}, který počítače po~celém světě řešily přes~milion hodin. To~je~v~kontextu knihy zajímavé, jelikož v~knize superpočítač \emph{Hlubina myšlení} odpovídá na~otázku neúměrně dlouho~\cite{adams1979hitchhikers}.
             
@@ -899,11 +900,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             Pro~testování React aplikace budu~používat \emph{Jest}. Pro~testování \acrshort{BE} potom zmíněný \emph{Go~test}~\cite{jestjsTestingReact}.
             
             \subsection{Testování API}
-                Pro~testování \acrshort{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \acrshort{FE} část. Mezi nejznámější patří \textbf{Postman} nebo~\textbf{Insomnia} atd.
+                Pro~testování \acrshort{API} existují nástroje, které umožní vytvářet požadavky bez~nutnosti mít~dokončenu \acrshort{FE} část. Mezi nejznámější patří \textbf{Postman} nebo~\textbf{Insomnia}.
                 
                 Tyto~nástroje navíc většinou nabízejí možnost vytvořit si~sadu automatických testů, které je~možné spouštět při~sestavování aplikace v~\emph{Dockeru} a~automaticky si~tak~před~kompilací celého programu ověřit, že~jednotlivé součásti \acrshort{API} stále funguje správně, např.~jsou dostupné všechny \emph{endpointy}.
 
-                K~tomuto účelu použiji nástroj \emph{Postman}, jelikož v~době psaní této práce nástroj \emph{Insomnia} neumožňuje přímé psaní testovacích skriptů. 
+                K~tomuto účelu použiji nástroj \emph{Postman}, jelikož v~době psaní této práce nástroj \emph{Insomnia} neumožňoval psaní a~automatické spouštění testovacích \texttt{post-request} skriptů.
                 
                 S~nastaveným testovacím skriptem si~ukládám nový \emph{token} a~při~následujícím požadavku jej~posílám v~hlavičce požadavku. Tímto způsobem mohu~testovat \acrshort{BE} bez~omezení bezpečnostních opatření.
 
@@ -1013,7 +1014,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
             
             V~průzkumu \uv{The State Of AI Tools 2023}~(\cite{zerotomasteryStateOfAI}) většina vývojářů odpověděla, že~se~nebojí toho, že~by~je~\emph{AI} v~blízké budoucnosti plně nahradila. Programování je~komplexní proces, který vyžaduje kreativitu a~schopnost řešit problémy různého typu. Využití kódu od~\emph{AI} je~nutné brát s~rezervou~--~učí se~z~kódu, který~vytvořili lidi, takže může být~ovlivněný jejich nedostatky a~\emph{AI} prozatím není~schopná samostatně přemýšlet nad~řešením problému, ale~pouze generovat data na~základě předchozích řešení, která mohou být~chybná či~neefektivní.
             
-            Jazykové modely \emph{AI}, jako~\emph{ChatGPT} či~\emph{Google Bard} potom pomáhají zejména ke~konzultaci problémů a~získání nápadů, jak je~vyřešit. Svým způsobem tím~suplují síť webových fór \emph{Stack Overflow}, kde~si vývojáři navzájem radí s~řešením problémů, zejména z~oboru~\emph{IT}. Tyto \emph{AI} nástroje jsou skvělé na~opakované úkoly, jako přepisování struktur dat nebo hromadných příkazů.
+            Jazykové modely \emph{AI}, jako~\emph{ChatGPT} či~\emph{Google Bard} potom pomáhají zejména ke~konzultaci problémů a~získání nápadů, jak je~vyřešit. Svým způsobem tím~suplují síť webových fór \emph{Stack Overflow}, kde~si vývojáři navzájem radí s~řešením problémů, zejména z~oboru~\acrshort{IT}. Tyto \emph{AI} nástroje jsou skvělé na~opakované úkoly, jako přepisování struktur dat nebo hromadných příkazů.
 
             \emph{AI} nástroje typu \emph{ChatGPT} ale poslední dobou ztrácí na~přesnosti. Je~to~díky tomu, že~k~dalšímu učení využívají data přístupná z~internetu, a~to~často i~data generovaná jinými \emph{AI}. Výsledky je~tedy nutné posuzovat kriticky~\cite{computerworld:AI}.
 
@@ -1113,7 +1114,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám, nebo~v~týmu, a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají~\cite{bctynovsky:specifikacepozadavku}.
 
         \section{Případ použití aplikace}
-            Aplikace \emph{Písemkomat} umožní registrovaným uživatelům vytvořit~si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude uživatel mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů, a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
+            Aplikace umožní registrovaným uživatelům vytvořit~si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude uživatel mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů, a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
             
             Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
 
@@ -1271,12 +1272,78 @@ class dataLoader extends Endpoints{
             
             \textbf{GORM} je~\acrdefprint{ORM}{Object Relational Mapper} pro~jazyk \emph{Go}. \acrshort{ORM} systémy umožňují jednoduše vytvářet databázové modely z~definovaných struktur. Z~nich \acrshort{ORM}~automaticky vytvoří všechny databázové tabulky, včetně těch relačních, a~při jakékoliv změně struktur také~automaticky změní tabulky v~databázi, v~rámci \emph{migrace modelů}. Pomocí struktur \emph{GORM} zpřístupní i~rozhraní k~jednoduššímu vytváření a~úpravě záznamů tabulky. Struktury zajišťují jednodušší kontrolu nad~daty, která se~do~databáze ukládají, a~zjednodušují načítání konkrétních dat.
 
-            Pokud je~potřeba nějaké složitější operace, je~možné využít i~samostatně formulované \emph{SQL~dotazy}~\cite{gormGORM, freecodecamp:orm}.
+            Příklad použití modelu tabulky s~otázkami a~její \acrshort{SQL}~interpretace v~\emph{GORM} je vidět v~kódu~\ref{go:model}.
+
+            \begin{code}
+                \begin{minipage}[t]{1\linewidth}
+                    \begin{minted}{go}
+type Question struct {
+	gorm.Model
+	// User ID who created question
+	AuthorID uint
+	// User who created question
+	Author User
+	// Categories
+	Cats []Category `gorm:"many2many:cat_question;DELETE"`
+	// Question name (for search)
+	Title string `gorm:"type:varchar(127);index"`
+	// Description of question (for search)
+	Description string `gorm:"type:varchar(255)"`
+	// The task itself
+	Content string `gorm:"type:text"`
+	// variables
+	Variables map[string]string `gorm:"type:json;serializer:json"`
+	// Answers with parameters to generate
+	Answers []generator.Answer `gorm:"type:json;serializer:json"`
+	// Number of answers to choose from list of answers (both generated and stringified)
+	AnswerCount uint8 `gorm:"type:tinyint unsigned"`
+	// Number of correct answers
+	CorrectAnswerCount uint8 `gorm:"type:tinyint unsigned"`
+	// Randomize answer order
+	ShuffleAnswer bool
+	// If we should parse and generate
+	Parse bool
+}
+                    \end{minted}
+                    \subcaption{\emph{GORM} model (Go struktura)}
+                \end{minipage}
+                \hfill
+                \begin{minipage}[t]{1\linewidth}
+                    \begin{minted}{sql}
+CREATE TABLE `questions` (
+    `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+    `created_at` datetime(3) DEFAULT NULL,
+    `updated_at` datetime(3) DEFAULT NULL,
+    `deleted_at` datetime(3) DEFAULT NULL,
+    `author_id` bigint unsigned DEFAULT NULL,
+    `title` varchar(127) DEFAULT NULL,
+    `description` varchar(255) DEFAULT NULL,
+    `content` text,
+    `variables` json DEFAULT NULL,
+    `answers` json DEFAULT NULL,
+    `answer_count` tinyint unsigned DEFAULT NULL,
+    `correct_answer_count` tinyint unsigned DEFAULT NULL,
+    `shuffle_answer` tinyint(1) DEFAULT NULL,
+    `parse` tinyint(1) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_questions_title` (`title`),
+    KEY `idx_questions_deleted_at` (`deleted_at`),
+    KEY `fk_questions_author` (`author_id`),
+    CONSTRAINT `fk_questions_author` FOREIGN KEY (`author_id`) REFERENCES `users` (`user_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+                    \end{minted}
+                    \subcaption{Vytvořené tabulky s relacemi, omezeními a indexy}
+                \end{minipage}
+                \caption{Ukázka použití \emph{GORM} modelu}
+                \label{go:model}
+            \end{code}
+
+            Pokud je~potřeba použít složitější operace s~\acrshort{DB}, je~samozřejmě možné využít samostatně formulované \emph{SQL~dotazy}~\cite{gormGORM, freecodecamp:orm}.
 
             \textbf{Next.js} mi~jedoduše umožní využít výhody~\acrshort{SSR} aplikace. \emph{Next.js} řeší několik problémů, což~usnadňuje vývoj aplikací. Jsou~to~např.:
 
             \begin{description}
-                \item[Automatický adresářový router] \emph{Next.js} automaticky vydává a~obsluhuje adresy~\acrshort{URI} v~aplikaci na~základě adresářové struktury.
+                \item[Automatický adresářový router] \emph{Next.js} automaticky obsluhuje adresy~\acrshort{URI} v~aplikaci na~základě adresářové struktury.
                 \item[Server-side rendering] \emph{Next.js} umožňuje \emph{renderovat} aplikace na~serveru, čímž se~zlepšuje jejich výkon a~\acrshort{SEO}.
                 \item[Statické stránky] \emph{Next.js} umožňuje generovat statické stránky, které se rychle načítají a snižují zátěž serveru.
                 \item[Optimalizace pro SEO] Next.js automaticky generuje meta tagy a další informace důležité pro SEO.
@@ -1537,7 +1604,7 @@ class dataLoader extends Endpoints{
             
             \acrdefprint{UI}{User Interface} (\textbf{uživatelské rozhraní}) bude~vytvořeno s~použitím knihovny \acrdefprint{TW}{Tailwind CSS}. \acrshort{TW} je~\textbf{utility-first} knihovna. Soustředí~se na~poskytnutí jednoduchých prvků prostřednictvím \acrshort{CSS} tříd, které je~možné ke~komponentám přidávat. Skládáním těchto tříd je~možné vytvořit potřebný vzhled komponent. \acrshort{TW} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. Pro~výslednou podobu aplikace potom \acrshort{TW} vytvoří \acrshort{CSS} kód pouze z~použitých tříd, čímž ještě omezí množství dat, které jsou přenášeny v~podobě stylů~\cite{Rappin2022ModernCSSTailwind}.
 
-            K~tvorbě \acrshort{UI} je~samozřejmě možné použít i~jiné knihovny stylů (např.~\textbf{Bootstrap}) nebo~různé přístupy ke~stylování.
+            Konkrétně využiji knihovnu komponent \textbf{Shadcn}, která poskytuje jednoduše použitelné a~upravitelné komponenty, které jsou optimalizovány pro~přístupnost i~\acrshort{SEO}, a~využívá \acrshort{TW}~\cite{logrocket:Shadcn}. K~tvorbě \acrshort{UI} je~ale samozřejmě možné využít i~jiné knihovny stylů (např.~\textbf{Bootstrap}) nebo~různé přístupy ke~stylování.
 
         \section{Testování}
             Nemá význam testovat celý \acrshort{BE}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě, která by~nastala při~překladu, aplikace vůbec nenastartuje a~selže spuštění \emph{Docker} kontejneru. Aplikace v~tom případě zůstane v~původní spuštěné verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}.
@@ -1549,10 +1616,11 @@ class dataLoader extends Endpoints{
             Na~\acrshort{FE} budu testovat funkčnost \emph{komponent}. V~případě, že~se~chyba vyskytne za~běhu aplikace, zaznamená ji~\emph{Sentry} a~upozorní na~nutnost opravy. Díky \emph{Sentry} budu mít informace o~chybě z~\acrshort{FE} i~\acrshort{BE} na~jednom místě a~budu na~ni~včas upozorněn.
 
         \section{Zálohy}
-            \textbf{Zálohování} je~jednodušší díky požití kontejnerů s~\textbf{trvalým úložištěm} (\textbf{volume}), kde~jsou uložena veškerá data, která se~zachovávají i~po~zastavení kontejneru.
+            \textbf{Zálohování} je~jednodušší díky požití kontejnerů s~\textbf{trvalým úložištěm} (\textbf{volume}), kde~jsou uložena veškerá data, která se~zachovávají i~po~zastavení či~restartu kontejneru.
             
-            Není tedy potřeba zavádět složitý skript pro~zálohování databáze a~všech komponent, pouze pravidelně kopírovat, komprimovat a~na~záložním serveru uschovat data \emph{trvalých úložišť}. Zbytek dat tvoří zdrojový kód, který má~již~zálohu v~podobě \emph{GIT repozitáře}.
-        
+            Zbytek dat tvoří zdrojový kód, který má~již~zálohu v~podobě \emph{GIT repozitáře}.
+
+            Proto bude na~\emph{serveru} pomocí~\textbf{CRONu} pravidelně spouštěn skript s~příkazem \texttt{rsync}, který umožňuje zkopírovat pouze změněné soubory. Při~změně souborů se~změní také jejich kontrolní součty (\emph{hashe}). V~tom případě se~soubory zkomprimují a~archivují do~archivu s~názvem tvořeným hashem aktuální podoby dat. Pokud se~obsah souborů nezmění, zálohování na~externí \emph{server} neproběhne.
             
     \chapter{Závěr}
         Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit, nicméně aplikace je~již k~dispozici k~použití.
@@ -1565,11 +1633,11 @@ class dataLoader extends Endpoints{
         
         Informační technologie se~také neustále vyvíjí a~je~nutné sledovat a~vyhodnocovat nové trendy a~technologie, jelikož v~době publikace této práce již~mohou být~některé postupy překonané. Většina principů ale~zůstane platná.
         
-        Výsledná aplikace je~veřejně dostupná na~adrese \href{https://pisemkomat.cz}{\texttt{pisemkomat.cz}}. Kód některých částí aplikace je~možné najít na~Gitlabu (\url{https://gitlab.com/pisemkomat}).
+        Kód některých částí aplikace je~možné najít na~Gitlabu (\url{https://gitlab.com/pisemkomat}).
 
-        Bohužel jsem po~mnoha pokusech s~pluginy a~konfiguracemi pro~\emph{I18n} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy} přesměrování. Z~tohoto důvodu bude řešení problému překladů realizováno mimo~rámec této práce a~aplikace je~dočasně zpřístupněna pouze v~anglickém jazyce.
+        Přes všechny snahy s~pluginy a~konfiguracemi pro~\acrshort{I18n} v~\emph{NextJS} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy}. Z~tohoto důvodu bude řešení problému překladů realizováno mimo~rámec této práce.
 
-        Aplikace \emph{Písemkomat} je~dostupná také pomocí~\acrshort{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\acrdefprint{CMS}{Content Management System} jako~např.~\textbf{Wordpress}. Dokumentace k~\acrshort{API} je~k~dispozici~ve~veřejné části webu.
+        Aplikace je~dostupná také pomocí~\acrshort{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\acrdefprint{CMS}{Content Management System} jako~např.~\textbf{Wordpress}. Dokumentace k~\acrshort{API} je~k~dispozici~ve~veřejné části webu.
         
         Základ pro~tvorbu aplikace pomocí jazyka \emph{Go} a~knihovny \emph{NextJS} je~k~dispozici na~\emph{Gitlabu} \href{https://gitlab.com/gormrest}{\texttt{gitlab.com/gormrest}}. Dokumentace ke~kódu je~realizována pomocí komentářů v~kódu, dokumentačních řetězcích a~souborech \textbf{README} v~popisu repozitářů.
 
