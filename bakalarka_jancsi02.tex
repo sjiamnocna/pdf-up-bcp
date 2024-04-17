@@ -234,7 +234,7 @@
 
             Pokud si~učitel chce test vytvořit svépomocí, může používat klasické \emph{tabulkové procesory}, jako je~např.~\emph{Microsoft Excel}, \emph{LibreOffice Calc} nebo~\emph{Google Sheets}, anebo~\emph{textové procesory}, jako je~např.~\emph{Microsoft Word}, \emph{LibreOffice Writer} nebo \emph{Google Docs}. Grafické zadání je~potom možné vložit do~těchto souborů ve~formě obrázků.
 
-            V~současnosti se~přímo nabízí do~tvorby otázek nebo i~celých testů zapojit \textbf{umělou inteligenci} (\acrdefprint[short]{AI}{Artificial Intelligence}). Pokud je~tedy~\emph{ChatGPT}, \emph{Google Gemini} (dřive \textbf{Bard}) nebo~jinému generativnímu jazykovému modelu zadáno vytvoření testových otázek na~konkrétní téma, ochotně je~připraví. Nicméně pokud uživatel neumí správně vytvářet dotazy (\textbf{prompty}~\cite{fapiPromptyChatGPT}), takto připravené otázky mohou být~nepřesné a~mohou obsahovat výrazné chyby. Proto se~nebudu touto možností v~této práci dále zabývat.
+            V~současnosti se~přímo nabízí do~tvorby otázek nebo i~celých testů zapojit \textbf{umělou inteligenci} (\acrdefprint[short]{AI}{Artificial Intelligence}). Pokud je~tedy~\emph{ChatGPT}, \emph{Google Gemini} (dříve \textbf{Bard}) nebo~jinému generativnímu jazykovému modelu zadáno vytvoření testových otázek na~konkrétní téma, ochotně je~připraví. Nicméně pokud uživatel neumí správně vytvářet dotazy (\textbf{prompty}~\cite{fapiPromptyChatGPT}), takto připravené otázky mohou být~nepřesné a~mohou obsahovat výrazné chyby. Proto se~nebudu touto možností v~této práci dále zabývat.
 
             Je~také zajímavé (nejen pro~učitele) proces testování otočit a~nechat děti úlohy vytvořit. To~je přímo zapojí do~tvorby testů a~umožní jim~učivo lépe pochopit a~motivovat~je ke~zvládnutí učiva~\cite{hedlovam:chybavresenim}.
 
@@ -403,7 +403,7 @@ func (u *User) UserCan(p Permissions) bool {
 
             Výraz \emph{rozhraní} běžně definuje komunikaci mezi objekty, viz~kapitola věnovaná~\acrshort{API}. V~případě \emph{OOP} definují vzor, podle kterého je~potřeba implementovat budoucí třídy~\cite{go:OOP}.
             
-            \acrshort{JS} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze kterého vychází, a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript, Scott2019:programmingpragmatics}.
+            \acrshort{JS} je~často považován za~\emph{objektově orientovaný jazyk}, nicméně \emph{OOP} implementuje formou tzv.~prototypové dědičnosti, nikoliv tradičním použitím tříd. V~praxi tak má~každý objekt definovanou vlastnost označující mateřský objekt, ze~kterého vychází, a~dědí jeho vlastnosti~\cite[2.1.01]{kantor_javascript, Scott2019:programmingpragmatics}.
             
             V~příkladě \ref{code:classoop} je~pro~porovnání ta~samá funkcionalita zapsána v~jazyce \acrshort{JS} pomocí \emph{tříd} a~v~jazyce \emph{Go} pomocí \emph{struktur}, \emph{rozhraní} a~tzv.~\emph{receiver function}, což~jsou funkce definované na~dané struktuře (podobně jako \emph{metody} ve~třídě). \textbf{Rozhraní} (\textbf{interface}) zajišťují kontrolu, že~na~dané struktuře~existují požadované \emph{metody}. Je~tak~možné kontrolovat, že~má vyšetřovaný objekt požadované vlastnosti a~metody, a~je~možné jej~používat zamýšleným způsobem, např.~v~parametru funkce. Je~také možné vytvořit více typů, které odpovídají stejnému rozhraní~\cite{go:OOP}.
 
@@ -698,7 +698,7 @@ const App = () => {
             Moderní aplikace díky tomu mohou snížit zátěž na~server, jelikož část aplikace, která se~stará o~zobrazení, běží na~straně klienta a~mezi nimi probíhá pouze výměna dat~\cite{MVC}.
 
         \section{Frontend, Backend}
-            Dnešní aplikace je~možné díky architektuře \emph{MVC} rozdělit na~\textbf{frontend} a~\textbf{backend}, které spolu komunikují a~plní funkce aplikace, ale~jinak zůstávají oddělené.
+            Aplikace lze~díky architektuře \acrshort{MVC} rozdělit na~\textbf{frontend} a~\textbf{backend}, které spolu komunikují a~plní funkce aplikace, ale~jinak zůstávají oddělené.
 
             Díky \acrshort{MVC} je~takto možné vývoj aplikace rozdělit mezi tým~vývojářů, kde každý může pracovat na~jiné části aplikace a~každá část aplikace má~své rozhraní, takže mohou pracovat téměř nezávisle na~sobě.
 
@@ -727,7 +727,7 @@ const App = () => {
 
             V~dnešní době jsou nejrozšířenější formou tzv.~\acrshort{REST}~\acrshort{API} a~\emph{GraphQL}. Pro komunikaci mezi interními aplikacemi se~často používá protokol \emph{SOAP}. Různý hardware používá k~ovládání také~\emph{UART} nebo~\emph{SPI}.
 
-            Velice oblíbená je~metoda také~\emph{gRPC} (\emph{Google Remote Procedure Call}), která je~založena na~protokolu HTTP/2 a~používá binární formát \emph{Protocol Buffers}. \emph{RPC} je~zkratka pro~\emph{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru.
+            Velice oblíbená je~také~metoda \emph{gRPC} (\emph{Google Remote Procedure Call}), která je~založena na~protokolu \emph{HTTP/2} a~používá binární formát \emph{Protocol Buffers}. \emph{RPC} je~zkratka pro~\emph{Remote Procedure Call} a~funguje tak, že spouští vzdálené funkce, které jsou na~serveru.
             
             Výhodou \emph{gRPC} je, že autor aplikace pouze definuje služby a~jejich rozhraní a~\emph{gRPC} vygeneruje veškerý potřebný kód pro~jazyk, který používáme. Také je~díky efektivnější komunikaci rychlejší než~jiné~přístupy. Bohužel je~k~jeho použití nutné se~naučit novému přístupu k~přenosu~dat a~jazyku definice služeb \emph{protobuf}~\cite{thenewstackBuildRealWorld}.
 
@@ -880,11 +880,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             \emph{42}~je číslo, které v~příběhu dal velký počítač \textbf{Hlubina myšlení} (\textbf{Deep thought}) po~dlouhém počítání na~otázku "života, vesmíru a~vůbec", myšleno na~jakoukoliv otázku ve~vesmíru. Vtipně se tak vyskytuje v~různých podobách, jako všeříkající poznámka k~dané problematice. V~\acrshort{IT} např.~v~komentářích, dokumentacích, nebo je~přímo použito v~kódu.
             
-            V~různých oborech má~však~\emph{42} reálný význam. Existují studie, zamýšlející~se nad~významem a~důkazy reálného významu tohoto čísla. Jde např.~o~jedno z~nejdéle řešených parametrů v~rozsahu od~0 do~100 \textbf{kubické diofantovské rovnice} $x^3 + y^3 + z^3 = k$~\cite{mit2019answerlife}, který počítače po~celém světě řešily přes~milion hodin. To~je~v~kontextu knihy zajímavé, jelikož v~knize superpočítač \emph{Hlubina myšlení} odpovídá na~otázku neúměrně dlouho~\cite{adams1979hitchhikers}.
+            V~různých oborech má~však~\emph{42} reálný význam. Existují studie, zamýšlející~se nad~významem a~důkazy reálného významu tohoto čísla. Jde např.~o~jedno z~nejdéle řešených parametrů v~rozsahu od~0 do~100 \textbf{kubické diofantovské rovnice} $x^3 + y^3 + z^3 = k$~\cite{mit2019answerlife}, který počítače po~celém světě řešily přes~milion hodin. To~je~v~kontextu knihy zajímavé, jelikož v~knize superpočítač \emph{Hlubina myšlení} odpovídá na~otázku neúměrně dlouho, konkrétně \texttt{7,5\,milionu let}~, a~odpoví číslem \emph{42}~\cite{adams1979hitchhikers}.
             
-            V~\acrdefprint[short]{ASCII}{American Standard Code for Information Interchange} tabulce (viz~\url{https://www.ascii-code.com/}) je~\emph{42} znak hvězdička (asterisk). V~různých implementacích nahrazuje jeden libovolný znak (tzv.~\textbf(wildcard)) nebo~v~\textbf{regulárních výrazech} libovolné množství znaků z~určené množiny znaků.
+            Další zajímavou souvislostí je, že~v~\acrdefprint[short]{ASCII}{American Standard Code for Information Interchange} tabulce (viz~\url{https://www.ascii-code.com/}), je~znak s~kódem~\emph{42} hvězdička (asterisk). V~různých implementacích nahrazuje jeden libovolný znak (tzv.~\textbf(wildcard)) nebo~v~\textbf{regulárních výrazech} jde o~tzv.~\textbf{kvantifikátor} označující libovolné množství z~určené množiny znaků.
             
-            Číslo \emph{42} je~také součástí několika významných algoritmů, např.~\textbf{SHA-1} nebo~\textbf{MD5}, které se~používají pro~\emph{hashování} hesel nebo~\emph{kontrolní součet} souborů. V~\emph{ASCII} tabulce je~\emph{42} znak \textbf{asterisk} (\textbf{*}), který se~používá jako~\emph{wildcard} v~\emph{regulárních výrazech} nebo~ve~\emph{fulltextovém} vyhledávání~\cite{regular_expressions, sha1, md5}.
+            Číslo~\emph{42} je~také součástí několika významných algoritmů, např.~\textbf{SHA-1} nebo~\textbf{MD5}, které se~používají pro~\emph{hashování} hesel nebo~\emph{kontrolní součet} souborů. V~\emph{ASCII} tabulce je~\emph{42} znak \textbf{asterisk} (\textbf{*}), který se~používá jako~\emph{wildcard} v~\emph{regulárních výrazech} nebo~ve~\emph{fulltextovém} vyhledávání~\cite{regular_expressions, sha1, md5}.
 
             V~aplikaci jsem~se~rozhodl věnovat číslu~\emph{42} samostatný \emph{endpoint} \texttt{/theanswer}, jehož~účelem~je v~\acrshort{JSON} odpovědi vrátit odpověď na~otázku "života, vesmíru a~vůbec".
 
@@ -914,12 +914,12 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
         \section{Continous Integration a Continuous Delivery}
             \textbf{CI/CD} je~souhrnný pojem, který označuje průběžnou integraci \acrdefprint{CI}{Continuous Integration} a~průběžné doručení nebo nasazování \acrdefprint{CD}{Continuous Deployment/Delivery}, dvě klíčové praktiky v~automatizaci procesů vývoje softwaru.
 
-            \acrshort{CI} zahrnuje automatické spouštění sady testů po~každé změně kódu v~\textbf{GIT}~repozitáři, aby byla~ověřena jeho funkčnost a~kompatibilita. Cílem je~rychle identifikovat a~opravit chyby, což~vede k~udržení kvality softwaru. Po~úspěšném provedení testů dochází k~automatickému sestavení aplikace. Pokud testy selžou, proces informuje vývojáře o~potřebě oprav a~zastaví další postup.
+            \acrshort{CI}~zahrnuje automatické spouštění sady testů po~každé změně kódu v~\textbf{GIT}~repozitáři, aby byla~ověřena jeho funkčnost a~kompatibilita. Cílem je~rychle identifikovat a~opravit chyby, což~vede k~udržení kvality softwaru. Po~úspěšném provedení testů dochází k~automatickému sestavení aplikace. Pokud testy selžou, proces informuje vývojáře o~potřebě oprav a~zastaví další postup.
 
             \acrshort{CD} rozšiřuje \emph{CI} tím, že po~úspěšném sestavení aplikace automaticky provede její nasazení na~server. To~umožňuje rychlou dostupnost aktualizované aplikace uživatelům bez~manuálního zásahu, což~zvyšuje efektivitu vývojového procesu a~umožňuje rychlejší reakci na~požadavky trhu~\cite{graham2021ethical}.
 	
         \section{Verzovací systém GIT}
-            \emph{GIT} vytvořil autor Linuxu \emph{Linus Torvalds} v~roce 2005. Je~to~\textbf{distribuovaný verzovací systém}, tj.~každý vývojář má~lokální kopii celého projektu, tedy může pracovat i~bez~připojení k~internetu a~následně své~změny nahrát na~server, když se~připojí.
+            \emph{GIT} vytvořil autor Linuxu \emph{Linus Torvalds} v~roce 2005. Je~to~\textbf{distribuovaný verzovací systém}. Každý vývojář má~lokální kopii celého projektu a~může pracovat nezávisle na~ostatních i~bez~připojení k~internetu. Po~dokončení práce své~změny nahraje na~server, kde~proběhne kontrola a~změny jsou~zahrnuty (\textbf{merge}) do~hlavní větve (\textbf{branch}) projektu.
             
             Základní funkcí \emph{GITu} je~ukládání změn. Neukládá celé soubory, pouze změny v~kódu. Díky tomu je~možné procházet historií změn a~vracet se~k~různým verzím kódu. To~umožňuje spravovat větší projekty, na~kterých paralelně spolupracuje více vývojářů zároveň, a~po~dokončení části práce a~její~kontrole výsledek~připojit ke~zbytku kódu. Potom je~možné označit schválenou a~otestovanou verzi kódu jako~finální verzi (tzv.~\textbf{release}) nebo je~na~kódu~možné dále pracovat.
             
@@ -1044,7 +1044,16 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{UML} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
 
-            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}. Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit. Způsob, jakým vývojář funkcionalitu modeluje, je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
+            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}.
+            
+            Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit a~co~vše do nich zahrnout, pouze standardizovaný způsob jejich struktury. Způsob, jakým vývojář funkcionalitu modeluje, je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
+
+            \begin{figure}
+                \centering
+                \includegraphics[width=0.9\textwidth]{files/img/chatuml-diagram.png}
+                \caption{Diagram tříd aplikace}
+                \label{img:umlclass}
+            \end{figure}
 
             \subsection{Use Case Diagram}
                 \acrdefprint{UCD}{Use Case Diagram} je~diagram ze~standardu \emph{UML}, který popisuje chování systému z~pohledu uživatele, tedy interakci systému s~uživatelem. Jednotlivým aktérům jsou přiřazeny případy užití, které popisují, jaké akce mohou jednotliví aktéři používat.
@@ -1623,7 +1632,7 @@ CREATE TABLE `questions` (
             Proto bude na~\emph{serveru} pomocí~\textbf{CRONu} pravidelně spouštěn skript s~příkazem \texttt{rsync}, který umožňuje zkopírovat pouze změněné soubory. Při~změně souborů se~změní také jejich kontrolní součty (\emph{hashe}). V~tom případě se~soubory zkomprimují a~archivují do~archivu s~názvem tvořeným hashem aktuální podoby dat. Pokud se~obsah souborů nezmění, zálohování na~externí \emph{server} neproběhne.
             
     \chapter{Závěr}
-        Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit, nicméně aplikace je~již k~dispozici k~použití.
+        Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit.
         
         Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, která bude moci být~používána k~tvorbě testů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
@@ -1635,7 +1644,7 @@ CREATE TABLE `questions` (
         
         Kód některých částí aplikace je~možné najít na~Gitlabu (\url{https://gitlab.com/pisemkomat}).
 
-        Přes všechny snahy s~pluginy a~konfiguracemi pro~\acrshort{I18n} v~\emph{NextJS} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy}. Z~tohoto důvodu bude řešení problému překladů realizováno mimo~rámec této práce.
+        Přes všechny snahy s~pluginy a~konfiguracemi pro~\acrshort{I18n} v~\emph{NextJS} zjistil, že~je~v~\emph{NextJS} již~od~r.~2021 nahlášena chyba (viz~\url{https://github.com/vercel/next.js/issues/21565}), která znemožňuje použití \emph{I18n} zároveň s~konfigurací \emph{proxy}. Z~tohoto důvodu bude~řešení problému překladů a~spuštění veřejné aplikace realizováno mimo~rámec této práce.
 
         Aplikace je~dostupná také pomocí~\acrshort{API} a~je možné ji~integrovat do~dalších prostředí formou pluginů. Uživatelé tak budou moci používat generované příklady např.~v~prostředí \textbf{Moodlu} nebo~\acrdefprint{CMS}{Content Management System} jako~např.~\textbf{Wordpress}. Dokumentace k~\acrshort{API} je~k~dispozici~ve~veřejné části webu.
         
