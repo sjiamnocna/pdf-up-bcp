@@ -305,14 +305,14 @@
 
             \textbf{Transpilací} nazýváme proces podobný \emph{kompilaci}, kde~mezi sebou překládáme \emph{vysokoúrovňové jazyky}. Např.~z~jazyka \acrshort{TS} do~\acrshort{JS}~\cite{fuertes:Transpilers}.
 
-            \uv{\acrdefprint{JIT}{Just In Time} \textbf{kompilace} je způsob, jakým interprety urychlují běh skriptů tím, že dynamicky během provádění programu překládají často prováděné části kódu (tzv. \textbf{hot~paths}) do~strojového kódu. Tento proces začíná interpretací skriptu, identifikací \emph{hot~paths} a~jejich následným překladem do~optimalizovaného strojového kódu, který je~ukládán do~\emph{cache}. Díky tomu může v~příštím běhu programu interpret spouštět tyto části kódu přímo, což~významně urychluje jejich provádění a zvyšuje celkový výkon aplikace}~\cite{RamananJIT}.
+            \uv{\acrdefprint{JIT}{Just In Time} \textbf{kompilace} je způsob, jakým \emph{interprety} urychlují běh skriptů tím, že během provádění programu překládají často prováděné části kódu (tzv.~\textbf{hot paths}) do~strojového kódu. Tento proces začíná interpretací skriptu, identifikací \emph{hot~paths} a~jejich následným překladem do~optimalizovaného strojového kódu, který je~ukládán do~\emph{cache}. Díky tomu může v~příštím běhu programu interpret spouštět tyto části kódu přímo, což~významně urychluje jejich provádění a zvyšuje celkový výkon aplikace}~\cite{RamananJIT}.
         
         \section{Kompilátor}
             \textbf{Překladač} je~program, který čte~zdrojový kód a~překládá ho do~podoby binárního souboru, který obsahuje instrukce vykonávané procesorem. Překladač také kontroluje správnost zápisu a~případné zjistitelné chyby vypíše. To~umožňuje odhalit některé chyby ještě před~spuštěním výsledného programu.
             \emph{Překladače} i~\emph{interprety} pracují v~několika fázích:
             \begin{description}
                 \item[Lexikální analýza] \emph{kompilátor} čte zdrojový kód znak po~znaku a~rozděluje~jej na~jednotlivé \emph{tokeny} a~určuje jejich typ (slova, čísla, operátory\dots). Při~tom kontroluje správnost zápisu a~případné chyby vypíše. Výstupem je~seznam tokenů.
-                \item[Syntaktická analýza] kontroluje, jestli jsou jednotlivé \emph{tokeny} správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \acrdefprint{AST}{Abstraktní Syntaktický Strom}, anglicky \textbf{Abstract Syntax Tree}, který reprezentuje stromovou strukturu programu a~umožňuje tak~další zpracování.
+                \item[Syntaktická analýza] kontroluje, jestli jsou jednotlivé \emph{tokeny} správně strukturovány a~v~jakém vztahu k~sobě stojí. Generuje \acrdefprint{AST}{Abstraktní Syntaktický Strom} (\textbf{Abstract Syntax Tree}), který reprezentuje strukturu programu a~umožňuje tak~další zpracování a~optimalizaci.
                 \item[Sémantická analýza] kontroluje správnost použití jednotlivých \emph{tokenů} a~jejich význam. Generuje tabulku symbolů, která obsahuje informace o~proměnných a~funkcích, dostupných v~programu.
                 \item[Optimalizace] v~této fázi probíhá \textbf{optimalizace} kódu, aby byl ve~výsledku rychlejší a~méně náročný na~procesor. Optimalizace se~děje v~závislosti na~použitém jazyce a~překladači a~může být~prováděna několikrát v~různých fázích překladu (a~nemusí být prováděna vůbec).
                 \item[Generování kódu] Z~\acrshort{AST}, je~možné generovat výsledný \emph{program} nebo~požadovanou formu dat~\cite{baeldungCompilersWork, compilers}.
@@ -374,7 +374,7 @@ func (u *User) UserCan(p Permissions) bool {
                     \end{minted}
                     \subcaption{Bitová maska s~použitím \texttt{<< iota}}
                 \end{minipage}
-                \caption{Příklady využití \emph{iota} číselníků}
+                \caption{Příklady využití \emph{iota} číselníků a bitové masky}
                 \label{code:iota}
             \end{code}
 
@@ -382,8 +382,13 @@ func (u *User) UserCan(p Permissions) bool {
             
             Tento přístup usnadňuje čitelnost a~údržbu kódu a~také zlepšuje výkon aplikací, jelikož používá rychlé bitové operace. Pokud je~navíc potřeba zkontrolovat více oprávnění, použijeme bitový součet, který je při~překladu nahrazen konečným číslem, čímž se~sníží počet operací potřebných ke~kontrole. Význam \emph{iota} a~operací s~bitovými maskami tak~nachází uplatnění v~široké škále aplikací, od~nízkoúrovňového systémového programování po~vysokoúrovňové aplikace, kde je~potřeba efektivní práce s \textbf{konfiguračními příznaky} nebo~\textbf{indikátory stavu}. Ty potom~také potřebují méně prostoru v~paměti~\cite{effective_go, compilers}.
 
+        \section{Web Assembly}
+            Standard \acrdefprint{WASM}{Web Assembly}, zavedený v~roce 2017, mění způsob vývoje webových aplikací. Díky němu je~možné spouštět programy napsané v~jazycích jako~\textbf{C}, \textbf{C++}, \textbf{Rust}, nebo i~\textbf{Go} přímo v~prohlížeči, nezávisle na~platformě (Windows, MacOS, Linux ap.). Tím~překonává omezení \acrshort{JS} a~otevírá dveře novým možnostem k výkonným, bezpečným a~jednoduše přenositelným aplikacím~\cite{MDN:WASM}.
+            
+            To~umožňuje pomocí \acrshort{WASM} provozovat náročnější webové aplikací, jako jsou náročnější hry, 3D~modelování, komplexní nástroje pro~úpravu fotografií, nebo decentralizované aplikace (DApps) běžící na~technologii \textbf{blockchain}. \acrshort{WASM} je~tak~klíčovou technologií pro~budoucnost webového vývoje~\cite{WASM:photoshop}.
+
         \section{Procedurální a~objektově orientované programování}
-            \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.~\textbf{návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} je~pouze část kódu, která se~vkládá do~běhu programu a~pouze vykoná své~instrukce, nemá \emph{návratovou hodnotu}, může mít pouze \emph{vedlejší efekt}.
+            \textbf{Procedurální programování} je~způsob programování, kdy se~program skládá z~jednotlivých \textbf{procedur}, které se~volají po~sobě (\textbf{sekvenčně}, \textbf{synchronně}). \emph{Procedura} je~část programu, která vykonává určitou činnost. \emph{Procedury} mohou mít~parametry, které jsou jim~předány při~volání a~mění jejich funkci. \emph{Procedury} mohou volat další \emph{procedury}, což~umožňuje znovupoužití kódu. \emph{Funkce} jsou~podobné \emph{procedurám} s~tím rozdílem, že~funkce má~tzv.~\textbf{návratovou hodnotu}, kterou po~svém dokončení vrací klíčovým slovem (\texttt{return}). \emph{Procedura} je~část kódu, která se~vkládá do~běhu programu a~pouze vykoná své~instrukce, nemá \emph{návratovou hodnotu}, může mít pouze \emph{vedlejší efekt}.
 
             \emph{Procedury} i~\emph{funkce} mohou mít tzv.~\textbf{vedlejší efekty} (\textbf{side effects}), což~znamená, že~mohou ovlivnit chod programu~změnou \textbf{stavu aplikace}, např.~změnou hodnoty globální proměnné~\cite{Scott2019:programmingpragmatics}.
             
@@ -400,6 +405,8 @@ func (u *User) UserCan(p Permissions) bool {
             \end{description}
 
             Jazyk~\emph{Go} (Golang) podporuje~\emph{OOP} nepřímo a~pouze~částečně. Jde o~jazyk \emph{strukturovaný}, nikoliv \emph{objektově orientovaný}. Některých vlastností \emph{OOP} ale~je~možné dosáhnout pomocí použití \emph{struktur} a~\textbf{rozhraní}. Metody na~strukturách je~možné vytvořit za~pomocí tzv.~\textbf{funkcí na~struktuře} (\textbf{receiver function}) a~imitovat tím~běžnou funkcionalitu \emph{metod}~\cite{go:OOP, Scott2019:programmingpragmatics}.
+
+            Díky kombinaci jednoduchosti v~různých aspektech a~rychlosti kompilovaného programu je~\emph{Go}~jeden z~jazyků, kterým vývojáři postupně nahrazují prokazatelně pomalý~\textbf{Python} a~preferují je~pro~nové projekty. Další takové jazyky jsou např. \textbf{Rust} nebo~pro~vědecké výpočty a~strojové učení využívané jazyky \textbf{Julia} čí~\textbf{R}~\cite{plainenglish:pythonfade2024}.
 
             Výraz \emph{rozhraní} běžně definuje komunikaci mezi objekty, viz~kapitola věnovaná~\acrshort{API}. V~případě \emph{OOP} definují vzor, podle kterého je~potřeba implementovat budoucí třídy~\cite{go:OOP}.
             
@@ -628,7 +635,7 @@ const App = () => {
             \textbf{Klient} je~aplikace na~zařízení uživatele (webový prohlížeč), který služby \emph{serveru} využívá. V~případě webové aplikace je~to~webový prohlížeč, který zobrazuje \acrshort{HTML} stránku. V~případě mobilní aplikace je to~aplikace, která se~spouští na~mobilním zařízení a~komunikuje se~serverem. Např.~messengery, sociální sítě~\cite{ClientServer}.
 
         \section{Webová služba}
-            Webová služba je~program, který běží na~\emph{serveru} a~poskytuje data \emph{klientovi}. Na \emph{serveru} může běžet více \emph{webových služeb}, rozlišují se \emph{portem}, na~kterém běží a~přijímají instrukce a~data. Např.~webová služba \acrdefprint{HTTP}{Hypertext Transfer Protocol}, která poskytuje webová data a~soubory, poběží na~\emph{portu~80}, resp.~v~dnešní době zejména~\emph{443} (\acrdefprint{HTTPS}{Hypertext Transfer Protocol Secure}). Další služby mohou být např.~emailová služba \acrdefprint{SMTP}{Simple Mail Transfer Protocol}.
+            Webová služba je~program, který běží na~\emph{serveru} a~poskytuje data \emph{klientovi}. Na \emph{serveru} může běžet více \emph{webových služeb}, rozlišují se \emph{portem}, na~kterém běží a~přijímají instrukce a~data. Např.~webová služba \acrdefprint{HTTP}{Hypertext Transfer Protocol}, která poskytuje webová data a~soubory, poběží na~\emph{portu~80}, resp.~v~dnešní době zejména~\emph{443} (\acrdefprint{HTTPS}{\acrshort{HTTP} Secure}). Další služby mohou být např.~emailová služba \acrdefprint{SMTP}{Simple Mail Transfer Protocol}.
             
             Služby \textbf{naslouchají} na svých \emph{portech} a~přijímají požadavky od~klientů. K~serverům na~internetu se~přistupuje pomocí \emph{IP~adresy} a~ke~službám pak~pomocí portu, na~kterém běží~\cite{webserver:mdn, ietf-httpbis-messaging-03}.
 
@@ -1107,11 +1114,11 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
                 \begin{description}
                     \item[Uživatel] je~fyzická osoba, která používá aplikaci. Slouží k~identifikaci uživatele, přidělení a~ohlídání oprávnění.
-                    \item[Způsob přihlášení] znamená dvojici uživatelského jména a~tajného řetězce, která slouží k~přihlášení uživatele.
+                    \item[Způsob přihlášení] znamená dvojici údaje, který identifikuje daného uživatele, a~tajného řetězce, která slouží k~přihlášení uživatele.
                     \item[Záznamy o~přihlášení] je~záznam, který umožní ověření uživatele při~každém přístupu k~aplikaci. Obsahuje časy přihlášení a~odhlášení, \emph{IP~adresu}, typ zařízení a~další údaje.
                     \item[Uživatelské akce] jsou záznamy o~aktivitách uživatele v~aplikaci, vázané na~konkrétní přihlášení. Např. vytvoření testu, úprava nebo~smazání příkladu nebo~testu, kategorie, přidělení práv jinému uživateli. Akce je~možné vyvolat pomocí jejich hashe, např.~oveření e--mailu při~registraci.
                     \item[Kategorie] pro~příklady nebo testy, které jsou tematicky nebo jinak spojeny. Kategoriemi nejvyšší úrovně je~typ školy, potom předmět a~konkrétní zařazení látky. Obsahuje název, popis a~odkaz na~nadřazenou kategorii.
-                    \item[Tagy] jsou klíčová slova, která jsou přiřazena k~příkladům nebo testům. Označují jejich obsah nebo vlastnosti, jako například stupeň obtížnosti.
+                    \item[Tagy] jsou klíčová slova, která jsou přiřazena k~příkladům nebo testům. Označují jejich obsah nebo~jakékoli jiné vlastnosti, jako například stupeň obtížnosti. Tagy nemohou mít~strukturu (jsou \textbf{nestrukturované}).
                     \item[Příklad] značí konkrétní úlohu, vkládanou do~testů. Obsahuje název, text, typ (otevřený, uzavřený), odpovědi, proměnné, odkaz na kategorii a~pokyny pro~generování výsledku.
                     \item[Proměnná] reprezentuje proměnnou, která může být~použita v~příkladu. Obsahuje název, typ, hodnotu a~příznaky sloužící k~jejímu zpracování.
                     \item[Test] reprezentuje soubor příkladů, kategorií a~pokyny pro~generování.
@@ -1120,7 +1127,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 	\chapter{Návrh aplikace}
         Před samotným vývojem aplikace je~potřeba se~zamyslet, jak bude aplikace fungovat, jaké bude mít funkce a~jak bude vypadat. Tvoříme tzv.~\emph{funkční požadavky} na~výslednou aplikaci. Potom je~možné vytvořit \emph{UML modely}, které mohou pomoci blíže si~promyslet strukturu a~uvědomit si~některé další aspekty vývoje, které nás~mohou potkat.
 
-        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám, nebo~v~týmu, a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají~\cite{bctynovsky:specifikacepozadavku}.
+        Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám, nebo~v~týmu, a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají ap.~\cite{bctynovsky:specifikacepozadavku}.
 
         \section{Případ použití aplikace}
             Aplikace umožní registrovaným uživatelům vytvořit~si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude uživatel mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů, a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
@@ -1432,7 +1439,7 @@ CREATE TABLE `questions` (
             Důležitou součástí aplikace \emph{GINu} je~tzv.~\textbf{Router}, který z~příchozího požadavku zjistí, který \emph{koncový bod} je~volán a~předá volání~příslušnému \emph{handleru}. \emph{Router} také umožňuje vytvářet skupiny \emph{koncových bodů}, které mají společný základ~\emph{URL} adresy a~které mohou sdílet část logiky. To~umožňuje vytvářet aplikace, které mají jednotnou strukturu a~jsou přehledné. \emph{Router} funguje podobně i~pro obsluhování požadavků na~\acrshort{FE}.
 
 
-            Obsluha jednotlivých požadavků probíhá v~\textbf{Gorutinách} (\textbf{Goroutines}), což~znamená, že~každý požadavek může být~obsluhován paralelně (zároveň), což~umožňuje obsloužit více požadavků najednou~\cite{effective_go}.
+            Obsluha jednotlivých požadavků díky \emph{GINu} probíhá paralelně (souběžně) v~\textbf{Gorutinách} (\textbf{Goroutines}), což~znamená, že~může být obslouženo více požadavků najednou. To~umožňuje obsloužit více požadavků najednou~\cite{effective_go}.
 
             \begin{code}
                 \begin{minted}{go}
@@ -1545,15 +1552,15 @@ CREATE TABLE `questions` (
         \subsection{Autentizace uživatelů}
             Registrace a~přihlášení do~aplikace budou možné více způsoby. Pro~všechny způsoby přihlášení bude v~databázi existovat~jedna tabulka s~přihlašovacími údaji. Uživatelé budou moci k~používání aplikace použít kombinaci \emph{e-mailové adresy a~hesla}, ale také \emph{Google} účet, díky použití \emph{Firebase}. V~budoucnu tak~bude~jednodušší přidat i~další služby k~ověření identity uživatele.
             
-            Na~\acrshort{FE} použiji nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí účtu u~společnosti Google. Přihlášení pomocí \emph{Firebase} proběhne takto:
+            Na~\acrshort{FE} použiji nástroj \emph{Firebase} od~společnosti \emph{Google}, který umožňuje mmj.~jednoduchou \emph{autentizaci} uživatelů pomocí účtu u~společnosti Google. Přihlášení pomocí poskytovatele identity proběhne takto:
             \begin{enumerate}
-                \item Uživatel se~přihlásí k~\acrshort{FE} pomocí \textbf{Firebase Authentication}.
+                \item Uživatel se~přihlásí k~\acrshort{FE} pomocí vybraného poskytovatele.
                 \item \acrshort{FE} vygeneruje \acrshort{JWT} pomocí uživatelských údajů získaných z~\emph{Firebase} a~odešle jej~na~\acrshort{BE}.
-                \item \acrshort{BE} (\emph{Go}) ověří \acrshort{JWT} pomocí údaju z~\emph{Firebase}.
-                \item \acrshort{BE} najde uživatele v~databázi podle \emph{e-mailové adresy} a~pokud neexistuje, vytvoří nového uživatele.
-                \item \acrshort{BE} provede ověření požadavkem na~\emph{Firebase} jménem uživatele a~ověří přihlášení.
+                \item \acrshort{BE} (\emph{Go}) ověří \acrshort{JWT} pomocí údaju poskytovatele.
+                \item \acrshort{BE} provede ověření přihlášení požadavkem u~poskytovatele
+                \item \acrshort{BE} najde uživatele v~databázi podle \emph{e-mailové adresy} a~pokud neexistuje, zahájí proces registrace nového uživatele.
                 \item \acrshort{BE} vytvoří nový \acrshort{JWT} token a~zašle jej na~\acrshort{FE}.
-                \item \acrshort{FE} si~uloží nový \acrshort{JWT} a~uživatele přesměruje do~aplikace.
+                \item \acrshort{FE} si~uloží nový \acrshort{JWT} a~bude jej~nadále používat pro~autorizaci požadavků na~\acrshort{BE}.
             \end{enumerate}
             
             Pokud~bude~ověření úspěšné, uživatel je~přihlášen a~unikátní identifikátor aktuální relace vložím do~\acrshort{JWT} a~databáze. Při~každém přístupu bude~zkontrolována platnost relace. To~umožní mít~přehled o~přihlášených uživatelích a~zabezpečí přístup k~datům. Umožní to~načíst data uživatele do~paměti programu a~vzdálené odhlášení v~případě podezřelého přístupu k~účtu.
@@ -1613,7 +1620,7 @@ CREATE TABLE `questions` (
             
             \acrdefprint{UI}{User Interface} (\textbf{uživatelské rozhraní}) bude~vytvořeno s~použitím knihovny \acrdefprint{TW}{Tailwind CSS}. \acrshort{TW} je~\textbf{utility-first} knihovna. Soustředí~se na~poskytnutí jednoduchých prvků prostřednictvím \acrshort{CSS} tříd, které je~možné ke~komponentám přidávat. Skládáním těchto tříd je~možné vytvořit potřebný vzhled komponent. \acrshort{TW} je~také možné rozšířit o~vlastní třídy nebo~další knihovny, které rozšiřují jeho funkčnost a~mohou být~použity v~rámci celé aplikace. Pro~výslednou podobu aplikace potom \acrshort{TW} vytvoří \acrshort{CSS} kód pouze z~použitých tříd, čímž ještě omezí množství dat, které jsou přenášeny v~podobě stylů~\cite{Rappin2022ModernCSSTailwind}.
 
-            Konkrétně využiji knihovnu komponent \textbf{Shadcn}, která poskytuje jednoduše použitelné a~upravitelné komponenty, které jsou optimalizovány pro~přístupnost i~\acrshort{SEO}, a~využívá \acrshort{TW}~\cite{logrocket:Shadcn}. K~tvorbě \acrshort{UI} je~ale samozřejmě možné využít i~jiné knihovny stylů (např.~\textbf{Bootstrap}) nebo~různé přístupy ke~stylování.
+            Konkrétně využiji knihovnu komponent \textbf{Shadcn}, která poskytuje jednoduše použitelné a~upravitelné komponenty, které jsou optimalizovány pro~přístupnost i~\acrshort{SEO}, a~využívá \acrshort{TW}~\cite{logrocket:Shadcn}. K~tvorbě \acrshort{UI} je~ale samozřejmě možné využít i~jiné knihovny stylů (např.~\textbf{Bootstrap}) nebo~další různé přístupy ke~stylování.
 
         \section{Testování}
             Nemá význam testovat celý \acrshort{BE}. Balíčky \emph{GIN} i~\emph{GORM} jsou~aktivně testovány při~jejich vývoji. Při~chybě, která by~nastala při~překladu, aplikace vůbec nenastartuje a~selže spuštění \emph{Docker} kontejneru. Aplikace v~tom případě zůstane v~původní spuštěné verzi. Chyby externích služeb (\emph{SMTP}) jsou~zachyceny v~\emph{Sentry}.
@@ -1632,7 +1639,7 @@ CREATE TABLE `questions` (
             Proto bude na~\emph{serveru} pomocí~\textbf{CRONu} pravidelně spouštěn skript s~příkazem \texttt{rsync}, který umožňuje zkopírovat pouze změněné soubory. Při~změně souborů se~změní také jejich kontrolní součty (\emph{hashe}). V~tom případě se~soubory zkomprimují a~archivují do~archivu s~názvem tvořeným hashem aktuální podoby dat. Pokud se~obsah souborů nezmění, zálohování na~externí \emph{server} neproběhne.
             
     \chapter{Závěr}
-        Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Je~také potřeba dodat, že~aplikace je~v~rané fázi vývoje a~některé funkcionality bude nutné ještě dokončit.
+        Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Aplikace je~v~rané fázi vývoje a~některé funkcionality tak~bude~nutné ještě dokončit.
         
         Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, která bude moci být~používána k~tvorbě testů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
