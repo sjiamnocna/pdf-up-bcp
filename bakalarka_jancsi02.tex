@@ -1,13 +1,16 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[12pt,a4paper]{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage[paper=a4paper, margin=1.5cm]{geometry}
 
 
 \usepackage{titlesec}
-\titleformat{\chapter}[display]
+\usepackage{sectsty}
+\titleformat{\chapter}[hang]
 % space between "chapter x." and title
-{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{10pt}{\Huge}   
+{\normalfont\huge\bfseries}{\thechapter.}{16pt}{\Huge}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{14pt}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{12pt}{}
 % 1. left margin
 % 2. space before "chapter x."
 % 3. after title
@@ -1051,9 +1054,9 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
             Aplikace je~možné modelovat pomocí \emph{UML} diagramů, ale~není to~nutné. Taktéž každá aplikace může mít více \emph{UML} reprezentací, podle toho, jakým způsobem se~vývojář rozhodne aplikaci navrhnout.
 
-            Pro naplánování své práce jsem si~vybral diagramy ze~standardu \emph{UML}\,--\,\textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}). Diagramy budu~zpracovávat pomocí nástroje \emph{Creately}, což je~webová aplikace, umožňující jednoduchou úpravu diagramů. Diagramy je~možné tvořit i~v~jiných aplikacích, např.~\emph{Draw.io}.
+            K~naplánování této~práce jsem vybral \textbf{diagram případů užití} (\textbf{Use Case Diagram}) a~\textbf{diagram~tříd} (\textbf{Class Diagram}) ze~standardu \emph{UML}.
             
-            Je důležité zmínit, že neexistují předem dané postupy, jak diagramy tvořit a~co~vše do nich zahrnout, pouze standardizovaný způsob jejich struktury. Způsob, jakým vývojář funkcionalitu modeluje, je~čistě na~jeho osobním zvážení, dokud se~drží definice \emph{UML}. Je~ale důležité, aby svá~rozhodnutí vývojář zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
+            Je~důležité zmínit, že~neexistují předem dané postupy, jak diagramy tvořit a~co~vše do nich zahrnout, pouze standardizovaný způsob jejich struktury a~významů. Způsob, jakým vývojář funkcionalitu modeluje, je~čistě na~jeho osobním zvážení, dokud se~drží definice~\emph{UML}. Je~ale důležité, aby svá~rozhodnutí zdůvodnil a~průběžně dokumentoval~\cite{uml:FowlerBook, uml:diagram}.
 
             \begin{figure}
                 \centering
@@ -1129,7 +1132,7 @@ UPDATE users SET email = 'mujmejl@seznam.cz\', role=\'admin', WHERE id = 42'
 
         Na~začátku plánování projektu je~dobré se~zamyslet i~nad~tím, jaké technologie budou používány, jak budou jednotlivé součásti komunikovat a~jakým způsobem je~aplikace vyvíjena. V~profesionálním prostředí je~potom důležité přemýšlet i~nad~tím, jestli aplikaci vyvíjí autor sám, nebo~v~týmu, a~zda je~na~trhu práce dostatek lidí, kteří dané technologie znají ap.~\cite{bctynovsky:specifikacepozadavku}.
 
-        \section{Případ použití aplikace}
+        \section{Návrh fungování aplikace}
             Aplikace umožní registrovaným uživatelům vytvořit~si příklady, umístěné do~volitelně strukturovaných kategorií~--~podle předmětu, ročníku, tématu~atp. Tyto příklady bude následně možné vložit do~testů při~jejich~tvorbě, kde~bude uživatel mít~možnost automatického výběru z~kategorií nebo~konkrétních příkladů, a~ty~potom do~testu vložit. Uživatelé budou pro~přihlášení moci využít kromě hesla také svůj Google účet. Pro~požadavky na~\acrshort{API} bude~\emph{endpoint} zabezpečen \acrshort{API} klíčem. Klíč bude závislý na~konkrétním účtu, což~umožní manipulace a~použití příkladů daného účtu.
             
             Řekněme, že~uživatel bude chtít pro~své žáky vytvořit několik verzí testu s~rozdílným zadáním příkladů. Zaregistruje~se do~aplikace, ověří svoji mailovou adresu kliknutím na~odkaz a~přihlásí se~do~svého účtu. Jde~o~učitele matematiky, takže si~vytvoří 5~příkladů z~tohoto předmětu a~vloží je~do~kategorie \emph{Matematika} a~podkategorie \emph{Lineární rovnice}.
@@ -1640,6 +1643,8 @@ CREATE TABLE `questions` (
             
     \chapter{Závěr}
         Cíl práce byl dosažen, podařilo se~mi v~souladu se~zadáním vytvořit aplikaci pro~generování školních testů. Koncept aplikace jsem diskutoval s~vybranými učiteli i~vývojáři. Aplikace je~v~rané fázi vývoje a~některé funkcionality tak~bude~nutné ještě dokončit.
+
+        Kód generátoru je~přiložen k~práci formou \texttt{*.ZIP} archivu.
         
         Uživatelé mohou sdílet příklady mezi sebou a~přenechat vymýšlení úloh počítači. Může~tak vzniknout databáze příkladů, která bude moci být~používána k~tvorbě testů. Pokud se~aplikace dostatečně rozšíří, vytvoří databázi generovaných příkladů, kterou budou moci učitelé používat pro~ověření znalostí svých~žáků a~studentů.
         
